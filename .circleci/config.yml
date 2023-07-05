@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   wp_theme_name:
     type: string
-    default: paradigmes-starter-theme
+    default: busmagique
   wp_folder:
     type: string
     default: applications/$APP_SYS_USR/public_html
@@ -53,7 +53,7 @@ jobs:
     steps:
       - checkout
       - setup-ssh
-      - build-theme
+      # - build-theme
       - deploy-theme
 
 workflows:
