@@ -1,0 +1,239 @@
+// Helper for responsive content
+@mixin xs {
+    @media #{$mob} {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media #{$mob2} {
+        @content;
+    }
+}
+
+@mixin md {
+    @media #{$tab} {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media #{$tab2} {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media #{$desk} {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media #{$extend} {
+        @content;
+    }
+}
+
+@mixin rwd( $screen_width, $type:max ) {
+    @media screen and ( #{$type}-width: $screen_width ) {
+        @content;
+    }
+}
+
+@mixin reduce-motion() {
+   @media screen and (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}
+
+@function gutter( $size:null ) {
+    @if map-has-key($gutters, $size) {
+        @return map-get( $gutters, $size );
+    }
+
+    @return $gutter;
+}
+
+// Helper to import font
+@mixin font($name, $file, $weight:normal, $style:normal) {
+    @font-face {
+        font-family: $name;
+        src: url(#{ $path-fonts + $file }.woff2) format('woff2'),
+             url(#{ $path-fonts + $file }.woff) format('woff');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@mixin typo($font-size, $line-height: null, $letter-spacing: null) {
+  @include rem(font-size, $font-size);
+  @if($letter-spacing) {
+    @include rem(letter-spacing, $letter-spacing);
+  }
+  @if($line-height) {
+    line-height: $line-height;
+  }
+}
+
+
+
+@mixin typoRWD($font-sizes : ('min': 32, 'max': 60), $line-heights, $letter-spacings, $steps...) {
+
+  @if length($steps) == 0 {
+    $steps: $mob, $mob2, $tab, $tab2, $desk, $extend;
+  }
+
+  $font-sizes-delta: map-get($font-sizes, 'max') - map-get($font-sizes, 'min');
+  $font-sizes-delta-step: $font-sizes-delta / (length($steps)-1);
+
+  $line-heights-delta: false;
+  $line-heights-delta-step: false;
+  @if(map-get($line-heights, 'min') != false) {
+    $line-heights-delta: map-get($line-heights, 'max') - map-get($line-heights, 'min');
+    $line-heights-delta-step: $line-heights-delta / (length($steps)-1);
+  }
+  $letter-spacings-delta: false;
+  $letter-spacings-delta-step: false;
+  @if(map-get($letter-spacings, 'min') != false) {
+    $letter-spacings-delta: map-get($letter-spacings, 'max') - map-get($letter-spacings, 'min');
+    $letter-spacings-delta-step: $letter-spacings-delta / (length($steps)-1);
+  }
+
+
+  @for $step from 0 through (length($steps)-1) {
+
+    $font-size: round((map-get($font-sizes, 'min') + ($font-sizes-delta-step * $step)));
+
+    $line-height: normal;
+    @if($line-heights-delta != false) {
+      $line-height: (map-get($line-heights, 'min') + ($line-heights-delta-step * $step));
+    }
+    $letter-spacing: normal;
+    @if($letter-spacings-delta != false) {
+      $letter-spacing: (map-get($letter-spacings, 'min') + ($letter-spacings-delta-step * $step));
+    }
+
+    @media #{nth($steps, $step + 1)} {
+        @include typo(rem($font-size), $line-height, rem($letter-spacing));
+    }
+
+  }
+}
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+  $rem: ();
+
+  @each $value in $values {
+    @if $value == 0 or $value == auto {
+      $rem: append($rem, $value);
+    }
+
+    @else if type-of($value) == number {
+      $unit: unit($value);
+      $val: parseInt($value);
+
+      @if $unit == "px" {
+        $rem: append($rem, ($val / 16 + rem));
+      }
+
+      @else if $unit == "%" {
+        $rem: append($rem, $value);
+      }
+
+      @else {
+        $rem: append($rem, $value);
+      }
+    }
+
+    @else {
+      $rem: append($rem, $value);
+    }
+  }
+
+  #{$property}: $rem;
+}
+
+@function rem($value) {
+  @return parseInt($value) / 16 + rem;
+}
+
+@mixin max-size($max-width:none, $max-height:none) {
+    @if $max-width != none {
+        @include rem(max-width, $max-width);
+    }
+
+    @if $max-height != none {
+        @include rem(max-height, $max-height);
+    }
+}
+
+@mixin min-size($min-width:none, $min-height:none) {
+    @if $min-width != none {
+        @include rem(min-width, $min-width);
+    }
+
+    @if $min-height != none {
+        @include rem(min-height, $min-height);
+    }
+}
+
+@mixin fullsize($position:absolute) {
+    position : $position;
+    top      : 0;
+    right    : 0;
+    bottom   : 0;
+    left     : 0;
+}
+
+
+
+@mixin size($width:auto, $height:auto) {
+    @if $width != auto {
+        @include rem(width, $width);
+    }
+
+    @if $height != auto {
+        @include rem(height, $height);
+    }
+}
+
+@function _url( $url ) {
+    @return url( $path-images + $url );
+}
+
+@mixin clearfix() {
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both
+  }
+}
+
+@mixin has-icon {
+  &:before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    @include rem(top, -2px);
+    @include rem(left, 1px);
+    @include rem(margin-right, 14px);
+    @include size(56px, 56px);
+    background: no-repeat center center;
+    background-size: 41px;
+  }
+  $icons: pain, fromage, poulet, boeuf, poissons, cochon, salade, fruits, sandwich;
+
+  @each $icon in $icons {
+    &.icon-#{$icon}:before {
+      background-image: _url('#{$icon}.svg');
+    }
+  }
+}

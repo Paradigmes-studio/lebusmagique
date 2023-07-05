@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="59.289" height="57.517" viewBox="0 0 59.289 57.517">
+    <defs>
+        <style>
+            .cls-2{stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;fill:none}
+        </style>
+    </defs>
+    <g id="Groupe_235" transform="translate(-284.13 -314.087)">
+        <path id="Tracé_515" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4px" d="M338.109 335.049c-.8-6.032-4.117-9-9.48-9.481 6.27-.72 8.936-4.267 9.48-9.48.422 6.517 3.982 9.187 9.481 9.48.001-.001-9.481.612-9.481 9.481z" transform="translate(-6.172)"/>
+        <path id="Tracé_516" d="M334.954 330.148a26.262 26.262 0 1 1-6.122-7.059" class="cls-2" transform="translate(0 -.175)"/>
+        <g id="Groupe_234" transform="translate(298.34 329.325)">
+            <path id="Ligne_57" d="M0 0L0 28.069" class="cls-2" transform="translate(14.035)"/>
+            <path id="Ligne_58" d="M28.069 0L0 0" class="cls-2" transform="translate(0 14.035)"/>
+        </g>
+    </g>
+</svg>

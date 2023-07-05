@@ -1,0 +1,167 @@
+body{
+  font-size:14px;
+  font-family: $font;
+  font-weight: $regular;
+  color: $text-color-main;
+  overflow: overlay;
+  overflow-x: hidden;
+}
+
+.bg--dark {
+  background-color: $black;
+  padding: 20px;
+}
+
+
+//scrollbars
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Track */
+    &-track {
+
+      border-radius: 8px;
+    }
+    /* Handle */
+    &-thumb {
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+      background: rgba($black,0.8);
+      &:window-inactive {
+        background: rgba($black,0.4);
+      }
+    }
+}
+
+
+// GRID temp for integration
+body {
+  div.grid12 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    // border: 4px solid blue;
+    z-index: 10000;
+    padding: 15px;
+    pointer-events: none;
+    &:before {
+      padding-left: 50px;
+      content: '15px <- max 100% -> 15px';
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid red;
+      background-image: linear-gradient(90deg, rgba(red, 0.3) 25%, transparent 25%, transparent 50%, rgba(red, 0.3) 50%, rgba(red, 0.3) 75%, transparent 75%, transparent 100%);
+        background-size: calc(100%/ 1.5) calc(100% / 1.5);
+      background-position: 0px;
+    }
+
+
+
+    // @media #{$width-1440} {
+      padding-left:calc((100% - #{$container-max-width}) / 2);
+      padding-right:calc((100% - #{$container-max-width}) / 2);
+
+    // }
+    //
+    //
+    // @media screen and (min-width: 1380px) {
+      right: auto;
+      left: 50%;
+      width: 100%;
+      max-width: $container-max-width;
+      box-sizing: content-box;
+      transform: translateX(-50%);
+      &-big {
+        opacity: 0;
+        max-width: $container-max-width-big;
+        width: calc(100% - (15px * 2));
+        &::after {
+          border: 1px solid blue;
+          background-image: none;
+          background-image: linear-gradient(90deg, rgba(blue, 0.1) 25%, transparent 25%, transparent 50%, rgba(blue, 0.1) 50%, rgba(blue, 0.1) 75%, transparent 75%, transparent 100%);
+        }
+        &:hover {
+          opacity: 0.5;
+          &::after {
+            background-image: linear-gradient(90deg, rgba(blue, 0.31) 25%, transparent 25%, transparent 50%, rgba(blue, 0.31) 50%, rgba(blue, 0.31) 75%, transparent 75%, transparent 100%);
+          }
+        }
+      }
+
+      // @include rwd( $container-max-width-big, min ) {
+      @include rwd( $container-max-width-big + (30 * 4), min ) {
+        padding-left:calc((100% - #{$container-max-width-big}) / 2 + 30px);
+        padding-right:calc((100% - #{$container-max-width-big}) / 2 + 30px);
+        &-big {
+          max-width:  calc(#{$container-max-width-big} - (30px * 2))
+        }
+      }
+      @include rwd( $container-max-width + (30 * 2), min ) {
+
+          padding-left:15px;
+          padding-right:15px;
+        box-sizing: content-box;
+      }
+
+      @at-root main:hover {
+        div.grid12 {
+          &-big {
+            opacity: 0.5;
+            &::after {
+              background-image: linear-gradient(90deg, rgba(blue, 0.31) 25%, transparent 25%, transparent 50%, rgba(blue, 0.31) 50%, rgba(blue, 0.31) 75%, transparent 75%, transparent 100%);
+            }
+          }
+        }
+      }
+
+    // }
+    @include md() {
+      &:before {
+        padding-left: 100px;
+        content: '30px <- max 100% -> 30px';
+        font-weight: bold;
+      }
+      width: 100%;
+      box-sizing: border-box;
+      border-left: 1px solid red;
+      border-right: 1px solid red;
+      padding-left: 30px;
+      padding-right: 30px;
+      &:after, div.grid12-big::after {
+        background-size: calc(100%/ 3) calc(100% / 3);
+        // background-size: calc(100%/ 1.5) calc(100% / 1.5);
+      }
+    }
+    @include lg() {
+      &:before {
+        content: '30px <- max 1200px -> 30px';
+      }
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media screen and (min-width: 1200px + (30px * 2)) {
+      box-sizing: content-box;
+    }
+    @media screen and (min-width: $container-max-width + (30px * 2)) {
+      &:before {
+        content: '30px <- max #{$container-max-width} -> 30px';
+      }
+      max-width: $container-max-width;
+      box-sizing: content-box;
+    }
+    @media screen and (min-width: $container-max-width-big + (30px * 4)) {
+      &:before {
+        content: '30px <- max #{$container-max-width-big} -> 30px';
+      }
+      max-width: $container-max-width-big;
+      box-sizing: content-box;
+    }
+  }
+}

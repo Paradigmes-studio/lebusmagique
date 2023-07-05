@@ -1,0 +1,52 @@
+.section-landing-standard {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align:center;
+    overflow: hidden;
+
+    .section-landing-top {
+        height:calc(100vh - 63px);
+        margin-top: 63px;
+        position: relative;
+
+        @media #{$desk}{
+            height:calc(100vh - 86px);
+            margin-top: 86px;
+
+        }
+        @media #{$extend}{
+            height:calc(100vh - 106px);
+            margin-top: 106px;
+
+        }
+    }
+    .top-image {
+      height: calc(100% - 40px);
+      position: relative;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .hublot .big-title{
+        top: 40%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+
+        @at-root body.home & {
+          // top: 13%;
+          @media #{$tab2} {
+            top: 35%;
+          }
+          @media #{$desk} {
+            top: 38%;
+          }
+        }
+    }
+
+}

@@ -1,0 +1,283 @@
+.section-landing-contact{
+    margin: 0;
+    padding-top: 46px;
+
+    .section-landing-top {
+      @media screen and (max-width: 767px) {
+        height: auto;
+      }
+      @media #{$tab} {
+        margin-top: 0;
+        height: calc(50vh - 63px);
+      }
+      @media #{$tab2} {
+        height: calc(70vh - 63px);
+      }
+      @media #{$desk} {
+        height: calc(100vh - 86px);
+        margin-top: 40px;
+      }
+    }
+    .text-yellow-background.bottom {
+      margin-top: -28px;
+      @media #{$tab} {
+        margin-top: -100px;
+      }
+      @media #{$tab2} {
+        margin-top: -80px;
+        padding-top: 40px;
+      }
+      @media #{$desk} {
+        margin-top: -40px;
+        margin-top: 0px;
+        padding-top: 80px;
+      }
+    }
+
+    .contact-info{
+    display: inline-block;
+    width: 100%;
+
+
+        & p{
+        float: left;
+        text-align: center;
+        font-style: italic;
+        }
+
+        .middle{
+            width: 100%;
+        }
+        .left{
+            width: 40%;
+            margin-right: 20%;
+        }
+        .right{
+            width:40%;
+        }
+    }
+    .telephone{
+    font-family: "FinlandRounded";
+    font-size: 15px;
+    font-weight: 100;
+    }
+
+}
+
+.o-contact {
+  display: flex;
+  flex-direction: column;
+
+  .text-yellow-background.top {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &__mail {
+    text-align: center;
+    p {
+      margin-top: 4px;
+    }
+    a {
+      font-size: 12px;
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: 0.18px;
+      color: $black;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      @media #{$tab2} {
+        font-size:13px;
+        letter-spacing: 0.2px;
+      }
+      @media #{$desk} {
+        font-size:16px;
+        letter-spacing: 0.31px;
+      }
+      @media #{$extend} {
+        font-size:20px;
+        letter-spacing: 0.33px;
+      }
+      @media #{$extend2} {
+        font-size: 25px;
+        letter-spacing: 0.38px;
+      }
+    }
+  }
+
+  &__photo {
+    position: relative;
+    z-index: 2;
+
+    img[src$=".png"] {
+      width: 62%;
+      max-width: 300px;
+      height: auto;
+      margin-top: 37px;
+    }
+    img[src$=".svg"] {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      width: 75%;
+      max-width: 350px;
+      transform: translate(-45%, -50%);
+    }
+  }
+
+  &__phones {
+    order: -1;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      li {
+        text-align: center;
+        flex-basis: 50%;
+        margin-bottom: 24px;
+        &:first-child {
+          flex-basis: 100%;
+        }
+      }
+    }
+    a {
+      color: $black;
+      text-decoration: none;
+      font-family: "FinlandRounded";
+      font-size: 15px;
+      font-weight: 100;
+      font-style: italic;
+      line-height: 0.93;
+      letter-spacing: normal;
+      &:hover {
+        text-decoration: underline;
+      }
+
+      @media #{$tab2} {
+        font-size:16px;
+      }
+      @media #{$desk} {
+        font-size:23px;
+      }
+      @media #{$extend} {
+        font-size:25px;
+      }
+      @media #{$extend2} {
+        font-size: 30px;
+      }
+    }
+  }
+  &__name {
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    // line-height: 2.5;
+    letter-spacing: 0.18px;
+    color: $black;
+    text-decoration: none;
+
+    @media #{$tab2} {
+      font-size:13px;
+      letter-spacing: 0.2px;
+    }
+    @media #{$desk} {
+      font-size:16px;
+      letter-spacing: 0.31px;
+    }
+    @media #{$extend} {
+      font-size:20px;
+      letter-spacing: 0.33px;
+    }
+    @media #{$extend2} {
+      font-size: 25px;
+      letter-spacing: 0.38px;
+    }
+  }
+
+
+  @media #{$tab} {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    max-width: $container-medium-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 136px;
+
+    .text-yellow-background.top {
+      margin-left: calc((100vw - #{$container-medium-width}) / -2);
+      margin-right: calc((100vw - #{$container-medium-width}) / -2);
+      width: 100vw;
+    }
+
+    &__mail, &__photo, &__phones {
+      flex-basis: calc(100% / 3);
+    }
+    &__phones {
+      max-width: unset;
+      order: initial;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    &__photo {
+
+      img[src$=".png"] {
+        width: 80%;
+        max-width: 450px;
+        height: auto;
+        margin-top: 37px;
+      }
+      img[src$=".svg"] {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        width: 95%;
+        max-width: 500px;
+        transform: translate(-45%, -50%);
+      }
+    }
+  }
+
+
+    @media #{$extend2} {
+      max-width: $container-max-width-big;
+      padding-bottom: 200px;
+
+      .text-yellow-background.top {
+        margin-left: calc((100vw - #{$container-max-width-big}) / -2);
+        margin-right: calc((100vw - #{$container-max-width-big}) / -2);
+      }
+
+
+      &__photo {
+
+        img[src$=".png"] {
+          width: 80%;
+          max-width: 450px;
+          height: auto;
+          margin-top: 37px;
+        }
+        img[src$=".svg"] {
+          position: absolute;
+          top: 60%;
+          left: 50%;
+          width: 95%;
+          max-width: 500px;
+          transform: translate(-45%, -50%);
+        }
+      }
+    }
+
+}

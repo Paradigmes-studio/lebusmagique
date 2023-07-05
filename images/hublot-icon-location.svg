@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36.823" height="30.724" viewBox="0 0 36.823 30.724">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-width:3px;stroke-linejoin:round}
+        </style>
+    </defs>
+    <g id="Groupe_387" transform="translate(1.5 1.5)">
+        <g id="Groupe_236" transform="translate(7.477)">
+            <path id="Ligne_39" d="M0 0L0 25.992" class="cls-1" transform="translate(1.175)"/>
+            <path id="Ligne_40" d="M0 0L0 25.992" class="cls-1" transform="translate(13.966)"/>
+            <path id="Ligne_41" d="M0 0L11.725 0" class="cls-1" transform="translate(1.585 2.788)"/>
+            <path id="Ligne_42" d="M0 0L11.725 0" class="cls-1" transform="translate(1.585 8.773)"/>
+            <path id="Ligne_43" d="M0 0L18.694 0" class="cls-1" transform="translate(0 14.677)"/>
+            <path id="Ligne_44" d="M0 0L0 11.315" class="cls-1" transform="translate(5.439 14.677)"/>
+            <path id="Ligne_45" d="M0 0L0 11.315" class="cls-1" transform="translate(17.82 14.677)"/>
+        </g>
+        <path id="Ligne_59" fill="none" stroke="#000" stroke-linecap="round" stroke-width="3px" d="M0 0L33.823 0" transform="translate(0 27.724)"/>
+    </g>
+</svg>

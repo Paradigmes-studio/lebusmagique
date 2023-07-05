@@ -1,0 +1,16 @@
+
+//MIXINS CENTRAGE
+@mixin Xtranslation($Xval: -50%) {
+ transform: translateX($Xval);
+ -webkit-transform: translateX($Xval);
+}
+
+@mixin Ytranslation($Yval: -50%) {
+ transform: translateY($Yval);
+ -webkit-transform: translateY($Yval);
+}
+
+@mixin XYtranslation($Xval: -50%,$Yval: -50%) {
+ transform: translate($Xval, $Yval);
+ -webkit-transform: translate($Xval, $Yval);
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36.589" height="36.589" viewBox="0 0 36.589 36.589">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px}
+        </style>
+    </defs>
+    <g id="Groupe_51" transform="translate(-148.44 -57.225)">
+        <circle id="Ellipse_5" cx="16.794" cy="16.794" r="16.794" class="cls-1" transform="translate(149.94 58.725)"/>
+        <circle id="Ellipse_6" cx="8.569" cy="8.569" r="8.569" class="cls-1" transform="translate(158.199 66.842)"/>
+        <path id="Ligne_1" d="M0 0L5.455 5.455" class="cls-1" transform="translate(173.155 81.94)"/>
+        <path id="Ligne_2" d="M5.455 0L0 5.455" class="cls-1" transform="translate(154.859 81.94)"/>
+        <path id="Ligne_3" d="M5.455 5.455L0 0" class="cls-1" transform="translate(154.859 63.644)"/>
+        <path id="Ligne_4" d="M0 0L1.793 7.503" class="cls-1" transform="translate(168.846 84.351)"/>
+        <path id="Ligne_5" d="M7.503 0L0 1.793" class="cls-1" transform="translate(150.4 77.63)"/>
+        <path id="Ligne_6" d="M1.793 7.503L0 0" class="cls-1" transform="translate(162.831 59.185)"/>
+        <path id="Ligne_7" d="M0 1.793L7.503 0" class="cls-1" transform="translate(175.566 71.615)"/>
+        <path id="Tracé_60" d="M204.393 64.5l-5.455 5.455" class="cls-1" transform="translate(-25.782 -.854)"/>
+    </g>
+</svg>

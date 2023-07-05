@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="199" height="199" viewBox="0 0 199 199">
+    <defs>
+        <style>
+            .cls-3{stroke:#000}.cls-4{stroke:none}.cls-5{fill:none}
+        </style>
+    </defs>
+    <g id="Groupe_586" transform="translate(-1339 -232.831)">
+        <g id="Groupe_341" transform="translate(1344 237.831)">
+            <g id="Ellipse_8" fill="#9bb909" stroke="#000" stroke-width="5px">
+                <circle cx="94.5" cy="94.5" r="94.5" class="cls-4"/>
+                <circle cx="94.5" cy="94.5" r="97" class="cls-5"/>
+            </g>
+        </g>
+        <g id="Groupe_342" transform="translate(1354.607 249.402)">
+            <g id="Ellipse_8-2" fill="#fff" stroke="#000" stroke-width="5px" transform="translate(.393 .429)">
+                <ellipse cx="83.5" cy="83" class="cls-4" rx="83.5" ry="83"/>
+                <ellipse cx="83.5" cy="83" class="cls-5" rx="81" ry="80.5"/>
+            </g>
+        </g>
+        <g id="Groupe_371" transform="translate(1346 239.915)">
+            <g id="Ellipse_80" class="cls-3" transform="rotate(45 45.172 201.239)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_91" class="cls-3" transform="rotate(45 46.286 111.744)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_92" class="cls-3" transform="rotate(45 -169.053 200.94)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_81" class="cls-3" transform="rotate(45 -105.638 264.573)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_82" class="cls-3" transform="rotate(45 -16.681 49.815)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_83" class="cls-3" transform="rotate(45 -168.539 112.717)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_93" class="cls-3" transform="rotate(135 73.4 84.63)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+            <g id="Ellipse_94" class="cls-3" transform="rotate(135 -15.797 47.684)">
+                <circle cx="2.387" cy="2.387" r="2.387" class="cls-4"/>
+                <circle cx="2.387" cy="2.387" r="1.887" class="cls-5"/>
+            </g>
+        </g>
+    </g>
+</svg>

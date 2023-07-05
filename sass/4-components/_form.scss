@@ -1,0 +1,263 @@
+.form{
+    text-align:center;
+
+    @media #{$mob2}{
+        margin-left:0;
+        margin-right:0;
+        text-align:center;
+    }
+
+
+
+
+
+    @media #{$extend}{
+        margin-left:103px;
+        margin-right:103px;
+    }
+
+
+    @media #{$extend2}{
+        margin-left:138px;
+        margin-right:138px;
+
+    }
+    h2{
+        text-align:center;
+        margin-bottom:31px;
+
+        @media #{$tab2}{
+            margin-bottom:51px;
+        }
+
+        @media #{$desk}{
+            margin-bottom:64px;
+        }
+
+        @media #{$extend}{
+            margin-bottom:72px;
+        }
+
+        @media #{$extend2}{
+            margin-bottom:97px;
+        }
+    }
+    input{
+        width:266px;
+        height:41px;
+        padding-left:36px;
+        border-radius: 25px;
+        background-color: #ffffff;
+        border-color:transparent;
+        margin-top:9px;
+        font-style: italic;
+
+        @media #{$mob2}{
+            width:510px;
+        }
+
+        @media #{$tab2}{
+            width:638px;
+        }
+
+        @media #{$desk}{
+            width: 100%;
+            border-radius: 32px;
+        }
+
+        @media #{$extend}{
+            height:60px;
+            border-radius: 37px;
+        }
+        @media #{$extend2}{
+            width:814px;
+            height: 81px;
+            border-radius: 50px;
+            margin-bottom:16px;
+            padding-left:46px;
+        }
+    }
+
+    .form-top{
+            margin-bottom:34px;
+        @media #{$extend2}{
+            margin-bottom:88px;
+        }
+    }
+
+    .form-left,.form-right{
+        @media #{$extend2}{
+            margin-bottom:34px;
+        }
+
+        /* @media #{$mob2}{
+            width:382px;
+        } */
+
+
+        @media #{$desk}{
+            display: inline-block;
+            width:542px;
+        }
+
+        @media #{$extend}{
+            width:610px;
+        }
+
+        @media #{$extend2}{
+            width:814px;
+        }
+
+    }
+    .form-left{
+        @media #{$extend2}{
+            margin-right: 16px;
+            position:relative;
+        }
+    }
+    .formula,.date{
+
+        @media #{$extend}{
+            height:76px;
+        }
+
+        @media #{$extend2}{
+            height:102px;
+        }
+    }
+    .message
+    {
+        width:266px;
+        height:163px;
+        padding-bottom:120px;
+
+        @media #{$mob2}{
+            width:510px;
+        }
+
+        @media #{$tab2}{
+            width:638px;
+        }
+
+        @media #{$desk}{
+            width:1096px;
+            height:197px;
+        }
+
+        @media #{$extend}{
+            width:1233px;
+            height:222px;
+            padding-bottom:11%;
+        }
+
+        @media #{$extend2}{
+            width:1644px;
+            height:296px;
+            padding-bottom:11%;
+        }
+    }
+
+    .cta{
+        margin-top:18px;
+        background-color: #f8f4e8;
+
+
+        @media #{$tab2}{
+            margin-top:27px;
+        }
+
+        @media #{$desk}{
+            margin-top:34px;
+        }
+
+        @media #{$extend}{
+            margin-top:39px;
+        }
+
+        @media #{$extend2}{
+            margin-top:52px;
+        }
+    }
+
+    &--contact{
+        max-width: 980px;
+        margin: auto;
+
+        h2{
+            margin-top:42px;
+            margin-bottom:7px;
+            @media #{$tab2}{
+                margin-top:84px;
+                margin-bottom:16px;
+            }
+
+            @media #{$desk}{
+                margin-top:105px;
+                margin-bottom:24px;
+
+            }
+
+            @media #{$extend}{
+                margin-top:119px;
+
+            }
+
+            @media #{$extend2}{
+                margin-top:159px;
+                margin-bottom:32px;
+            }
+
+        }
+        p{
+            margin-bottom:33px;
+
+            @media #{$tab2}{
+                margin-bottom:52px;
+            }
+
+            @media #{$desk}{
+                margin-bottom:65px;
+            }
+
+            @media #{$extend}{
+                margin-bottom:74px;
+            }
+
+            @media #{$extend2}{
+                margin-bottom:99px;
+            }
+        }
+        input{
+
+            @media #{$desk}{
+                width:718px;
+            }
+
+            @media #{$extend}{
+                width:855px;
+            }
+
+            @media #{$extend2}{
+                width:980px;
+                height:102px;
+
+            }
+        }
+
+        .message{
+
+            @media #{$desk}{
+                width:718px;
+            }
+
+            @media #{$extend}{
+                width:855px;
+            }
+
+            @media #{$extend2}{
+                width:980px;
+            }
+        }
+    }
+
+}

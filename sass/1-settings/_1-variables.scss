@@ -1,0 +1,33 @@
+// Path
+$path-images : '../images/';
+$path-fonts  : '../fonts/';
+
+// Fonts
+$font  : "Barlow", Arial, Helvetica, sans-serif;
+$font-title : "Barlow", Helvetica, Arial sans-serif;
+$font-text : $font;
+
+
+// Vars
+$container-medium-width : 1230px;
+$container-max-width : 1440px;
+$container-max-width-big : 1642px;
+$header-height: 80px;
+
+
+$gutter : 30px;
+$gutters : (
+	'small'  : 20px,
+	'medium' : 30px,
+	'large'  : 40px,
+	'huge'   : 60px,
+);
+
+$breakpoints : (
+	'mini'  : 549px,
+	'small'  : 767px,
+	'medium' : 1023px,
+	'large'  : 1279px,
+	'huge'   : 1439px,
+	'giant'   : 1919px,
+);

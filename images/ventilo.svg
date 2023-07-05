@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52.804" height="52.804" viewBox="0 0 52.804 52.804">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:none;stroke:#1d1d1b;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px}.cls-2{fill:#1d1d1b}
+        </style>
+    </defs>
+    <g id="Groupe_335" transform="rotate(45 254.829 -385.004)">
+        <path id="Tracé_720" d="M408.182 75.405a15.809 15.809 0 0 1-.155 2.228 16 16 0 0 1-13.612 13.612 16.049 16.049 0 0 1-4.457 0 16 16 0 0 1-13.612-13.612 16.046 16.046 0 0 1 0-4.457 16 16 0 0 1 13.612-13.612 16.048 16.048 0 0 1 4.457 0 16 16 0 0 1 13.612 13.612 15.809 15.809 0 0 1 .155 2.229z" class="cls-1" transform="translate(-7.972 -7.979)"/>
+        <circle id="Ellipse_68" cx="6.481" cy="6.481" r="6.481" class="cls-1" transform="translate(377.734 60.945)"/>
+        <rect id="Rectangle_87" width="34.338" height="34.338" class="cls-1" rx="8" transform="rotate(90 175.563 225.82)"/>
+        <path id="Tracé_721" d="M420.5 49.447v2.139a16.048 16.048 0 0 0-4.457 0v-2.139a2.228 2.228 0 0 1 4.457 0z" class="cls-2" transform="translate(-34.054)"/>
+        <path id="Tracé_722" d="M420.5 151.559v2.135a2.228 2.228 0 0 1-4.457 0v-2.135a16.048 16.048 0 0 0 4.457 0z" class="cls-2" transform="translate(-34.054 -68.292)"/>
+        <path id="Tracé_723" d="M472.707 101.487a2.241 2.241 0 0 1-2.228 2.228h-2.139a16.049 16.049 0 0 0 0-4.457h2.139a2.236 2.236 0 0 1 2.228 2.229z" class="cls-2" transform="translate(-68.285 -34.061)"/>
+        <path id="Tracé_724" d="M368.218 101.487a15.809 15.809 0 0 0 .155 2.228h-2.135a2.228 2.228 0 0 1 0-4.457h2.135a15.809 15.809 0 0 0-.155 2.229z" class="cls-2" transform="translate(0 -34.061)"/>
+        <path id="Ligne_100" d="M0 0L5.668 7.64" class="cls-1" transform="translate(374.684 54.582)"/>
+        <path id="Ligne_101" d="M5.506 0L0 7.76" class="cls-1" transform="translate(387.964 54.381)"/>
+        <path id="Ligne_102" d="M9.49 0L0 0.661" class="cls-1" transform="translate(390.679 66.314)"/>
+        <path id="Ligne_103" d="M3.526 8.703L0 0" class="cls-1" transform="translate(386.694 73.547)"/>
+        <path id="Ligne_104" d="M0 9.21L2.376 0" class="cls-1" transform="translate(380.22 73.703)"/>
+        <path id="Ligne_105" d="M0 0.598L9.496 0" class="cls-1" transform="translate(368.251 67.833)"/>
+    </g>
+</svg>

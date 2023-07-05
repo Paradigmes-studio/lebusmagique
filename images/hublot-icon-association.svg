@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44.122" height="26.208" viewBox="0 0 44.122 26.208">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#1d1d1b;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="Groupe_338" transform="translate(-631.869 -219.116)">
+        <path id="Rectangle_92" d="M0 0H8.715V7.262H0z" class="cls-1" transform="translate(645.942 223.505)"/>
+        <path id="Rectangle_93" d="M0 0H6.294V7.262H0z" class="cls-1" transform="translate(637.227 223.505)"/>
+        <path id="Rectangle_94" d="M0 0H9.199V7.262H0z" class="cls-1" transform="translate(657.077 223.505)"/>
+        <path id="Rectangle_95" d="M0 0H6.294V7.262H0z" class="cls-1" transform="translate(668.697 223.505)"/>
+        <circle id="Ellipse_74" cx="2.905" cy="2.905" r="2.905" class="cls-1" transform="translate(644.489 238.514)"/>
+        <path id="Tracé_728" d="M690.783 223.5v-.968a2.328 2.328 0 0 0-2.421-2.421h-32.923a2.328 2.328 0 0 0-2.421 2.421v.968h6.294v7.262h-6.294V239a2.328 2.328 0 0 0 2.421 2.421h1.937a5.81 5.81 0 1 1 11.62 0h7.262a5.81 5.81 0 1 1 11.62 0h.484a2.328 2.328 0 0 0 2.421-2.421v-8.231h-6.294V223.5z" class="cls-1" transform="translate(-15.792)"/>
+        <circle id="Ellipse_75" cx="2.905" cy="2.905" r="2.905" class="cls-1" transform="translate(663.371 238.514)"/>
+        <path id="Rectangle_96" d="M0 0H2.421V4.842H0z" class="cls-1" transform="translate(632.869 225.441)"/>
+        <path id="Tracé_729" d="M637.881 234.184a3.179 3.179 0 0 1 3.389-2.9" class="cls-1" transform="translate(-4.043 -8.742)"/>
+    </g>
+</svg>

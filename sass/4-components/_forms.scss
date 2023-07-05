@@ -1,0 +1,715 @@
+
+
+@mixin float-label-container {
+  display: block;
+  position: relative;
+}
+
+@mixin float-label {
+  label, > span {
+    position: absolute;
+    left: 36px;
+    @include rem(top, -9px);
+    cursor: text;
+    font-size: 85.7%;
+    opacity: 1;
+    transition: all .2s;
+    text-shadow: 0 0 4px #ffffffff;
+    @media #{$tab2} {
+      left: 37px;
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: 0.16px;
+    }
+    @media #{$desk} {
+      @include rem(top, -8px);
+      left: 40px;
+      font-size: 17px;
+      letter-spacing: 0.17px;
+    }
+    @media #{$extend} {
+      @include rem(top, -8px);
+      left: 42px;
+      font-size: 18px;
+      letter-spacing: 0.18px;
+    }
+    @media #{$extend2} {
+      left: 46px;
+      @include rem(top, -9px);
+      font-size: 20px;
+      letter-spacing: 0.2px;
+    }
+    @content;
+  }
+}
+
+@mixin float-label-input {
+  &::placeholder {
+    font-style: italic;
+    opacity: 0.5;
+    transition: all .2s;
+  }
+  &:placeholder-shown:not(:focus)::placeholder {
+      opacity: 0;
+  }
+}
+
+@mixin float-label-scaled {
+  &:placeholder-shown:not(:focus) + * {
+      font-size: 85.7145%;
+
+      @media #{$tab2} {
+        font-size: 16px;
+        line-height: 1.2;
+        letter-spacing: 0.16px;
+      }
+      @media #{$desk} {
+        font-size: 17px;
+        letter-spacing: 0.17px;
+      }
+      @media #{$extend} {
+        font-size: 18px;
+        letter-spacing: 0.18px;
+      }
+      @media #{$extend2} {
+        font-size: 20px;
+        letter-spacing: 0.2px;
+      }
+      // opacity: .5;
+      @content;
+  }
+}
+
+form{
+  font-family: $font-text;
+  .wp-block-columns {
+    margin-bottom: 0;
+  }
+}
+
+.a-field {
+  @include float-label-container;
+
+  @include float-label;
+
+  @include rem(margin, 0px 0 0px);
+  @include rem(padding, 9px 0 0px);
+  @media #{$tab2} {
+    @include rem(padding, 12px 0 0px);
+  }
+  @media #{$desk} {
+    @include rem(padding, 14px 0 0px);
+  }
+  @media #{$extend} {
+    @include rem(padding, 15px 0 0px);
+  }
+  @media #{$extend2} {
+    @include rem(padding, 16px 0 0px);
+  }
+}
+
+.a-input {
+  font-family: $font-text;
+  @include float-label-input;
+  // @include shadow;
+  @include rem(padding, 9px 36px);
+  // @include typo(14px, normal, -0.17px);
+  @include rem(min-height, 41px);
+  @include rem(min-width, 266px);
+  font-size: 12px;
+  // font-style: italic;
+  line-height: 1.17;
+  letter-spacing: 0.12px;
+  width: 100%;
+  // border: 1px solid $couleurs-gris-logo;
+  border: 0;
+  @include rem(border-radius, 25px);
+  color: $black-two;
+  background: $white;
+
+  @include float-label-scaled {
+    @include rem(top, 13px);
+    @include rem(left, 36px);
+    pointer-events: none;
+    @media #{$tab2} {
+      @include rem(top, 38px);
+      @include rem(left, 38px);
+    }
+    @media #{$desk} {
+      @include rem(top, 40px);
+      @include rem(left, 40px);
+    }
+    @media #{$extend} {
+      @include rem(left, 42px);
+      @include rem(top, 42px);
+    }
+    @media #{$extend2} {
+      @include rem(left, 46px);
+      @include rem(top, 46px);
+    }
+  }
+  &:focus {
+    outline: none;
+    border-color: rgba(0,0,0,.5);
+  }
+  &::placeholder {
+    color: $black-two;
+  }
+  &:focus {
+    border: 0;
+    outline: 0;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 25%);
+  }
+
+  &--icon {
+    @include rem(padding-left, 52px);
+    @include float-label-scaled {
+      @include rem(left, 52px);
+    }
+    background-repeat: no-repeat;
+    background-position: 5px 50%;
+    &-search {
+      background-image: _url('search.svg');
+      @include rem(background-size, 35px);
+    }
+  }
+  &--error {
+    border: 1px solid $rouge;
+    // color: $rouge;
+    + label {
+      // color: $rouge;
+      + span.a-input--error {
+        color: $rouge;
+        @include rem(top, -8px);
+        border: 0;
+      }
+    }
+    &:placeholder-shown:not(:focus) + label + span.a-input--error {
+      @include rem(top, 8px);
+    }
+  }
+
+  @media #{$tab2} {
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: 0.16px;
+    @include rem(min-height, 90px);
+    @include rem(border-radius, 43px);
+    @include rem(padding, 12px 38px);
+  }
+  @media #{$desk} {
+    font-size: 17px;
+    letter-spacing: 0.17px;
+    @include rem(min-height, 94px);
+    @include rem(border-radius, 45px);
+    @include rem(padding, 12px 40px);
+  }
+  @media #{$extend} {
+    font-size: 18px;
+    letter-spacing: 0.18px;
+    @include rem(min-height, 96px);
+    @include rem(border-radius, 47px);
+    @include rem(padding-left, 42px);
+    @include rem(padding, 14px 42px);
+  }
+  @media #{$extend2} {
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    @include rem(min-height, 102px);
+    @include rem(border-radius, 51px);
+    @include rem(padding-left, 46px);
+    @include rem(padding, 16px 46px);
+  }
+}
+.a-select {
+  @extend .a-input;
+  color: $black-two;
+  background-color: $white;
+  @include rem(min-width, 266px);
+  // @include rem(padding, 9px 18px);
+}
+.a-option {
+  @extend .a-input;
+  @include rem(line-height, 40px);
+  @include rem(height, 40px);
+  font-family: $font;
+}
+.a-label {
+  @include typo(11px, normal, normal);
+  display: block;
+  @include rem(margin, 10px 0 0);
+  color: $black-two;
+  font-style: italic;
+  + .a-input {
+    @include rem(margin-top, 5px);
+  }
+}
+.a-button {
+  &[type="submit"] {
+    @include rem(min-width, 174px);
+    @include rem(min-height, 30px);
+    @include rem(padding-top, 7px);
+    @include rem(padding-bottom, 8px);
+    @include rem(margin-top, 5px);
+    background-color: transparent;
+    cursor: pointer;
+    // border: 0;
+    font-family: "Barlow Condensed",sans-serif;
+    border: 3px solid $black;
+    font-size: 12px;
+    font-weight: 600;
+    font-stretch: condensed;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: 0.36px;
+    text-transform: uppercase;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    box-sizing: border-box;
+    &:hover, &:focus {
+      background-color: $white;
+    }
+
+    @media #{$tab2}{
+
+        width:270px;
+        height:50px;
+        border-radius: 25px;
+        padding-left: 38px;
+        padding-right: 38px;
+        margin-top:51px;
+        font-size:16px;
+        z-index:0;
+        margin-bottom:80px;
+
+    }
+    @media #{$desk}{
+        width:335px;
+        height:60px;
+        border-radius: 30px;
+        padding-left: 48px;
+        padding-right: 48px;
+        font-size: 20px;
+        margin-top:64px;
+        border-width: 4px;
+        margin-bottom:101px;
+    }
+    @media #{$extend}{
+        width:366px;
+        height:70px;
+        border-radius:35px;
+        padding-left: 54px;
+        padding-right: 54px;
+        font-size: 22.5px;
+        margin-top: 72px;
+        border-width: 5px;
+        margin-bottom: 114px;
+    }
+    @media #{$extend2}{
+        width:488px;
+        height: 92px;
+        border-radius: 45px;
+        font-size: 30px;
+        padding-left: 72px;
+        padding-right: 72px;
+        border-width: 6px;
+        margin-top: 97px;
+        margin-bottom: 152px;
+    }
+  }
+}
+
+@supports(-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type='checkbox'],
+  input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+.a-field > span.wpcf7-radio {
+  height: 41px;
+  display: inline-flex;
+  align-items: center;
+  position: static;
+  label {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 0.12px;
+  }
+  @media #{$tab2} {
+    height: 90px;
+    label {
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: 0.16px;
+    }
+  }
+  @media #{$desk} {
+    height: 94px;
+    label {
+      font-size: 17px;
+      letter-spacing: 0.17px;
+    }
+  }
+  @media #{$extend} {
+    height: 96px;
+    label {
+      font-size: 18px;
+      letter-spacing: 0.18px;
+    }
+  }
+  @media #{$extend2} {
+    height: 102px;
+    // @include size(40px, 40px);
+    label {
+      font-size: 20px;
+      letter-spacing: 0.2px;
+    }
+  }
+}
+
+input {
+  @extend .a-input;
+
+  &[type="text"]{
+
+  }
+
+  &[type="mail"]{
+
+  }
+
+  &[type="tel"]{
+
+  }
+
+  &[type="radio"] {
+    min-height: unset;
+    min-width: unset;
+    @include size(20px, 20px);
+    @include rem(margin, 10px 10px);
+    background: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    &:checked {
+      border-color: $yellow;
+      &:before {
+        background: $yellow;
+      }
+      + .wpcf7-list-item-label {
+        font-weight: 500;
+      }
+    }
+    &:before {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      @include size(7px, 7px);
+      background: #e6e6e6;
+    }
+    @media #{$tab2} {
+      @include size(30px, 30px);
+      &:before {
+        @include size(14px, 14px);
+      }
+    }
+    @media #{$desk} {
+      @include size(32px, 32px);
+      &:before {
+        @include size(16px, 16px);
+      }
+    }
+    @media #{$extend} {
+      @include size(36px, 36px);
+      &:before {
+        @include size(18px, 18px);
+      }
+    }
+    @media #{$extend2} {
+      @include size(40px, 40px);
+      &:before {
+        @include size(20px, 20px);
+      }
+    }
+  }
+
+  &[type="checkbox"] {
+    background: $white;
+    @include rem(line-height, 30px);
+    min-height: unset;
+    min-width: unset;
+    width: auto;
+    @include size(20px, 20px);
+    position: relative;
+    cursor: pointer;
+    &:before {
+      content: '';
+      @include fullsize();
+      background: _url('checked.svg') no-repeat center center;
+      @include rem(background-size, 12px);
+      opacity: 0;
+    }
+    &:hover, &:focus {
+      &:before {
+        opacity: 0.25;
+      }
+    }
+    &:checked {
+      &:before, &:hover:before, &:hover:focus {
+        opacity: 1;
+      }
+    }
+
+    + label {
+      position: static;
+      display: inline-block;
+      font-size: 100%;
+      color: $dark-slate-blue;
+      @include rem(line-height, 30px);
+      @include rem(margin, 5px 20px);
+      vertical-align: top;
+      cursor: pointer;
+    }
+  }
+}
+
+
+label{
+  @extend .a-label;
+}
+
+
+select{
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+  @extend .a-select;
+  background: _url("arrow-down.svg") no-repeat calc(100% - 23px) 50%;
+  @include rem(background-size, 16px);
+}
+
+.dk {
+  &-select {
+    display: flex;
+    align-items: center;
+    margin-top: 26px;
+    @media screen and (min-width: 600px) {
+      margin-top: 0px;
+    }
+    .dk-selected {
+      border: 0;
+      border-radius: 0;
+      padding-left: 0;
+      @include rem(line-height, 23px);
+      &:after {
+        border: 0;
+      }
+      &:before {
+        border: 0;
+        margin: 0;
+        @include size(16px, 16px);
+        background: _url("arrow-down.svg") no-repeat 50% 50%;
+        @include rem(background-size, 16px);
+        transform: translateY(-50%);
+        transition: transform .4s;
+      }
+    }
+    &.dk-select-open-down {
+      .dk-selected {
+        &:before {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+      .dk-select-options {
+        @include rem(border-radius, 25px);
+        @include rem(margin-top, 1px);
+        @include shadow;
+      }
+    }
+    &-options {
+      border: 0;
+      padding: 0;
+      @include rem(max-height, 200px);
+      @include shadow;
+      overflow: overlay;
+
+      @media #{$tab2} {
+        @include rem(max-height, 250px);
+      }
+      .dk-option-selected {
+        background-color: $couleurs-gris-bleu-clair;
+        color: $dark-slate-blue;
+      }
+      .dk-option-highlight {
+        background-color: darken($couleurs-gris-bleu-clair, 3%);
+        color: $dark-slate-blue;
+      }
+
+    }
+  }
+  &-option {
+    @include rem(padding, 16px);
+    @include typo(12px, normal, 0.12px);
+    @media #{$tab2} {
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: 0.16px;
+      @include rem(min-height, 60px);
+    }
+    @media #{$desk} {
+      font-size: 17px;
+      letter-spacing: 0.17px;
+      @include rem(min-height, 64px);
+    }
+    @media #{$extend} {
+      font-size: 18px;
+      letter-spacing: 0.18px;
+      @include rem(min-height, 66px);
+      // @include rem(min-height, 96px);
+    }
+    @media #{$extend2} {
+      font-size: 20px;
+      letter-spacing: 0.2px;
+      @include rem(min-height, 72px);
+    }
+  }
+
+}
+
+option{
+  @extend .a-option;
+}
+
+textarea{
+  @extend .a-input;
+  @include rem(padding-top, 16px);
+  @include rem(padding-bottom, 16px);
+  font-family: $font;
+  + label {
+    font-family: $font;
+  }
+}
+
+input[type="submit"]{
+
+}
+
+button{
+  cursor:pointer;
+}
+
+
+h2 + form {
+  margin-top: 23px;
+}
+
+.page-template-location {
+  form {
+    .wp-block-columns {
+
+      @media screen and (min-width: 600px) {
+        &.wp-block-columns--spaced  {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+
+form.mailchimp_form_simple {
+  position: relative;
+  max-width: 85%;
+  p {
+    max-width: unset !important;
+    input {
+      min-width: unset;
+      padding:0.75rem 2.5rem 0.75rem 1rem;
+      &:placeholder-shown:not(:focus)::placeholder {
+        opacity: 1;
+        color: $black-two;
+      }
+    }
+    &:last-child {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      input {
+        @include size(58px, 41px);
+        text-indent: 58px;
+        min-width: unset;
+        overflow: hidden;
+        padding: 0;
+        border-radius: 0 25px 25px 0;
+        background: _url('letter.svg') no-repeat center center;
+        background-size: 16px;
+      }
+    }
+  }
+//   25/41
+// 51/81
+
+  @media #{$tab2} {
+    max-width: unset;
+    p {
+      min-width: 230px;
+      input {
+        border-radius: 34px;
+        min-height: 54px;
+      }
+      &:last-child {
+        width: 74px;
+        min-width: unset;
+        right: -40px;
+        input {
+          @include size(74px, 54px);
+          text-indent: 74px;
+          background-size: 26px;
+        }
+      }
+    }
+  }
+  @media #{$desk} {
+    p {
+      min-width: unset;
+      &:last-child {
+        right: 0px;
+      }
+    }
+  }
+
+  @media #{$extend} {
+    p {
+      input {
+        border-radius: 46px;
+        min-height: 74px;
+      }
+      &:last-child {
+        width: auto;
+        input {
+          @include size(94px, 74px);
+          text-indent: 94px;
+          background-size: 36px;
+        }
+      }
+    }
+  }
+  @media #{$extend2} {
+    p {
+      width: 348px;
+      &:last-child {
+        width: 94px;
+      }
+    }
+  }
+
+
+}

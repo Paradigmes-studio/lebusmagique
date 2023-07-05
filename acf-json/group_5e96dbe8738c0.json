@@ -1,0 +1,64 @@
+{
+    "key": "group_5e96dbe8738c0",
+    "title": "Bloc - Vidéo avec image",
+    "fields": [
+        {
+            "key": "field_5e96dbf3fc1db",
+            "label": "Lien video",
+            "name": "video-with-image_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e96dc71fc1dc",
+            "label": "Image de couverture",
+            "name": "video-with-image_image",
+            "type": "image",
+            "instructions": "format idéal 16\/9 : 1000 x 540px\r\nformat idéal carré : 400 x 400px",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "video-thumb",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/video-with-image"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1621410873
+}

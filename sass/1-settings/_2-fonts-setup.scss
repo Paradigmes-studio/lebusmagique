@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:ital,wght@0,500;0,600;0,800;1,500;1,600;1,800&display=swap');
+
+
+$extralight: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$extrabold: 800;
+$black: 900;
+
+@include font("FinlandRounded","FinlandRounded-Thin", 100, normal);
+@include font("FinlandRounded","FinlandRounded-ThinItalic", 100, italic);
+@include font("FinlandRounded","FinlandRounded-Regular", 400, normal);
+@include font("FinlandRounded","FinlandRounded-Italic", 400, italic);

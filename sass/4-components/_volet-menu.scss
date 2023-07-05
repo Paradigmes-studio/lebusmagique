@@ -1,0 +1,323 @@
+.volet-menu{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100vw;
+    margin: 0 auto auto auto;
+    padding-top: 63px;
+    padding-bottom: 0;
+    height: 100vh;
+    overflow-y: overlay;
+    top: 0;
+    z-index: 8;
+    background: #f8f4e8;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease-in-out;
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    h2, a {
+        display: block;
+        margin-left: 65px;
+        font-weight: 500;
+        font-size: 20px;
+        color: $black;
+        font-family: 'Barlow Condensed', sans-serif;
+        margin: 9px 0px;
+        letter-spacing: 0.6px;
+        line-height: 1.25;
+        text-transform: uppercase;
+    }
+
+    &__navigation {
+      // padding-left: 22.25%;
+      width: 176px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 29px;
+      padding-top: 0px;
+
+      &-left, .menu-navigation-container > ul > li:nth-child(4) {
+        margin-bottom: 42px;
+      }
+
+      .menu-navigation-container > ul > li.menu-item-has-children {
+        > a {
+          display: none;
+        }
+      }
+
+      &-right {
+
+      }
+
+      span {
+        > h2 {
+          display: none;
+        }
+        ul {
+          padding-left: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          li {
+            list-style: none;
+          }
+        }
+      }
+    }
+
+    .reseaux-sociaux{
+        width: 100%;
+        display: inline-flex;
+        margin-top: 63px;
+        margin-top: 0px;
+        padding-bottom: 10px;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          background-color: $black;
+          border: 0;
+
+        }
+
+        .link-social {
+          margin: 0;
+        }
+
+        @media #{$tab2} {
+           // justify-content: start;
+           margin-top:20px;
+        }
+
+
+    }
+
+
+    .link-social {
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-bottom: 26px;
+
+      @media #{$tab2,$desk,$extend,$extend2}{
+          display:inline-block;
+          margin-bottom: 0;
+      }
+    }
+
+    .footer-location {
+      min-height: 120px;
+      h2 {
+        font-size: 20px;
+      }
+      .cta {
+        display: flex;
+        font-size: 12px;
+        letter-spacing: 0.36px;
+      }
+      @media #{$desk} {
+        display: none;
+      }
+    }
+
+  @media #{$desk} {
+    transform: none;
+    padding-top: 0;
+    padding-bottom: 40px;
+    // border: 2px solid red;
+    height: 100%;
+    max-width: 95%;
+    max-width: $container-medium-width;
+    z-index: 10;
+    flex-direction: row;
+    background: transparent;
+    overflow: visible;
+
+    &__navigation {
+
+      width: 100%;
+      padding-top: 29px;
+      // width: calc(100% - 80px);
+      // display: flex;
+      // align-items: center;
+      // justify-content: space-between;
+      // padding-top: 0;
+
+      ul {
+        background: #f8f4e8;
+        li {
+          display: inline-block;
+        }
+      }
+
+      .menu-navigation-container > ul {
+        width: calc(100% - 8px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        justify-content: flex-start;
+        padding-top: 0;
+      }
+
+      &-left, .menu-navigation-container > ul > li:nth-child(4) {
+        margin-bottom: 0;
+      }
+
+      .menu-navigation-container > ul > li.menu-item-has-children {
+        > a {
+          display: block;
+        }
+      }
+
+      .menu-navigation-container > ul {
+        display: flex;
+        > li {
+
+          &:nth-child(5) {
+            margin-left: auto;
+            margin-right: 4px;
+            ~ li {
+              margin-right: 14px;
+            }
+          }
+        }
+      }
+      span, .menu-navigation-container > ul > li.menu-item-has-children {
+        position: relative;
+        display: inline-block;
+        > h2, > a {
+          display: inline-block;
+        }
+        > ul {
+          position: absolute;
+          left: -34px;
+          width: 250px;
+          top: 100%;
+          display: none;
+          flex-direction: column;
+          li {
+            padding: 5px 0px;
+            padding-left: 34px;
+            border-bottom: solid 1px rgba(#000000, 0.1)
+          }
+        }
+
+        &:hover {
+          > ul {
+            display: inline-flex;
+          }
+        }
+      }
+    }
+    &__titles, & a {
+      display: inline-block;
+      font-size: 25px;
+      font-size: 19px;
+    }
+    li {
+      margin-right: 26px;
+    }
+    h2, &__navigation a {
+      margin-right: 44px;
+      margin-right: 19px;
+    }
+    &__navigation {
+      ul.menu > li > a {
+        margin-top: 2px;
+      }
+    }
+
+    .reseaux-sociaux {
+      width: 80px;
+      height: 86px;
+      margin-top: 0;
+      padding-bottom: 0;
+      a {
+        margin-bottom: 0;
+        margin-top: 0;
+        width: 30px;
+        height: 30px;
+        img {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+
+  }
+
+  @media #{$extend} {
+    max-width: 95%;
+    max-width: $container-medium-width;
+
+    &__titles, & a {
+      font-size: 20px;
+    }
+
+    h2, &__navigation a {
+      margin-right: 10px;
+    }
+    &__navigation {
+      ul.menu > li > a {
+        margin-top: 12px;
+      }
+    }
+
+    .reseaux-sociaux {
+      height: 106px;
+    }
+
+  }
+
+
+  @media screen and (min-width: $container-max-width-big - 40px) {
+    max-width: $container-max-width;
+
+    h2, &__navigation a {
+      margin-right: 19px;
+    }
+  }
+
+  @media #{$extend2} {
+    max-width: 85%;
+    max-width: $container-max-width-big;
+
+    .menu-navigation-container > ul {
+      width: 100%;
+      > li {
+
+        &:nth-child(5) {
+          margin-left: auto;
+          margin-right: 26px;
+          ~ li {
+            margin-right: 4px;
+          }
+        }
+      }
+    }
+
+    &__titles, & a {
+      font-size: 25px;
+    }
+
+    h2, &__navigation a {
+      margin-right: 19px;
+    }
+
+    &__navigation {
+      ul.menu > li > a {
+        margin-top: 8px;
+      }
+    }
+  }
+}

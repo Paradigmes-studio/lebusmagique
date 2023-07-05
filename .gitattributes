@@ -1,0 +1,10 @@
+*.php          text
+*.css          text
+*.js           text
+*.html         text
+*.svg          text
+*.rb           text
+*.less         text
+*.scss         text
+.gitignore     text
+.gitattributes text

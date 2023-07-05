@@ -1,0 +1,49 @@
+.single-facebook_events{
+  .section-landing-top{
+    .hublot{
+      .big-title{
+        width:73%;
+        line-height: 1.3;
+      }
+    }
+  }
+  .o-page-content{
+    img{
+      height:auto;
+      width:auto;
+    }
+    p {
+      font-size:32px;
+    }
+    .ife_eventmeta{
+      .organizermain{
+        padding:0;
+        background:transparent;
+        border:none;
+        &.library{
+          .map{display:none;}
+        }
+        .titlemain{display:none;}
+        .details{
+          width:auto;
+          padding:7px;
+          background-color:$red;
+          color:$white;
+          border-radius:8px;
+          strong {
+            display:none;
+          }
+          p {
+            color:$white;
+          }
+          a {
+            color:$white;
+          }
+        }
+      }
+    }
+  }
+  footer{
+    .ife_eventmeta{display:none;}
+  }
+}

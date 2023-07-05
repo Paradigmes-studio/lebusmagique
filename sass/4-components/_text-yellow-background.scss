@@ -1,0 +1,291 @@
+.text-yellow-background{
+    margin: 0px 0;
+    background-color: $yellow;
+    text-align: center;
+    padding-left:27px;
+    padding-right:27px;
+
+
+
+    &.top{
+        padding: 171px 26px 0px;
+        padding: 0;
+        height: 136px;
+        margin-top: -205px;
+        position: relative;
+        z-index: 1;
+        background: _url("vagues.svg") repeat-x top center;
+        background-size: 1200px;
+        background-position: 0% 0%;
+
+
+        @media #{$tab2} {
+          background-size: 105%;
+          background-position: 3% 0%;
+        }
+
+        @media #{$desk} {
+            cursor: pointer;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            height: calc(229 / 1080 * 100vh);
+            background-size: cover;
+            margin-top: 0px;
+            padding-top: 42px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media #{$extend} {
+            height:172px;
+            padding-top:52px;
+        }
+
+        @media #{$extend2} {
+            height:229px;
+            padding-top:99px;
+        }
+
+        .icon-top-landing{
+            display:none;
+
+            @media #{$desk} {
+              display:block;
+              margin: 0;
+              margin-left: auto;
+              margin-right: auto;
+              width: 40.2px;
+              width: 50px;
+              height: 35.1px;
+              height: 41px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+              img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+        }
+        .to_show {
+            display:none;
+
+            @media #{$desk} {
+                display:block;
+                font-size: 18px;
+                font-family: "FinlandRounded";
+                text-transform:uppercase;
+                font-weight: normal;
+                letter-spacing: normal;
+                margin-top: 5px;
+
+                &:after {
+                  content: "";
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  margin-top: 6px;
+                  width: 16px;
+                  height: 9px;
+                  background: _url("arrow-down.svg") no-repeat center center;
+                  background-size: contain;
+                }
+            }
+
+            @media #{$desk} {
+                font-size: 23px;
+            }
+
+            @media #{$extend} {
+                font-size: 26px;
+
+            }
+
+            @media #{$extend2} {
+                font-size: 35px;
+
+            }
+        }
+    }
+
+    &.bottom{
+       padding: 50px 21px 33px;
+       position: relative;
+       z-index: 1;
+       margin-top: -150px;
+       min-height: 140px;
+
+
+       @media #{$tab2} {
+        padding-left:258px;
+        padding-right:258px;
+       }
+
+       @media #{$desk} {
+            margin-top: 0px;
+            padding-top:15px;
+            padding-bottom:65px;
+            padding-left:323px;
+            padding-right:323px;
+       }
+
+       @media #{$extend} {
+            padding-top:30px;
+            padding-bottom:74px;
+            padding-left:364px;
+            padding-right:364px;
+       }
+
+       @media #{$extend2} {
+            padding-top:36px;
+            padding-bottom:99px;
+            padding-left:486px;
+            padding-right:486px;
+       }
+    }
+
+    &.co-working{
+        padding: 145px 26px 32px;
+        height: 106px;
+        padding-top: 25px;
+
+        @media #{$tab2} {
+            height:137px;
+            padding-top:58px;
+        }
+        @media #{$desk} {
+            height:172px;
+            padding-top:72px;
+        }
+
+        @media #{$extend} {
+            height:194px;
+            padding-top:81px;
+        }
+        @media #{$extend2} {
+            height:259px;
+            padding-top:108px;
+        }
+
+
+
+    }
+
+    &.location{
+        height: 161px;
+        padding-top: 25px;
+
+        @media #{$tab2} {
+            height:268px;
+            padding-top:58px;
+        }
+        @media #{$desk} {
+            height:336px;
+            padding-top:72px;
+        }
+
+        @media #{$extend} {
+            height:379px;
+            padding-top:81px;
+        }
+        @media #{$extend2} {
+            height:506px;
+            padding-top:108px;
+        }
+
+
+
+    }
+
+    &.monter_a_bord{
+        height: 244px;
+        padding-top: 45px;
+
+        @media #{$tab2} {
+            height:288px;
+            padding-top:58px;
+            padding-left:280px;
+            padding-right:280px;
+        }
+        @media #{$desk} {
+            height:361px;
+            padding-top:72px;
+            padding-left:350px;
+            padding-right:350px;
+        }
+
+        @media #{$extend} {
+            height:407px;
+            padding-top:81px;
+            padding-left:395px;
+            padding-right:395px;
+        }
+        @media #{$extend2} {
+            height:543px;
+            padding-top:134px;
+            padding-left:527px;
+            padding-right:528px;
+        }
+    }
+
+
+    h2 {
+        margin-bottom: -7px;
+        margin-top: 0px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+
+
+        @media #{$tab2} {
+            position: relative;
+            margin-top:12px;
+            max-width: 500px;
+        }
+
+        @media #{$desk} {
+            margin-bottom:0px;
+            max-width: 700px;
+        }
+        @media #{$extend} {
+            max-width: 800px;
+        }
+        @media #{$extend2} {
+            max-width: 922px;
+        }
+    }
+
+    p {
+        margin-bottom:0;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        line-height: 1.33;
+        letter-spacing: 0.12px;
+        max-width: 400px;
+
+        @media #{$tab2} {
+            max-width: 500px;
+        }
+        @media #{$desk} {
+            max-width: 700px;
+        }
+        @media #{$extend} {
+            max-width: 800px;
+        }
+        @media #{$extend2} {
+            max-width: 922px;
+        }
+    }
+
+    .accroche {
+        width:10px;
+    }
+
+}

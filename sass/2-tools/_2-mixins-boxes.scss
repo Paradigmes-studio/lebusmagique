@@ -1,0 +1,16 @@
+
+//MIXIN BOX-SHADOW
+@mixin shadow($opacity: 0.1) {
+  -moz-box-shadow: 0 0 10px 0 rgba($dark-slate-blue, $opacity);
+  -webkit-box-shadow: 0 0 10px 0 rgba($dark-slate-blue, $opacity);
+  -o-box-shadow: 0 0 10px 0 rgba($dark-slate-blue, $opacity);
+  box-shadow: 0 0 10px 0 rgba($dark-slate-blue, $opacity);
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#{rgba($dark-slate-blue, $opacity)}, Direction=NaN, Strength=10);
+}
+
+//MIXIN BOX-SIZING
+@mixin box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

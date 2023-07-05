@@ -1,0 +1,405 @@
+h1 {
+  font-family: $font-title;
+  font-size: 25px;
+  letter-spacing: 0.25px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: $black;
+
+  @media #{$tab}{
+    font-size: 30px;
+    letter-spacing: 0.3px;
+  }
+  @media #{$tab2}{
+    font-size:32px;
+    letter-spacing: 0.32px;
+  }
+
+  @media #{$desk}{
+    font-size:36px;
+    letter-spacing: 0.36px;
+  }
+
+  @media #{$extend}{
+    font-size:42px;
+    letter-spacing: 0.42px;
+  }
+
+  @media #{$extend2}{
+    font-size:45px;
+    letter-spacing: 0.45px;
+  }
+  
+}
+h2{
+    font-family: $font-title;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+    color: $black;
+
+    &.has-circle {
+      // padding-left: 26px;
+      display: flex;
+      align-items: center;
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 5px solid $black;
+        margin-right: 10px;
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
+      &--green {
+        &:before {
+          border-color: $green;
+        }
+      }
+      &--orange {
+        &:before {
+          border-color: $tomato;
+        }
+      }
+    }
+
+    @media #{$tab2}{
+        font-size:22px;
+        letter-spacing: 0.22px;
+        &.has-circle {
+          &:before {
+            border-width: 6px;
+            margin-right: 12px;
+            width: 24px;
+            height: 24px;
+          }
+        }
+    }
+
+    @media #{$desk}{
+        font-size:27px;
+        letter-spacing: 0.27px;
+        &.has-circle {
+          &:before {
+            border-width: 7px;
+            margin-right: 16px;
+            width: 28px;
+            height: 28px;
+          }
+        }
+    }
+
+    @media #{$extend}{
+        font-size:30px;
+        letter-spacing: 0.3px;
+        &.has-circle {
+          &:before {
+            border-width: 8px;
+            margin-right: 20px;
+            width: 32px;
+            height: 32px;
+          }
+        }
+    }
+
+    @media #{$extend2}{
+        font-size:40px;
+        letter-spacing: 0.4px;
+        &.has-circle {
+          &:before {
+            border-width: 10px;
+            margin-right: 25px;
+            width: 43px;
+            height: 43px;
+          }
+        }
+    }
+}
+h3 {
+  color: $black-two;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0.18px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  @media #{$tab2}{
+      font-size:24px;
+      letter-spacing: 0.24px;
+  }
+
+  @media #{$desk}{
+      font-size:30px;
+      letter-spacing: 0.3px;
+  }
+
+  @media #{$extend}{
+      font-size:35px;
+      letter-spacing: 0.35px;
+  }
+
+  @media #{$extend2}{
+      font-size: 46px;
+      letter-spacing: 0.46px;
+  }
+
+}
+p, input, .o-page-content ul, .o-page-content ol {
+    font-family: $font;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.34;
+    letter-spacing: 0.12px;
+    color: $black-two;
+
+    @media #{$tab2}{
+        font-size:13px;
+        letter-spacing: 0.13px;
+    }
+
+    @media #{$desk}{
+        font-size:16px;
+        letter-spacing: 0.16px;
+    }
+
+    @media #{$extend}{
+        font-size:20px;
+        letter-spacing: 0.2px;
+    }
+
+    @media #{$extend2}{
+        font-size:25px;
+        letter-spacing: 0.25px;
+    }
+}
+.cta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: $black;
+    width:175px;
+    height: 34.1px;
+    margin: 33px auto 52px;
+    padding-left: 14px;
+    padding-right: 17px;
+    border-radius: 20px;
+    border-style:  solid;
+    border-color: #000000;
+    border-width:3px;
+    background-color: #ffffff;
+    font-family: "Barlow Condensed",sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.36px;
+
+    &--red {
+      // color: $red;
+      border-color: $red;
+    }
+    &--green {
+      // color: $green;
+      border-color: $green;
+    }
+    &--jungle-green {
+      // color: $jungle-green;
+      border-color: $jungle-green;
+    }
+    &--yellow {
+      // color: $yellow;
+      border-color: $yellow;
+    }
+    &--tomato {
+      // color: $tomato;
+      border-color: $tomato;
+    }
+
+
+    @media #{$tab}{
+        height:40px;
+    }
+    @media #{$tab2}{
+        width:270px;
+        height:50px;
+        border-radius: 25px;
+        padding-left: 38px;
+        padding-right: 38px;
+        margin-top:51px;
+        font-size:16px;
+        z-index:0;
+        margin-bottom:80px;
+
+    }
+    @media #{$desk}{
+        width:335px;
+        height:60px;
+        border-radius: 30px;
+        padding-left: 48px;
+        padding-right: 48px;
+        font-size: 20px;
+        margin-top:64px;
+        border-width: 4px;
+        margin-bottom:101px;
+    }
+    @media #{$extend}{
+        width:366px;
+        height:70px;
+        border-radius:35px;
+        padding-left: 54px;
+        padding-right: 54px;
+        font-size: 22.5px;
+        margin-top: 72px;
+        border-width: 5px;
+        margin-bottom: 114px;
+    }
+    @media #{$extend2}{
+        width:488px;
+        height: 92px;
+        border-radius: 45px;
+        font-size: 30px;
+        padding-left: 72px;
+        padding-right: 72px;
+        border-width: 6px;
+        margin-top: 97px;
+        margin-bottom: 152px;
+    }
+    &.cta-footer{
+        padding-left: 50px;
+        padding-right: 50px;
+        margin-top: 0px;
+        margin-bottom: 50px;
+        z-index: 1;
+        position: relative;
+    }
+
+
+    &.cta-glouglou{
+        color: $jungle-green;
+        border-color: $jungle-green;
+        padding-left: 35px;
+        padding-right: 35px;
+        margin-top: 17.3px;
+
+        @media #{$tab} {
+            display:none;
+        }
+    }
+
+}
+    .category,.price-content{
+        font-weight: bold;
+        margin-bottom:7px;
+        margin-top: 17px;
+        text-transform: uppercase;
+        font-size:10px;
+
+        @media #{$tab} {
+            font-size:12px;
+        }
+
+        @media #{$extend} {
+            font-size:15px;
+        }
+
+        @media #{$extend2} {
+            font-size:20px;
+            margin-top:35px;
+        }
+
+        &.red{
+            color: $red;
+        }
+
+        &.green{
+            color: $green;
+        }
+        &.jungle-green{
+            color: $jungle-green;
+        }
+        &.orange{
+            color:$tomato;
+        }
+
+}
+
+.asterisk{
+    color:$jungle-green;
+}
+
+.column{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    flex-wrap: wrap;
+
+    .prix{
+        flex-shrink:0;
+        display: flex;
+        justify-content: flex-end;
+
+    }
+    .vin-rouge, .vin-rose, .vin-blanc, .petillant, .the-noir, .the-vert, .infusion{
+      background:  no-repeat 0% 3px;
+      background-size: 8px;
+      padding-left: 16px;
+      @media #{$tab2} {
+      }
+      @media #{$desk} {
+        background-size: 9px;
+        background-position: 0% 4px;
+        padding-left: 18px;
+      }
+      @media #{$extend} {
+      }
+      @media #{$extend2} {
+        background-position: 0% 6px;
+        background-size: 12px;
+        padding-left: 20px;
+      }
+    }
+    .vin-rouge { background-image: _url('orange-icon-legende.svg'); }
+    .vin-rose { background-image: _url('red-icon-legende.svg'); }
+    .vin-blanc { background-image: _url('yellow-icon-legende.svg'); }
+    .petillant { background-image: _url('Groupe 154.svg'); }
+    .the-noir { background-image: _url('black-icon-legende.svg'); }
+    .the-vert { background-image: _url('green-icon-legende.svg'); }
+    .infusion { background-image: _url('blue-icon-legende.svg'); }
+}
+
+.volume-right{
+    margin-left: 0px;
+    width: 60px;
+    display: inline-block;
+    text-align: right;
+    @media #{$desk} {
+      width: 78px;
+    }
+    @media #{$extend2} {
+      width: 110px;
+    }
+
+    &.content{
+        margin-left: 0;
+        width: 60px;
+        text-align: right;
+        display: block;
+        // background-color: red;
+      @media #{$desk} {
+        width: 78px;
+      }
+      @media #{$extend2} {
+        width: 115px;
+      }
+    }
+}
+
+
+hr{
+        box-sizing: content-box;
+        overflow: visible;
+}

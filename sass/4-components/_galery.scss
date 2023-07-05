@@ -1,0 +1,48 @@
+.generic-galery{
+
+    @media #{$tab2}{
+        margin-top:50px;
+        margin-bottom:50px;
+    }
+
+    @media #{$desk}{
+        margin-top:63px;
+        margin-bottom:63px;
+    }
+
+    @media #{$extend}{
+        margin-top:71px;
+        margin-bottom:71px;
+    }
+
+    @media #{$extend2}{
+        margin-top:95px;
+        margin-bottom:95px;
+    }
+
+}
+
+.galery {
+  position: relative;
+  max-height: calc(90vh - 63px);
+  img {
+    min-height: 230px;
+    max-height: 593px;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  + section {
+    margin-top: 0;
+  }
+
+
+  @media #{$desk}{
+    max-height: calc(90vh - 86px);
+  }
+  @media #{$extend}{
+    max-height: calc(90vh - 106px);
+  }
+
+}

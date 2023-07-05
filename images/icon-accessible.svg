@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="47.305" height="61.717" viewBox="0 0 47.305 61.717">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px}
+        </style>
+    </defs>
+    <g id="Groupe_232" transform="translate(-80.528 -316.793)">
+        <circle id="Ellipse_34" cx="6.014" cy="6.014" r="6.014" class="cls-1" transform="translate(98.147 318.793)"/>
+        <path id="Tracé_505" d="M111.222 330.854l16.329 16.33a3.551 3.551 0 0 1 0 5.009l-.209.209a3.551 3.551 0 0 1-5.009 0l-9.3-9.3v13.669" class="cls-1" transform="translate(-2.751 -1.156)"/>
+        <path id="Tracé_506" d="M113.314 360.13l14.092 14.092a3.552 3.552 0 0 1 0 5.01l-.209.209a3.551 3.551 0 0 1-5.009 0l-12.479-12.479" class="cls-1" transform="translate(-2.606 -3.964)"/>
+        <path id="Tracé_507" d="M96.547 367.961l-10.3 6.435a3.554 3.554 0 0 0-1.1 4.888l.158.25a3.552 3.552 0 0 0 4.887 1.1l10.952-6.925 5.574-6.011" class="cls-1" transform="translate(-.199 -4.689)"/>
+        <path id="Tracé_508" d="M96.91 364.2l1.915-8.314-.354-13.178-9.692 9.692a3.552 3.552 0 0 1-5.01 0l-.209-.209a3.553 3.553 0 0 1 0-5.009l16.326-16.326" class="cls-1" transform="translate(0 -1.157)"/>
+    </g>
+</svg>

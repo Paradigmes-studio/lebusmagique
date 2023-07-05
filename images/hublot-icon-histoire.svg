@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.907" height="33.715" viewBox="0 0 25.907 33.715">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="Groupe_538" transform="translate(-370.587 -398.639)">
+        <path id="Tracé_616" d="M412.384 428.788v.007h-5.969v-.007l.174-3.111h5.622z" class="cls-1" transform="translate(-25.84 -19.319)"/>
+        <path id="Tracé_617" d="M412 441.353h-6.374l.2-3.591h5.974z" class="cls-1" transform="translate(-25.259 -28.285)"/>
+        <path id="Tracé_618" d="M411.628 455.267h-6.776l.186-3.318.015-.271h6.374l.015.271z" class="cls-1" transform="translate(-24.681 -38.61)"/>
+        <path id="Tracé_619" d="M411.2 469.6h-7.227l.218-3.869.008-.139h6.776l.008.139z" class="cls-1" transform="translate(-24.031 -48.931)"/>
+        <path id="Rectangle_74" d="M0 0H4.721V2.881H0z" class="cls-1" transform="translate(381.198 403.477)"/>
+        <path id="Ligne_75" d="M0 0L0 2.881" class="cls-1" transform="translate(383.559 403.477)"/>
+        <path id="Tracé_620" d="M408.835 408.108a2.36 2.36 0 1 1 4.72 0" class="cls-1" transform="translate(-27.636 -4.532)"/>
+        <path id="Tracé_621" d="M396.55 486.235v-5.113h11.023v1.786" class="cls-1" transform="translate(-18.522 -60.456)"/>
+        <g id="Groupe_282" transform="translate(371.587 422.428)">
+            <path id="Tracé_622" d="M371.587 487.951c3.984 0 3.984 3.657 7.968 3.657s3.985-3.657 7.969-3.657 3.985 3.657 7.969 3.657" class="cls-1" transform="translate(-371.587 -487.951)"/>
+        </g>
+        <g id="Groupe_283" transform="translate(371.587 427.697)">
+            <path id="Tracé_623" d="M371.587 504.642c3.984 0 3.984 3.657 7.968 3.657s3.985-3.657 7.969-3.657 3.985 3.657 7.969 3.657" class="cls-1" transform="translate(-371.587 -504.642)"/>
+        </g>
+        <path id="Ligne_76" d="M0 0L7.065 0" class="cls-1" transform="translate(380.026 403.477)"/>
+        <path id="Ligne_77" d="M0 0L8.695 0" class="cls-1" transform="translate(379.211 406.358)"/>
+        <path id="Ligne_78" d="M0 0L0 1.576" class="cls-1" transform="translate(383.559 399.639)"/>
+        <path id="Tracé_615" d="M377.944 431.754a1.994 1.994 0 1 1 0-3.987 1.89 1.89 0 0 0 1.993 1.993s-1.993.129-1.993 1.994z" class="cls-1" transform="translate(-3.237 -20.869)"/>
+        <path id="Tracé_615-2" d="M444.472 453.193a2.938 2.938 0 0 0-2.869-2.869 2.915 2.915 0 0 0 2.869-2.869 2.719 2.719 0 0 0 2.869 2.869s-2.869.185-2.869 2.869z" class="cls-1" transform="translate(-51.948 -35.477)"/>
+    </g>
+</svg>

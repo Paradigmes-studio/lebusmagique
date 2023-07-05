@@ -1,0 +1,388 @@
+.carte {
+
+  .accroche{
+    max-width:800px;
+    margin: 0 auto 50px;
+    text-align:center;
+    line-height: 30px;
+
+    font-size:22px;
+
+    @media #{$tab} {
+      font-size:26px;
+    }
+
+    @media #{$desk} {
+      font-size:30px;
+    }
+
+    @media #{$extend} {
+      font-size:36px;
+    }
+    .form-title{
+      text-align:center;
+      font-size:12px;
+      padding-top:0;
+      margin-top:0;
+
+      @media #{$tab} {
+        font-size:14px;
+      }
+
+      @media #{$desk} {
+        font-size:18px;
+        padding-top:0;
+      }
+
+    }
+  }
+
+    margin:0;
+
+
+    @media #{$tab} {
+        display: flex;
+        position: relative;
+        flex-wrap: wrap;
+        margin: 65px 0px 60px;
+    }
+
+    @media #{$tab2} {
+        margin:67px 58px 80px;
+
+    }
+
+    @media #{$desk} {
+        margin:84px 72px 101px;
+
+    }
+
+    @media #{$extend} {
+        margin:95px 82px 114px;
+
+    }
+
+    @media #{$extend2} {
+        margin: 127px 110px 153px;
+    }
+
+    p{
+        @media #{$extend2} {
+            font-size:20px;
+        }
+    }
+
+    h2{
+        margin-top: 8px;
+        margin-bottom: 28px;
+        text-align: center;
+    }
+
+   .miam-brunch, .carte--glou{
+
+
+        .border{
+            display: inline-block;
+
+            border-bottom: 9px solid #f0ecdc;
+            width: 100%;
+            position: relative;
+
+         @media #{$tab} {
+            display: none;
+        }
+
+        }
+    }
+
+
+    &--glou, &--miam, &--brunch {
+
+
+
+         margin: 32px 21px 32px 21px;
+         padding-bottom: 36px;
+         position: relative;
+        &:after {
+          content: '';
+          display: block;
+          height: 9px;
+          width: 100vw;
+          background: #f0ecdc;
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+        }
+
+        span.price-description {
+          display: block;
+          flex-basis: 100%;
+        }
+        p.column {
+          span:first-child {
+            max-width: 67%;
+            &:last-child {
+              max-width: 95%;
+            }
+          }
+        }
+
+        @media #{$tab} {
+            padding-left:33px;
+            padding-right:33px;
+            padding-bottom:20px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            background-color: white;
+            &:after {
+              content: none;
+            }
+        }
+        @media #{$tab2} {
+          padding-left:43px;
+          padding-right:43px;
+          padding-bottom:30px;
+        }
+
+        @media #{$extend2} {
+            padding-left:76px;
+            padding-right:76px;
+            padding-bottom:30px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            background-color: white;
+        }
+    }
+
+    &--miam{
+
+
+        .icon-miam
+        {
+            width: 53.2px;
+            height: 31.2px;
+        }
+
+       .reseaux-sociaux{
+            margin-top:-7px;
+
+            .link-social{
+                margin-right:0px;
+                margin-left:0px;
+                margin-bottom:0px;
+            }
+
+        }
+
+        .daily-ardoise{
+            margin-top: 20px;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+            font-weight: bold;
+            background: _url('arrow-insta.svg') no-repeat calc(50% + 65px) 150%;
+            img {
+              margin-top: 10px;
+              @include size(36px, 36px);
+            }
+            a {
+              color: $black;
+              text-decoration: none;
+            }
+            @media #{$desk} {
+              img {
+                margin-top: 16px;
+              }
+            }
+        }
+        p.category {
+          margin-top: 28px;
+          margin-bottom: 4px;
+          ~ p.category {
+            margin-top: 4px;
+          }
+        }
+        .arrow-to-instagram{
+            width: 68.3px;
+            height: 58.6px;
+            margin-top: -55px;
+            transform: translateX(100%);
+        }
+
+    @media #{$tab} {
+        width: 50%;
+        border: solid 5px $red;
+        margin-bottom: 40px;
+        margin-right:20px;
+    }
+
+
+
+}
+
+    &--brunch{
+
+        .icon-brunch
+        {
+            width: 83.6px;
+            height: 39.5px;
+        }
+        .day{
+        @media #{$mob,$mob2}{
+            display: none;
+        }
+         @media #{$tab} {
+            display: block;
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: -22px
+
+         }
+        }
+
+        .text-font.green.center{
+            text-align:center;
+            margin-top: 26px;
+
+            @media #{$tab} {
+            margin-top: 40px;
+            }
+
+        }
+        p:last-child {
+          color: $green;
+          font-weight: bold;
+          text-align: center;
+        }
+      @media #{$tab} {
+          width: 50%;
+          border: solid 5px $green;
+          margin-bottom: 40px;
+      }
+    }
+
+    &--glou{
+
+      &:after {
+       content: none;
+     }
+     padding-bottom: 0;
+     margin-bottom: 0;
+      p.category {
+        margin-top: 28px;
+        margin-bottom: 8px;
+      }
+        .icon-glou{
+            width: 121.1px;
+            height: 43px;
+        }
+
+        .icon-legende{
+            display: inline-block;
+            width: 7px;
+            height: 9px;
+            margin-right: 8.7px;
+            @media #{$tab2} {
+            }
+            @media #{$desk} {
+              width: 9px;
+              height: auto;
+            }
+            @media #{$extend} {
+            }
+            @media #{$extend2} {
+                width: 12px;
+            }
+
+        }
+
+        .legende{
+            width: 200px;
+            margin: 37px auto 16px auto;
+            columns: 2;
+
+          @media #{$tab} {
+              width: 100%;
+              position: absolute;
+              display: flex;
+              padding-top: 18px;
+
+              .icon-legende{
+                  @media #{$tab} {
+                      margin-right: 15px;
+                      margin-left: 10px;
+                  }
+              }
+              p.column {
+                margin-right: 16px;
+                span:first-child:last-child {
+                  width: auto;
+                  max-width: unset;
+                }
+              }
+          }
+          @media #{$tab2} {
+            p.column {
+              margin-right: 20px;
+            }
+          }
+          @media #{$desk} {
+            p.column {
+              margin-right: 25px;
+            }
+          }
+          @media #{$extend} {
+            p.column {
+              margin-right: 35px;
+            }
+          }
+          @media #{$extend2} {
+            p.column {
+              margin-right: 45px;
+            }
+          }
+        }
+        &__block{
+
+            .left{
+                @media #{$tab} {
+                width:50%;
+                margin-right: 90px;
+                }
+            }
+            .right{
+                @media #{$tab} {
+                width:50%;
+                }
+            }
+
+            @media #{$tab} {
+              display:flex;
+            }
+        }
+
+        @media #{$tab} {
+          position: relative;
+          width: 100%;
+          border: solid 5px $jungle-green;
+          padding-bottom: 33px;
+        }
+    }
+.volume-left,.volume-right{
+    font-weight:500;
+}
+    .icon-miam,.icon-brunch,.icon-glou{
+        @media #{$tab} {
+            margin-top:30px;
+        }
+    }
+
+    .miam-brunch{
+        @media #{$tab} {
+            display: flex;
+            align-items: flex-start;
+        }
+    }
+
+}

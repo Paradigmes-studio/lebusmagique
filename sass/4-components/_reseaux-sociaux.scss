@@ -1,0 +1,111 @@
+.reseaux-sociaux{
+    width: 100%;
+    display: inline-flex;
+    margin-top: 74px;
+    margin-top: 0px;
+    align-items: center;
+    justify-content: center;
+
+
+    .link-social-responsive{
+
+
+
+        @media #{$tab2} {
+            width: 38px;
+            height: 38px;
+        }
+
+        @media #{$desk} {
+            width: 40px;
+            height: 40px;
+        }
+
+        @media #{$extend} {
+            width: 45px;
+            height: 45px;
+        }
+
+        @media #{$extend2} {
+            width: 60px;
+            height: 60px;
+        }
+
+
+        &.border-white-responsive{
+
+            @media #{$tab2} {
+               border: solid white;
+               display:block;
+
+            }
+
+            @media #{$tab2}{
+                border-radius: 30px;
+                padding: 7px;
+                border-width: 2px;
+                margin-right: 22px;
+            }
+
+            @media #{$desk}{
+                border-radius: 30px;
+                padding: 8px;
+                border-width: 2px;
+                margin-right: 22px;
+            }
+
+            @media #{$extend}{
+                border-radius: 30px;
+                padding: 10px;
+                border-width: 3px;
+                margin-right: 22px;
+            }
+
+            @media #{$extend2}{
+                border-radius: 30px;
+                padding: 12px;
+                border-width: 4px;
+                margin-right: 22px;
+            }
+        }
+    }
+
+    > a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 2px solid white;
+      border-radius: 50%;
+      margin-left: 5px;
+      margin-right: 5px;
+      img {
+        width: 15px;
+        height: auto;
+      }
+    }
+    .link-social{
+        width: auto;
+        height: 15px;
+        // margin-left: 10px;
+        // margin-bottom: 34px;
+
+
+
+
+        &.border-white
+        {
+            // border: solid white;
+            // border-radius: 19px;
+            // padding: 7px;
+            // border-width: 2px;
+
+            @media #{$tab2,$desk,$extend,$extend2}{
+                display:none;
+            }
+        }
+
+    }
+
+}

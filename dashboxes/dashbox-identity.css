@@ -1,0 +1,12 @@
+#mkwvs_dashbox_identity h3{
+    font-weight:bold;
+}
+
+#mkwvs_dashbox_identity .coordonnees label {
+    display:inline-block;
+    width:25%;
+}
+
+#mkwvs_dashbox_identity .coordonnees input[type="text"] {
+    width:70%;
+}

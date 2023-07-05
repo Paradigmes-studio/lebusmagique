@@ -1,0 +1,25 @@
+/* Main Container */
+#foool_dashbox_hot_points{
+    /*border:none;*/
+}
+
+/* Inside Container */
+#foool_dashbox_hot_points div.content{
+    /*height:300px;
+    overflow:scroll;*/
+}
+
+#arbs-dashbox-counter .spacer {
+    height:1px;
+    width:90%;
+    margin:0 auto;
+    border-bottom: 1px solid #dd6a27;
+    margin-bottom:30px;
+    margin-top:30px;
+}
+#foool_dashbox_hot_points label.long {width:90%;}
+#foool_dashbox_hot_points label.short {width:20%;}
+#foool_dashbox_hot_points label.medium {width:40%;}
+#foool_dashbox_hot_points input.long-size{width:90%;}
+#foool_dashbox_hot_points input.short-size{width:60px;margin-right:20px;}
+

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50.843" height="29.216" viewBox="0 0 50.843 29.216">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="Groupe_565" transform="translate(1 1)">
+        <path id="Tracé_637" d="M713.627 383.96l-7.8 7.762-3 2.989-1.711 1.7-2.926 2.915a2.3 2.3 0 0 0-.682 1.559l-.117 3.105c-3.752 1.247-4.574 5.143-9.7 5.143h-.066l-4.208-4.228 3.141-3.125 2.357-2.346a3.492 3.492 0 0 1 2.346-1.021l3.448-.132.277-.012a2.319 2.319 0 0 0 1.551-.674l.911-.908 1.988-1.976 3-2.989 9.5-9.453a1.2 1.2 0 0 1 .846-.347 1.192 1.192 0 0 1 .841 2.038z" class="cls-1" transform="translate(-675.481 -381.922)"/>
+        <g id="Groupe_294" transform="translate(0 14.405)">
+            <path id="Tracé_638" d="M728.838 418.974c4.921.678 5.327 5.44 11 5.44 6.106 0 6.106-5.521 12.212-5.521" class="cls-1" transform="translate(-703.203 -418.892)"/>
+            <path id="Tracé_639" d="M715.137 419.812a8.094 8.094 0 0 0-2.739 1.594" class="cls-1" transform="translate(-693.169 -419.454)"/>
+            <path id="Tracé_640" d="M663.048 418.892c5.7 0 6.079 4.816 11.078 5.451" class="cls-1" transform="translate(-663.048 -418.892)"/>
+            <path id="Tracé_641" d="M719.278 437.96a7.837 7.837 0 0 1 2.509-.378c6.106 0 6.106 5.521 12.212 5.521s6.106-5.521 12.212-5.521" class="cls-1" transform="translate(-697.368 -430.299)"/>
+            <path id="Tracé_642" d="M663.048 437.582c6.082 0 6.106 5.482 12.145 5.521" class="cls-1" transform="translate(-663.048 -430.299)"/>
+        </g>
+        <path id="Tracé_643" d="M740.928 407.072h12.3l-2.03 7.473a6.1 6.1 0 0 1-.873 1.87" class="cls-1" transform="translate(-710.582 -397.272)"/>
+        <path id="Tracé_644" d="M699.2 407.072h-21.092l.584 2.989 1.06 5.443" class="cls-1" transform="translate(-672.24 -397.272)"/>
+        <path id="Ligne_91" d="M14.246 0L0 0" class="cls-1" transform="translate(27.345 12.788)"/>
+        <path id="Ligne_92" d="M17.503 0L0 0" class="cls-1" transform="translate(6.452 12.788)"/>
+    </g>
+</svg>

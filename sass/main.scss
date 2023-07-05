@@ -1,0 +1,73 @@
+// compileCompressed: ../$1.css
+/*
+Theme Name: Makewaves
+Theme URI: ....
+Author: Makewaves Studio
+Author URI:
+Description: Le thème HQ du studio Makewaves
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags:
+Text Domain:
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+
+
+//ITCSS Structure
+
+//1-SETTINGS
+@import '1-settings/0-mixins';
+@import '1-settings/1-variables';
+@import '1-settings/2-fonts-setup';
+@import '1-settings/3-colors';
+@import '1-settings/4-breakpoints';
+
+//2-TOOLS
+@import '2-tools/1-mixins-transforms';
+@import '2-tools/2-mixins-boxes';
+@import '2-tools/3-mixins-gradients';
+@import '2-tools/4-mixins-ul-unstyle';
+
+//3-GENERIC
+@import '3-generic/1-reset-normalize-8';
+@import '3-generic/2-reset-box-sizing';
+@import '3-generic/3-html-body';
+@import '3-generic/4-helpers';
+@import '3-generic/5-style-guide';
+
+//4-COMPONENTS
+@import '4-components/body.scss';
+@import '4-components/volet-menu';
+@import '4-components/header';
+@import '4-components/galery.scss';
+@import '4-components/hublot';
+@import '4-components/text-yellow-background';
+@import '4-components/images';
+@import '4-components/reseaux-sociaux';
+@import '4-components/footer';
+@import '4-components/section-standard';
+@import '4-components/section-bggreen';
+@import '4-components/section-landing-standard';
+@import '4-components/section-landing-contact';
+@import '4-components/liste-items';
+@import '4-components/section-price';
+@import '4-components/carte';
+@import '4-components/form';
+@import '4-components/button-form';
+@import '4-components/bloc-media-text';
+@import '4-components/bloc-fullwidth';
+@import '4-components/landing-slider';
+@import '4-components/events';
+@import '4-components/projects';
+@import '4-components/gallery';
+@import '4-components/video-with-image';
+@import '4-components/forms';
+
+
+//5-TEMPLATES
+@import '5-templates/t-home';
+@import '5-templates/t-page';
+@import '5-templates/t-facebook-event';

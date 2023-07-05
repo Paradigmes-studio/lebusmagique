@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="43.768" height="27.015" viewBox="0 0 43.768 27.015">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="Groupe_566" transform="translate(1 1.414)">
+        <path id="Tracé_633" d="M547.406 537.617l4.364-9.869h-29.314l-1.172 2.515h-2.159l1.932 7.354" class="cls-1" transform="translate(-513.065 -520.099)"/>
+        <path id="Ligne_87" d="M14.87 0L0 0" class="cls-1" transform="translate(10.158 2.749)"/>
+        <path id="Ligne_88" d="M0 0L9.33 0" class="cls-1" transform="translate(12.288)"/>
+        <path id="Ligne_89" d="M0 0L2.62 2.749" class="cls-1" transform="translate(17.593)"/>
+        <path id="Tracé_634" d="M558.506 516.26l-5.732-3.217h-11.632v4.9H561.5z" class="cls-1" transform="translate(-527.745 -510.294)"/>
+        <path id="Ligne_90" d="M0 0L12.006 0" class="cls-1" transform="translate(8.22 10.163)"/>
+        <g id="Groupe_291" transform="translate(0 13.651)">
+            <path id="Tracé_635" d="M500.936 545.763c5.221 0 5.221 4.722 10.441 4.722s5.221-4.722 10.441-4.722 5.221 4.722 10.442 4.722 5.221-4.722 10.443-4.722" class="cls-1" transform="translate(-500.936 -545.763)"/>
+        </g>
+        <g id="Groupe_292" transform="translate(0 19.879)">
+            <path id="Tracé_636" d="M500.936 564.454c5.221 0 5.221 4.722 10.441 4.722s5.221-4.722 10.441-4.722 5.221 4.722 10.442 4.722 5.221-4.722 10.443-4.722" class="cls-1" transform="translate(-500.936 -564.454)"/>
+        </g>
+    </g>
+</svg>

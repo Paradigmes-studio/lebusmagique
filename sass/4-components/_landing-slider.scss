@@ -1,0 +1,75 @@
+.o-slider {
+  &__navigation {
+    display: none;
+  }
+
+  @media #{$desk} {
+
+    &__navigation {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 86vw;
+      transform: translateY(-50%);
+      z-index: 3;
+      // background: aqua;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      // opacity: 0.8;
+      button {
+        pointer-events: auto;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        width: 26px;
+        height: 52px;
+        padding: 0;
+        opacity: 1;
+        transition: opacity 0.2s;
+        &[aria-disabled="true"] {
+          opacity: 0;
+          cursor: default;
+        }
+        svg {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    &__next {
+      position: relative;
+      right: -55px;
+    }
+    &__prev {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  @media #{$extend} {
+
+    &__navigation {
+      width: 1280px;
+    }
+  }
+
+  @media screen and (min-width: $container-max-width-big - 40px) {
+    &__navigation {
+      width: 1482px;
+    }
+  }
+
+
+  @media #{$extend2} {
+
+    &__navigation {
+      width: 1680px;
+    }
+  }
+
+}

@@ -1,0 +1,196 @@
+.hublot{
+    position: relative;
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    bottom: 40px;
+    transform: translate3d(-50%, -50%, 0);
+    // margin-top: -91px;
+    // margin-bottom: -148px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media #{$tab2} {
+        // margin-top:-114px;
+        bottom: 0;
+    }
+
+    @media #{$desk} {
+        position: absolute;
+        top:40%;
+        bottom: auto;
+        left: auto;
+        top: calc((100vh - 106px - (229 / 1080 * 100vh)) / 2 + 4vh);
+        transform: translate3d(0, -50%, 0);
+        right:7%;
+        // &.has-slider:after {
+        //   content: '';
+        //   display: block;
+        //   position: absolute;
+        //   right: -55px;
+        //   top: 50%;
+        //   transform: translateY(-50%);
+        //   width: 26px;
+        //   height: 52px;
+        //   background: _url('fleche.svg') no-repeat center center;
+        //   background-size: contain;
+        // }
+    }
+
+    @media #{$extend} {
+        top:40%;
+        top: calc((100vh - 106px - 172px) / 2 + 2vh);
+        // transform: translate3d(0, -50%, 0);
+        right: calc((100vw - #{$container-medium-width}) / 2 - 7px);
+        &:after {
+          right: -65px;
+          width: 32px;
+          height: 56px;
+        }
+    }
+
+    @media screen and (min-width: $container-max-width-big - 40px) {
+      right: calc((100vw - #{$container-max-width}) / 2 - 7px);
+    }
+
+    @media #{$extend2} {
+        top:27.8%;
+        top: calc((100vh - 106px - 172px) / 2);
+        right: calc((100vw - #{$container-max-width-big}) / 2 - 7px);
+        &:after {
+          right: -80px;
+          width: 37px;
+          height: 65px;
+        }
+    }
+
+
+    img{
+        width: 199px;
+
+        @media #{$tab2} {
+            width: 231px;
+            height: 231px;
+        }
+
+        @media #{$desk} {
+            width: 289px;
+            height: 289px;
+            width: calc((400 / 1080) * (100vh));
+            height: calc((400 / 1080) * (100vh));
+        }
+
+        @media #{$extend} {
+            width: 326px;
+            height: 326px;
+            width: calc((426 / 1080) * (100vh));
+            height: calc((426 / 1080) * (100vh));
+        }
+
+        @media #{$extend2} {
+            width: 451px;
+            height: 451px;
+            width: calc((451 / 1080) * (100vh));
+            height: calc((451 / 1080) * (100vh));
+        }
+    }
+
+    .big-title {
+        position: absolute;
+        font-size: 18px;
+        line-height: 0.89;
+        letter-spacing: 0.18px;
+        top: 24%;
+        left: 50%;
+        transform: translateX(-50%);
+
+
+        @media #{$tab2} {
+            font-size: 26px;
+        }
+
+        @media #{$desk} {
+            font-size: 37px;
+            font-size: calc(37 / 1080 * 100vh);
+            letter-spacing: calc(0.37 / 1080 * 100vh);
+            width:314px;
+            @at-root body.home & {
+              font-size: 40px;
+              letter-spacing: calc(0.40 / 1080 * 100vh);
+              font-size: calc(40 / 1080 * 100vh);
+            }
+        }
+
+        @media #{$extend} {
+            font-size: 37px;
+            font-size: calc(37 / 1080 * 100vh);
+            letter-spacing: calc(0.37 / 1080 * 100vh);
+            @at-root body.home & {
+              font-size: 37px;
+              letter-spacing: calc(0.37 / 1080 * 100vh);
+              font-size: calc(37 / 1080 * 100vh);
+            }
+        }
+
+        @media #{$extend2} {
+            width:340px;
+            font-size: 40px;
+            font-size: calc(40 / 1080 * 100vh);
+            // line-height: 0.89;
+            letter-spacing: 0.4px;
+            @at-root body.home & {
+              font-size: 40px;
+              letter-spacing: calc(0.4 / 1080 * 100vh);
+              font-size: calc(40 / 1080 * 100vh);
+            }
+
+        }
+
+        .icon{
+          width: 43.5px;
+          height: 28.5px;
+          margin-bottom: 6.5px;
+
+          @media #{$desk} {
+              width: 35px;
+              height: 35px;
+              width: calc(50 / 1080 * 100vh);
+              height: calc(50 / 1080 * 100vh);
+              margin-bottom: 1.5vh;
+          }
+
+          @media #{$extend} {
+              // width: 50px;
+              // height: 50px;
+          }
+
+          @media #{$extend2} {
+            width: 65px;
+            height: 65px;
+            width: calc(65 / 1080 * 100vh);
+            height: calc(65 / 1080 * 100vh);
+            margin-bottom: 29px;
+            margin-bottom: 1.5vh;
+            @at-root body.home & {
+              margin-bottom: 22px;
+            }
+          }
+        }
+    }
+
+    .decoration{
+        position: relative;
+        width: 239px;
+        height: 224.1px;
+        margin-top: -201px;
+        left: 10px;
+    }
+
+    &.contact{
+        margin-top: 39px;
+        margin-bottom: -120px;
+    }
+
+
+}

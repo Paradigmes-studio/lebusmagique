@@ -1,0 +1,45 @@
+.button-form{
+    position: absolute;
+    background: transparent;
+    border:0;
+    right: 0;
+    height:100%;
+    
+    
+    
+    
+    @media #{$extend}{
+        width:37px;
+        
+    }
+    
+    @media #{$extend2}{
+        
+        width: 50px;
+        margin-right:56px;
+    }    
+        
+    &--footer{
+        width: 50px;
+        
+        @media #{$tab2}{
+            width:65px;
+            margin-right:4.8px;
+        }
+
+        @media #{$desk}{
+            width:65px;
+            margin-right:6px;
+        }
+            
+        @media #{$extend}{
+            width:75px;
+            margin-right:7.5px;
+        }
+            
+        @media #{$extend2}{
+            width:100px;
+            margin-right:10px;
+        }
+    }
+}

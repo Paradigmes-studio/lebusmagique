@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29.037" height="31.079" viewBox="0 0 29.037 31.079">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#1d1d1b;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.5px}
+        </style>
+    </defs>
+    <g id="Groupe_539" transform="translate(-68.857 -38.049)">
+        <g id="Groupe_331" transform="translate(70.107 58.465)">
+            <path id="Tracé_707" d="M70.107 105.531c4.423 0 4.423 4.06 8.845 4.06s4.423-4.06 8.846-4.06 4.423 4.06 8.846 4.06" class="cls-1" transform="translate(-70.107 -105.531)"/>
+        </g>
+        <g id="Groupe_332" transform="translate(70.107 63.819)">
+            <path id="Tracé_708" d="M70.107 124.222c4.423 0 4.423 4.06 8.845 4.06s4.423-4.06 8.846-4.06 4.423 4.06 8.846 4.06" class="cls-1" transform="translate(-70.107 -124.222)"/>
+        </g>
+        <path id="Tracé_709" d="M89.7 96.24q-.1-.284-.18-.582a6.216 6.216 0 1 1 12.042-3.093" class="cls-1" transform="translate(-13.711 -34.481)"/>
+        <path id="Ligne_97" d="M3.606 14.039L0 0" class="cls-1" transform="translate(76.676 39.571)"/>
+        <path id="Ligne_98" d="M0 0L11.259 1.488" class="cls-1" transform="translate(76.986 40.775)"/>
+        <path id="Ligne_99" d="M0 5.242L9.531 0" class="cls-1" transform="translate(78.714 42.263)"/>
+    </g>
+</svg>

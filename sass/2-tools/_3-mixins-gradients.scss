@@ -1,0 +1,17 @@
+@mixin gradient1{
+  background-image: -moz-linear-gradient(30deg, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background-image: -webkit-linear-gradient(30deg, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background-image: -o-linear-gradient(30deg, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background-image: linear-gradient(60deg, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+}
+
+
+@mixin gradient2{
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(100%, rgba(4,48,59,1)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(4,48,59,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#04303b', GradientType=0 );
+}

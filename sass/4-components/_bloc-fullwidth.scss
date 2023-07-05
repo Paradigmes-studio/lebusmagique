@@ -1,0 +1,21 @@
+.bloc-fullwidth {
+  margin-left: -27px;
+  margin-right: -27px;
+
+  @media #{$tab2} {
+    margin-left: -249px;
+    margin-right: -249px;
+  }
+  @media #{$desk} {
+    margin-left: -312px;
+    margin-right: -312px;
+  }
+  @media #{$extend} {
+    margin-left: -352px;
+    margin-right: -352px;
+  }
+  @media #{$extend2} {
+    margin-left: -470px;
+    margin-right: -470px;
+  }
+}

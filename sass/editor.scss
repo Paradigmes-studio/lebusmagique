@@ -1,0 +1,82 @@
+
+//1-SETTINGS
+@import '1-settings/0-mixins';
+@import '1-settings/1-variables';
+@import '1-settings/2-fonts-setup';
+@import '1-settings/3-colors';
+@import '1-settings/4-breakpoints';
+
+.edit-post-layout .interface-interface-skeleton__content {
+  background-color: transparent;
+}
+
+// hide h1
+.block-library-heading-level-toolbar {
+  button[aria-label="Titre 1"], button[aria-label="Titre 5"], button[aria-label="Titre 6"] {
+    display: none;
+  }
+  .components-toolbar-group {
+    > button[aria-label="Titre 2"].components-button.components-button.has-icon {
+      min-width: 42px;
+      padding-left: 11px;
+      &:before {
+        left: 8px;
+      }
+    }
+  }
+}
+
+.block-library-heading-level-dropdown {
+  .components-popover__content {
+    min-width: 124px;
+  }
+}
+.editor-styles-wrapper .has-large-font-size {
+  font-size: initial;
+}
+.edit-post-visual-editor .block-list-appender__toggle {
+  box-sizing: content-box;
+}
+ // block-editor-button-block-appender
+
+#editor .editor-styles-wrapper {
+  font-family: $font;
+  font-weight: $regular;
+  color: $text-color-main;
+}
+
+
+@import '3-generic/5-style-guide';
+
+
+@import '4-components/_section-standard';
+
+  .section-content {
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -14px;
+      bottom: -14px;
+      left: -14px;
+      right: -14px;
+      border: 1px solid #bbbbbb;
+      border-left-color: rgba(#bbbbbb, 0.5);
+      border-right-color: rgba(#bbbbbb, 0.5);
+      background-color: #f8f4e8;
+    }
+    &--white {
+      &:before {
+        height: calc(100% + 28px);
+        width: calc(100% + 28px);
+        box-sizing: border-box;
+        left: 50%;
+        z-index: 0;
+        transform: translate(-50%, 0px);
+        background-color: #fff;
+      }
+    }
+  }
+
+@import '4-components/_video-with-image';
