@@ -1,0 +1,68 @@
+version: 2.1
+
+parameters:
+  wp_theme_name:
+    type: string
+    default: paradigmes-starter-theme
+  wp_folder:
+    type: string
+    default: applications/$APP_SYS_USR/public_html
+
+executors:
+  node-executor:
+    docker:
+      - image: cimg/node:19.3.0
+
+commands:
+  setup-ssh:
+    description: Setup SSH for server connexion
+    steps:
+      - run:
+          name: Install sshpass and rsync
+          command: |
+            sudo apt update
+            sudo apt install sshpass rsync
+
+      - run:
+          name: Add server ip to known hosts
+          command: |
+            ssh-keyscan $SERVER_HOST >> ~/.ssh/known_hosts
+
+  build-theme:
+    description: Fetch and build default theme
+    steps:
+      - run:
+          name: Build theme
+          command: |
+            npm install
+            npm run prod
+
+  deploy-theme:
+    description: Send theme to the server
+    steps:
+      - run:
+          name: Copy theme to server
+          command: |
+            source .circleci/.env
+            sshpass -p $SERVER_PASSWORD rsync -av -e ssh --exclude='node_modules' --exclude='scripts' --exclude='tailwind' --exclude='.git' . $SERVER_USERNAME@$SERVER_HOST:<< pipeline.parameters.wp_folder >>/wp-content/themes/<< pipeline.parameters.wp_theme_name >>
+
+jobs:
+  deploy-dev:
+    executor: node-executor
+    resource_class: small
+    steps:
+      - checkout
+      - setup-ssh
+      - build-theme
+      - deploy-theme
+
+workflows:
+  deploy-workflow:
+    jobs:
+      - deploy-dev:
+          context: dev
+          filters:
+            branches:
+              only:
+                - develop
+# VS Code Extension Version: 1.5.1
