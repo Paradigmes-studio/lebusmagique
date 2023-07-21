@@ -30,7 +30,7 @@ commands:
       - run:
           name: Add server ip to known hosts
           command: |
-            ssh-keyscan << parameters.host >> >> ~/.ssh/known_hosts
+            ssh-keyscan ${<< parameters.host >>} >> ~/.ssh/known_hosts
 
   build-theme:
     description: Fetch and build default theme
@@ -65,7 +65,7 @@ commands:
           name: Copy theme to server
           command: |
             source .circleci/.env
-            sshpass -p << parameters.password >> rsync -av -e ssh --exclude='node_modules' --exclude='scripts' --exclude='tailwind' --exclude='.git' . << parameters.username >>@<< parameters.host >>:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
+            sshpass -p ${<< parameters.password >>} rsync -av -e ssh --exclude='node_modules' --exclude='scripts' --exclude='tailwind' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
 
 jobs:
   deploy-staging:
