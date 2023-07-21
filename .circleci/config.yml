@@ -84,7 +84,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup-ssh
+      - setup-ssh:
           host: PROD_SERVER_HOST
       # - build-theme
       - deploy-theme:
