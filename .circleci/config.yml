@@ -16,6 +16,10 @@ executors:
 commands:
   setup-ssh:
     description: Setup SSH for server connexion
+    parameters:
+      host:
+        type: env_var_name
+        default: SERVER_HOST
     steps:
       - run:
           name: Install sshpass and rsync
@@ -26,7 +30,7 @@ commands:
       - run:
           name: Add server ip to known hosts
           command: |
-            ssh-keyscan $SERVER_HOST >> ~/.ssh/known_hosts
+            ssh-keyscan << parameters.host >> >> ~/.ssh/known_hosts
 
   build-theme:
     description: Fetch and build default theme
@@ -39,15 +43,33 @@ commands:
 
   deploy-theme:
     description: Send theme to the server
+    parameters:
+      host:
+        type: env_var_name
+        default: SERVER_HOST
+      username:
+        type: env_var_name
+        default: SERVER_USERNAME
+      password:
+        type: env_var_name
+        default: SERVER_PASSWORD
+      wp_folder:
+        type: string
+        default: << pipeline.parameters.wp_folder >>
+      wp_theme_name:
+        type: string
+        default: << pipeline.parameters.wp_theme_name >>
+
     steps:
       - run:
           name: Copy theme to server
           command: |
             source .circleci/.env
-            sshpass -p $SERVER_PASSWORD rsync -av -e ssh --exclude='node_modules' --exclude='scripts' --exclude='tailwind' --exclude='.git' . $SERVER_USERNAME@$SERVER_HOST:<< pipeline.parameters.wp_folder >>/wp-content/themes/<< pipeline.parameters.wp_theme_name >>
+            sshpass -p << parameters.password >> rsync -av -e ssh --exclude='node_modules' --exclude='scripts' --exclude='tailwind' --exclude='.git' . << parameters.username >>@<< parameters.host >>:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
 
 jobs:
-  deploy-dev:
+  deploy-staging:
+    description: Deploy on staging server
     executor: node-executor
     resource_class: small
     steps:
@@ -56,13 +78,37 @@ jobs:
       # - build-theme
       - deploy-theme
 
+  deploy-prod:
+    description: Deploy on production server
+    executor: node-executor
+    resource_class: small
+    steps:
+      - checkout
+      - setup-ssh
+          host: PROD_SERVER_HOST
+      # - build-theme
+      - deploy-theme:
+          host: PROD_SERVER_HOST
+          username: PROD_SERVER_USERNAME
+          password: PROD_SERVER_PASSWORD
+          wp_folder: www
+
 workflows:
-  deploy-workflow:
+  staging:
     jobs:
-      - deploy-dev:
+      - deploy-staging:
           context: dev
           filters:
             branches:
               only:
                 - develop
+
+  production:
+    jobs:
+      - deploy-prod:
+          context: dev
+          filters:
+            branches:
+              only:
+                - main
 # VS Code Extension Version: 1.5.1
