@@ -98,6 +98,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
+      - setup-ssh
       # - build-theme
       - deploy-theme-prod
 
