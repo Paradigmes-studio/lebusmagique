@@ -42,7 +42,7 @@ commands:
             npm run prod
 
   deploy-theme:
-    description: Send theme to the server
+    description: Send theme to Staging server
     parameters:
       host:
         type: env_var_name
@@ -65,7 +65,21 @@ commands:
           name: Copy theme to server
           command: |
             source .circleci/.env
-            sshpass -p ${<< parameters.password >>} rsync -av -e ssh --exclude='node_modules' --exclude='scripts' --exclude='tailwind' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
+            sshpass -p ${<< parameters.password >>} rsync -av -e ssh --exclude='.circleci' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
+
+  # As to deploy throug a specific job, because OVH server doesnt support SSH (so we have to use SCP through SFTP)
+  deploy-theme-prod:
+    description: Send theme to Production server
+    parameters:
+      wp_theme_name:
+        type: string
+        default: << pipeline.parameters.wp_theme_name >>
+
+    steps:
+      - run:
+          name: Copy theme to server
+          command: |
+            sshpass -p ${PROD_SERVER_PASSWORD} scp -r . ${PROD_SERVER_USERNAME}@${PROD_SERVER_HOST}:www/wp-content/themes/<< parameters.wp_theme_name >>
 
 jobs:
   deploy-staging:
@@ -84,14 +98,8 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup-ssh:
-          host: PROD_SERVER_HOST
       # - build-theme
-      - deploy-theme:
-          host: PROD_SERVER_HOST
-          username: PROD_SERVER_USERNAME
-          password: PROD_SERVER_PASSWORD
-          wp_folder: www
+      - deploy-theme-prod
 
 workflows:
   staging:
