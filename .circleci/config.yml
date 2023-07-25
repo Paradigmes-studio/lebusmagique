@@ -67,7 +67,7 @@ commands:
             source .circleci/.env
             sshpass -p ${<< parameters.password >>} rsync -av -e ssh --exclude='.circleci' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
 
-  # As to deploy throug a specific job, because OVH server doesnt support SSH (so we have to use SCP through SFTP)
+  # As to deploy throug a specific job, because OVH server doesnt support SSH (so we have to use LFTP through SFTP)
   deploy-theme-prod:
     description: Send theme to Production server
     parameters:
@@ -77,9 +77,14 @@ commands:
 
     steps:
       - run:
+          name: Install LFTP
+          command: |
+            sudo apt update
+            sudo apt install lftp
+      - run:
           name: Copy theme to server
           command: |
-            sshpass -p ${PROD_SERVER_PASSWORD} scp -r . ${PROD_SERVER_USERNAME}@${PROD_SERVER_HOST}:www/wp-content/themes/<< parameters.wp_theme_name >>
+            lftp ftp://${PROD_SERVER_USERNAME}:${PROD_SERVER_PASSWORD}@${PROD_SERVER_HOST} -e "mirror -e -R -x .circleci -x .git . www/wp-content/themes/<< parameters.wp_theme_name >> ; quit"
 
 jobs:
   deploy-staging:
@@ -98,7 +103,6 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup-ssh
       # - build-theme
       - deploy-theme-prod
 
