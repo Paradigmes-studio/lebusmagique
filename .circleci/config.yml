@@ -25,7 +25,7 @@ commands:
           name: Install sshpass and rsync
           command: |
             sudo apt update
-            sudo apt install sshpass rsync lftp
+            sudo apt install sshpass rsync
 
       - run:
           name: Add server ip to known hosts
@@ -77,6 +77,11 @@ commands:
 
     steps:
       - run:
+          name: Install LFTP
+          command: |
+            sudo apt update
+            sudo apt install lftp
+      - run:
           name: Copy theme to server
           command: |
             lftp ftp://${PROD_SERVER_USERNAME}:${PROD_SERVER_PASSWORD}@${PROD_SERVER_HOST} -e "mirror -e -R -x .circleci -x .git . www/wp-content/themes/<< parameters.wp_theme_name >> ; quit"
@@ -98,8 +103,6 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - setup-ssh:
-          host: PROD_SERVER_HOST
       # - build-theme
       - deploy-theme-prod
 
