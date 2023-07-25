@@ -25,7 +25,7 @@ commands:
           name: Install sshpass and rsync
           command: |
             sudo apt update
-            sudo apt install sshpass rsync
+            sudo apt install sshpass rsync lftp
 
       - run:
           name: Add server ip to known hosts
@@ -67,7 +67,7 @@ commands:
             source .circleci/.env
             sshpass -p ${<< parameters.password >>} rsync -av -e ssh --exclude='.circleci' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
 
-  # As to deploy throug a specific job, because OVH server doesnt support SSH (so we have to use SCP through SFTP)
+  # As to deploy throug a specific job, because OVH server doesnt support SSH (so we have to use LFTP through SFTP)
   deploy-theme-prod:
     description: Send theme to Production server
     parameters:
@@ -79,7 +79,7 @@ commands:
       - run:
           name: Copy theme to server
           command: |
-            sshpass -p ${PROD_SERVER_PASSWORD} scp -r . ${PROD_SERVER_USERNAME}@${PROD_SERVER_HOST}:www/wp-content/themes/<< parameters.wp_theme_name >>
+            lftp ftp://${PROD_SERVER_USERNAME}:${PROD_SERVER_PASSWORD}@${PROD_SERVER_HOST} -e "mirror -e -R -x .circleci -x .git . /home/${PROD_SERVER_USERNAME}/www/wp-content/themes/<< parameters.wp_theme_name >> ; quit"
 
 jobs:
   deploy-staging:
