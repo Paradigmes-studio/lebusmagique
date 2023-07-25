@@ -79,7 +79,7 @@ commands:
       - run:
           name: Copy theme to server
           command: |
-            lftp ftp://${PROD_SERVER_USERNAME}:${PROD_SERVER_PASSWORD}@${PROD_SERVER_HOST} -e "mirror -e -R -x .circleci -x .git . /home/${PROD_SERVER_USERNAME}/www/wp-content/themes/<< parameters.wp_theme_name >> ; quit"
+            lftp ftp://${PROD_SERVER_USERNAME}:${PROD_SERVER_PASSWORD}@${PROD_SERVER_HOST} -e "mirror -e -R -x .circleci -x .git . www/wp-content/themes/<< parameters.wp_theme_name >> ; quit"
 
 jobs:
   deploy-staging:
