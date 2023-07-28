@@ -32,15 +32,6 @@ commands:
           command: |
             ssh-keyscan ${<< parameters.host >>} >> ~/.ssh/known_hosts
 
-  build-theme:
-    description: Fetch and build default theme
-    steps:
-      - run:
-          name: Build theme
-          command: |
-            npm install
-            npm run prod
-
   deploy-theme:
     description: Send theme to Staging server
     parameters:
@@ -59,7 +50,6 @@ commands:
       wp_theme_name:
         type: string
         default: << pipeline.parameters.wp_theme_name >>
-
     steps:
       - run:
           name: Copy theme to server
@@ -74,7 +64,6 @@ commands:
       wp_theme_name:
         type: string
         default: << pipeline.parameters.wp_theme_name >>
-
     steps:
       - run:
           name: Install LFTP
@@ -94,7 +83,6 @@ jobs:
     steps:
       - checkout
       - setup-ssh
-      # - build-theme
       - deploy-theme
 
   deploy-prod:
@@ -103,7 +91,6 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      # - build-theme
       - deploy-theme-prod
 
 workflows:
