@@ -10,7 +10,7 @@
 </footer>
 <footer class="footer-location">
   <h2 class="accroche has-text-align-center">Psst ! La péniche a aussi son gîte !</h2>
-  <a href="https://www.sejour-insolite-peniche-lille.com/" class="cta cta-footer cta-decoration" target="_blank">Je passe la nuit sur la péniche
+  <a href="https://www.conciergerie-lilloise.com/property/peniche-citadelle-coeur-de-lille/" class="cta cta-footer cta-decoration" target="_blank">Je passe la nuit sur la péniche
   </a>
 </footer>
 
