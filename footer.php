@@ -49,7 +49,7 @@
         <?php endif; ?>
         <?php $contact_zipcode = get_field('option_contact_zipcode', 'option'); ?>
         <?php if($contact_zipcode != ""): ?>
-          <?php echo $contact_zipcode; ?>
+          <br/><?php echo $contact_zipcode; ?>
         <?php endif; ?>
         <?php $contact_city = get_field('option_contact_city', 'option'); ?>
         <?php if($contact_city != ""): ?>
