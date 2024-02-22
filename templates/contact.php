@@ -12,6 +12,10 @@
 
         <div class="section-landing-top o-contact">
 
+          <div class="o-contact__address">
+            
+          </div>
+
           <div class="o-contact__mail">
             <?php $contact_email = get_field('option_contact_email', 'option'); ?>
             <?php if($contact_email != ""): ?>
@@ -37,6 +41,20 @@
             <?php endwhile; ?>
             </ul>
             <?php endif; ?>
+            <p>
+                <?php $contact_address = get_field('option_contact_address', 'option'); ?>
+                <?php if($contact_address != ""): ?>
+                  <?php echo $contact_address; ?>
+                <?php endif; ?>
+                <?php $contact_zipcode = get_field('option_contact_zipcode', 'option'); ?>
+                <?php if($contact_zipcode != ""): ?>
+                  <br/><?php echo $contact_zipcode; ?>
+                <?php endif; ?>
+                <?php $contact_city = get_field('option_contact_city', 'option'); ?>
+                <?php if($contact_city != ""): ?>
+                   <?php echo $contact_city; ?>
+                <?php endif; ?>
+            </p>
           </div>
 
 
