@@ -37,9 +37,9 @@
     <?php endif; ?>
     <?php if (have_rows('option_contact_list', 'option')) : ?>
       <?php while (have_rows('option_contact_list', 'option')) : the_row(); ?>
-        <?php $contact_name = get_sub_field('option_contact_item_name', 'option'); ?>
+        <!--<?php $contact_name = get_sub_field('option_contact_item_name', 'option'); ?>-->
         <?php $contact_phone = get_sub_field('option_contact_item_phone', 'option'); ?>
-        <p><?php echo $contact_name ?> <a href="tel:<?php echo $contact_phone; ?>"><?php echo $contact_phone; ?></a></p>
+        <p><!--<?php echo $contact_name ?>--> <a href="tel:<?php echo $contact_phone; ?>"><?php echo $contact_phone; ?></a></p>
       <?php endwhile; ?>
     <?php endif; ?>
     <p class="address">
