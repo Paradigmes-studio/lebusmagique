@@ -37,16 +37,25 @@
     <?php endif; ?>
     <?php if (have_rows('option_contact_list', 'option')) : ?>
       <?php while (have_rows('option_contact_list', 'option')) : the_row(); ?>
-        <?php $contact_name = get_sub_field('option_contact_item_name', 'option'); ?>
+        <!--<?php $contact_name = get_sub_field('option_contact_item_name', 'option'); ?>-->
         <?php $contact_phone = get_sub_field('option_contact_item_phone', 'option'); ?>
-        <p><?php echo $contact_name ?> <a href="tel:<?php echo $contact_phone; ?>"><?php echo $contact_phone; ?></a></p>
+        <p><!--<?php echo $contact_name ?>--> <a href="tel:<?php echo $contact_phone; ?>"><?php echo $contact_phone; ?></a></p>
       <?php endwhile; ?>
     <?php endif; ?>
-
-    <?php $contact_open_hours = get_field('option_open_hours', 'option'); ?>
-    <?php if(!empty($contact_open_hours)) : ?>
-    <?php echo apply_filters('the_content',$contact_open_hours); ?>
-    <?php endif; ?>
+    <p class="address">
+        <?php $contact_address = get_field('option_contact_address', 'option'); ?>
+        <?php if($contact_address != ""): ?>
+          <?php echo $contact_address; ?>
+        <?php endif; ?>
+        <?php $contact_zipcode = get_field('option_contact_zipcode', 'option'); ?>
+        <?php if($contact_zipcode != ""): ?>
+          <br/><?php echo $contact_zipcode; ?>
+        <?php endif; ?>
+        <?php $contact_city = get_field('option_contact_city', 'option'); ?>
+        <?php if($contact_city != ""): ?>
+           <?php echo $contact_city; ?>
+        <?php endif; ?>
+    </p>
 
     <div class="reseaux-sociaux">
       <?php if (have_rows('option_social_network_list', 'option')) : ?>
@@ -57,6 +66,18 @@
           <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social-responsive border-white-responsive" src="<?php echo $social_network_icon['url']; ?>"></a>
         <?php endwhile; ?>
       <?php endif; ?>
+    </div>
+
+    <div class="horaires">
+      <p>
+        Horaires
+        <div class="horaires__list">
+          <?php $contact_open_hours = get_field('option_open_hours', 'option'); ?>
+          <?php if(!empty($contact_open_hours)) : ?>
+          <?php echo apply_filters('the_content',$contact_open_hours); ?>
+          <?php endif; ?>
+        </div>
+      </p>
     </div>
 
   </div>

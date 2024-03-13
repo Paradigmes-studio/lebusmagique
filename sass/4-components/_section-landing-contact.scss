@@ -149,6 +149,9 @@
         &:first-child {
           flex-basis: 100%;
         }
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
     a {

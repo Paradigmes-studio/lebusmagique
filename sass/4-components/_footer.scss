@@ -325,21 +325,43 @@ footer{
         &.contact{
             margin:0 auto;
             text-align:center;
+            .address{
+              
+            }
+            .horaires{
+              margin-top:20px;
+              &__list{
+                p{
+                  font-family: "FinlandRounded";
+                  font-size:1.9em;
+                  font-weight: 100;
+                  line-height: 0.85em;
+                }
+              }
+            }
+            .reseaux-sociaux{
+              display:none;
+            }
             @media #{$tab}{
               .reseaux-sociaux {
+                display:flex;
+                margin-top:3px;
+                justify-content:center;
                 a {
-                  width: 36px;
-                  height: 36px;
+                  width: 26px;
+                  height: 26px;
                   display: flex;
                   align-items: center;
                   justify-content: center;
                   padding: 0;
+                  margin-left: 3px;
+                  margin-right: 3px;
                   img {
                     padding: 0;
                     border: 0;
                     margin: 0;
                     border-radius: 0;
-                    height: 15px;
+                    height: 11px;
                     width: auto;
                   }
                 }
@@ -357,12 +379,15 @@ footer{
                 margin-left: 10px;
                 margin-right: 40px;
                 .reseaux-sociaux {
+
                   a {
-                    width: 40px;
-                    height: 40px;
+                    width: 36px;
+                    height: 36px;
+                    margin-left:5px;
+                    margin-right: 5px;
                     img {
-                      height: 17px;
-                    }
+                      height: 15px;
+                    } 
                   }
                 }
             }
@@ -374,13 +399,13 @@ footer{
                 position: relative;
                 // left: -20px;
                 .reseaux-sociaux {
-                  a {
+     /*              a {
                     width: 50px;
                     height: 50px;
                     img {
                       height: 21px;
                     }
-                  }
+                  } */
                 }
             }
 
@@ -390,13 +415,13 @@ footer{
                 width: 27%;
                 margin-left: 0px;
                 .reseaux-sociaux {
-                  a {
+/*                   a {
                     width: 60px;
                     height: 60px;
                     img {
                       height: 25px;
                     }
-                  }
+                  } */
                 }
             }
         }
