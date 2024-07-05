@@ -9,9 +9,9 @@ parameters:
     default: applications/$APP_SYS_USR/public_html
 
 executors:
-  node-executor:
+  base-executor:
     docker:
-      - image: cimg/node:19.3.0
+      - image: cimg/base:current
 
 commands:
   setup-ssh:
@@ -22,15 +22,15 @@ commands:
         default: SERVER_HOST
     steps:
       - run:
-          name: Install sshpass and rsync
-          command: |
-            sudo apt update
-            sudo apt install sshpass rsync
-
-      - run:
           name: Add server ip to known hosts
           command: |
             ssh-keyscan ${<< parameters.host >>} >> ~/.ssh/known_hosts
+
+      - run:
+          name: Install sshpass and rsync
+          command: |
+            sudo apt update
+            sudo apt install rsync
 
   deploy-theme:
     description: Send theme to Staging server
@@ -41,9 +41,6 @@ commands:
       username:
         type: env_var_name
         default: SERVER_USERNAME
-      password:
-        type: env_var_name
-        default: SERVER_PASSWORD
       wp_folder:
         type: string
         default: << pipeline.parameters.wp_folder >>
@@ -55,7 +52,7 @@ commands:
           name: Copy theme to server
           command: |
             source .circleci/.env
-            sshpass -p ${<< parameters.password >>} rsync -av -e ssh --exclude='.circleci' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
+            rsync -av -e ssh --exclude='.circleci' --exclude='.git' . ${<< parameters.username >>}@${<< parameters.host >>}:<< parameters.wp_folder >>/wp-content/themes/<< parameters.wp_theme_name >>
 
   # As to deploy throug a specific job, because OVH server doesnt support SSH (so we have to use LFTP through SFTP)
   deploy-theme-prod:
@@ -78,16 +75,19 @@ commands:
 jobs:
   deploy-staging:
     description: Deploy on staging server
-    executor: node-executor
+    executor: base-executor
     resource_class: small
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "f9:f6:36:79:f2:dd:46:7a:91:74:ec:73:35:95:4f:35"
       - setup-ssh
       - deploy-theme
 
   deploy-prod:
     description: Deploy on production server
-    executor: node-executor
+    executor: base-executor
     resource_class: small
     steps:
       - checkout
