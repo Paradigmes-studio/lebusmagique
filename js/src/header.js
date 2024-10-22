@@ -1,37 +1,30 @@
 class Header {
 
-  constructor() {
-
-  }
-
   init() {
 
-    let _self = this;
-    console.log('Header init!', _self, $('#menu-toggle:not(.has-events-click)'));
     // toggle mobile menu
-    $('#menu-toggle:not(.has-events-click)').on('click', function(e) {
+    $('#menu-toggle').on('click', function(e) {
 
-        e.preventDefault();
-        e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
 
-        if($(this).attr('aria-expanded') == "true") {
+      if($(this).attr('aria-expanded') == "true") {
 
-            // close menu
-            $(this).attr('aria-expanded', false);
-            $(this).closest('header').removeClass('is-expanded');
+          // close menu
+          $(this).attr('aria-expanded', false);
+          $(this).closest('header').removeClass('is-expanded');
 
-        } else {
+      } else {
 
-          // open menu
-          $(this).attr('aria-expanded', true);
-          $(this).closest('header').addClass('is-expanded');
+        // open menu
+        $(this).attr('aria-expanded', true);
+        $(this).closest('header').addClass('is-expanded');
 
-        }
+      }
 
-        // unfocus menu button
-        $(this).blur();
-
-    }).addClass('has-events-click');
+      // unfocus menu button
+      $(this).blur();
+    });
 
     $('.text-yellow-background.top').on('click', function(e){
       e.preventDefault();
