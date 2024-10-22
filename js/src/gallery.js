@@ -5,7 +5,7 @@ class Gallery {
 
   init() {
     let galleries = $('.o-gallery__list');
-    console.log('Gallery init', galleries);
+
     if(galleries.length) {
       galleries.each(function(i,gallery){
         // console.log('gallery?', gallery);

@@ -80,9 +80,8 @@ wp.domReady( () => {
 			var bgColorClass = function(){
 				return attributes.bgColor != 'transparent' ? ' section-content--' + attributes.bgColor : '';
 			}
-			console.log('bgColorClass', bgColorClass());
+
 			var onChangeBgColor = function (bgColor) {
-          console.log(bgColor);
           return props.setAttributes({
               bgColor: bgColor
           });
@@ -143,7 +142,6 @@ wp.domReady( () => {
 } )();
 
 function blocksFilterAttributes( settings, name ) {
-	console.log("blocksFilterAttributes block name", name, 'settings', settings);
 
 		// alert('gniiiiiii');
 	// const blocksParents = [ 'mw/container', 'core/column', 'core/media-text' ];
