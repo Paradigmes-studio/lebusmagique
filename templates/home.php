@@ -5,6 +5,17 @@
 ?>
 <?php get_header(); ?>
 
+<style>
+    .zoomable {
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+    }
+    .zoomable.zoomed {
+        cursor: zoom-out;
+        transform: scale(2);
+    }
+</style>
+
 <?php if (have_posts()) : ?>
     <?php while (have_posts()) : the_post(); ?>
 
@@ -59,30 +70,28 @@
           <?php echo apply_filters('the_content', $description); ?>
         <?php endif; ?>
       </div>
-
-
     </section>
 
-    <section class="section-content section-content--white">
-      <h2>Prog' de la semaine</h2>
-
-      <!--<p style="text-align: center;">Notre programmation magique reprendra le 10 juin, en attendant venez boire un verre !</p>
-      <a class="cta" href="<?php echo get_permalink(get_page_by_path("restauration")); ?>">Voir la carte</a>-->
-      <?php if (have_rows('page_home_programmation_list')) : ?>
-        <div class="events">
-        <?php //while (have_rows('page_home_programmation_list')) : the_row(); ?>
-          <?php //echo get_sub_field('page_home_programmation_item_iframe'); ?>
-        <?php //endwhile; ?>
-          <?php echo do_shortcode('[facebook_events col="2" posts_per_page="4"]'); ?>
-        <!--<iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/association-ginkgo/evenements/fete-du-jeu-2020-2/widget-vignette" style="width: 350px; height: 450px; border: none;"></iframe>
-        <iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/association-ginkgo/evenements/fete-du-jeu-2020-2/widget-vignette" style="width: 350px; height: 450px; border: none;"></iframe>
-        <iframe id="haWidget" allowtransparency="true" src="https://www.helloasso.com/associations/association-ginkgo/evenements/fete-du-jeu-2020-2/widget-vignette" style="width: 350px; height: 450px; border: none;"></iframe>
-      --></div>
-      <a class="cta" href="<?php echo get_permalink(get_page_by_path("programmation")); ?>">Voir la programmation</a>
-      <?php endif; ?>
-
+    <section class="section-content section-content--prog">
+      <h2>Prog' du mois</h2>
+        <?php
+        $image = get_field('programmation_du_mois');
+        if ($image) : ?>
+            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="zoomable" onclick="this.classList.toggle('zoomed')">
+        <?php elseif (have_rows('page_home_programmation_list')) : ?>
+            <div class="events">
+                <?php echo do_shortcode('[facebook_events col="2" posts_per_page="4"]'); ?>
+            </div>
+        <?php endif; ?>
     </section>
 
+    <section class="section-bggreen mt75">
+        <?php if ($image) : ?>
+            <a class="cta" href="<?php echo get_permalink(get_page_by_path("programmation")); ?>">Voir la programmation en détails !</a>
+        <?php elseif (have_rows('page_home_programmation_list')) : ?>
+            <a class="cta" href="<?php echo get_permalink(get_page_by_path("programmation")); ?>">Voir la programmation</a>
+        <?php endif; ?>
+    </section>
 
     <section class="section-content section-content--beige">
 
