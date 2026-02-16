@@ -73,6 +73,27 @@ body.home {
       padding-top: 40px;
     }
 
+    &--prog {
+      position: relative;
+      overflow: visible;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 130%;
+        background: _url("zigzag.svg") no-repeat;
+        background-position-x: 50%;
+        background-position-y: 100%;
+        background-size: contain;
+      }
+    }
+
   }
 
   .bloc-fullwidth {

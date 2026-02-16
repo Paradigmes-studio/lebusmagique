@@ -19,6 +19,30 @@
             "endpoint": 0
         },
         {
+            "key": "field_9574699317252419",
+            "label": "Programmation",
+            "name": "programmation_du_mois",
+            "type": "image",
+            "instructions": "Programmation du mois en cours",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
             "key": "field_6098f8f128859",
             "label": "Liste d'évènement",
             "name": "page_home_programmation_list",

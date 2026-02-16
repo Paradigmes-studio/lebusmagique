@@ -46,6 +46,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
   .show-768 {
     display: block;
   }
+
   .hide-768 {
     display: none;
   }
@@ -58,8 +59,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
 }
 
 /* Sections
@@ -94,9 +97,12 @@ h1 {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
 }
 
 /**
@@ -104,8 +110,10 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 pre {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /* Text-level semantics
@@ -122,10 +130,12 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
 }
 
 /**
@@ -143,8 +153,10 @@ strong {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 /**
@@ -194,10 +206,14 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit; /* 1 */
-  font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
 }
 
 /**
@@ -205,7 +221,8 @@ textarea {
  * 1. Show the overflow in Edge.
  */
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -214,7 +231,8 @@ input { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -263,12 +281,18 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  box-sizing: border-box; /* 1 */
-  color: inherit; /* 2 */
-  display: table; /* 1 */
-  max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
-  white-space: normal; /* 1 */
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
 }
 
 /**
@@ -291,8 +315,10 @@ textarea {
  */
 [type=checkbox],
 [type=radio] {
-  box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
 }
 
 /**
@@ -308,8 +334,10 @@ textarea {
  * 2. Correct the outline style in Safari.
  */
 [type=search] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
 }
 
 /**
@@ -324,8 +352,10 @@ textarea {
  * 2. Change font properties to `inherit` in Safari.
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2 */
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
 /* Interactive
@@ -361,6 +391,8 @@ template {
 }
 
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -388,6 +420,7 @@ body {
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 8px;
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.8);
 }
@@ -449,7 +482,7 @@ body div.grid12-big:hover::after {
     padding-right: calc((100% - 1642px) / 2 + 30px);
   }
   body div.grid12-big {
-    max-width: calc(1642px - 60px);
+    max-width: calc(1642px - (30px * 2));
   }
 }
 @media screen and (min-width: 1500px) {
@@ -726,7 +759,7 @@ p, input, .o-page-content ul, .o-page-content ol {
   justify-content: center;
   text-decoration: none;
   color: #000;
-  width: 175px;
+  width: 200px;
   height: 34.1px;
   margin: 33px auto 52px;
   padding-left: 14px;
@@ -741,6 +774,7 @@ p, input, .o-page-content ul, .o-page-content ol {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.36px;
+  white-space: nowrap;
 }
 .cta--red {
   border-color: #e6534e;
@@ -2706,7 +2740,6 @@ section h2 + iframe {
 @media screen and (min-width: 1920px) {
   section {
     margin-top: 73px;
-    margin-top: 73px;
     margin-left: 470px;
     margin-right: 470px;
   }
@@ -2800,7 +2833,7 @@ section h2 + iframe {
 .section-bggreen {
   margin: 5px 0px 0;
   padding: 25px 26px;
-  background-color: rgb(54, 165, 133);
+  background-color: #36a585;
 }
 @media screen and (min-width: 1024px) {
   .section-bggreen {
@@ -2885,7 +2918,7 @@ section h2 + iframe {
     padding-left: 100px;
     padding-right: 100px;
     font-size: 22.5px;
-    border: 5px solid rgb(0, 0, 0);
+    border: 5px solid black;
   }
 }
 @media screen and (min-width: 1920px) {
@@ -2895,7 +2928,7 @@ section h2 + iframe {
     font-size: 30px;
     padding-left: 140px;
     padding-right: 140px;
-    border: 6px solid rgb(0, 0, 0);
+    border: 6px solid black;
   }
 }
 .section-bggreen .background-imageF, .section-bggreen .background-imageS {
@@ -4893,6 +4926,7 @@ section h2 + iframe {
   display: block;
   width: 100%;
   height: auto;
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.24));
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.24));
 }
 .o-projects .o-slider__prev svg {
@@ -5332,7 +5366,7 @@ form .wp-block-columns {
   font-size: 85.7%;
   opacity: 1;
   transition: all 0.2s;
-  text-shadow: 0 0 4px white;
+  text-shadow: 0 0 4px #ffffffff;
 }
 @media screen and (min-width: 1024px) {
   .a-field label, .a-field > span {
@@ -5671,7 +5705,7 @@ form .wp-block-columns {
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type=checkbox],
-  input[type=radio] {
+input[type=radio] {
     -webkit-appearance: none;
     -moz-appearance: none;
   }
@@ -5835,8 +5869,11 @@ input[type=checkbox] + label {
   cursor: pointer;
 }
 
-select { /* Firefox */
-  -webkit-appearance: none; /* Safari and Chrome */
+select {
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
   appearance: none;
   background: url("../images/arrow-down.svg") no-repeat calc(100% - 23px) 50%;
   background-size: 1rem;
@@ -5877,6 +5914,8 @@ select { /* Firefox */
 .dk-select.dk-select-open-down .dk-select-options {
   border-radius: 1.5625rem;
   margin-top: 0.0625rem;
+  -moz-box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
+  -webkit-box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
   -o-box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
   box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
   filter: progid:DXImageTransform.Microsoft.Shadow(color=rgba(19, 47, 74, 0.1), Direction=NaN, Strength=10);
@@ -5885,6 +5924,8 @@ select { /* Firefox */
   border: 0;
   padding: 0;
   max-height: 12.5rem;
+  -moz-box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
+  -webkit-box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
   -o-box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
   box-shadow: 0 0 10px 0 rgba(19, 47, 74, 0.1);
   filter: progid:DXImageTransform.Microsoft.Shadow(color=rgba(19, 47, 74, 0.1), Direction=NaN, Strength=10);
@@ -6101,6 +6142,25 @@ body.home .section-content--beige {
   margin-bottom: 0;
   padding-bottom: 0;
   padding-top: 40px;
+}
+body.home .section-content--prog {
+  position: relative;
+  overflow: visible;
+}
+body.home .section-content--prog:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 130%;
+  background: url("../images/zigzag.svg") no-repeat;
+  background-position-x: 50%;
+  background-position-y: 100%;
+  background-size: contain;
 }
 body.home .bloc-fullwidth {
   margin-top: 70px;
@@ -6390,4 +6450,3 @@ body.home .bloc-fullwidth img {
 .single-facebook_events footer .ife_eventmeta {
   display: none;
 }
-/*# sourceMappingURL=main.css.map */

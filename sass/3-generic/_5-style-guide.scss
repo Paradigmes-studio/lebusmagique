@@ -181,7 +181,7 @@ p, input, .o-page-content ul, .o-page-content ol {
     justify-content: center;
     text-decoration: none;
     color: $black;
-    width:175px;
+    width: 200px;
     height: 34.1px;
     margin: 33px auto 52px;
     padding-left: 14px;
@@ -196,6 +196,7 @@ p, input, .o-page-content ul, .o-page-content ol {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.36px;
+    white-space: nowrap;
 
     &--red {
       // color: $red;
