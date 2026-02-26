@@ -79,7 +79,7 @@
             <h2>Prog' du mois</h2>
             <?php
             $image = get_field('programmation_du_mois');
-            if ($image) : ?>
+            if (isset($image) && is_array($image)) : ?>
                 <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"
                      class="zoomable" onclick="this.classList.toggle('zoomed')">
             <?php elseif (have_rows('page_home_programmation_list')) : ?>
