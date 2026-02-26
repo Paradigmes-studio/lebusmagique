@@ -6,6 +6,7 @@
             "key": "field_6098fb142885f",
             "label": "Evenements",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -16,12 +17,14 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_9574699317252419",
             "label": "Programmation",
             "name": "programmation_du_mois",
+            "aria-label": "",
             "type": "image",
             "instructions": "Programmation du mois en cours",
             "required": 0,
@@ -46,6 +49,7 @@
             "key": "field_6098f8f128859",
             "label": "Liste d'évènement",
             "name": "page_home_programmation_list",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -59,12 +63,14 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "",
+            "button_label": "Ajouter un élément",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_6098f94f2885a",
                     "label": "Titre de l'évènement",
                     "name": "page_home_programmation_item_title",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -78,12 +84,14 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_6098f8f128859"
                 },
                 {
                     "key": "field_6098f9682885b",
                     "label": "Code Iframe HelloAsso",
                     "name": "page_home_programmation_item_iframe",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -97,7 +105,8 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_6098f8f128859"
                 }
             ]
         },
@@ -105,6 +114,7 @@
             "key": "field_6098fb2628860",
             "label": "Encart 1",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -115,12 +125,14 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6098f9f12885c",
             "label": "Image",
             "name": "page_home_encart_1_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -131,7 +143,6 @@
                 "id": ""
             },
             "return_format": "array",
-            "preview_size": "medium",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -139,12 +150,15 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "medium"
         },
         {
             "key": "field_6098fad92885d",
             "label": "Titre",
             "name": "page_home_encart_1_titre",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -164,6 +178,7 @@
             "key": "field_6098faf32885e",
             "label": "Description",
             "name": "page_home_encart_1_description",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -183,6 +198,7 @@
             "key": "field_609903f8bfff6",
             "label": "Libellé du bouton",
             "name": "page_home_encart_1_libelle",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -202,6 +218,7 @@
             "key": "field_609904e6bfff7",
             "label": "Lien du bouton",
             "name": "page_home_encart_1_link",
+            "aria-label": "",
             "type": "url",
             "instructions": "",
             "required": 0,
@@ -218,6 +235,7 @@
             "key": "field_6098fba728861",
             "label": "Encart 2",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -228,12 +246,14 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6098fbbf28862",
             "label": "Image",
             "name": "page_home_encart_2_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -258,6 +278,7 @@
             "key": "field_6098fc3e28863",
             "label": "Titre",
             "name": "page_home_encart_2_titre",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -277,6 +298,7 @@
             "key": "field_6098fc5828864",
             "label": "Description",
             "name": "page_home_encart_2_description",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -296,6 +318,7 @@
             "key": "field_60990515bfff8",
             "label": "Libellé du bouton",
             "name": "page_home_encart_2_libelle",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -315,6 +338,7 @@
             "key": "field_60990526bfff9",
             "label": "Lien du bouton",
             "name": "page_home_encart_2_link",
+            "aria-label": "",
             "type": "url",
             "instructions": "",
             "required": 0,
@@ -331,6 +355,7 @@
             "key": "field_6098fc6e28865",
             "label": "Encart 3",
             "name": "",
+            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -341,12 +366,14 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_6098fd5628866",
             "label": "Image",
             "name": "page_home_encart_3_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -371,6 +398,7 @@
             "key": "field_6098fd7928867",
             "label": "Titre",
             "name": "page_home_encart_3_titre",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -390,6 +418,7 @@
             "key": "field_6098fd9928868",
             "label": "Description",
             "name": "page_home_encart_3_description",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "",
             "required": 0,
@@ -409,6 +438,7 @@
             "key": "field_6099054dbfffa",
             "label": "Libellé du bouton",
             "name": "page_home_encart_3_libelle",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -428,6 +458,7 @@
             "key": "field_6099056ebfffb",
             "label": "Lien du bouton",
             "name": "page_home_encart_3_link",
+            "aria-label": "",
             "type": "url",
             "instructions": "",
             "required": 0,
@@ -458,5 +489,7 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1620649177
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1772129499
 }
