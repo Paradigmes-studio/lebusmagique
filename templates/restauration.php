@@ -132,13 +132,14 @@
                   <?php $carte_items = new WP_Query($post_args); ?>
                   <?php if ($carte_items->have_posts()) : ?>
                     <?php while ($carte_items->have_posts()) : $carte_items->the_post(); ?>
+                      <?php $carte_post_id = get_the_ID(); ?>
                       <p class="column ">
-                        <?php $legend_drink = get_field('carte_infos_legend_drink');  ?>
+                        <?php $legend_drink = get_field('carte_infos_legend_drink', $carte_post_id);  ?>
                         <?php $s_class = (!empty($legend_drink) ? 'class="' . $legend_drink . '"' : ''); ?>
                         <span <?php echo $s_class; ?>><?php echo get_the_title(); ?></span>
                         <span class="prix">
-                          <?php $price1 = get_field('carte_infos_price_1'); ?>
-                          <?php $price2 = get_field('carte_infos_price_2'); ?>
+                          <?php $price1 = get_field('carte_infos_price_1', $carte_post_id); ?>
+                          <?php $price2 = get_field('carte_infos_price_2', $carte_post_id); ?>
 
                           <?php if (!empty($price1) && !empty($price2)) : ?>
                             <span class="volume-left content"><?php echo $price1; ?></span>
@@ -151,6 +152,7 @@
                         </span>
                       </p>
                     <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
                   <?php endif; ?>
 
                 <?php endforeach; ?>
@@ -162,7 +164,6 @@
                 <?php $sub_typologies = get_terms($args); ?>
                 <?php foreach ($sub_typologies as $sub_typologie) : ?>
                   <p class="text-font category jungle-green column">
-
                     <span><?php echo $sub_typologie->name; ?></span>
                   </p>
                 <?php endforeach; ?>
@@ -173,18 +174,19 @@
                 <?php $carte_items = new WP_Query($post_args); ?>
                 <?php if ($carte_items->have_posts()) : ?>
                   <?php while ($carte_items->have_posts()) : $carte_items->the_post(); ?>
+                    <?php $carte_post_id = get_the_ID(); ?>
                     <p class="column ">
-                      <?php $legend_drink = get_field('carte_infos_legend_drink');  ?>
+                      <?php $legqend_drink = get_field('carte_infos_legend_drink', $carte_post_id);  ?>
                       <?php $s_class = (!empty($legend_drink) ? 'class="' . $legend_drink . '"' : ''); ?>
                       <span <?php echo $s_class; ?>><?php echo get_the_title(); ?></span>
-                      <?php $price1 = get_field('carte_infos_price_1'); ?>
+                      <?php $price1 = get_field('carte_infos_price_1', $carte_post_id); ?>
                       <?php if (!empty($price1)) : ?>
                         <span>
                           <span><?php echo $price1; ?>
                           </span>
                         </span>
                       <?php endif; ?>
-                      <?php $description = get_field('carte_infos_description'); ?>
+                      <?php $description = get_field('carte_infos_description', $carte_post_id); ?>
                       <?php if (!empty($description)) : ?>
                         <span class="price-description">
                           <?php echo strip_tags(apply_filters('the_content', $description), '<br><strong><a>'); ?>
@@ -192,6 +194,7 @@
                       <?php endif; ?>
                     </p>
                   <?php endwhile; ?>
+                  <?php wp_reset_postdata(); ?>
                 <?php endif; ?>
 
                 <!--
