@@ -19,4 +19,4 @@ jobs:
             username: ${{ secrets.FTP_USERNAME_PROD }}
             password: ${{ secrets.FTP_PASSWORD_PROD }}
             localDir: .
-            remoteDir: www/wp-content/themes/$THEME_NAME
+            remoteDir: www/wp-content/themes/busmagique
