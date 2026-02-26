@@ -244,8 +244,8 @@ function mkwvs_scripts_styles(){
     wp_register_script('scripts-js', get_template_directory_uri(). '/js/main.js' , array('jquery', 'swiper-js'), '', true);
     wp_enqueue_script('scripts-js'); // Enqueue it!
 
-    // Make AjaxUrl Visible In Scripts
-    wp_localize_script('scripts-js','ajaxurl', admin_url('admin-ajax.php'));
+    // Make AjaxUrl visible in scripts (WP 5.7+ requires wp_localize_script $l10n to be an array)
+    wp_add_inline_script('scripts-js', 'var ajaxurl = "' . esc_js(admin_url('admin-ajax.php')) . '";', 'before');
 
 }
 

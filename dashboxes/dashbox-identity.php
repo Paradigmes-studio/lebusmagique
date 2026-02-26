@@ -14,7 +14,7 @@ function mkwvs_dashbox_identity_init(){
 function mkwvs_dashbox_identity_scripts(){
     wp_enqueue_style('mkwvs_dashbox_identity_styles', get_stylesheet_directory_uri() . '/dashboxes/dashbox-identity.css');
     wp_enqueue_script('mkwvs_dashbox_identity_scripts', get_stylesheet_directory_uri() . '/dashboxes/dashbox-identity.js');
-    wp_localize_script('mkwvs_dashbox_identity_scripts','ajaxurl', admin_url( 'admin-ajax.php' ));
+    wp_add_inline_script('mkwvs_dashbox_identity_scripts', 'var ajaxurl = "' . esc_js(admin_url('admin-ajax.php')) . '";', 'before');
 }
 
 // Makewaves Dashbox :  Add Admin Dashbox Identity Social Render Functions
