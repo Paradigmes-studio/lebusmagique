@@ -17,7 +17,10 @@
         }
     </style>
 
+<?php $hp = get_page_by_path('accueil'); ?>
+
 <?php if (have_posts()) : ?>
+
     <?php while (have_posts()) : the_post(); ?>
 
         <section class="section-landing-standard">
@@ -78,8 +81,8 @@
         <section class="section-content section-content--prog">
             <h2>Prog' du mois</h2>
             <?php
-            $image = get_field('programmation_du_mois');
-            if ($image) : ?>
+            $image = get_field('programmation_du_mois', $hp->ID);
+            if (isset($image) && is_array($image)) : ?>
                 <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"
                      class="zoomable" onclick="this.classList.toggle('zoomed')">
             <?php elseif (have_rows('page_home_programmation_list')) : ?>
@@ -103,7 +106,7 @@
 
             <h2>Que faire à bord Capitaine ?</h2>
 
-            <?php $hp = get_page_by_path('accueil'); ?>
+
 
             <?php $image = get_field('page_home_encart_1_image', $hp->ID); ?>
             <?php $titre = get_field('page_home_encart_1_titre', $hp->ID); ?>
