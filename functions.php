@@ -264,6 +264,17 @@ function mkwvs_scripts_styles(){
         ]);
     }
 
+    // Privatisation JS (location page only)
+    if (is_page_template('templates/location.php')) {
+        wp_register_script('privatisation-js', get_template_directory_uri() . '/js/src/privatisation.js', ['jquery'], filemtime(get_template_directory() . '/js/src/privatisation.js'), true);
+        wp_enqueue_script('privatisation-js');
+        wp_localize_script('privatisation-js', 'privData', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('priv_submit_nonce'),
+            'tarifs'  => mkwvs_priv_get_tarifs_for_js(),
+        ]);
+    }
+
 }
 
 // Remove Vesion Number Form CSS & JS
