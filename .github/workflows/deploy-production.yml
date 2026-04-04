@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: "Install Composer dependencies"
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
       - name: Upload files to FTP
         uses: matteodf/lftp-upload@v1.1.0
         with:

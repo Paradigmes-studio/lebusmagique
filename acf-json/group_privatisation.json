@@ -1,0 +1,645 @@
+{
+    "key": "group_privatisation",
+    "title": "Privatisation",
+    "fields": [
+        {
+            "key": "field_priv_tab_demandeur",
+            "label": "Demandeur",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_priv_type",
+            "label": "Type de demandeur",
+            "name": "priv_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "entreprise": "Entreprise",
+                "particulier": "Particulier",
+                "association": "Association"
+            },
+            "default_value": "particulier",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_priv_nom",
+            "label": "Nom",
+            "name": "priv_nom",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_priv_prenom",
+            "label": "Pr\u00e9nom",
+            "name": "priv_prenom",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_priv_email",
+            "label": "Email",
+            "name": "priv_email",
+            "type": "email",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_priv_telephone",
+            "label": "T\u00e9l\u00e9phone",
+            "name": "priv_telephone",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_priv_organisation",
+            "label": "Organisation",
+            "name": "priv_organisation",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_priv_type",
+                        "operator": "==",
+                        "value": "entreprise"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_priv_type",
+                        "operator": "==",
+                        "value": "association"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_priv_tab_evenement",
+            "label": "\u00c9v\u00e8nement",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_priv_date",
+            "label": "Date",
+            "name": "priv_date",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d/m/Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        },
+        {
+            "key": "field_priv_date_status",
+            "label": "Statut de la date",
+            "name": "priv_date_status",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "green": "Green",
+                "orange": "Orange",
+                "red": "Red"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_priv_heure_debut",
+            "label": "Heure de d\u00e9but",
+            "name": "priv_heure_debut",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "9": "9h",
+                "10": "10h",
+                "11": "11h",
+                "12": "12h",
+                "13": "13h",
+                "14": "14h",
+                "15": "15h",
+                "16": "16h",
+                "17": "17h",
+                "18": "18h",
+                "19": "19h",
+                "20": "20h",
+                "21": "21h",
+                "22": "22h",
+                "23": "23h",
+                "0": "Minuit"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_priv_heure_fin",
+            "label": "Heure de fin",
+            "name": "priv_heure_fin",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "10": "10h",
+                "11": "11h",
+                "12": "12h",
+                "13": "13h",
+                "14": "14h",
+                "15": "15h",
+                "16": "16h",
+                "17": "17h",
+                "18": "18h",
+                "19": "19h",
+                "20": "20h",
+                "21": "21h",
+                "22": "22h",
+                "23": "23h",
+                "0": "Minuit",
+                "1": "1h",
+                "2": "2h"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_priv_nb_personnes",
+            "label": "Nombre de personnes",
+            "name": "priv_nb_personnes",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 1,
+            "max": 100,
+            "step": 1
+        },
+        {
+            "key": "field_priv_description",
+            "label": "Description",
+            "name": "priv_description",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_priv_tab_options",
+            "label": "Options",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_priv_opt_son_lumiere",
+            "label": "Son et lumi\u00e8re",
+            "name": "priv_opt_son_lumiere",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        },
+        {
+            "key": "field_priv_opt_artiste",
+            "label": "Artiste",
+            "name": "priv_opt_artiste",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        },
+        {
+            "key": "field_priv_opt_dj",
+            "label": "DJ set / Blindtest / Karaok\u00e9",
+            "name": "priv_opt_dj",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        },
+        {
+            "key": "field_priv_opt_tonnelle",
+            "label": "Tonnelle",
+            "name": "priv_opt_tonnelle",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        },
+        {
+            "key": "field_priv_opt_repas",
+            "label": "Formule repas",
+            "name": "priv_opt_repas",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "aucun": "Aucun",
+                "2_plats": "Entr\u00e9e-plat ou plat-dessert (25 \u20ac/pers)",
+                "3_plats": "Entr\u00e9e-plat-dessert (30 \u20ac/pers)"
+            },
+            "default_value": "aucun",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_priv_opt_service_table",
+            "label": "Service \u00e0 table",
+            "name": "priv_opt_service_table",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_priv_opt_repas",
+                        "operator": "!=",
+                        "value": "aucun"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        },
+        {
+            "key": "field_priv_opt_boissons",
+            "label": "Boissons",
+            "name": "priv_opt_boissons",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        },
+        {
+            "key": "field_priv_opt_boissons_quantite",
+            "label": "Nombre de boissons",
+            "name": "priv_opt_boissons_quantite",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_priv_opt_boissons",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 1,
+            "max": "",
+            "step": 1
+        },
+        {
+            "key": "field_priv_tab_devis",
+            "label": "Devis",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_priv_montant_ht",
+            "label": "Montant HT",
+            "name": "priv_montant_ht",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "\u20ac",
+            "min": "",
+            "max": "",
+            "step": "0.01"
+        },
+        {
+            "key": "field_priv_montant_ttc",
+            "label": "Montant TTC",
+            "name": "priv_montant_ttc",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "\u20ac",
+            "min": "",
+            "max": "",
+            "step": "0.01"
+        },
+        {
+            "key": "field_priv_numero_devis",
+            "label": "Num\u00e9ro de devis",
+            "name": "priv_numero_devis",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 1
+        },
+        {
+            "key": "field_priv_pdf_path",
+            "label": "Chemin PDF",
+            "name": "priv_pdf_path",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 1
+        },
+        {
+            "key": "field_priv_rgpd_consent",
+            "label": "Consentement RGPD",
+            "name": "priv_rgpd_consent",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "privatisation"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Champs pour les demandes de privatisation",
+    "modified": 1710806400
+}
