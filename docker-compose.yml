@@ -2,17 +2,26 @@ services:
   wordpress:
     image: wordpress:6-php8.3-apache
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_TABLE_PREFIX: bmag_
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WPMS_ON', true);
+        define('WPMS_SMTP_HOST', 'mailpit');
+        define('WPMS_SMTP_PORT', 1025);
+        define('WP_HTTP_BLOCK_EXTERNAL', true);
+        define('WP_ACCESSIBLE_HOSTS', 'db,mailpit');
+        define('AUTOMATIC_UPDATER_DISABLED', true);
+        define('WP_AUTO_UPDATE_CORE', false);
     volumes:
       - wordpress_data:/var/www/html
       - .:/var/www/html/wp-content/themes/lebusmagique
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./apache-uploads.conf:/etc/apache2/conf-enabled/uploads.conf
     depends_on:
       db:
         condition: service_healthy
@@ -36,13 +45,20 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     ports:
-      - "8081:80"
+      - "8082:80"
     environment:
       PMA_HOST: db
       PMA_USER: wordpress
       PMA_PASSWORD: wordpress
     depends_on:
       - db
+    restart: unless-stopped
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8026:8025"
+      - "1026:1025"
     restart: unless-stopped
 
 volumes:

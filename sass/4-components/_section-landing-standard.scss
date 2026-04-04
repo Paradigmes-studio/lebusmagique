@@ -5,12 +5,12 @@
     margin: 0;
     padding: 0;
     text-align:center;
-    overflow: hidden;
 
     .section-landing-top {
         height:calc(100vh - 63px);
         margin-top: 63px;
         position: relative;
+        overflow: hidden;
 
         @media #{$desk}{
             height:calc(100vh - 86px);

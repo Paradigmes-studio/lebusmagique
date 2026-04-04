@@ -1,0 +1,97 @@
+{
+    "key": "group_privatisation_calendar",
+    "title": "Calendrier Privatisations",
+    "fields": [
+        {
+            "key": "field_priv_blocked_dates",
+            "label": "P\u00e9riodes bloqu\u00e9es",
+            "name": "blocked_dates",
+            "type": "repeater",
+            "instructions": "Ajouter les p\u00e9riodes o\u00f9 la privatisation n'est pas possible. Pour bloquer un seul jour, mettre la m\u00eame date de d\u00e9but et de fin.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Ajouter une p\u00e9riode",
+            "sub_fields": [
+                {
+                    "key": "field_priv_blocked_date_start",
+                    "label": "Date de d\u00e9but",
+                    "name": "blocked_date_start",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d/m/Y",
+                    "return_format": "Y-m-d",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_priv_blocked_date_end",
+                    "label": "Date de fin",
+                    "name": "blocked_date_end",
+                    "type": "date_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d/m/Y",
+                    "return_format": "Y-m-d",
+                    "first_day": 1
+                },
+                {
+                    "key": "field_priv_blocked_reason",
+                    "label": "Raison",
+                    "name": "blocked_reason",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Ex : Fermeture annuelle, \u00e9v\u00e8nement priv\u00e9...",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-calendrier-privatisations"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Configuration du calendrier de privatisation",
+    "modified": 1711324800
+}
