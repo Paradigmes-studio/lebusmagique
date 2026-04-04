@@ -21,6 +21,21 @@ require get_template_directory() . '/inc/acf-blocks-functions.php';
  * Custom Menu Walker Functions.
  */
 require get_template_directory() . '/inc/custom-walker.php';
+require get_template_directory() . '/inc/privatisation-functions.php';
+require get_template_directory() . '/inc/privatisation-ajax.php';
+require get_template_directory() . '/inc/privatisation-pdf.php';
+require get_template_directory() . '/inc/privatisation-emails.php';
+
+// Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
+if (defined('WPMS_ON') && WPMS_ON) {
+    add_action('phpmailer_init', function ($phpmailer) {
+        $phpmailer->isSMTP();
+        $phpmailer->Host = WPMS_SMTP_HOST;
+        $phpmailer->Port = WPMS_SMTP_PORT;
+        $phpmailer->SMTPAuth = false;
+        $phpmailer->SMTPSecure = '';
+    });
+}
 
 // WP SPECIFICS
 ////////////////////////////////////////////////////////////////////////////////
@@ -54,26 +69,16 @@ if( function_exists('acf_add_options_page') ) {
     'menu_title'    => 'Infos Générales',
     'parent_slug'   => 'options',
   ));
+
 }
 
 
 if (class_exists('ACF')){
-  // Register ACF Json Fields In Theme
   function mkwvs_json_save_acf_groups( $path ) {
     $path = get_stylesheet_directory() . '/acf-json';
     return $path;
   }
   add_filter( 'acf/settings/save_json', 'mkwvs_json_save_acf_groups' );
-
-  // ACF : Import Local Json Files For Groups
-  $field_groups = acf_get_local_field_groups();
-  foreach( $field_groups as $field_group ) {
-    $key = $field_group['key'];
-    if( acf_have_local_fields( $key ) ) {
-      $field_group['fields'] = acf_get_fields( $key );
-    }
-    acf_write_json_field_group( $field_group );
-  }
 }
 
 // Add Items To Theme Support
@@ -114,6 +119,7 @@ function mkwvs_add_mime_types($mimes) {
 //require_once 'cpt/cpt-post.php';
 //require_once 'cpt/cpt-page.php';
 require_once 'cpt/cpt-carte.php';
+require_once 'cpt/cpt-privatisation.php';
 
 
 
@@ -197,7 +203,7 @@ function mkwvs_scripts_styles(){
     wp_enqueue_style('modal-video-style'); // Enqueue it!
 
     // Theme CSS
-    wp_register_style('styles', get_template_directory_uri() . '/css/main.css', array(), '', 'all');
+    wp_register_style('styles', get_template_directory_uri() . '/css/main.css', array(), filemtime(get_template_directory() . '/css/main.css'), 'all');
     wp_enqueue_style('styles'); // Enqueue it!
 
 
@@ -246,6 +252,17 @@ function mkwvs_scripts_styles(){
 
     // Make AjaxUrl visible in scripts (WP 5.7+ requires wp_localize_script $l10n to be an array)
     wp_add_inline_script('scripts-js', 'var ajaxurl = "' . esc_js(admin_url('admin-ajax.php')) . '";', 'before');
+
+    // Privatisation JS (location page only)
+    if (is_page_template('templates/location.php')) {
+        wp_register_script('privatisation-js', get_template_directory_uri() . '/js/src/privatisation.js', ['jquery'], filemtime(get_template_directory() . '/js/src/privatisation.js'), true);
+        wp_enqueue_script('privatisation-js');
+        wp_localize_script('privatisation-js', 'privData', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('priv_submit_nonce'),
+            'tarifs'  => mkwvs_priv_get_tarifs_for_js(),
+        ]);
+    }
 
 }
 

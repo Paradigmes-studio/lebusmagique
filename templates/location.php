@@ -8,9 +8,14 @@
 <?php if (have_posts()) : ?>
   <?php while (have_posts()) : the_post(); ?>
 
-    <section class="section-landing-standard">
+    <section class="section-landing-standard section-landing-standard--privatisation">
 
         <?php include(locate_template('template-part/blocks/page-head.php')); ?>
+
+        <div class="text-yellow-background bottom priv-intro">
+          <h2>Privatiser une péniche à Lille</h2>
+          <p>Envie d'un lieu unique pour votre prochain événement ? Le Bus Magique, péniche amarrée au cœur de Lille, vous ouvre ses portes pour vos privatisations : anniversaire, séminaire, soirée d'entreprise, mariage ou simple fête entre amis. Profitez d'un cadre atypique en bord de Deûle avec salle intérieure, terrasse et prestations sur mesure. Sélectionnez une date ci-dessous pour obtenir votre devis en ligne.</p>
+        </div>
 
     </section>
 
@@ -30,41 +35,22 @@
     <?php endif; ?>
 
 
-    <?php if( have_rows('page_prestation_list')) : ?>
-      <section class="sections-price">
+
+
+    <section class="sections-price sections-price--privatisation">
         <div class="sections-price__header">
-          <h2 class="has-text-align-center">Nos tickets</h2>
+          <h2>Disponibilités pour privatiser la péniche</h2>
+          <p>– les lundi, mardi et mercredi en journée et soirée<br>
+          – les dimanches à partir de 19h<br>
+          – les samedis de 9h à 16h</p>
+          <p>Les autres créneaux sont étudiés spécifiquement</p>
         </div>
-        <div class="sections-price__list">
-        <?php while(have_rows('page_prestation_list')) : the_row(); ?>
-          <?php $color = get_sub_field('page_prestation_item_color'); ?>
-          <?php $icon = get_sub_field('page_prestation_item_icon'); ?>
-          <?php $toptitle = get_sub_field('page_prestation_item_toptitle'); ?>
-          <?php $title = get_sub_field('page_prestation_item_title'); ?>
-          <?php $details = get_sub_field('page_prestation_item_details'); ?>
-          <?php $price = get_sub_field('page_prestation_item_price'); ?>
-          <section class="section-price <?php echo $color; ?>">
-            <div class="font-icon <?php echo $color; ?>">
-              <img src="<?php echo $icon['url']; ?>">
-            </div>
-            <p class="text-font category <?php echo $color; ?>"><?php echo $toptitle; ?></p>
-            <h2 class="activity"><?php echo $title; ?></h2>
-            <div class="price price-<?php echo $color; ?>">
-              <p class="text-font <?php echo $color; ?>"><?php echo $price; ?></p>
-            </div>
-          </section>
-        <?php endwhile; ?>
-        </div>
-      </section>
-    <?php endif; ?>
+    </section>
 
+    <section class="section-privatisation">
 
-    <section>
-        <h2 class="has-text-align-center">Privatiser la péniche</h2>
-
-      <?php $contact_form_page = get_page_by_path('privatiser-la-peniche', 'OBJECT', 'wpcf7_contact_form'); ?>
-      <?php echo do_shortcode('[contact-form-7 id="'.$contact_form_page->ID.'" ]'); ?>
-
+        <?php include(locate_template('template-part/privatisation/calendar.php')); ?>
+        <?php include(locate_template('template-part/privatisation/form-wizard.php')); ?>
     </section>
 
   <?php endwhile; ?>

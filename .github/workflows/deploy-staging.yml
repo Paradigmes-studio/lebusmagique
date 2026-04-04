@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: "Install Composer dependencies"
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.MR_ROBOT_SSH_KEY }}
