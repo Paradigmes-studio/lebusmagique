@@ -25,6 +25,7 @@ require get_template_directory() . '/inc/privatisation-functions.php';
 require get_template_directory() . '/inc/privatisation-ajax.php';
 require get_template_directory() . '/inc/privatisation-pdf.php';
 require get_template_directory() . '/inc/privatisation-emails.php';
+require get_template_directory() . '/inc/brevo-smtp.php';
 
 // Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
 if (defined('WPMS_ON') && WPMS_ON) {
@@ -252,6 +253,17 @@ function mkwvs_scripts_styles(){
 
     // Make AjaxUrl visible in scripts (WP 5.7+ requires wp_localize_script $l10n to be an array)
     wp_add_inline_script('scripts-js', 'var ajaxurl = "' . esc_js(admin_url('admin-ajax.php')) . '";', 'before');
+
+    // Privatisation JS (location page only)
+    if (is_page_template('templates/location.php')) {
+        wp_register_script('privatisation-js', get_template_directory_uri() . '/js/src/privatisation.js', ['jquery'], filemtime(get_template_directory() . '/js/src/privatisation.js'), true);
+        wp_enqueue_script('privatisation-js');
+        wp_localize_script('privatisation-js', 'privData', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('priv_submit_nonce'),
+            'tarifs'  => mkwvs_priv_get_tarifs_for_js(),
+        ]);
+    }
 
     // Privatisation JS (location page only)
     if (is_page_template('templates/location.php')) {
