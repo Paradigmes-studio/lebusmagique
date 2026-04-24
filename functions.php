@@ -256,19 +256,13 @@ function mkwvs_scripts_styles(){
     // Make AjaxUrl visible in scripts (WP 5.7+ requires wp_localize_script $l10n to be an array)
     wp_add_inline_script('scripts-js', 'var ajaxurl = "' . esc_js(admin_url('admin-ajax.php')) . '";', 'before');
 
-    // Privatisation JS (location page only)
-    if (is_page_template('templates/location.php')) {
-        wp_register_script('privatisation-js', get_template_directory_uri() . '/js/src/privatisation.js', ['jquery'], filemtime(get_template_directory() . '/js/src/privatisation.js'), true);
-        wp_enqueue_script('privatisation-js');
-        wp_localize_script('privatisation-js', 'privData', [
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('priv_submit_nonce'),
-            'tarifs'  => mkwvs_priv_get_tarifs_for_js(),
-        ]);
-    }
-
-    // Privatisation JS (location page only)
-    if (is_page_template('templates/location.php')) {
+    // Privatisation JS (pages utilisant le calendrier de privatisation)
+    $priv_templates = [
+        'templates/location.php',
+        'templates/privatisation-seminaires.php',
+        'templates/privatisation-evenements-prives.php',
+    ];
+    if (array_filter($priv_templates, 'is_page_template')) {
         wp_register_script('privatisation-js', get_template_directory_uri() . '/js/src/privatisation.js', ['jquery'], filemtime(get_template_directory() . '/js/src/privatisation.js'), true);
         wp_enqueue_script('privatisation-js');
         wp_localize_script('privatisation-js', 'privData', [
