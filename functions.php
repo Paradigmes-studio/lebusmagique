@@ -26,6 +26,8 @@ require get_template_directory() . '/inc/privatisation-ajax.php';
 require get_template_directory() . '/inc/privatisation-pdf.php';
 require get_template_directory() . '/inc/privatisation-emails.php';
 require get_template_directory() . '/inc/brevo-smtp.php';
+require get_template_directory() . '/inc/schema-org.php';
+require get_template_directory() . '/inc/og-images.php';
 
 // Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
 if (defined('WPMS_ON') && WPMS_ON) {
@@ -344,6 +346,7 @@ function mkwvs_images_setup() {
     add_image_size( 'header-thumb', 816, 543, true ); // (cropped)
     add_image_size( 'video-thumb', 1000, 540, true ); // (cropped)
     add_image_size( 'news-thumb', 417, 250, true ); // (cropped)
+    add_image_size( 'og-image', 1200, 630, true ); // Open Graph / social sharing
 }
 
 

@@ -10,9 +10,12 @@
       <img class="swiper-slide" src="<?php echo $image['url']; ?>" alt="<?php echo $description; ?>">
     <?php endwhile; ?>
   <?php else: ?>
-    <?php $post_thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post_id),'header-thumb'); ?>
+    <?php $thumb_id = get_post_thumbnail_id(get_the_ID()); ?>
+    <?php $post_thumbnail = wp_get_attachment_image_src($thumb_id, 'header-thumb'); ?>
     <?php if (false !== $post_thumbnail) : ?>
-        <img src="<?php echo $post_thumbnail[0] ?>" alt="<?php echo get_the_title(); ?>"/>
+        <?php $thumb_alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true); ?>
+        <?php if (empty($thumb_alt)) $thumb_alt = get_the_title(); ?>
+        <img src="<?php echo $post_thumbnail[0] ?>" alt="<?php echo esc_attr($thumb_alt); ?>"/>
     <?php endif; ?>
   <?php endif; ?>
 
@@ -24,8 +27,16 @@
   <?php if (empty($color_hublot)) $color_hublot = 'red'; ?>
   <img src="<?php echo get_stylesheet_directory_uri() .'/images/'.$color_hublot.'-hublot.svg'; ?>">
   <?php $icon_hublot = get_field('page_head_hublot_icon'); ?>
-  <?php if (empty($icon_hublot)) $icon_hublot['url'] = $upload_dir['baseurl'].'/2021/05/hublot-icon-programmation.svg'; ?>
-  <h1 class="big-title"><img class="icon" src="<?php echo $icon_hublot['url']; ?>"><?php echo get_the_title(); ?></h1>
+  <?php
+    if (is_array($icon_hublot) && !empty($icon_hublot['url'])) {
+        $icon_hublot_url = $icon_hublot['url'];
+    } elseif (is_numeric($icon_hublot)) {
+        $icon_hublot_url = wp_get_attachment_image_url((int) $icon_hublot, 'full') ?: ($upload_dir['baseurl'].'/2021/05/hublot-icon-programmation.svg');
+    } else {
+        $icon_hublot_url = $upload_dir['baseurl'].'/2021/05/hublot-icon-programmation.svg';
+    }
+  ?>
+  <h1 class="big-title"><img class="icon" src="<?php echo esc_url($icon_hublot_url); ?>"><?php echo get_the_title(); ?></h1>
   <?php if($image_count > 1): ?>
   <div class="o-slider__navigation">
     <button class="o-slider__prev"><?php locate_template( 'images/fleche.svg', true, false ); ?></button>
