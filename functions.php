@@ -26,6 +26,7 @@ require get_template_directory() . '/inc/privatisation-ajax.php';
 require get_template_directory() . '/inc/privatisation-pdf.php';
 require get_template_directory() . '/inc/privatisation-emails.php';
 require get_template_directory() . '/inc/brevo-smtp.php';
+require get_template_directory() . '/inc/facebook-events-categories.php';
 
 // Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
 if (defined('WPMS_ON') && WPMS_ON) {
