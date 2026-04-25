@@ -6,6 +6,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+const MKWVS_FB_CATEGORIES_VERSION = '1';
+
 const MKWVS_FB_CATEGORIES = [
     'blind-test' => [
         'name'     => 'Blind test',
@@ -89,50 +91,92 @@ function mkwvs_fb_autocategorize_on_save(int $post_id, WP_Post $post): void
 }
 add_action('save_post', 'mkwvs_fb_autocategorize_on_save', 20, 2);
 
+function mkwvs_fb_perform_backfill(?callable $logger = null): array
+{
+    @set_time_limit(300);
+    mkwvs_fb_ensure_categories();
+
+    $paged             = 1;
+    $total_processed   = 0;
+    $total_categorized = 0;
+
+    while (true) {
+        $query = new WP_Query([
+            'post_type'      => 'facebook_events',
+            'post_status'    => 'any',
+            'posts_per_page' => 200,
+            'paged'          => $paged,
+            'fields'         => 'ids',
+            'no_found_rows'  => true,
+        ]);
+
+        if ($query->posts === []) {
+            break;
+        }
+
+        foreach ($query->posts as $post_id) {
+            $post = get_post($post_id);
+            if (!$post instanceof WP_Post) {
+                continue;
+            }
+            $term_ids = mkwvs_fb_match_categories($post->post_title);
+            $total_processed++;
+            if ($term_ids !== []) {
+                wp_set_object_terms($post_id, $term_ids, 'facebook_category', false);
+                $total_categorized++;
+            }
+        }
+
+        if ($logger !== null) {
+            $logger(sprintf('Page %d : %d events traités', $paged, count($query->posts)));
+        }
+        $paged++;
+    }
+
+    return [
+        'processed'   => $total_processed,
+        'categorized' => $total_categorized,
+    ];
+}
+
+function mkwvs_fb_maybe_schedule_backfill(): void
+{
+    if (defined('WP_CLI') && WP_CLI) {
+        return;
+    }
+    if (wp_doing_cron()) {
+        return;
+    }
+    if (get_option('mkwvs_fb_categories_backfill_version') === MKWVS_FB_CATEGORIES_VERSION) {
+        return;
+    }
+    if (wp_next_scheduled('mkwvs_fb_cron_backfill', [MKWVS_FB_CATEGORIES_VERSION]) !== false) {
+        return;
+    }
+    wp_schedule_single_event(time() + 30, 'mkwvs_fb_cron_backfill', [MKWVS_FB_CATEGORIES_VERSION]);
+}
+add_action('init', 'mkwvs_fb_maybe_schedule_backfill', 30);
+
+function mkwvs_fb_cron_backfill_handler(string $version): void
+{
+    mkwvs_fb_perform_backfill();
+    update_option('mkwvs_fb_categories_backfill_version', $version);
+}
+add_action('mkwvs_fb_cron_backfill', 'mkwvs_fb_cron_backfill_handler', 10, 1);
+
 if (defined('WP_CLI') && WP_CLI) {
     WP_CLI::add_command('mkwvs fb-recategorize', function (): void {
-        mkwvs_fb_ensure_categories();
+        $stats = mkwvs_fb_perform_backfill(function (string $line): void {
+            WP_CLI::log($line);
+        });
 
-        $paged             = 1;
-        $total_processed   = 0;
-        $total_categorized = 0;
-
-        while (true) {
-            $query = new WP_Query([
-                'post_type'      => 'facebook_events',
-                'post_status'    => 'any',
-                'posts_per_page' => 200,
-                'paged'          => $paged,
-                'fields'         => 'ids',
-                'no_found_rows'  => true,
-            ]);
-
-            if ($query->posts === []) {
-                break;
-            }
-
-            foreach ($query->posts as $post_id) {
-                $post = get_post($post_id);
-                if (!$post instanceof WP_Post) {
-                    continue;
-                }
-                $term_ids = mkwvs_fb_match_categories($post->post_title);
-                $total_processed++;
-                if ($term_ids !== []) {
-                    wp_set_object_terms($post_id, $term_ids, 'facebook_category', false);
-                    $total_categorized++;
-                }
-            }
-
-            WP_CLI::log(sprintf('Page %d : %d events traités', $paged, count($query->posts)));
-            $paged++;
-        }
+        update_option('mkwvs_fb_categories_backfill_version', MKWVS_FB_CATEGORIES_VERSION);
 
         WP_CLI::success(sprintf(
             '%d events traités, %d catégorisés, %d non catégorisés',
-            $total_processed,
-            $total_categorized,
-            $total_processed - $total_categorized,
+            $stats['processed'],
+            $stats['categorized'],
+            $stats['processed'] - $stats['categorized'],
         ));
     });
 }
