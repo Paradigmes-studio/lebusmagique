@@ -85,20 +85,26 @@
 
   <div class="rubric newsletter">
     <h2>Newsletter</h2>
-    <p> 1 mail chaque semaine, garanti sans spam et plein d'anecdotes !</p>
-    <?php
-    try {
-        echo do_shortcode('[mp-mc-form list="102be40ec8" button="S\'inscrire" email_text="Ici ton email, et hop !" first_name_text="First Name" last_name_text="Last Name" placeholder="true" firstname="false" lastname="false" success="Merci pour votre inscription." failure="Une erreur est survenue. Veuillez ré-essayer." ]');
-    } catch (Throwable $e) {
-        // Plugin "Another Mailchimp Widget" can pass null to wp_kses_post() on PHP 8+. Fix: in the plugin file
-        // wp-content/plugins/another-mailchimp-widget/shortcodes/items/an_shortcode_mailchimp_class.php
-        // around line 82, use: wp_kses_post($data ?? '');
-    }
-    ?>
-    <!--<form class="form-newsletter">
-      <input class="post-email" placeholder="Adresse e-mail">
-      <button><img class="icon-email" src="<?php echo get_stylesheet_directory_uri() . '/images/letter.svg'; ?>"></button>
-    </form>-->
+    <p>1 mail chaque semaine, garanti sans spam et plein d'anecdotes !</p>
+    <form class="newsletter-form" novalidate>
+      <p class="email-wrap">
+        <label for="newsletter-email" class="screen-reader-text">Adresse e-mail</label>
+        <input type="email" id="newsletter-email" name="email" required placeholder="Ici ton email, et hop !">
+      </p>
+      <p class="consent">
+        <label>
+          <input type="checkbox" name="consent" value="1" required>
+          <span>J'accepte de recevoir la newsletter hebdomadaire. Désabonnement à tout moment via le lien dans chaque email.</span>
+        </label>
+      </p>
+      <p class="newsletter-honeypot" aria-hidden="true">
+        <label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </p>
+      <p class="submit-wrap">
+        <input type="submit" value="S'inscrire">
+      </p>
+      <p class="newsletter-message" role="status" aria-live="polite"></p>
+    </form>
 
     <div class="reseaux-sociaux">
       <?php if (have_rows('option_social_network_list', 'option')) : ?>
