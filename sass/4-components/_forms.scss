@@ -623,93 +623,134 @@ h2 + form {
 }
 
 
-form.mailchimp_form_simple {
+form.newsletter-form {
   position: relative;
   max-width: 85%;
-  p {
+
+  p.email-wrap {
     max-width: unset !important;
     input {
       min-width: unset;
-      padding:0.75rem 2.5rem 0.75rem 1rem;
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
       &:placeholder-shown:not(:focus)::placeholder {
         opacity: 1;
         color: $black-two;
       }
     }
-    &:last-child {
-      position: absolute;
-      right: 0;
-      top: 0;
-      margin-top: 0;
-      margin-bottom: 0;
-      input {
-        @include size(58px, 41px);
-        text-indent: 58px;
-        min-width: unset;
-        overflow: hidden;
-        padding: 0;
-        border-radius: 0 25px 25px 0;
-        background: _url('letter.svg') no-repeat center center;
-        background-size: 16px;
-      }
+  }
+
+  p.submit-wrap {
+    max-width: unset !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    input {
+      @include size(58px, 41px);
+      text-indent: 58px;
+      min-width: unset;
+      overflow: hidden;
+      padding: 0;
+      border-radius: 0 25px 25px 0;
+      background: _url('letter.svg') no-repeat center center;
+      background-size: 16px;
+      cursor: pointer;
+      border: 0;
     }
   }
-//   25/41
-// 51/81
+
+  p.consent {
+    max-width: unset !important;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    label {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      cursor: pointer;
+      max-width: unset;
+    }
+    input[type="checkbox"] {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      min-width: unset;
+      width: auto;
+    }
+  }
+
+  p.newsletter-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  p.newsletter-message {
+    max-width: unset !important;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    min-height: 1.2em;
+    &.error {
+      color: #d32f2f;
+    }
+  }
 
   @media #{$tab2} {
     max-width: unset;
-    p {
+
+    p.email-wrap {
       min-width: 230px;
       input {
         border-radius: 34px;
         min-height: 54px;
       }
-      &:last-child {
-        width: 74px;
-        min-width: unset;
-        right: -40px;
-        input {
-          @include size(74px, 54px);
-          text-indent: 74px;
-          background-size: 26px;
-        }
+    }
+
+    p.submit-wrap {
+      width: 74px;
+      min-width: unset;
+      right: -40px;
+      input {
+        @include size(74px, 54px);
+        text-indent: 74px;
+        background-size: 26px;
       }
     }
   }
+
   @media #{$desk} {
-    p {
+    p.email-wrap {
       min-width: unset;
-      &:last-child {
-        right: 0px;
-      }
+    }
+    p.submit-wrap {
+      right: 0;
     }
   }
 
   @media #{$extend} {
-    p {
+    p.email-wrap input {
+      border-radius: 46px;
+      min-height: 74px;
+    }
+    p.submit-wrap {
+      width: auto;
       input {
-        border-radius: 46px;
-        min-height: 74px;
-      }
-      &:last-child {
-        width: auto;
-        input {
-          @include size(94px, 74px);
-          text-indent: 94px;
-          background-size: 36px;
-        }
+        @include size(94px, 74px);
+        text-indent: 94px;
+        background-size: 36px;
       }
     }
   }
+
   @media #{$extend2} {
-    p {
+    p.email-wrap {
       width: 348px;
-      &:last-child {
-        width: 94px;
-      }
+    }
+    p.submit-wrap {
+      width: 94px;
     }
   }
-
-
 }
