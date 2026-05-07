@@ -673,10 +673,20 @@ form.newsletter-form {
       max-width: unset;
     }
     input[type="checkbox"] {
-      flex-shrink: 0;
-      margin-top: 0.15rem;
+      -webkit-appearance: checkbox;
+      -moz-appearance: checkbox;
+      appearance: auto;
+      width: 16px;
+      height: 16px;
       min-width: unset;
-      width: auto;
+      min-height: unset;
+      padding: 0;
+      margin: 0.15rem 0 0 0;
+      border: 0;
+      border-radius: 0;
+      background: $white;
+      flex-shrink: 0;
+      cursor: pointer;
     }
   }
 
