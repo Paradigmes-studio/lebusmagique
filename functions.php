@@ -27,7 +27,10 @@ require get_template_directory() . '/inc/privatisation-pdf.php';
 require get_template_directory() . '/inc/privatisation-emails.php';
 require get_template_directory() . '/inc/brevo-smtp.php';
 require get_template_directory() . '/inc/brevo-newsletter.php';
+require get_template_directory() . '/inc/schema-org.php';
+require get_template_directory() . '/inc/og-images.php';
 require get_template_directory() . '/inc/facebook-events-categories.php';
+require get_template_directory() . '/inc/facebook-events-archive.php';
 
 // Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
 if (defined('WPMS_ON') && WPMS_ON) {
@@ -264,8 +267,13 @@ function mkwvs_scripts_styles(){
         'nonce'   => wp_create_nonce('brevo_subscribe'),
     ]);
 
-    // Privatisation JS (location page only)
-    if (is_page_template('templates/location.php')) {
+    // Privatisation JS (pages utilisant le calendrier de privatisation)
+    $priv_templates = [
+        'templates/location.php',
+        'templates/privatisation-seminaires.php',
+        'templates/privatisation-evenements-prives.php',
+    ];
+    if (array_filter($priv_templates, 'is_page_template')) {
         wp_register_script('privatisation-js', get_template_directory_uri() . '/js/src/privatisation.js', ['jquery'], filemtime(get_template_directory() . '/js/src/privatisation.js'), true);
         wp_enqueue_script('privatisation-js');
         wp_localize_script('privatisation-js', 'privData', [
@@ -343,6 +351,7 @@ function mkwvs_images_setup() {
     add_image_size( 'header-thumb', 816, 543, true ); // (cropped)
     add_image_size( 'video-thumb', 1000, 540, true ); // (cropped)
     add_image_size( 'news-thumb', 417, 250, true ); // (cropped)
+    add_image_size( 'og-image', 1200, 630, true ); // Open Graph / social sharing
 }
 
 
