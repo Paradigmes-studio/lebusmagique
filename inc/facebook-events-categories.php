@@ -8,6 +8,8 @@ if (!defined('ABSPATH')) {
 
 const MKWVS_FB_CATEGORIES_VERSION = '2';
 
+const MKWVS_FB_CATEGORY_DEFAULT = 'culturels-festifs';
+
 const MKWVS_FB_CATEGORIES = [
     'prog-conviviale' => [
         'name'     => 'Programmation conviviale',
@@ -128,6 +130,13 @@ function mkwvs_fb_match_categories(string $title): array
                 }
                 break;
             }
+        }
+    }
+
+    if ($term_ids === []) {
+        $default = get_term_by('slug', MKWVS_FB_CATEGORY_DEFAULT, 'facebook_category');
+        if ($default instanceof WP_Term) {
+            $term_ids[] = (int) $default->term_id;
         }
     }
 
