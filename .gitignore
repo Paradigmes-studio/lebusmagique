@@ -8,3 +8,14 @@ style.css.map
 .DS_Store
 *.sublime-workspace
 /vendor/
+le-bus-magique-*.json
+
+# Local WordPress install (site parent hors thème)
+/wp-content/
+
+# Audits et briefs SEO (documents de travail, hors code)
+/audit-gsc-*.md
+/audit-gsc-*.pdf
+/optimisations-seo-*.md
+/optimisations-seo-*.pdf
+/seo-briefs/
