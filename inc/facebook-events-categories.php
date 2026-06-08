@@ -31,7 +31,7 @@ const MKWVS_FB_CATEGORIES = [
             'reflexologie', 'santé au naturel', 'sante au naturel', 'cercle',
             'burn-out', 'burn out', 'astrologie', 'astrofil', 'astr’o', 'astr\'o',
             'ikigaï', 'ikigai',
-            'psychologie positive', 'sophrologie', 'relaxation', 'yoga', 'rester zen',
+            'psychologie positive', 'sophrologie', 'relaxation', 'yoga', 'massage', 'rester zen',
             'cocons électroniques', 'cocons electroniques', 'sexualité', 'sexualite',
         ],
     ],
@@ -64,6 +64,7 @@ const MKWVS_FB_CATEGORIES = [
             'écriture', 'ecriture', 'photographie instantanée',
             'photographie instantanee', 'encre de chine', 'linogravure', 'punch needle',
             'modelage', 'argile', 'illustration', 'illu inspiration', 'naturaliste',
+            'haïku', 'haiku',
         ],
     ],
     'jams-scenes-ouvertes' => [
