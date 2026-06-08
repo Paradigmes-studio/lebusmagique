@@ -6,42 +6,101 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-const MKWVS_FB_CATEGORIES_VERSION = '1';
+const MKWVS_FB_CATEGORIES_VERSION = '2';
 
 const MKWVS_FB_CATEGORIES = [
-    'blind-test' => [
-        'name'     => 'Blind test',
-        'keywords' => ['blind test'],
-    ],
-    'jam-session' => [
-        'name'     => 'Jam session',
-        'keywords' => ['jam', 'irish session'],
-    ],
-    'scene-ouverte' => [
-        'name'     => 'Scène ouverte',
-        'keywords' => ['scène ouverte', 'scene ouverte', 'poésives', 'poesives', 'open mic', 'comedy club', 'impro', 'cabaret'],
-    ],
-    'ateliers' => [
-        'name'     => 'Ateliers',
-        'keywords' => ['atelier', 'punch needle', 'broderie', 'tricot', 'crochet', 'écriture', 'ecriture', 'textico', 'linogravure', 'café philo', 'cafe philo'],
+    'prog-conviviale' => [
+        'name'     => 'Programmation conviviale',
+        'keywords' => [
+            'rencontres magiques', 'rencontre magique', 'apéro tricot', 'apero tricot',
+            'apéro bénévole', 'apero benevole', 'bénévoles', 'benevoles', 'afterwork',
+            'jeux de société', 'jeux de societe', 'quai des jeux', 'tournoi',
+            'karaoké', 'karaoke', 'blind test', 'blind-test', 'drag bingo', 'bingo',
+            'music quizz', 'café des langues', 'cafe des langues', 'café italien',
+            'cafe italien', 'café bilingue', 'cafe bilingue', 'latinos', 'chorale',
+        ],
     ],
     'bien-etre' => [
         'name'     => 'Bien-être',
-        'keywords' => ['bien-être', 'bien être', 'reflexologie', 'réflexologie', 'olfactothérapie', 'olfactotherapie', 'sonothérapie', 'sonotherapie', 'yoga', 'astrologie', 'cercle', 'burn-out', 'burn out', 'permanence santé'],
+        'keywords' => [
+            'permanence', 'olfactothérapie', 'olfactotherapie', 'réflexologie',
+            'reflexologie', 'santé au naturel', 'sante au naturel', 'cercle',
+            'burn-out', 'burn out', 'astrologie', 'astrofil', 'ikigaï', 'ikigai',
+            'psychologie positive', 'sophrologie', 'relaxation', 'yoga', 'rester zen',
+            'cocons électroniques', 'cocons electroniques', 'sexualité', 'sexualite',
+        ],
     ],
-    'cafe-des-langues' => [
-        'name'     => 'Café des langues',
-        'keywords' => ['café des langues', 'cafe des langues', 'café italien', 'cafe italien', 'latinos en lille', 'café bilingue', 'cafe bilingue'],
+    'prog-engagee-inclusive' => [
+        'name'     => 'Programmation engagée & inclusive',
+        'keywords' => [
+            'dragshow', 'drag show', 'conférence gesticulée', 'conference gesticulee',
+            'beauté où es-tu', 'beaute ou es-tu', 'matins magiques', 'matin magique',
+            'projection', 'café rse', 'cafe rse', 'fresque', 'ess', 'porteurs de projet',
+            'déjeuner dans le noir', 'dejeuner dans le noir', 'dans le noir',
+            'café philo', 'cafe philo', 'marche magique', 'marches magiques',
+            'biodiversité', 'biodiversite', 'vélo boulo dodo', 'velo boulo dodo', 'gafam',
+        ],
     ],
-    'concerts' => [
-        'name'     => 'Concerts',
-        'keywords' => ['concert', 'bluesy', 'ukulele', 'ukulélé', 'fusy', 'chorale', 'gospel'],
+    'culturels-festifs' => [
+        'name'     => 'Événements culturels & festifs',
+        'keywords' => [
+            'concert', 'blues', 'fanfare', 'chauffe marcelle', 'daisy belle', 'la frange',
+            'spectacle', 'show', 'électro', 'electro', 'techno', 'soirée dj', 'soiree dj',
+            'impro', 'impropoulpes', 'impronight', 'stand-up', 'stand up', 'comedy club',
+            'dom juan', 'dragshow', 'drag show',
+        ],
     ],
-    'soirees' => [
-        'name'     => 'Soirées',
-        'keywords' => ['karaoké', 'karaoke', 'party', 'soirée', 'soiree', 'dj', 'apéro', 'apero', 'drag', 'bingo', 'quizz', 'techno'],
+    'ateliers-artistiques' => [
+        'name'     => 'Ateliers de pratique artistique',
+        'keywords' => [
+            'atelier écriture', 'atelier ecriture', 'écriture créative', 'ecriture creative',
+            'musique et écriture', 'musique et ecriture', 'photographie instantanée',
+            'photographie instantanee', 'encre de chine', 'linogravure', 'punch needle',
+            'modelage', 'argile', 'illustration', 'illu inspiration', 'naturaliste',
+        ],
+    ],
+    'jams-scenes-ouvertes' => [
+        'name'     => 'Jams & scènes ouvertes',
+        'keywords' => [
+            'jam', 'ukulele', 'ukulélé', 'tiny house', 'irish session',
+            'scène ouverte', 'scene ouverte', 'poésives', 'poesives',
+        ],
     ],
 ];
+
+function mkwvs_fb_restrict_category_taxonomy(array $args, string $taxonomy): array
+{
+    if ($taxonomy === 'facebook_category') {
+        $args['public']             = false;
+        $args['publicly_queryable'] = false;
+        $args['rewrite']            = false;
+        $args['show_ui']            = true;
+    }
+
+    return $args;
+}
+add_filter('register_taxonomy_args', 'mkwvs_fb_restrict_category_taxonomy', 10, 2);
+
+function mkwvs_fb_disable_404_guess_for_categories(bool $guess): bool
+{
+    $path = (string) parse_url((string) ($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH);
+    if (strpos($path, '/facebook_category/') === 0) {
+        return false;
+    }
+
+    return $guess;
+}
+add_filter('do_redirect_guess_404_permalink', 'mkwvs_fb_disable_404_guess_for_categories');
+
+function mkwvs_fb_maybe_flush_rewrite(): void
+{
+    if (get_option('mkwvs_fb_rewrite_flush_version') === MKWVS_FB_CATEGORIES_VERSION) {
+        return;
+    }
+    flush_rewrite_rules(false);
+    update_option('mkwvs_fb_rewrite_flush_version', MKWVS_FB_CATEGORIES_VERSION);
+}
+add_action('init', 'mkwvs_fb_maybe_flush_rewrite', 99);
 
 function mkwvs_fb_ensure_categories(): void
 {
