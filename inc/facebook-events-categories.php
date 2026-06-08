@@ -21,6 +21,10 @@ const MKWVS_FB_CATEGORIES = [
             'karaoké', 'karaoke', 'blind test', 'blind-test', 'drag bingo', 'bingo',
             'music quizz', 'café des langues', 'cafe des langues', 'café italien',
             'cafe italien', 'café bilingue', 'cafe bilingue', 'latinos', 'chorale',
+            'apéro', 'apero', 'blindtest', 'jeux de carte', 'stammtisch',
+            'en aparté', 'en aparte', 'dégustation', 'degustation',
+            'assemblée générale', 'assemblee generale', 'enfants magiques',
+            'bières & fromages', 'bieres & fromages',
         ],
     ],
     'bien-etre' => [
@@ -33,6 +37,10 @@ const MKWVS_FB_CATEGORIES = [
             'ikigaï', 'ikigai',
             'psychologie positive', 'sophrologie', 'relaxation', 'yoga', 'massage', 'rester zen',
             'cocons électroniques', 'cocons electroniques', 'sexualité', 'sexualite',
+            'sophro', 'ostéopathie', 'osteopathie', 'médecine chinoise', 'medecine chinoise',
+            'méditation', 'meditation', 'pleine conscience', 'fleurs de bach',
+            'sonothérapie', 'sonotherapie', 'parentalité', 'parentalite',
+            'petite enfance', 'santé mentale', 'sante mentale',
         ],
     ],
     'prog-engagee-inclusive' => [
@@ -45,7 +53,10 @@ const MKWVS_FB_CATEGORIES = [
             'déjeuner dans le noir', 'dejeuner dans le noir', 'dans le noir',
             'café philo', 'cafe philo', 'marche magique', 'marches magiques',
             'biodiversité', 'biodiversite', 'vélo boulo dodo', 'velo boulo dodo',
-            'boulot, dodo', 'gafam',
+            'boulot, dodo', 'gafam', 'café participatif', 'cafe participatif',
+            'solidaire', 'climat', 'sensibilisation', 'ukrainien', 'veganuary',
+            'éco-anxiété', 'eco-anxiété', 'eco-anxiete', 'justice restaurative',
+            'texticologie', 'dressing detox', 'allo aline',
         ],
     ],
     'culturels-festifs' => [
@@ -64,7 +75,8 @@ const MKWVS_FB_CATEGORIES = [
             'écriture', 'ecriture', 'photographie instantanée',
             'photographie instantanee', 'encre de chine', 'linogravure', 'punch needle',
             'modelage', 'argile', 'illustration', 'illu inspiration', 'naturaliste',
-            'haïku', 'haiku',
+            'haïku', 'haiku', 'dessin', 'peinture', 'broderie', 'feutrage',
+            'scrapbooking', 'cyanotype', 'modèle vivant', 'modele vivant', 'terre & nature',
         ],
     ],
     'jams-scenes-ouvertes' => [
