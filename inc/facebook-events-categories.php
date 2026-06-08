@@ -14,7 +14,8 @@ const MKWVS_FB_CATEGORIES = [
     'prog-conviviale' => [
         'name'     => 'Programmation conviviale',
         'keywords' => [
-            'rencontres magiques', 'rencontre magique', 'apéro tricot', 'apero tricot',
+            'rencontres magiques', 'rencontres magique', 'rencontre magique',
+            'apéro tricot', 'apero tricot',
             'apéro bénévole', 'apero benevole', 'bénévoles', 'benevoles', 'afterwork',
             'jeux de société', 'jeux de societe', 'quai des jeux', 'tournoi',
             'karaoké', 'karaoke', 'blind test', 'blind-test', 'drag bingo', 'bingo',
@@ -25,6 +26,7 @@ const MKWVS_FB_CATEGORIES = [
     'bien-etre' => [
         'name'     => 'Bien-être',
         'keywords' => [
+            'bien-être', 'bien être', 'bien etre',
             'permanence', 'olfactothérapie', 'olfactotherapie', 'réflexologie',
             'reflexologie', 'santé au naturel', 'sante au naturel', 'cercle',
             'burn-out', 'burn out', 'astrologie', 'astrofil', 'ikigaï', 'ikigai',
@@ -36,7 +38,7 @@ const MKWVS_FB_CATEGORIES = [
         'name'     => 'Programmation engagée & inclusive',
         'keywords' => [
             'dragshow', 'drag show', 'conférence gesticulée', 'conference gesticulee',
-            'beauté où es-tu', 'beaute ou es-tu', 'matins magiques', 'matin magique',
+            'beauté où es-tu', 'beaute ou es-tu', 'pride', 'matins magiques', 'matin magique',
             'projection', 'café rse', 'cafe rse', 'fresque', 'ess', 'porteurs de projet',
             'déjeuner dans le noir', 'dejeuner dans le noir', 'dans le noir',
             'café philo', 'cafe philo', 'marche magique', 'marches magiques',
@@ -49,14 +51,13 @@ const MKWVS_FB_CATEGORIES = [
             'concert', 'blues', 'fanfare', 'chauffe marcelle', 'daisy belle', 'la frange',
             'spectacle', 'show', 'électro', 'electro', 'techno', 'soirée dj', 'soiree dj',
             'impro', 'impropoulpes', 'impronight', 'stand-up', 'stand up', 'comedy club',
-            'dom juan', 'dragshow', 'drag show',
+            'dom juan', 'dragshow', 'drag show', 'guinguette', 'pride',
         ],
     ],
     'ateliers-artistiques' => [
         'name'     => 'Ateliers de pratique artistique',
         'keywords' => [
-            'atelier écriture', 'atelier ecriture', 'écriture créative', 'ecriture creative',
-            'musique et écriture', 'musique et ecriture', 'photographie instantanée',
+            'écriture', 'ecriture', 'photographie instantanée',
             'photographie instantanee', 'encre de chine', 'linogravure', 'punch needle',
             'modelage', 'argile', 'illustration', 'illu inspiration', 'naturaliste',
         ],
