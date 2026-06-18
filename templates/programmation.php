@@ -14,6 +14,8 @@
 
         </section>
 
+        <?php include(locate_template('template-part/blocks/categories-thematiques.php')); ?>
+
         <?php if (have_rows('page_programmation_list')) : ?>
             <section>
                 <h2 class="has-text-align-center">Événements à venir</h2>

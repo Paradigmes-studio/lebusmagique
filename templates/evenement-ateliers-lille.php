@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Événement — Ateliers Lille
+ * Template Name: Événement - Ateliers Lille
  */
 ?>
 <?php get_header(); ?>
@@ -17,8 +17,8 @@
     $event_schema = [
         '@context' => 'https://schema.org',
         '@type' => 'EventSeries',
-        'name' => 'Ateliers créatifs et culturels à Lille — Le Bus Magique',
-        'description' => "Programmation régulière d'ateliers à Lille : écriture créative, linogravure, café philo, broderie, punch needle, fleurs de Bach. Péniche Le Bus Magique, quai de l'Esplanade.",
+        'name' => 'Ateliers créatifs et culturels au Bus Magique à Lille',
+        'description' => "Programmation régulière d'ateliers à Lille : écriture créative, linogravure, café philo, broderie, punch needle, fleurs de Bach. Péniche Le Bus Magique, avenue Cuvier.",
         'url' => $page_url,
         'image' => $event_image ?: null,
         'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
@@ -93,96 +93,110 @@
     <script type="application/ld+json"><?php echo wp_json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
     <script type="application/ld+json"><?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
 
-    <section class="section-landing-standard">
+    <div class="bm-event">
 
-      <?php include(locate_template('template-part/blocks/page-head.php')); ?>
-
-      <div class="text-yellow-background bottom priv-intro">
-        <h2>Des ateliers créatifs et culturels à Lille, sur péniche</h2>
-        <p>Le Bus Magique, péniche associative amarrée quai de l'Esplanade à Lille, accueille chaque mois une programmation d'ateliers créatifs, artistiques et réflexifs : écriture créative, linogravure, café philo, broderie, punch needle, sonothérapie, bien-être. Des moments conviviaux animés par des intervenant·es locaux, dans une ambiance bienveillante.</p>
+      <!-- HERO -->
+      <div class="bm-hero">
+        <span class="bm-hero__icon">🎨</span>
+        <h1>Des ateliers créatifs et culturels à Lille, sur péniche</h1>
+        <p class="bm-hero__desc">
+          Chaque mois, une programmation d'ateliers créatifs, artistiques et réflexifs :
+          écriture, linogravure, café philo, broderie, punch needle, sonothérapie, bien-être.
+          Des moments conviviaux animés par des intervenant·es locaux, dans une ambiance bienveillante.
+        </p>
       </div>
 
-    </section>
+      <!-- 4 CARTES -->
+      <div class="bm-cards">
 
-    <section class="event-recurrent">
-
-      <div class="event-recurrent__grid">
-
-        <article class="event-card event-card--red">
+        <article class="bm-card bm-card--orange">
           <h2>Quels ateliers au Bus Magique ?</h2>
           <p>Notre programmation tourne autour de plusieurs familles d'ateliers :</p>
           <ul>
-            <li><strong>Ateliers d'écriture créative</strong> : chaque mois, une animatrice propose des jeux d'écriture thématiques, à partager à voix haute ou non</li>
-            <li><strong>Café philo</strong> : une discussion guidée autour d'une question philosophique, ouverte à tous niveaux de réflexion</li>
+            <li><strong>Écriture créative</strong> : jeux d'écriture thématiques, à partager à voix haute ou non</li>
+            <li><strong>Café philo</strong> : une discussion guidée autour d'une question, ouverte à tous niveaux</li>
             <li><strong>Ateliers manuels</strong> : linogravure, broderie palestinienne, punch needle, atelier vinyle</li>
             <li><strong>Bien-être</strong> : sonothérapie, fleurs de Bach, olfactothérapie, réflexologie plantaire</li>
             <li><strong>Engagement</strong> : texticologie (mode responsable), ateliers citoyens</li>
           </ul>
         </article>
 
-        <article class="event-card event-card--green">
+        <article class="bm-card bm-card--teal">
           <h2>Comment s'inscrire ?</h2>
-          <ul>
-            <li><strong>Fréquence</strong> : plusieurs ateliers par mois (voir <a href="/programmation/">programmation</a>)</li>
-            <li><strong>Durée</strong> : 1h30 à 3h selon l'atelier</li>
-            <li><strong>Où</strong> : péniche Le Bus Magique, quai de l'Esplanade, 59800 Lille</li>
-            <li><strong>Places</strong> : limitées (8 à 15 personnes)</li>
-            <li><strong>Tarif</strong> : 10 à 35 € selon atelier et matériel, certains à prix libre</li>
-            <li><strong>Inscription</strong> : via la fiche événement sur notre programmation ou par <a href="/contact/">mail</a></li>
-          </ul>
+          <div class="bm-info"><span class="bm-info__label">Fréquence :</span><span class="bm-info__val">Plusieurs ateliers par mois (voir la <a href="/programmation/">programmation</a>)</span></div>
+          <div class="bm-info"><span class="bm-info__label">Durée :</span><span class="bm-info__val">1h30 à 3h selon l'atelier</span></div>
+          <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
+          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+          <div class="bm-info"><span class="bm-info__label">Places :</span><span class="bm-info__val">Limitées (8 à 15 personnes)</span></div>
+          <div class="bm-info"><span class="bm-info__label">Tarif :</span><span class="bm-info__val">10 à 35 € selon l'atelier et le matériel, certains à prix libre</span></div>
+          <div class="bm-info"><span class="bm-info__label">Inscription :</span><span class="bm-info__val">Via la fiche événement ou par <a href="/contact/">mail</a></span></div>
         </article>
 
-        <article class="event-card event-card--yellow">
+        <article class="bm-card bm-card--yellow">
           <h2>Dans quel esprit ?</h2>
           <p>Nos ateliers sont pensés comme des temps de pause, de création et de rencontre. Pas besoin d'être artiste ou expert·e : l'accueil est bienveillant, les animateur·rices sont pédagogues, et chacun·e vient comme il ou elle est.</p>
-          <p>Matériel fourni sur place, bar ouvert pour un café ou un verre, ambiance détendue au bord de la Deûle : la recette parfaite pour décrocher du quotidien et rencontrer d'autres Lillois·es.</p>
+          <p>Matériel fourni sur place, <a href="/restauration/">bar</a> ouvert pour un café ou un verre, ambiance détendue au bord de la Deûle : la recette parfaite pour décrocher du quotidien et rencontrer d'autres Lillois·es.</p>
         </article>
 
-        <article class="event-card event-card--blue">
+        <article class="bm-card bm-card--blue">
           <h2>À propos du lieu</h2>
           <p>Le Bus Magique est une péniche culturelle associative lilloise, amarrée sur la Deûle près de la Citadelle. Un tiers-lieu convivial qui allie <a href="/restauration/">restauration</a>, <a href="/programmation/">événements culturels</a>, <a href="/coworking/">coworking</a> et <a href="/location/">privatisation</a>.</p>
-          <p>Porté par une association loi 1901, le projet repose sur l'engagement de bénévoles et adhérent·es. <a href="/monter-a-bord/">Rejoindre l'aventure</a>.</p>
+          <p>Porté par une association loi 1901, le projet repose sur l'engagement de bénévoles et adhérent·es. La péniche est un endroit sauf et heureux, où aucune discrimination n'est admise. <a href="/monter-a-bord/">Rejoindre l'aventure</a>.</p>
+          <span class="bm-badge">⚓ Endroit sauf &amp; heureux : tolérance zéro pour toute discrimination</span>
         </article>
 
       </div>
 
-      <div class="event-recurrent__faq">
+      <!-- FAQ -->
+      <div class="bm-faq">
         <h2>Questions fréquentes sur les ateliers</h2>
 
-        <details class="event-faq-item">
-          <summary><h3>Quels ateliers sont proposés au Bus Magique ?</h3></summary>
-          <p>Écriture créative, linogravure, café philo, broderie palestinienne, punch needle, fleurs de Bach, texticologie, sonothérapie : les ateliers varient chaque mois. Retrouvez le détail sur notre <a href="/programmation/">programmation mensuelle</a>.</p>
+        <details class="bm-faq__item">
+          <summary>Quels ateliers sont proposés au Bus Magique ?</summary>
+          <div class="bm-faq__answer">Écriture créative, linogravure, café philo, broderie palestinienne, punch needle, fleurs de Bach, texticologie, sonothérapie : les ateliers varient chaque mois. Retrouvez le détail sur notre <a href="/programmation/">programmation mensuelle</a>.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Faut-il s'inscrire à l'avance ?</h3></summary>
-          <p>Oui, les ateliers ont des places limitées (généralement 8 à 15 personnes selon l'activité). L'inscription se fait via la page de l'événement sur notre programmation ou par mail via <a href="/contact/">le formulaire de contact</a>.</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il s'inscrire à l'avance ?</summary>
+          <div class="bm-faq__answer">Oui, les ateliers ont des places limitées (généralement 8 à 15 personnes selon l'activité). L'inscription se fait via la page de l'événement sur notre programmation ou par mail via <a href="/contact/">le formulaire de contact</a>.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Combien coûte un atelier ?</h3></summary>
-          <p>Les tarifs varient selon l'atelier : généralement entre 10 et 35 € selon la durée et le matériel fourni. Certains ateliers (café philo notamment) sont à prix libre ou gratuits. Le détail est précisé sur chaque fiche événement.</p>
+        <details class="bm-faq__item">
+          <summary>Combien coûte un atelier ?</summary>
+          <div class="bm-faq__answer">Les tarifs varient selon l'atelier : généralement entre 10 et 35 € selon la durée et le matériel fourni. Certains ateliers (café philo notamment) sont à prix libre ou gratuits. Le détail est précisé sur chaque fiche événement.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Faut-il amener du matériel ?</h3></summary>
-          <p>Non, le matériel est fourni par les intervenant·es. Si une précision spécifique est nécessaire (tenue confortable, carnet personnel), elle vous sera communiquée au moment de l'inscription.</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il amener du matériel ?</summary>
+          <div class="bm-faq__answer">Non, le matériel est fourni par les intervenant·es. Si une précision spécifique est nécessaire (tenue confortable, carnet personnel), elle vous sera communiquée au moment de l'inscription.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Faut-il être adhérent·e pour participer ?</h3></summary>
-          <p>Non, les ateliers sont ouverts à toutes et tous, adhérent·es ou non. L'adhésion à l'association est cependant recommandée pour soutenir le projet et bénéficier de tarifs préférentiels sur certaines activités. <a href="/monter-a-bord/">En savoir plus sur l'adhésion</a>.</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il être adhérent·e pour participer ?</summary>
+          <div class="bm-faq__answer">Non, les ateliers sont ouverts à toutes et tous, adhérent·es ou non. L'adhésion à l'association est cependant recommandée pour soutenir le projet et bénéficier de tarifs préférentiels sur certaines activités. <a href="/monter-a-bord/">En savoir plus sur l'adhésion</a>.</div>
         </details>
       </div>
 
-      <div class="event-recurrent__cta">
+      <!-- CTA -->
+      <div class="bm-cta">
         <h2>Prochains ateliers à Lille</h2>
+        <?php $mkwvs_next = mkwvs_upcoming_events(['category' => 'ateliers-artistiques'], 3); ?>
+        <?php if ($mkwvs_next) : ?>
+          <ul class="bm-next">
+            <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
+              <li><a href="<?php echo esc_url(get_permalink($mkwvs_ev)); ?>">
+                <span class="bm-next__date"><?php echo esc_html(mkwvs_event_date_label($mkwvs_ev->ID)); ?></span>
+                <span class="bm-next__title"><?php echo esc_html(get_the_title($mkwvs_ev)); ?></span>
+              </a></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
         <p>Retrouvez les dates et inscriptions sur notre <a href="/programmation/">agenda</a>, ou suivez-nous sur <a href="https://www.instagram.com/le_bus_magique_lille" target="_blank" rel="noopener">Instagram</a> et <a href="https://www.facebook.com/lebusmagiquelille" target="_blank" rel="noopener">Facebook</a>.</p>
         <?php
         $home = get_page_by_path('accueil');
         $prog_image = $home ? get_field('programmation_du_mois', $home->ID) : null;
         if (is_array($prog_image) && !empty($prog_image['url'])) : ?>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('programmation'))); ?>" class="event-recurrent__prog-link" aria-label="Voir la programmation complète du Bus Magique à Lille">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('programmation'))); ?>" class="bm-cta__prog-link" aria-label="Voir la programmation complète du Bus Magique à Lille">
             <img src="<?php echo esc_url($prog_image['url']); ?>" alt="<?php echo esc_attr($prog_image['alt'] ?: 'Programmation du mois au Bus Magique à Lille'); ?>" loading="lazy">
           </a>
         <?php else : ?>
@@ -190,7 +204,7 @@
         <?php endif; ?>
       </div>
 
-    </section>
+    </div>
 
   <?php endwhile; ?>
 <?php endif; ?>

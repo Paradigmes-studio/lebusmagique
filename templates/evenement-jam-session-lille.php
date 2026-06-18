@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Événement — Jam session Lille
+ * Template Name: Événement - Jam session Lille
  */
 ?>
 <?php get_header(); ?>
@@ -17,8 +17,8 @@
     $event_schema = [
         '@context' => 'https://schema.org',
         '@type' => 'Event',
-        'name' => 'Jam session à Lille — Le Bus Magique',
-        'description' => "Jam session ouverte aux musiciens et musiciennes à Lille. Scène libre sur péniche, ambiance conviviale, bar ouvert. Venez jouer ou écouter.",
+        'name' => 'Jam session au Bus Magique à Lille',
+        'description' => "Jam session ouverte aux musicien·nes de tous niveaux à Lille. Scène libre sur péniche dès 21h, entrée gratuite, bar ouvert. Venez jouer ou écouter.",
         'url' => $page_url,
         'image' => $event_image ?: null,
         'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
@@ -26,7 +26,7 @@
         'eventSchedule' => [
             '@type' => 'Schedule',
             'repeatFrequency' => 'P1M',
-            'startTime' => '20:30',
+            'startTime' => '21:00',
             'duration' => 'PT3H',
             'scheduleTimezone' => 'Europe/Paris',
         ],
@@ -62,26 +62,18 @@
         'mainEntity' => [
             [
                 '@type' => 'Question',
-                'name' => "Faut-il être musicien professionnel pour participer à la jam ?",
+                'name' => "Faut-il être musicien·ne pour venir ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Pas du tout. Notre jam session est ouverte aux musicien·nes de tous niveaux, amateurs comme confirmés. L'esprit est bienveillant, l'important c'est de partager le moment.",
+                    'text' => "Pas du tout. La soirée est ouverte à toustes : musicien·ne chevronné·e, débutant·e curieux·se ou simple amateur·rice de bonne musique. À 21h la jam est ouverte à tous les niveaux, à 22h place à l'impro collective. Et si vous voulez juste écouter, vous êtes les bienvenu·es aussi.",
                 ],
             ],
             [
                 '@type' => 'Question',
-                'name' => "Quels instruments peut-on amener ?",
+                'name' => "Quels instruments sont disponibles sur place ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Tous les instruments sont les bienvenus : guitares, basses, claviers, percussions, cuivres, voix. Une batterie, un ampli guitare et un ampli basse sont à disposition sur place.",
-                ],
-            ],
-            [
-                '@type' => 'Question',
-                'name' => "Quel style de musique est joué ?",
-                'acceptedAnswer' => [
-                    '@type' => 'Answer',
-                    'text' => "Principalement soul, funk, blues, jazz, rock, pop. La programmation dépend des musicien·nes présents mais l'ambiance est toujours festive et ouverte.",
+                    'text' => "On met à disposition une guitare électrique, une basse, un clavier, une batterie et 2 micros chant. Vous pouvez aussi monter à bord avec vos propres instruments.",
                 ],
             ],
             [
@@ -89,15 +81,23 @@
                 'name' => "Combien coûte l'entrée à la jam session ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "L'entrée à la jam session est libre et gratuite. Seules les consommations au bar sont payantes.",
+                    'text' => "L'événement est gratuit. Comme nous sommes un café associatif, on vous proposera une adhésion à prix libre valable un an à votre première visite, à partir de 1 €, à régler au bar.",
                 ],
             ],
             [
                 '@type' => 'Question',
-                'name' => "Peut-on venir juste pour écouter ?",
+                'name' => "Faut-il réserver pour la jam session ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Bien sûr, la jam est autant un moment pour les musicien·nes que pour le public. Venez profiter d'une soirée live dans une ambiance chaleureuse.",
+                    'text' => "Non, pas de réservation nécessaire : débarquez directement à bord. Si vous venez en grand équipage, arrivez un peu tôt pour trouver de bonnes places.",
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => "Peut-on manger sur place ?",
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => "Bien sûr. Notre bar et notre cuisine sont ouverts toute la soirée : bières locales, vins natures, cocktails maison, softs bio et de quoi grignoter jusqu'au dernier accord.",
                 ],
             ],
         ],
@@ -106,90 +106,124 @@
     <script type="application/ld+json"><?php echo wp_json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
     <script type="application/ld+json"><?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
 
-    <section class="section-landing-standard">
+    <div class="bm-event">
 
-      <?php include(locate_template('template-part/blocks/page-head.php')); ?>
-
-      <div class="text-yellow-background bottom priv-intro">
-        <h2>Une jam session ouverte à tous les musiciens, sur péniche à Lille</h2>
-        <p>Le Bus Magique, péniche associative amarrée quai de l'Esplanade à Lille, accueille régulièrement des jam sessions en scène libre : guitares, basses, claviers, cuivres, voix, percussions. Que vous soyez musicien·ne confirmé·e ou amateur curieux, venez jouer ou écouter un live spontané au bord de la Deûle.</p>
+      <!-- HERO -->
+      <div class="bm-hero">
+        <span class="bm-hero__icon">🎸</span>
+        <h1>Jam session au Bus Magique : montez à bord, on improvise !</h1>
+        <p class="bm-hero__desc">
+          Musicien·ne confirmé·e ou total·e débutant·e, peu importe vos influences :
+          ici tout le monde a sa place sur le pont. Et si vous voulez juste écouter,
+          nos douceurs et la Deûle s'en chargent.
+        </p>
       </div>
 
-    </section>
+      <!-- 4 CARTES -->
+      <div class="bm-cards">
 
-    <section class="event-recurrent">
-
-      <div class="event-recurrent__grid">
-
-        <article class="event-card event-card--red">
-          <h2>Comment ça se passe ?</h2>
-          <p>La soirée démarre vers 20h30 avec un set d'ouverture assuré par un groupe invité ou un·e musicien·ne résident·e, puis la scène s'ouvre à toutes les personnes qui souhaitent jouer. Pas de programme figé, pas de style imposé : soul, funk, blues, jazz, rock, pop, tout se croise au fil des arrivées.</p>
-          <p>Une batterie complète, un ampli guitare et un ampli basse sont installés sur place. Apportez vos instruments et vos pédales. Une feuille d'inscription circule pour organiser les passages et laisser le temps à chacun·e de monter.</p>
+        <article class="bm-card bm-card--orange">
+          <h2>Programme de la soirée</h2>
+          <div class="bm-timeline">
+            <div class="bm-timeline__item">
+              <span class="bm-timeline__time">21h00</span>
+              <div class="bm-timeline__content">
+                <strong>Jam ouverte à toustes</strong>
+                <p>Quel que soit votre niveau ou vos influences, l'occasion idéale de laisser libre cours à vos envies d'impros ou de reprises. Débutant·e ou confirmé·e, tout le monde monte sur le pont !</p>
+              </div>
+            </div>
+            <div class="bm-timeline__item">
+              <span class="bm-timeline__time">22h00</span>
+              <div class="bm-timeline__content">
+                <strong>Jam full impro ✨</strong>
+                <p>Le moment phare de la soirée : on improvise ensemble, un moment unique et hors du temps. Laissez-vous porter par l'énergie collective et la magie de la création.</p>
+              </div>
+            </div>
+          </div>
         </article>
 
-        <article class="event-card event-card--green">
+        <article class="bm-card bm-card--teal">
           <h2>Où et quand ?</h2>
-          <ul>
-            <li><strong>Fréquence</strong> : une fois par mois (voir la <a href="/programmation/">programmation</a>)</li>
-            <li><strong>Horaire</strong> : 20h30 à 23h30</li>
-            <li><strong>Où</strong> : péniche Le Bus Magique, quai de l'Esplanade, 59800 Lille</li>
-            <li><strong>Accès</strong> : métro Cormontaigne (ligne 2), tram Bois Blancs, parking Esplanade</li>
-            <li><strong>Tarif</strong> : entrée libre</li>
-            <li><strong>Inscription musicien·ne</strong> : sur place à l'arrivée</li>
-          </ul>
+          <div class="bm-info"><span class="bm-info__label">Quand :</span><span class="bm-info__val">Une fois par mois, consultez la <a href="/programmation/">programmation</a> pour la prochaine date</span></div>
+          <div class="bm-info"><span class="bm-info__label">Heure :</span><span class="bm-info__val">Dès 21h</span></div>
+          <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
+          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+          <div class="bm-info"><span class="bm-info__label">Tarif :</span><span class="bm-info__val">Événement gratuit, adhésion à prix libre à partir de 1&nbsp;€ (réglée au bar)</span></div>
+          <div class="bm-info"><span class="bm-info__label">Réservation :</span><span class="bm-info__val">Pas nécessaire : débarquez directement à bord !</span></div>
         </article>
 
-        <article class="event-card event-card--yellow">
-          <h2>Manger et boire pendant la jam</h2>
-          <p>Notre <a href="/restauration/">bar</a> est ouvert tout au long de la soirée : bières de brasseries lilloises, vins natures, cocktails maison, softs bio, planches apéro à partager. La cuisine tourne également selon les soirées.</p>
-          <p>Service en continu par notre équipe de bénévoles. Arrivez dès 19h pour dîner avant le démarrage, ou rejoignez-nous plus tard pour un verre entre deux sets.</p>
+        <article class="bm-card bm-card--yellow">
+          <h2>Instrus à bord &amp; bons spectateurs bienvenus</h2>
+          <p>On met à disposition sur place de quoi jouer direct. Vous pouvez aussi monter avec vos propres instruments, bien sûr !</p>
+          <div class="bm-tags">
+            <span class="bm-tag">🎸 Guitare électrique</span>
+            <span class="bm-tag">🎸 Basse</span>
+            <span class="bm-tag">🎹 Clavier</span>
+            <span class="bm-tag">🥁 Batterie</span>
+            <span class="bm-tag">🎤 2 micros chant</span>
+          </div>
+          <p>Pas musicien·ne ? Pas de problème, moussaillon ! Installez-vous, profitez de nos douceurs au <a href="/restauration/">bar</a> et laissez-vous bercer par la musique et le doux clapotis de la Deûle.</p>
         </article>
 
-        <article class="event-card event-card--blue">
+        <article class="bm-card bm-card--blue">
           <h2>À propos du lieu</h2>
-          <p>Le Bus Magique est une péniche associative lilloise sur la Deûle, à proximité de la Citadelle. Un tiers-lieu où se croisent <a href="/restauration/">restauration</a>, <a href="/programmation/">programmation culturelle</a>, <a href="/coworking/">coworking</a> et <a href="/location/">événements privés</a>.</p>
-          <p>Géré par une association loi 1901 portée par ses bénévoles et adhérent·es. Nous soutenons la scène musicale locale et offrons un espace d'expression libre aux artistes émergents. <a href="/monter-a-bord/">Adhérer et soutenir le projet</a>.</p>
+          <p>Le Bus Magique est une péniche associative amarrée à l'entrée de la Citadelle de Lille depuis 2019. Un tiers-lieu chaleureux, intergénérationnel et participatif, où se croisent <a href="/restauration/">restauration</a>, <a href="/programmation/">programmation culturelle</a>, <a href="/coworking/">coworking</a> et <a href="/location/">événements privés</a>. Restauration sur place possible toute la soirée.</p>
+          <p>Ici, tout le monde a sa place à bord : la péniche est un endroit sauf et heureux, où aucune discrimination n'est admise. <a href="/monter-a-bord/">Adhérer et soutenir le projet</a>.</p>
+          <span class="bm-badge">⚓ Endroit sauf &amp; heureux : tolérance zéro pour toute discrimination</span>
         </article>
 
       </div>
 
-      <div class="event-recurrent__faq">
+      <!-- FAQ -->
+      <div class="bm-faq">
         <h2>Questions fréquentes sur la jam session</h2>
 
-        <details class="event-faq-item">
-          <summary><h3>Faut-il être musicien·ne professionnel·le pour participer ?</h3></summary>
-          <p>Pas du tout. Notre jam session est ouverte aux musicien·nes de tous niveaux, amateurs comme confirmés. L'esprit est bienveillant, l'important c'est de partager le moment musical.</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il être musicien·ne pour venir ?</summary>
+          <div class="bm-faq__answer">Pas du tout ! La soirée est ouverte à toustes : musicien·ne chevronné·e, débutant·e curieux·se ou simple amateur·rice de bonne musique. À 21h, la jam est ouverte à tous les niveaux. À 22h, place à l'impro collective. Et si vous voulez juste écouter et profiter, vous êtes les bienvenu·es aussi !</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Quels instruments peut-on amener ?</h3></summary>
-          <p>Tous les instruments sont les bienvenus. Une batterie complète, un ampli guitare et un ampli basse sont à disposition sur place. Pour les autres instruments (cuivres, claviers, percussions), apportez le matériel.</p>
+        <details class="bm-faq__item">
+          <summary>Quels instruments sont disponibles sur place ?</summary>
+          <div class="bm-faq__answer">On met à disposition : une guitare électrique, une basse, un clavier, une batterie et 2 micros chant. Vous pouvez aussi monter à bord avec vos propres instruments : plus on est de fous, plus on joue !</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Quel style de musique est joué ?</h3></summary>
-          <p>Principalement soul, funk, blues, jazz, rock, pop. La programmation dépend des musicien·nes présent·es, donc l'ambiance varie d'une session à l'autre, toujours festive et ouverte.</p>
+        <details class="bm-faq__item">
+          <summary>C'est gratuit ?</summary>
+          <div class="bm-faq__answer">Oui, l'événement est gratuit ! Comme nous sommes un café associatif, on vous proposera une adhésion à prix libre valable un an à votre première visite, à partir de 1&nbsp;€, à régler directement au bar. Ensuite, libre à vous de consommer et de profiter de la soirée.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Combien coûte l'entrée ?</h3></summary>
-          <p>L'entrée à la jam session est libre et gratuite. Seules les consommations au bar sont payantes (bières à partir de 3,50 €).</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il réserver ?</summary>
+          <div class="bm-faq__answer">Non, pas de réservation nécessaire pour la jam session : débarquez directement à bord ! Si vous venez en grand équipage, arrivez un peu tôt pour trouver de bonnes places.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Peut-on venir juste pour écouter ?</h3></summary>
-          <p>Bien sûr. La jam est autant un moment pour les musicien·nes que pour le public. Venez profiter d'un live spontané dans une ambiance chaleureuse, sans avoir à monter sur scène.</p>
+        <details class="bm-faq__item">
+          <summary>Peut-on manger sur place ?</summary>
+          <div class="bm-faq__answer">Bien sûr ! Notre bar et notre cuisine sont ouverts toute la soirée. Bières locales, vins natures, cocktails maison, softs bio… et de quoi grignoter pour tenir jusqu'au dernier accord.</div>
         </details>
       </div>
 
-      <div class="event-recurrent__cta">
+      <!-- CTA -->
+      <div class="bm-cta">
         <h2>Prochaines jam sessions à Lille</h2>
+        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['jam']], 3); ?>
+        <?php if ($mkwvs_next) : ?>
+          <ul class="bm-next">
+            <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
+              <li><a href="<?php echo esc_url(get_permalink($mkwvs_ev)); ?>">
+                <span class="bm-next__date"><?php echo esc_html(mkwvs_event_date_label($mkwvs_ev->ID)); ?></span>
+                <span class="bm-next__title"><?php echo esc_html(get_the_title($mkwvs_ev)); ?></span>
+              </a></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
         <p>Retrouvez les dates à venir sur notre <a href="/programmation/">agenda</a>, ou suivez-nous sur <a href="https://www.instagram.com/le_bus_magique_lille" target="_blank" rel="noopener">Instagram</a> et <a href="https://www.facebook.com/lebusmagiquelille" target="_blank" rel="noopener">Facebook</a> pour ne rien manquer.</p>
         <?php
         $home = get_page_by_path('accueil');
         $prog_image = $home ? get_field('programmation_du_mois', $home->ID) : null;
         if (is_array($prog_image) && !empty($prog_image['url'])) : ?>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('programmation'))); ?>" class="event-recurrent__prog-link" aria-label="Voir la programmation complète du Bus Magique à Lille">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('programmation'))); ?>" class="bm-cta__prog-link" aria-label="Voir la programmation complète du Bus Magique à Lille">
             <img src="<?php echo esc_url($prog_image['url']); ?>" alt="<?php echo esc_attr($prog_image['alt'] ?: 'Programmation du mois au Bus Magique à Lille'); ?>" loading="lazy">
           </a>
         <?php else : ?>
@@ -197,7 +231,7 @@
         <?php endif; ?>
       </div>
 
-    </section>
+    </div>
 
   <?php endwhile; ?>
 <?php endif; ?>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Événement — Blind test Lille
+ * Template Name: Événement - Blind test Lille
  */
 ?>
 <?php get_header(); ?>
@@ -11,7 +11,7 @@
 
     <?php
     // ============================================================
-    // Données structurées — Event récurrent + FAQPage
+    // Données structurées : Event récurrent + FAQPage
     // https://schema.org/Event
     // ============================================================
     $page_url = get_permalink();
@@ -21,18 +21,17 @@
     $event_schema = [
         '@context' => 'https://schema.org',
         '@type' => 'Event',
-        'name' => 'Blind test à Lille — Le Bus Magique',
-        'description' => 'Blind test musical hebdomadaire sur une péniche à Lille. Tous les mardis à 20h, en équipe, entrée libre.',
+        'name' => 'Blind test au Bus Magique à Lille',
+        'description' => 'Blind test musical mensuel sur une péniche à Lille, animé par Tof. En équipage, à 19h30, entrée gratuite, réservation conseillée.',
         'url' => $page_url,
         'image' => $event_image ?: null,
         'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
         'eventStatus' => 'https://schema.org/EventScheduled',
         'eventSchedule' => [
             '@type' => 'Schedule',
-            'repeatFrequency' => 'P1W',
-            'byDay' => 'https://schema.org/Tuesday',
-            'startTime' => '20:00',
-            'duration' => 'PT2H',
+            'repeatFrequency' => 'P1M',
+            'startTime' => '19:30',
+            'duration' => 'PT2H30M',
             'scheduleTimezone' => 'Europe/Paris',
         ],
         'location' => [
@@ -56,7 +55,7 @@
             'price' => '0',
             'priceCurrency' => 'EUR',
             'availability' => 'https://schema.org/InStock',
-            'url' => $page_url,
+            'url' => 'https://uniiti.com/shop/le-bus-magique',
         ],
     ];
     $event_schema = array_filter($event_schema);
@@ -70,7 +69,7 @@
                 'name' => "Faut-il réserver pour participer au blind test ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "La réservation n'est pas obligatoire mais fortement conseillée pour les équipes de 4 personnes et plus. Contactez-nous via le formulaire pour garantir votre table.",
+                    'text' => "La réservation est recommandée : la péniche a un nombre de places limité et les tables partent vite. Réservez en ligne sur uniiti.com/shop/le-bus-magique, surtout si vous venez en grand équipage.",
                 ],
             ],
             [
@@ -78,23 +77,23 @@
                 'name' => "Combien coûte l'entrée au blind test ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "L'entrée au blind test du Bus Magique est gratuite. Seules les consommations au bar sont payantes.",
+                    'text' => "L'entrée est gratuite. Le Bus Magique étant un café associatif, une adhésion à prix libre valable un an vous est proposée à la première visite, à partir de 1 €, à régler au bar. Ensuite, libre à vous de consommer à bord.",
                 ],
             ],
             [
                 '@type' => 'Question',
-                'name' => "Quels types de musiques sont joués pendant le blind test ?",
+                'name' => "Faut-il être calé·e en musique pour jouer ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Chansons françaises, pop internationale, musiques de films, génériques cultes, variété et tubes rétro. Une sélection accessible à tous, sans être un mélomane confirmé.",
+                    'text' => "Pas du tout. Tof sélectionne des extraits accessibles à tous : tubes connus, variété française, génériques de films et séries, pop internationale. L'objectif, c'est de passer une bonne soirée ensemble.",
                 ],
             ],
             [
                 '@type' => 'Question',
-                'name' => "Quelle taille d'équipe pour jouer ?",
+                'name' => "Peut-on venir seul·e au blind test ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Les équipes comptent entre 2 et 6 personnes. Vous pouvez venir seul(e), nous formons des équipes sur place avec d'autres participants.",
+                    'text' => "Bien sûr. Venez seul·e et rejoignez un équipage sur place. C'est aussi l'occasion parfaite de faire de nouvelles rencontres.",
                 ],
             ],
             [
@@ -102,7 +101,7 @@
                 'name' => "Où se trouve la péniche Le Bus Magique ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Le Bus Magique est amarré quai de l'Esplanade à Lille (59800), en bord de Deûle, à proximité de la Citadelle et du Vieux-Lille.",
+                    'text' => "Le Bus Magique est amarré avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. Accès par l'arrêt de bus Champ de Mars ou le métro Rihour.",
                 ],
             ],
         ],
@@ -111,90 +110,104 @@
     <script type="application/ld+json"><?php echo wp_json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
     <script type="application/ld+json"><?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
 
-    <section class="section-landing-standard">
+    <div class="bm-event">
 
-      <?php include(locate_template('template-part/blocks/page-head.php')); ?>
-
-      <div class="text-yellow-background bottom priv-intro">
-        <h2>Un blind test musical tous les mardis soir sur péniche</h2>
-        <p>Le Bus Magique, péniche amarrée quai de l'Esplanade à Lille, vous propose son blind test hebdomadaire : une soirée musicale conviviale, mêlant tubes rétro, hits pop, variété française et culture générale. Venez tester vos oreilles en équipe, un verre à la main, sur une péniche au cœur de Lille. Ouvert à tous, gratuit, sans inscription.</p>
+      <!-- HERO -->
+      <div class="bm-hero">
+        <span class="bm-hero__icon">⚓</span>
+        <h1>Le blind test du Bus Magique : le rendez-vous culture musicale mensuel</h1>
+        <p class="bm-hero__desc">
+          Eh oh, moussaillons ! C'est LE rendez-vous culture musicale animé par Tof.
+          Appelez vos complices, formez votre équipage et réservez vite une table pour
+          notre blind test mensuel à bord. Tubes, génériques, variété, pop… les oreilles
+          sont à la fête !
+        </p>
       </div>
 
-    </section>
+      <!-- 4 CARTES -->
+      <div class="bm-cards">
 
-    <section class="event-recurrent">
-
-      <div class="event-recurrent__grid">
-
-        <article class="event-card event-card--red">
+        <article class="bm-card bm-card--orange">
           <h2>Comment ça se passe ?</h2>
-          <p>Nos soirées blind test démarrent à 20h, chaque mardi (hors vacances scolaires). Constituez une équipe de 2 à 6 personnes et venez affronter les autres tablées autour d'une trentaine d'extraits musicaux sélectionnés par notre animatrice. Chansons françaises, pop internationale, musiques de films, génériques cultes : un best-of accessible à tous, sans être un·e mélomane confirmé·e.</p>
-          <p>Chaque manche dure environ 15 minutes, avec 10 extraits à identifier (titre, interprète, film ou série d'origine). Les équipes notent leurs réponses sur une feuille, et les résultats sont annoncés à la fin de chaque manche. Lots à gagner pour les trois premières équipes : bouteilles, bons de consommation et goodies du Bus Magique.</p>
+          <p>Tof, notre animateur du bord, vous fait naviguer à travers des dizaines d'extraits musicaux soigneusement sélectionnés. En équipage, vous donnez vos réponses et tentez de reconnaître titres, artistes et origines des morceaux avant les autres tablées.</p>
+          <p>C'est convivial, accessible à tous et ça brasse large : tubes rétro, hits pop, variété française, génériques cultes… Pas besoin d'être un·e mélomane chevronné·e pour participer et bien s'amuser !</p>
         </article>
 
-        <article class="event-card event-card--green">
+        <article class="bm-card bm-card--teal">
           <h2>Où et quand ?</h2>
-          <ul>
-            <li><strong>Quand</strong> : tous les mardis, 20h (hors vacances scolaires)</li>
-            <li><strong>Durée</strong> : environ 2h, de 20h à 22h</li>
-            <li><strong>Où</strong> : péniche Le Bus Magique, quai de l'Esplanade, 59800 Lille</li>
-            <li><strong>Accès</strong> : métro Cormontaigne (ligne 2) à 10 min à pied, ou tram Bois Blancs</li>
-            <li><strong>Tarif</strong> : entrée libre et gratuite</li>
-            <li><strong>Réservation</strong> : conseillée pour les équipes de 4+, via notre <a href="/contact/">formulaire de contact</a></li>
-          </ul>
+          <div class="bm-info"><span class="bm-info__label">Quand :</span><span class="bm-info__val">Une fois par mois, consultez la <a href="/programmation/">programmation</a> pour la prochaine date</span></div>
+          <div class="bm-info"><span class="bm-info__label">Heure :</span><span class="bm-info__val">19h30</span></div>
+          <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
+          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+          <div class="bm-info"><span class="bm-info__label">Tarif :</span><span class="bm-info__val">Entrée gratuite, adhésion à prix libre à partir de 1&nbsp;€ (réglée au bar)</span></div>
+          <div class="bm-info"><span class="bm-info__label">Réservation :</span><span class="bm-info__val">Recommandée : <a href="https://uniiti.com/shop/le-bus-magique" target="_blank" rel="noopener">réservez votre table ici</a></span></div>
         </article>
 
-        <article class="event-card event-card--yellow">
-          <h2>Manger et boire pendant le blind test</h2>
-          <p>Notre <a href="/restauration/">bar</a> reste ouvert tout au long de la soirée. À la carte : bières locales des brasseries lilloises, vins natures, cocktails maison, softs bio, ainsi que nos planches apéro à partager (charcuterie, fromages, houmous, légumes de saison).</p>
-          <p>Arrivez dès 19h pour grignoter tranquillement avant de démarrer, ou commandez directement à table pendant la partie. Notre équipe sert pendant toute la durée du blind test.</p>
+        <article class="bm-card bm-card--yellow">
+          <h2>Manger et boire à bord</h2>
+          <p>Notre <a href="/restauration/">bar</a> reste ouvert toute la soirée : bières locales, vins natures, cocktails maison, softs bio… de quoi trinquer entre moussaillons ! Et pour les petits creux, on propose aussi de la restauration sur place.</p>
+          <p>Arrivez un peu avant 19h30 pour vous installer tranquillement, commander un verre et faire connaissance avec l'équipage avant le coup d'envoi.</p>
         </article>
 
-        <article class="event-card event-card--blue">
+        <article class="bm-card bm-card--blue">
           <h2>À propos du lieu</h2>
-          <p>Le Bus Magique est une péniche associative lilloise amarrée sur la Deûle depuis 2019, à deux pas de la Citadelle et du Vieux-Lille. Un lieu atypique, chaleureux et intergénérationnel où se croisent <a href="/restauration/">restauration</a>, <a href="/programmation/">programmation culturelle</a>, <a href="/coworking/">coworking</a> et <a href="/location/">événements privés</a>.</p>
-          <p>Gérée par une association loi 1901, la péniche accueille chaque semaine plusieurs centaines de Lillois et visiteurs autour d'un projet de tiers-lieu convivial et inclusif. <a href="/monter-a-bord/">En savoir plus sur la péniche et adhérer</a>.</p>
+          <p>Le Bus Magique est une péniche associative amarrée à l'entrée de la Citadelle de Lille depuis 2019. Un tiers-lieu chaleureux, intergénérationnel et participatif, où se croisent <a href="/restauration/">restauration</a>, <a href="/programmation/">programmation culturelle</a>, <a href="/coworking/">coworking</a> et <a href="/location/">événements privés</a>.</p>
+          <p>Ici, tout le monde a sa place à bord : la péniche est un endroit sauf et heureux, où aucune discrimination n'est admise. <a href="/monter-a-bord/">En savoir plus sur la péniche et adhérer</a>.</p>
+          <span class="bm-badge">⚓ Endroit sauf &amp; heureux : tolérance zéro pour toute discrimination</span>
         </article>
 
       </div>
 
-      <div class="event-recurrent__faq">
+      <!-- FAQ -->
+      <div class="bm-faq">
         <h2>Questions fréquentes sur le blind test</h2>
 
-        <details class="event-faq-item">
-          <summary><h3>Faut-il réserver pour participer au blind test ?</h3></summary>
-          <p>La réservation n'est pas obligatoire mais fortement conseillée pour les équipes de 4 personnes et plus. Contactez-nous via <a href="/contact/">le formulaire de contact</a> pour garantir votre table.</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il réserver pour participer ?</summary>
+          <div class="bm-faq__answer">La réservation est recommandée car la péniche a un nombre de places limité et les tables partent vite ! Réservez directement en ligne via <a href="https://uniiti.com/shop/le-bus-magique" target="_blank" rel="noopener">notre page de réservation</a>. Si vous êtes un grand équipage, n'attendez pas trop.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Combien coûte l'entrée au blind test ?</h3></summary>
-          <p>L'entrée au blind test du Bus Magique est entièrement gratuite. Seules les consommations au bar sont payantes (bières à partir de 3,50 €, planches apéro à partager dès 12 €).</p>
+        <details class="bm-faq__item">
+          <summary>C'est vraiment gratuit ?</summary>
+          <div class="bm-faq__answer">Eh oui, moussaillon ! L'entrée est gratuite. Le Bus Magique est un café associatif, donc on vous proposera une adhésion à prix libre valable un an à votre première visite, à partir de 1&nbsp;€, à régler directement au bar. Ensuite, libre à vous de consommer à bord.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Quels types de musiques sont joués ?</h3></summary>
-          <p>La playlist mélange chansons françaises, pop internationale, musiques de films, génériques cultes, variété et tubes rétro des années 80-2010. Une sélection grand public, pensée pour que chacun·e puisse reconnaître des titres, même sans être un·e mélomane confirmé·e.</p>
+        <details class="bm-faq__item">
+          <summary>Faut-il être calé·e en musique ?</summary>
+          <div class="bm-faq__answer">Pas du tout ! Tof sélectionne des extraits accessibles à tous les équipages : tubes connus, variété française, génériques de films et séries, pop internationale… L'objectif, c'est de passer une bonne soirée ensemble, pas de gagner un Grammy Award.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Quelle taille d'équipe pour jouer ?</h3></summary>
-          <p>Les équipes comptent entre 2 et 6 personnes. Si vous venez seul·e ou en duo, nous pouvons former des équipes sur place avec d'autres participants. C'est l'occasion de rencontrer d'autres Lillois !</p>
+        <details class="bm-faq__item">
+          <summary>On peut venir seul·e ?</summary>
+          <div class="bm-faq__answer">Bien sûr ! Venez seul·e et rejoignez un équipage sur place. L'équipage du Bus Magique veille à ce que tout le monde trouve son bord. C'est aussi l'occasion parfaite de faire de nouvelles rencontres.</div>
         </details>
 
-        <details class="event-faq-item">
-          <summary><h3>Où se trouve la péniche Le Bus Magique ?</h3></summary>
-          <p>Le Bus Magique est amarré <strong>quai de l'Esplanade à Lille (59800)</strong>, en bord de Deûle, à proximité immédiate de la Citadelle et du Vieux-Lille. Parking Esplanade à 2 min, métro Cormontaigne à 10 min à pied.</p>
+        <details class="bm-faq__item">
+          <summary>Où se trouve la péniche Le Bus Magique ?</summary>
+          <div class="bm-faq__answer">On est amarrés <strong>avenue Cuvier, 59800 Lille</strong>, à l'entrée de la Citadelle, le long de la Deûle. Accès par l'arrêt de bus Champ de Mars ou le métro Rihour. Repérez la péniche, les lumières et les rires, vous ne pouvez pas nous rater !</div>
         </details>
       </div>
 
-      <div class="event-recurrent__cta">
+      <!-- CTA -->
+      <div class="bm-cta">
         <h2>Prochaines dates de blind test à Lille</h2>
-        <p>Retrouvez les dates à venir et réservez directement sur notre <a href="/programmation/">agenda de programmation</a>, ou suivez-nous sur <a href="https://www.instagram.com/le_bus_magique_lille" target="_blank" rel="noopener">Instagram</a> et <a href="https://www.facebook.com/lebusmagiquelille" target="_blank" rel="noopener">Facebook</a> pour ne rien manquer.</p>
+        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['blind test']], 3); ?>
+        <?php if ($mkwvs_next) : ?>
+          <ul class="bm-next">
+            <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
+              <li><a href="<?php echo esc_url(get_permalink($mkwvs_ev)); ?>">
+                <span class="bm-next__date"><?php echo esc_html(mkwvs_event_date_label($mkwvs_ev->ID)); ?></span>
+                <span class="bm-next__title"><?php echo esc_html(get_the_title($mkwvs_ev)); ?></span>
+              </a></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
+        <p>Retrouvez les dates à venir sur notre <a href="/programmation/">agenda de programmation</a>, ou suivez-nous sur <a href="https://www.instagram.com/le_bus_magique_lille" target="_blank" rel="noopener">Instagram</a> et <a href="https://www.facebook.com/lebusmagiquelille" target="_blank" rel="noopener">Facebook</a> pour ne rien manquer.</p>
         <?php
         $home = get_page_by_path('accueil');
         $prog_image = $home ? get_field('programmation_du_mois', $home->ID) : null;
         if (is_array($prog_image) && !empty($prog_image['url'])) : ?>
-          <a href="<?php echo esc_url(get_permalink(get_page_by_path('programmation'))); ?>" class="event-recurrent__prog-link" aria-label="Voir la programmation complète du Bus Magique à Lille">
+          <a href="<?php echo esc_url(get_permalink(get_page_by_path('programmation'))); ?>" class="bm-cta__prog-link" aria-label="Voir la programmation complète du Bus Magique à Lille">
             <img src="<?php echo esc_url($prog_image['url']); ?>" alt="<?php echo esc_attr($prog_image['alt'] ?: 'Programmation du mois au Bus Magique à Lille'); ?>" loading="lazy">
           </a>
         <?php else : ?>
@@ -202,7 +215,7 @@
         <?php endif; ?>
       </div>
 
-    </section>
+    </div>
 
   <?php endwhile; ?>
 <?php endif; ?>
