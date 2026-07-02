@@ -191,7 +191,7 @@
       <!-- CTA -->
       <div class="bm-cta">
         <h2>Prochaines dates de blind test à Lille</h2>
-        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['blind test']], 3); ?>
+        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['blind test', 'blind-test', 'blindtest']], 3); ?>
         <?php if ($mkwvs_next) : ?>
           <ul class="bm-next">
             <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
