@@ -150,6 +150,18 @@ function mkwvs_fb_format_description(string $inner): string
     return $html !== '' ? $html : '<p>' . $inner . '</p>';
 }
 
+// Le plugin importe le titre Facebook suffixé du lieu (« … / Péniche Le Bus
+// magique »). Redondant sur le site de la péniche : on retire le suffixe.
+function mkwvs_fb_strip_venue_from_title(string $title, int $post_id = 0): string
+{
+    if ($post_id !== 0 && get_post_type($post_id) !== 'facebook_events') {
+        return $title;
+    }
+
+    return preg_replace('#\s*[/|@\x{2013}\x{2014}-]\s*P[e\x{00E9}]niche\s+le\s+bus\s+magique\s*$#iu', '', $title);
+}
+add_filter('the_title', 'mkwvs_fb_strip_venue_from_title', 10, 2);
+
 function mkwvs_fb_single_clean_meta(string $content): string
 {
     if (!is_singular('facebook_events') || !is_main_query() || !in_the_loop()) {
