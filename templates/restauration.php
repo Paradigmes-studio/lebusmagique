@@ -112,16 +112,26 @@
 
               <div class="left">
 
-                <?php $args = array('taxonomy' => 'typologie', 'hide_empty' => false, 'child_of' => $top_typologie->term_id, 'orderby' => 'term_id', 'order' => 'ASC', 'include' => array(10, 11, 12)); ?>
+                <?php $args = array('taxonomy' => 'typologie', 'hide_empty' => false, 'child_of' => $top_typologie->term_id, 'orderby' => 'term_id', 'order' => 'ASC', 'exclude' => array(13)); ?>
                 <?php $sub_typologies = get_terms($args); ?>
                 <?php foreach ($sub_typologies as $sub_typologie) : ?>
+
+                  <?php $typologie_ctx = $sub_typologie->taxonomy . '_' . $sub_typologie->term_id; ?>
+                  <?php $volume_1 = get_field('carte_typologie_volume_1', $typologie_ctx); ?>
+                  <?php $volume_2 = get_field('carte_typologie_volume_2', $typologie_ctx); ?>
+                  <?php $volume_3 = get_field('carte_typologie_volume_3', $typologie_ctx); ?>
 
                   <p class="text-font category jungle-green column">
 
                     <span><?php echo $sub_typologie->name; ?></span>
                     <span>
-                      <span class="volume-left"><?php echo get_field('carte_typologie_volume_1', $sub_typologie->taxonomy . '_' . $sub_typologie->term_id); ?></span>
-                      <span class="volume-right"><?php echo get_field('carte_typologie_volume_2', $sub_typologie->taxonomy . '_' . $sub_typologie->term_id); ?></span>
+                      <span class="volume-left"><?php echo $volume_1; ?></span>
+                      <?php if (!empty($volume_3)) : ?>
+                        <span class="volume-mid"><?php echo $volume_2; ?></span>
+                        <span class="volume-right"><?php echo $volume_3; ?></span>
+                      <?php else : ?>
+                        <span class="volume-right"><?php echo $volume_2; ?></span>
+                      <?php endif; ?>
                     </span>
                   </p>
 
@@ -140,13 +150,16 @@
                         <span class="prix">
                           <?php $price1 = get_field('carte_infos_price_1', $carte_post_id); ?>
                           <?php $price2 = get_field('carte_infos_price_2', $carte_post_id); ?>
+                          <?php $price3 = get_field('carte_infos_price_3', $carte_post_id); ?>
 
-                          <?php if (!empty($price1) && !empty($price2)) : ?>
+                          <?php if (!empty($price3)) : ?>
+                            <span class="volume-left content"><?php echo $price1; ?></span>
+                            <span class="volume-mid content"><?php echo $price2; ?></span>
+                            <span class="volume-right content"><?php echo $price3; ?></span>
+                          <?php elseif (!empty($price1) && !empty($price2)) : ?>
                             <span class="volume-left content"><?php echo $price1; ?></span>
                             <span class="volume-right content"><?php echo $price2; ?></span>
-                          <?php endif; ?>
-
-                          <?php if (!empty($price1) && empty($price2)) : ?>
+                          <?php elseif (!empty($price1)) : ?>
                             <span class="volume-right content"><?php echo $price1; ?></span>
                           <?php endif; ?>
                         </span>
