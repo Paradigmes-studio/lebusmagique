@@ -197,8 +197,11 @@ function mkwvs_priv_render_action_metabox(\WP_Post $post): void
 {
     if ($post->post_status !== 'priv_pending') {
         $statuses = [
-            'priv_accepted' => 'Acceptée',
-            'priv_refused'  => 'Refusée',
+            'priv_accepted'  => 'Acceptée',
+            'priv_refused'   => 'Refusée',
+            'priv_confirmed' => 'Validée par le client',
+            'priv_contact'   => 'À recontacter',
+            'priv_declined'  => 'Abandonnée',
         ];
         echo '<p><strong>Statut :</strong> ' . ($statuses[$post->post_status] ?? $post->post_status) . '</p>';
         return;
