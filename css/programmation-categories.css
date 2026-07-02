@@ -87,17 +87,17 @@
   text-transform: uppercase;
   color: #1a1a1a;
 }
-/* bord bas ondulé (festons larges et arrondis, même couleur que le bandeau) */
+/* bord bas ondulé (ondulation régulière façon maquette, même couleur que le bandeau) */
 .bm-cat-hero::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -21px;
-  height: 22px;
+  bottom: -33px;
+  height: 34px;
   background: var(--bm-cat-color);
-  -webkit-mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='22' viewBox='0 0 120 22' preserveAspectRatio='none'><path d='M0 0H120V4C100 4 96 22 60 22C24 22 20 4 0 4Z' fill='%23000'/></svg>") repeat-x top left / 120px 22px;
-  mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='22' viewBox='0 0 120 22' preserveAspectRatio='none'><path d='M0 0H120V4C100 4 96 22 60 22C24 22 20 4 0 4Z' fill='%23000'/></svg>") repeat-x top left / 120px 22px;
+  -webkit-mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='84' height='34' viewBox='0 0 84 34' preserveAspectRatio='none'><path d='M0 0H84V17C73.5 32 52.5 32 42 17C31.5 2 10.5 2 0 17Z' fill='%23000'/></svg>") repeat-x top left / 84px 34px;
+  mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='84' height='34' viewBox='0 0 84 34' preserveAspectRatio='none'><path d='M0 0H84V17C73.5 32 52.5 32 42 17C31.5 2 10.5 2 0 17Z' fill='%23000'/></svg>") repeat-x top left / 84px 34px;
 }
 
 .bm-cat-body { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 0; }
