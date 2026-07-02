@@ -28,9 +28,9 @@ function mkwvs_event_categories(): array
             'icon'   => '🎉',
             'intro' => "Blind test, karaoké, jeux de société, apéros, cafés des langues : les rendez-vous chaleureux pour se retrouver à bord et passer un bon moment ensemble.",
             'links' => [
-                ['Le blind test', '/evenements/blind-test-lille/'],
-                ['Le café des langues', '/evenements/cafe-des-langues-lille/'],
-                ['Le café italien', '/evenements/cafe-italien-lille/'],
+                ['Le blind test', '/evenements/blind-test-lille/', "Forme ton équipe et réserve vite ta table pour notre blind-test mensuel !"],
+                ['Le café des langues', '/evenements/cafe-des-langues-lille/', "Venez converser en plusieurs langues dans la bonne humeur !"],
+                ['Le café italien', '/evenements/cafe-italien-lille/', "Pratiquez l'italien autour d'un aperitivo convivial."],
             ],
         ],
         'bien-etre' => [
@@ -50,9 +50,9 @@ function mkwvs_event_categories(): array
             'icon'   => '✊',
             'intro' => "Drag shows, conférences gesticulées, cafés philo, projections, fresques : une programmation qui prend position et inclut toustes.",
             'links' => [
-                ['Les scènes ouvertes', '/evenements/scene-ouverte-lille/'],
-                ['Le drag show & bingo', '/evenements/drag-bingo-lille/'],
-                ['Le café philo', '/evenements/cafe-philo-lille/'],
+                ['Les scènes ouvertes', '/evenements/scene-ouverte-lille/', "Un moment doux et sans pression pour se retrouver et vibrer ensemble."],
+                ['Le drag show & bingo', '/evenements/drag-bingo-lille/', "Une soirée drag pour s'amuser, avec plein de lots à gagner !"],
+                ['Le café philo', '/evenements/cafe-philo-lille/', "Venez échanger et apprendre à débattre d'un sujet de société !"],
             ],
         ],
         'culturels-festifs' => [
@@ -72,7 +72,7 @@ function mkwvs_event_categories(): array
             'icon'   => '🎨',
             'intro' => "Écriture, linogravure, punch needle, illustration, modelage : des ateliers pour créer de ses mains, animés par des intervenant·es locaux.",
             'links' => [
-                ['Tous les ateliers', '/evenements/ateliers-lille/'],
+                ['Tous les ateliers', '/evenements/ateliers-lille/', "Écriture, linogravure, modelage, encre de Chine : créez de vos mains !"],
             ],
         ],
         'jams-scenes-ouvertes' => [
@@ -83,8 +83,8 @@ function mkwvs_event_categories(): array
             'icon'   => '🎸',
             'intro' => "Jam sessions, scènes ouvertes, ukulélé, poésie : le micro et la scène sont à vous, que vous montiez sur le pont ou veniez écouter.",
             'links' => [
-                ['La jam session', '/evenements/jam-session-lille/'],
-                ['Les scènes ouvertes', '/evenements/scene-ouverte-lille/'],
+                ['La jam session', '/evenements/jam-session-lille/', "Venez jouer, chanter et bouger sur la scène ouverte !"],
+                ['Les scènes ouvertes', '/evenements/scene-ouverte-lille/', "Un moment doux et sans pression pour se retrouver et vibrer ensemble."],
             ],
         ],
     ];

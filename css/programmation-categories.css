@@ -126,8 +126,10 @@
   border-radius: 8px;
   font-size: 1.2rem;
 }
+.bm-cat-link__body { flex: 1 1 auto; min-width: 0; }
 .bm-cat-link strong { display: block; font-size: 1rem; }
-.bm-cat-link__arrow { font-size: 0.85rem; color: var(--bm-cat-color); font-weight: 700; }
+.bm-cat-link__desc { display: block; margin-top: 0.2rem; font-size: 0.85rem; font-weight: 400; line-height: 1.35; color: #555; }
+.bm-cat-link__arrow { flex-shrink: 0; margin-left: auto; padding-left: 0.85rem; font-size: 0.85rem; color: var(--bm-cat-color); font-weight: 700; white-space: nowrap; align-self: center; }
 
 /* grille des événements de la catégorie */
 .bm-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -172,4 +174,6 @@
 
 @media (max-width: 640px) {
   .bm-cat-links, .bm-cat-grid { grid-template-columns: 1fr; }
+  .bm-cat-link { flex-wrap: wrap; }
+  .bm-cat-link__arrow { margin-left: 0; padding-left: calc(42px + 0.85rem); flex-basis: 100%; }
 }

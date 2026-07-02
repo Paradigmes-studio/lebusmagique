@@ -38,10 +38,13 @@ $mkwvs_cat = mkwvs_event_category_by_page(get_post_field('post_name', get_querie
           <?php foreach ($mkwvs_cat['links'] as $link) : ?>
             <a class="bm-cat-link" href="<?php echo esc_url(home_url($link[1])); ?>">
               <span class="bm-cat-link__star">★</span>
-              <span>
+              <span class="bm-cat-link__body">
                 <strong><?php echo esc_html($link[0]); ?></strong>
-                <span class="bm-cat-link__arrow">→ En savoir plus</span>
+                <?php if (!empty($link[2])) : ?>
+                  <span class="bm-cat-link__desc"><?php echo esc_html($link[2]); ?></span>
+                <?php endif; ?>
               </span>
+              <span class="bm-cat-link__arrow">→ En savoir plus</span>
             </a>
           <?php endforeach; ?>
         </div>
