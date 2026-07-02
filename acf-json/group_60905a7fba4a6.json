@@ -60,6 +60,25 @@
             "maxlength": ""
         },
         {
+            "key": "field_60905b03f8a9e",
+            "label": "Prix 3",
+            "name": "carte_infos_price_3",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_60914e44ab2f6",
             "label": "Catégorie",
             "name": "carte_infos_legend_drink",
@@ -107,5 +126,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1620207764
+    "modified": 1751414400
 }
