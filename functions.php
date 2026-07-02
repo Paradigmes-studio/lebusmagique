@@ -25,6 +25,7 @@ require get_template_directory() . '/inc/privatisation-functions.php';
 require get_template_directory() . '/inc/privatisation-ajax.php';
 require get_template_directory() . '/inc/privatisation-pdf.php';
 require get_template_directory() . '/inc/privatisation-emails.php';
+require get_template_directory() . '/inc/privatisation-client-response.php';
 require get_template_directory() . '/inc/brevo-smtp.php';
 require get_template_directory() . '/inc/brevo-newsletter.php';
 require get_template_directory() . '/inc/event-categories.php';
