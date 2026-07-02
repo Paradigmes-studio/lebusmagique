@@ -26,7 +26,7 @@ $mkwvs_cat = mkwvs_event_category_by_page(get_post_field('post_name', get_querie
 
     <!-- BANDEAU -->
     <div class="bm-cat-hero">
-      <span class="bm-cat-hero__pill"><?php echo esc_html('Notre prog\' ' . $mkwvs_cat['label']); ?></span>
+      <span class="bm-cat-hero__pill"><?php echo esc_html('Notre prog\' ' . preg_replace('/^prog\'?\s+/i', '', $mkwvs_cat['label'])); ?></span>
     </div>
 
     <div class="bm-cat-body">
@@ -65,6 +65,7 @@ $mkwvs_cat = mkwvs_event_category_by_page(get_post_field('post_name', get_querie
                   <strong class="bm-cat-card__title"><?php the_title(); ?></strong>
                   <span class="bm-cat-card__arrow">→ Voir l'événement</span>
                 </span>
+                <span class="bm-cat-card__cta">Découvrir ici !</span>
               </span>
             </a>
           <?php endwhile; ?>

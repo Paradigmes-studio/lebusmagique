@@ -87,17 +87,17 @@
   text-transform: uppercase;
   color: #1a1a1a;
 }
-/* bord bas scalopé */
+/* bord bas ondulé (festons larges et arrondis, même couleur que le bandeau) */
 .bm-cat-hero::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -14px;
-  height: 14px;
-  background: radial-gradient(circle at 14px 0, var(--bm-cat-color) 13px, transparent 14px) repeat-x;
-  background-size: 28px 14px;
-  background-position: -14px 0;
+  bottom: -21px;
+  height: 22px;
+  background: var(--bm-cat-color);
+  -webkit-mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='22' viewBox='0 0 120 22' preserveAspectRatio='none'><path d='M0 0H120V4C100 4 96 22 60 22C24 22 20 4 0 4Z' fill='%23000'/></svg>") repeat-x top left / 120px 22px;
+  mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='22' viewBox='0 0 120 22' preserveAspectRatio='none'><path d='M0 0H120V4C100 4 96 22 60 22C24 22 20 4 0 4Z' fill='%23000'/></svg>") repeat-x top left / 120px 22px;
 }
 
 .bm-cat-body { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 0; }
@@ -163,6 +163,8 @@
 }
 .bm-cat-card__title { display: block; font-size: 0.98rem; color: #1a1a1a; line-height: 1.25; }
 .bm-cat-card__arrow { font-size: 0.82rem; color: #555; font-weight: 600; }
+.bm-cat-card__cta { margin-left: auto; flex-shrink: 0; font-size: 0.9rem; font-style: italic; color: #555; white-space: nowrap; }
+.bm-cat-card:hover .bm-cat-card__cta { color: #1a1a1a; }
 
 .bm-cat-empty { text-align: center; color: #555; font-size: 1rem; }
 .bm-cat-back { margin-top: 2.5rem; text-align: center; }
