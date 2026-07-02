@@ -112,7 +112,7 @@ function mkwvs_priv_client_response_page(string $title, string $content, int $st
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title><?php echo esc_html($title); ?> — Le Bus Magique</title>
+    <title><?php echo esc_html($title); ?> - Le Bus Magique</title>
 </head>
 <body style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; color: #333; background: #f4f4f4; margin: 0; padding: 40px 20px;">
     <div style="max-width: 560px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.08);">
