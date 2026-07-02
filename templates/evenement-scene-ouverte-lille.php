@@ -241,7 +241,7 @@
       <!-- CTA -->
       <div class="bm-cta">
         <h2>Prochaines scènes ouvertes à Lille</h2>
-        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['scène ouverte', 'scene ouverte', 'poésives', 'poesives', 'drag']], 3); ?>
+        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['scène ouverte', 'scene ouverte', 'poésive', 'poesive', 'slam']], 3); ?>
         <?php if ($mkwvs_next) : ?>
           <ul class="bm-next">
             <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
