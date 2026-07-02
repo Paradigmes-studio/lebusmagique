@@ -7,42 +7,158 @@
       }
     }
   }
+
   .o-page-content{
     img{
       height:auto;
       width:auto;
     }
-    p {
-      font-size:32px;
+
+    // Description importée de Facebook : lecture confortable.
+    > p,
+    p.wp-block-paragraph{
+      font-size:19px;
+      line-height:1.7;
+      max-width:40em;
+      margin:0 auto 1.2em;
     }
-    .ife_eventmeta{
-      .organizermain{
-        padding:0;
-        background:transparent;
-        border:none;
-        &.library{
-          .map{display:none;}
-        }
-        .titlemain{display:none;}
-        .details{
-          width:auto;
-          padding:7px;
-          background-color:$red;
-          color:$white;
-          border-radius:8px;
-          strong {
-            display:none;
-          }
-          p {
-            color:$white;
-          }
-          a {
-            color:$white;
-          }
+
+    // Avertissement (« SUR RÉSERVATION ! ») mis en encart.
+    .event-callout{
+      display:flex;
+      align-items:center;
+      gap:0.6rem;
+      max-width:40em;
+      margin:0 auto 1.5em;
+      padding:0.9rem 1.2rem;
+      background:rgba($yellow, 0.18);
+      border-left:4px solid $yellow;
+      border-radius:8px;
+      font-size:19px;
+      font-weight:700;
+      line-height:1.4;
+      color:$black;
+    }
+
+    // Sous-titre de section (ligne finissant par « : », ex. « Modalités : »).
+    .event-subhead{
+      max-width:40em;
+      margin:1.8em auto 0.6em;
+      font-size:21px;
+      font-weight:700;
+      color:$black;
+    }
+
+    // Liste à puces emoji.
+    ul.event-list{
+      max-width:40em;
+      margin:0 auto 1.2em;
+      padding:0;
+      list-style:none;
+
+      > li{
+        margin:0 0 0.7em;
+        font-size:19px;
+        line-height:1.6;
+      }
+
+      // Sous-liste (ex. tarifs) sous une puce emoji.
+      ul.event-sublist{
+        margin:0.4em 0 0.2em 1.6em;
+        padding-left:1em;
+        list-style:disc;
+
+        li{
+          margin:0 0 0.25em;
+          font-size:18px;
+          line-height:1.5;
+          color:$greyish-brown;
         }
       }
     }
+
+    // Sous-liste isolée (tirets sans puce emoji au-dessus).
+    > ul.event-sublist{
+      max-width:40em;
+      margin:0 auto 1.2em 2.6em;
+      padding-left:1em;
+      list-style:disc;
+
+      li{
+        margin:0 0 0.25em;
+        font-size:18px;
+        line-height:1.5;
+        color:$greyish-brown;
+      }
+    }
+
+    // Meta du plugin (Détails + Lieu) restylée en cartes claires.
+    .ife_eventmeta{
+      max-width:44em;
+      margin:0 auto 2.5rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+
+      .organizermain{
+        flex:1 1 240px;
+        margin:0;
+        padding:1.25rem 1.5rem;
+        background:#f7f7f5;
+        border:1px solid rgba($black, 0.08);
+        border-radius:12px;
+
+        &.library{
+          .map{display:none;}
+        }
+
+        .titlemain{
+          display:block;
+          margin-bottom:0.6rem;
+          font-size:14px;
+          font-weight:700;
+          text-transform:uppercase;
+          letter-spacing:0.04em;
+          color:$battleship-grey;
+        }
+
+        strong{
+          display:none;
+        }
+
+        p{
+          margin:0 0 0.4rem;
+          font-size:17px;
+          line-height:1.5;
+          color:$greyish-brown;
+
+          &:last-child{margin-bottom:0;}
+        }
+
+        a{
+          color:$red;
+          font-weight:600;
+        }
+      }
+
+      // Date mise en avant dans la carte Détails.
+      .details{
+        .event-when{
+          font-size:20px;
+          font-weight:700;
+          color:$black;
+        }
+      }
+
+      .event-map-link{
+        display:inline-block;
+        margin-top:0.4rem;
+        font-weight:600;
+        color:$red;
+      }
+    }
   }
+
   footer{
     .ife_eventmeta{display:none;}
   }

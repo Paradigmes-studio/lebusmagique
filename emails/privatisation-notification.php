@@ -22,7 +22,7 @@ $edit_url = admin_url('post.php?post=' . $post_id . '&action=edit');
 // Check for other requests on the same date
 $existing = new WP_Query([
     'post_type'   => 'privatisation',
-    'post_status' => ['priv_pending', 'priv_accepted'],
+    'post_status' => ['priv_pending', 'priv_accepted', 'priv_confirmed', 'priv_contact'],
     'meta_query'  => [
         [
             'key'   => 'priv_date',

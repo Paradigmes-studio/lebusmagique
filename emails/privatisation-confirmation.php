@@ -48,6 +48,8 @@ if ($type === 'entreprise') {
 
         <p>Pour confirmer votre réservation, merci de nous retourner le devis signé accompagné du versement des arrhes (30% du montant TTC).</p>
 
+        <?php echo mkwvs_priv_render_client_buttons($post_id); ?>
+
         <p>À très bientôt à bord !</p>
         <p><strong>L'équipe du Bus Magique</strong></p>
     </div>
