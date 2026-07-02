@@ -7,42 +7,89 @@
       }
     }
   }
+
   .o-page-content{
     img{
       height:auto;
       width:auto;
     }
-    p {
-      font-size:32px;
+
+    // Description importée de Facebook : lecture confortable.
+    > p,
+    p.wp-block-paragraph{
+      font-size:19px;
+      line-height:1.7;
+      max-width:40em;
+      margin:0 auto 1.2em;
     }
+
+    // Meta du plugin (Détails + Lieu) restylée en cartes claires.
     .ife_eventmeta{
+      max-width:44em;
+      margin:0 auto 2.5rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+
       .organizermain{
-        padding:0;
-        background:transparent;
-        border:none;
+        flex:1 1 240px;
+        margin:0;
+        padding:1.25rem 1.5rem;
+        background:#f7f7f5;
+        border:1px solid rgba($black, 0.08);
+        border-radius:12px;
+
         &.library{
           .map{display:none;}
         }
-        .titlemain{display:none;}
-        .details{
-          width:auto;
-          padding:7px;
-          background-color:$red;
-          color:$white;
-          border-radius:8px;
-          strong {
-            display:none;
-          }
-          p {
-            color:$white;
-          }
-          a {
-            color:$white;
-          }
+
+        .titlemain{
+          display:block;
+          margin-bottom:0.6rem;
+          font-size:14px;
+          font-weight:700;
+          text-transform:uppercase;
+          letter-spacing:0.04em;
+          color:$battleship-grey;
         }
+
+        strong{
+          display:none;
+        }
+
+        p{
+          margin:0 0 0.4rem;
+          font-size:17px;
+          line-height:1.5;
+          color:$greyish-brown;
+
+          &:last-child{margin-bottom:0;}
+        }
+
+        a{
+          color:$red;
+          font-weight:600;
+        }
+      }
+
+      // Date mise en avant dans la carte Détails.
+      .details{
+        .event-when{
+          font-size:20px;
+          font-weight:700;
+          color:$black;
+        }
+      }
+
+      .event-map-link{
+        display:inline-block;
+        margin-top:0.4rem;
+        font-weight:600;
+        color:$red;
       }
     }
   }
+
   footer{
     .ife_eventmeta{display:none;}
   }
