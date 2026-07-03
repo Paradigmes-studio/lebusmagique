@@ -125,12 +125,15 @@
 
                     <span><?php echo $sub_typologie->name; ?></span>
                     <span>
-                      <span class="volume-left"><?php echo $volume_1; ?></span>
                       <?php if (!empty($volume_3)) : ?>
+                        <span class="volume-left"><?php echo $volume_1; ?></span>
                         <span class="volume-mid"><?php echo $volume_2; ?></span>
                         <span class="volume-right"><?php echo $volume_3; ?></span>
-                      <?php else : ?>
+                      <?php elseif (!empty($volume_2)) : ?>
+                        <span class="volume-left"><?php echo $volume_1; ?></span>
                         <span class="volume-right"><?php echo $volume_2; ?></span>
+                      <?php else : ?>
+                        <span class="volume-right"><?php echo $volume_1; ?></span>
                       <?php endif; ?>
                     </span>
                   </p>
