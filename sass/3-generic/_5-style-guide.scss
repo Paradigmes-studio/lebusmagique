@@ -344,6 +344,9 @@ p, input, .o-page-content ul, .o-page-content ol {
         justify-content: flex-end;
 
     }
+    &.category > span + span {
+        margin-left: auto;
+    }
     .vin-rouge, .vin-rose, .vin-blanc, .petillant, .the-noir, .the-vert, .infusion{
       background:  no-repeat 0% 3px;
       background-size: 8px;
