@@ -411,7 +411,7 @@ function mkwvs_priv_get_bookings_for_month(int $year, int $month): array
 
     $query = new WP_Query([
         'post_type'      => 'privatisation',
-        'post_status'    => 'priv_accepted',
+        'post_status'    => ['priv_accepted', 'priv_confirmed', 'priv_contact'],
         'posts_per_page' => -1,
         'meta_query'     => [
             [
@@ -444,7 +444,7 @@ function mkwvs_priv_check_overlap(string $date, int $heure_debut, int $heure_fin
 {
     $query_args = [
         'post_type'      => 'privatisation',
-        'post_status'    => 'priv_accepted',
+        'post_status'    => ['priv_accepted', 'priv_confirmed', 'priv_contact'],
         'posts_per_page' => -1,
         'meta_query'     => [
             [

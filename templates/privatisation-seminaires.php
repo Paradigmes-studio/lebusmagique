@@ -19,7 +19,7 @@
         '@context' => 'https://schema.org',
         '@type' => 'Service',
         'serviceType' => "Séminaire d'entreprise sur péniche à Lille",
-        'name' => "Séminaires, réunions et team building sur péniche à Lille — Le Bus Magique",
+        'name' => "Séminaires, réunions et team building au Bus Magique à Lille",
         'description' => "Lieu de séminaire atypique à Lille : péniche privatisable pour réunions d'entreprise, séminaires, team building, afterwork. Salle équipée, terrasse, restauration, jusqu'à 100 personnes.",
         'url' => $page_url,
         'image' => $image_url ?: null,
@@ -95,7 +95,7 @@
                 'name' => "Comment accéder à la péniche pour un séminaire ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "La péniche est amarrée quai de l'Esplanade à Lille (59800). Accès : métro Cormontaigne (ligne 2), tram Bois Blancs, parking Esplanade à proximité, 10 min à pied de la gare Lille Flandres.",
+                    'text' => "La péniche est amarrée à l'Esplanade, avenue Cuvier à Lille (59800). Accès : arrêt de bus Champ de Mars ou métro Rihour, parking Esplanade à proximité.",
                 ],
             ],
         ],
@@ -153,7 +153,7 @@
       </div>
 
       <div class="event-recurrent__faq">
-        <h2>Questions fréquentes — séminaires & réunions</h2>
+        <h2>Questions fréquentes : séminaires & réunions</h2>
 
         <details class="event-faq-item">
           <summary><h3>La péniche est-elle adaptée pour un séminaire d'entreprise ?</h3></summary>
@@ -183,7 +183,7 @@
 
         <details class="event-faq-item">
           <summary><h3>Comment accéder à la péniche pour un séminaire ?</h3></summary>
-          <p>La péniche est amarrée quai de l'Esplanade à Lille (59800). Métro Cormontaigne (ligne 2), tram Bois Blancs, parking Esplanade à proximité, 10 min à pied de la gare Lille Flandres. Pratique pour les équipes venant en train.</p>
+          <p>La péniche est amarrée à l'Esplanade, avenue Cuvier à Lille (59800). Arrêt de bus Champ de Mars ou métro Rihour, parking Esplanade à proximité. Pratique pour les équipes venant en train.</p>
         </details>
       </div>
 

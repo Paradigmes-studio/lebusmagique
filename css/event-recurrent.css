@@ -1,0 +1,251 @@
+/* ============================================================
+   Design des pages événements récurrents (blind test, jam,
+   scène ouverte, ateliers). Repris des maquettes HTML client.
+   Tout est scopé sous .bm-event pour ne pas impacter le thème.
+   ============================================================ */
+
+.bm-event {
+  --bm-bg: #f5efe0;
+  --bm-ink: #1a1a1a;
+  --bm-yellow: #f5c842;
+  --bm-orange: #e07a3a;
+  --bm-teal: #2a9d8f;
+  --bm-blue: #4a90d9;
+  --bm-pink: #d45a8a;
+  --bm-purple: #8b6bb1;
+  background: var(--bm-bg);
+  color: var(--bm-ink);
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ordre d'affichage : hero, contenu, prochaines dates (CTA), puis FAQ en dernier */
+.bm-event > * { width: 100%; order: 1; }
+.bm-event > .bm-hero { order: 0; }
+.bm-event > .bm-cta { order: 2; }
+.bm-event > .bm-faq { order: 3; }
+
+.bm-event * { box-sizing: border-box; }
+
+/* ── HERO ── */
+.bm-event .bm-hero {
+  background: var(--bm-yellow);
+  /* dégage le header fixe (63px) ; le fond jaune reste plein écran derrière le header */
+  padding: 5.5rem 1.5rem 2.5rem;
+  text-align: center;
+}
+/* À partir de 1280px, le logo circulaire déborde au centre : on pousse le texte plus bas */
+@media (min-width: 1280px) {
+  .bm-event .bm-hero { padding-top: 12rem; }
+}
+.bm-event .bm-hero__icon {
+  font-size: 2.8rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.bm-event .bm-hero h1 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  color: var(--bm-ink);
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  border-bottom: 3px solid var(--bm-ink);
+  padding-bottom: 0.75rem;
+  line-height: 1.3;
+}
+.bm-event .bm-hero__desc {
+  font-size: 1rem;
+  color: #2a2a2a;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ── BLOCS / TITRES DE SECTION ── */
+.bm-event .bm-block {
+  max-width: 920px;
+  margin: 2.5rem auto 0;
+  padding: 0 1.5rem;
+}
+.bm-event .bm-block__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.bm-event .bm-block__title-icon { font-size: 1.8rem; line-height: 1; }
+.bm-event .bm-block__title h2 { font-size: 1.3rem; font-weight: 800; margin: 0; }
+.bm-event .bm-block__title p { font-size: 0.85rem; color: #666; margin: 2px 0 0; }
+.bm-event .bm-divider {
+  border: none;
+  border-top: 2.5px solid var(--bm-ink);
+  margin-bottom: 1.25rem;
+}
+
+/* ── GRILLE DE CARTES ── */
+.bm-event .bm-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.bm-event .bm-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  border: 2.5px solid transparent;
+}
+.bm-event .bm-card--orange { border-color: var(--bm-orange); }
+.bm-event .bm-card--teal   { border-color: var(--bm-teal); }
+.bm-event .bm-card--yellow { border-color: var(--bm-yellow); }
+.bm-event .bm-card--blue   { border-color: var(--bm-blue); }
+.bm-event .bm-card--pink   { border-color: var(--bm-pink); }
+.bm-event .bm-card--purple { border-color: var(--bm-purple); }
+
+.bm-event .bm-card h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
+.bm-event .bm-card p { font-size: 0.92rem; color: #333; line-height: 1.75; margin: 0; }
+.bm-event .bm-card p + p { margin-top: 0.75rem; }
+.bm-event .bm-card ul { margin: 0; padding: 0; list-style: none; }
+.bm-event .bm-card li { font-size: 0.9rem; color: #333; line-height: 1.6; margin-bottom: 0.6rem; }
+.bm-event .bm-card a { color: var(--bm-teal); font-weight: 600; text-decoration: none; }
+.bm-event .bm-card a:hover { text-decoration: underline; }
+
+/* ── TIMELINE (programme horaire) ── */
+.bm-event .bm-timeline { margin-top: 0.25rem; }
+.bm-event .bm-timeline__item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+}
+.bm-event .bm-timeline__time {
+  background: var(--bm-yellow);
+  color: var(--bm-ink);
+  font-weight: 800;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.bm-event .bm-timeline__content strong { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; }
+.bm-event .bm-timeline__content p { font-size: 0.85rem; color: #555; line-height: 1.6; }
+
+/* ── LIGNES D'INFO (où et quand) ── */
+.bm-event .bm-info {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+  align-items: flex-start;
+}
+.bm-event .bm-info__label { font-weight: 700; white-space: nowrap; min-width: 95px; }
+.bm-event .bm-info__val { color: #333; line-height: 1.5; }
+
+/* ── INSTRUMENTS ── */
+.bm-event .bm-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+.bm-event .bm-tag {
+  background: var(--bm-bg);
+  border: 1.5px solid #e2d9c8;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ── ENCADRÉS SPÉCIAUX ── */
+.bm-event .bm-box {
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+.bm-event .bm-box strong { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+.bm-event .bm-box--libre { background: #fdf6e3; border: 1.5px solid var(--bm-yellow); color: #333; }
+.bm-event .bm-box--warning { background: #fff4ec; border: 1.5px solid var(--bm-orange); color: #333; }
+.bm-event .bm-box--warning strong { color: var(--bm-orange); }
+.bm-event .bm-badge {
+  display: inline-block;
+  background: #e8f7f4;
+  color: #0f6e56;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin-top: 0.75rem;
+  border: 1.5px solid var(--bm-teal);
+}
+
+/* ── FAQ (native <details>) ── */
+.bm-event .bm-faq { max-width: 920px; margin: 1.5rem auto 0; padding: 0 1.5rem; }
+.bm-event .bm-faq > h2 { font-size: 1.2rem; font-weight: 700; text-align: center; margin: 0 0 1rem; }
+.bm-event .bm-faq__item {
+  background: #fff;
+  border-radius: 10px;
+  border: 1.5px solid #e2d9c8;
+  margin-bottom: 0.6rem;
+  overflow: hidden;
+}
+.bm-event .bm-faq__item > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--bm-ink);
+}
+.bm-event .bm-faq__item > summary::-webkit-details-marker { display: none; }
+.bm-event .bm-faq__item > summary::after {
+  content: "+";
+  font-size: 1.4rem;
+  color: #888;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.bm-event .bm-faq__item[open] > summary::after { transform: rotate(45deg); color: var(--bm-ink); }
+.bm-event .bm-faq__answer { padding: 0 1rem 0.9rem; font-size: 0.88rem; color: #444; line-height: 1.75; }
+.bm-event .bm-faq__answer a { color: var(--bm-teal); font-weight: 600; }
+
+/* ── CTA / PROCHAINES DATES ── */
+.bm-event .bm-cta { max-width: 920px; margin: 2.5rem auto 0; padding: 0 1.5rem; text-align: center; }
+.bm-event .bm-cta h2 { font-size: 1.2rem; font-weight: 800; margin: 0 0 0.5rem; }
+.bm-event .bm-cta p { font-size: 0.92rem; color: #333; line-height: 1.7; max-width: 620px; margin: 0 auto 1rem; }
+.bm-event .bm-cta a { color: var(--bm-teal); font-weight: 600; }
+.bm-event .bm-cta__prog-link { display: inline-block; max-width: 420px; }
+.bm-event .bm-cta__prog-link img { width: 100%; height: auto; border-radius: 12px; }
+
+/* Prochaines dates (événements à venir, dynamiques) */
+.bm-event .bm-next { list-style: none; margin: 0 auto 1.5rem; padding: 0; max-width: 560px; text-align: left; }
+.bm-event .bm-next li { margin-bottom: 0.5rem; }
+.bm-event .bm-next a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #fff;
+  border: 1.5px solid #e2d9c8;
+  border-left: 4px solid var(--bm-teal);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.bm-event .bm-next a:hover { border-left-color: var(--bm-orange); transform: translateX(2px); }
+.bm-event .bm-next__date { font-size: 0.78rem; font-weight: 800; color: var(--bm-teal); }
+.bm-event .bm-next__title { font-size: 0.92rem; color: #1a1a1a; font-weight: 600; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .bm-event .bm-cards { grid-template-columns: 1fr; }
+}

@@ -25,8 +25,12 @@ require get_template_directory() . '/inc/privatisation-functions.php';
 require get_template_directory() . '/inc/privatisation-ajax.php';
 require get_template_directory() . '/inc/privatisation-pdf.php';
 require get_template_directory() . '/inc/privatisation-emails.php';
+require get_template_directory() . '/inc/privatisation-client-response.php';
 require get_template_directory() . '/inc/brevo-smtp.php';
 require get_template_directory() . '/inc/brevo-newsletter.php';
+require get_template_directory() . '/inc/event-categories.php';
+require get_template_directory() . '/inc/facebook-events-redirect.php';
+require get_template_directory() . '/inc/facebook-events-single.php';
 require get_template_directory() . '/inc/schema-org.php';
 require get_template_directory() . '/inc/og-images.php';
 require get_template_directory() . '/inc/facebook-events-categories.php';
@@ -283,14 +287,26 @@ function mkwvs_scripts_styles(){
         ]);
     }
 
-}
+    // CSS dédié aux pages événements récurrents (design des maquettes client)
+    $event_templates = [
+        'templates/evenement-blind-test-lille.php',
+        'templates/evenement-jam-session-lille.php',
+        'templates/evenement-scene-ouverte-lille.php',
+        'templates/evenement-ateliers-lille.php',
+        'templates/evenement-format.php',
+    ];
+    if (array_filter($event_templates, 'is_page_template')) {
+        wp_register_style('event-recurrent-style', get_template_directory_uri() . '/css/event-recurrent.css', ['styles'], filemtime(get_template_directory() . '/css/event-recurrent.css'), 'all');
+        wp_enqueue_style('event-recurrent-style');
+    }
 
-// Remove Vesion Number Form CSS & JS
-add_filter( 'style_loader_src', 'mkwvs_remove_cssjs_ver', 10, 2 );
-add_filter( 'script_loader_src', 'mkwvs_remove_cssjs_ver', 10, 2 );
-function mkwvs_remove_cssjs_ver( $src ) {
-    if( strpos( $src, '?ver=' ) ){ $src = remove_query_arg( 'ver', $src ); }
-    return $src;
+    // CSS des pastilles thématiques (programmation) + pages catégories
+    $cat_templates = ['templates/programmation.php', 'templates/categorie-evenements.php'];
+    if (array_filter($cat_templates, 'is_page_template')) {
+        wp_register_style('prog-categories-style', get_template_directory_uri() . '/css/programmation-categories.css', ['styles'], filemtime(get_template_directory() . '/css/programmation-categories.css'), 'all');
+        wp_enqueue_style('prog-categories-style');
+    }
+
 }
 
 // Custom Excerpt Length

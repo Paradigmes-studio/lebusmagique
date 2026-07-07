@@ -11,6 +11,40 @@ function mkwvs_priv_get_email_headers(): array
     ];
 }
 
+function mkwvs_priv_get_or_create_client_token(int $post_id): string
+{
+    $token = get_post_meta($post_id, 'priv_client_token', true);
+    if (!is_string($token) || $token === '') {
+        $token = wp_generate_password(32, false);
+        update_post_meta($post_id, 'priv_client_token', $token);
+    }
+
+    return $token;
+}
+
+function mkwvs_priv_render_client_buttons(int $post_id): string
+{
+    $token = mkwvs_priv_get_or_create_client_token($post_id);
+    $base = admin_url('admin-post.php');
+
+    $link = static function (string $response) use ($base, $post_id, $token): string {
+        return esc_url(add_query_arg([
+            'action'   => 'priv_client_response',
+            'post'     => $post_id,
+            'token'    => $token,
+            'response' => $response,
+        ], $base));
+    };
+
+    return '<!-- priv-boutons-reponse -->
+<div style="text-align: center; margin: 30px 0;">
+    <p style="font-weight: bold; margin: 0 0 15px;">Que souhaitez-vous faire ?</p>
+    <a href="' . $link('valide') . '" style="display: inline-block; background: #9bb909; color: #fff; padding: 12px 22px; margin: 5px; text-decoration: none; border-radius: 5px; font-weight: bold;">Je valide mon devis</a>
+    <a href="' . $link('contact') . '" style="display: inline-block; background: #fff; color: #333; border: 1px solid #ccc; padding: 12px 22px; margin: 5px; text-decoration: none; border-radius: 5px;">Contactez-moi</a>
+    <a href="' . $link('refus') . '" style="display: inline-block; background: #fff; color: #888; border: 1px solid #ccc; padding: 12px 22px; margin: 5px; text-decoration: none; border-radius: 5px;">Pas intéressé</a>
+</div>';
+}
+
 function mkwvs_priv_get_email_variables_config(): array
 {
     return [
@@ -25,6 +59,7 @@ function mkwvs_priv_get_email_variables_config(): array
             '{nb_personnes}' => 'Nombre de personnes',
             '{montant_ttc}'  => 'Montant TTC',
             '{numero_devis}' => 'Numéro de devis',
+            '{boutons_reponse}' => 'Boutons de réponse (Je valide / Contactez-moi / Pas intéressé)',
         ],
         'reception' => [
             '{prenom}'       => 'Prénom du demandeur',
@@ -88,6 +123,7 @@ function mkwvs_priv_build_email_values(int $post_id): array
         '{montant_ttc}'  => number_format($montant_ttc, 2, ',', ' ') . ' €',
         '{numero_devis}' => esc_html(get_field('priv_numero_devis', $post_id) ?? ''),
         '{lien_admin}'   => esc_url(admin_url('post.php?post=' . $post_id . '&action=edit')),
+        '{boutons_reponse}' => mkwvs_priv_render_client_buttons($post_id),
     ];
 }
 
@@ -163,6 +199,7 @@ function mkwvs_priv_get_email_defaults(): array
 
 <p>Contactez-nous pour affiner et adapter ce premier devis en fonction de vos possibilités et de vos attentes.</p>
 <p>Pour confirmer votre réservation, merci de nous retourner le devis signé accompagné du versement des arrhes (30% du montant TTC).</p>
+{boutons_reponse}
 <p>À très bientôt à bord !</p>
 <p><strong>L\'équipe du Bus Magique</strong></p>';
 
@@ -262,6 +299,11 @@ function mkwvs_priv_send_confirmation_email(int $post_id, string $pdf_path): voi
         ob_start();
         include get_template_directory() . '/emails/privatisation-confirmation.php';
         $body = ob_get_clean();
+    }
+
+    if (strpos($body, '<!-- priv-boutons-reponse -->') === false) {
+        $buttons = mkwvs_priv_render_client_buttons($post_id);
+        $body = str_replace('</body>', $buttons . '</body>', $body);
     }
 
     wp_mail($email, $subject, $body, mkwvs_priv_get_email_headers(), [$pdf_path]);

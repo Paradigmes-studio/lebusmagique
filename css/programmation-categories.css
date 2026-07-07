@@ -1,0 +1,179 @@
+/* ============================================================
+   Pastilles thématiques (page Programmation) + pages catégories.
+   Repris des maquettes Justine. Scopé sous .bm-themes / .bm-cat.
+   ============================================================ */
+
+/* ── PASTILLES PAR THÉMATIQUE (page programmation) ── */
+.bm-themes {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1rem;
+  text-align: center;
+}
+.bm-themes__title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.75rem;
+}
+.bm-themes__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+}
+.bm-theme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+/* hublot = SVG du thème (anneau coloré + rivets + verre blanc) ; emoji centré sur le verre */
+.bm-theme__circle {
+  position: relative;
+  width: 116px;
+  height: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease;
+}
+.bm-theme__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.bm-theme:hover .bm-theme__circle { transform: translateY(-5px); }
+.bm-theme__icon { position: relative; z-index: 1; font-size: 2.3rem; line-height: 1; }
+.bm-theme__label {
+  display: inline-block;
+  background: #fff;
+  border: 2px solid #1a1a1a;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+@media (max-width: 900px) { .bm-themes__grid { grid-template-columns: repeat(3, 1fr); row-gap: 1.75rem; } }
+@media (max-width: 480px) { .bm-themes__grid { grid-template-columns: repeat(2, 1fr); } .bm-theme__circle { width: 88px; height: 88px; } }
+
+/* ── PAGE CATÉGORIE ── */
+.bm-cat { background: #f5efe0; padding-bottom: 3rem; }
+
+.bm-cat-hero {
+  background: var(--bm-cat-color);
+  /* dégage le header fixe (63px) puis le logo circulaire au-delà de 1280px */
+  padding: 5.5rem 1.5rem 2.25rem;
+  text-align: center;
+  position: relative;
+}
+@media (min-width: 1280px) { .bm-cat-hero { padding-top: 11rem; } }
+
+.bm-cat-hero__pill {
+  display: inline-block;
+  background: #fff;
+  border: 3px solid #1a1a1a;
+  border-radius: 999px;
+  padding: 0.6rem 1.75rem;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+/* bord bas ondulé (ondulation régulière façon maquette, même couleur que le bandeau) */
+.bm-cat-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -33px;
+  height: 34px;
+  background: var(--bm-cat-color);
+  -webkit-mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='84' height='34' viewBox='0 0 84 34' preserveAspectRatio='none'><path d='M0 0H84V17C73.5 32 52.5 32 42 17C31.5 2 10.5 2 0 17Z' fill='%23000'/></svg>") repeat-x top left / 84px 34px;
+  mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='84' height='34' viewBox='0 0 84 34' preserveAspectRatio='none'><path d='M0 0H84V17C73.5 32 52.5 32 42 17C31.5 2 10.5 2 0 17Z' fill='%23000'/></svg>") repeat-x top left / 84px 34px;
+}
+
+.bm-cat-body { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 0; }
+.bm-cat-intro { font-size: 1.05rem; line-height: 1.75; color: #2a2a2a; max-width: 720px; margin: 0 auto 2rem; text-align: center; }
+.bm-cat-subtitle { font-size: 1.2rem; font-weight: 800; margin: 2rem 0 1.25rem; }
+
+/* liens curatés vers les pages dédiées */
+.bm-cat-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.bm-cat-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: #fff;
+  border: 2px solid var(--bm-cat-color);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  text-decoration: none;
+  color: #1a1a1a;
+}
+.bm-cat-link__star {
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bm-cat-color);
+  color: #1a1a1a;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+.bm-cat-link__body { flex: 1 1 auto; min-width: 0; }
+.bm-cat-link strong { display: block; font-size: 1rem; }
+.bm-cat-link__desc { display: block; margin-top: 0.2rem; font-size: 0.85rem; font-weight: 400; line-height: 1.35; color: #555; }
+.bm-cat-link__arrow { flex-shrink: 0; margin-left: auto; padding-left: 0.85rem; font-size: 0.85rem; color: var(--bm-cat-color); font-weight: 700; white-space: nowrap; align-self: center; }
+
+/* grille des événements de la catégorie */
+.bm-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.bm-cat-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: #1a1a1a;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.bm-cat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+.bm-cat-card__media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  background:
+    linear-gradient(45deg, #ece6d6 25%, transparent 25%, transparent 75%, #ece6d6 75%) 0 0/24px 24px,
+    linear-gradient(45deg, #ece6d6 25%, #f3eee0 25%, #f3eee0 75%, #ece6d6 75%) 12px 12px/24px 24px;
+}
+.bm-cat-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bm-cat-card__body { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.1rem; }
+.bm-cat-card__star {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bm-cat-color);
+  color: #1a1a1a;
+  border-radius: 8px;
+  font-size: 1.15rem;
+}
+.bm-cat-card__title { display: block; font-size: 0.98rem; color: #1a1a1a; line-height: 1.25; }
+.bm-cat-card__arrow { font-size: 0.82rem; color: #555; font-weight: 600; }
+.bm-cat-card__cta { margin-left: auto; flex-shrink: 0; font-size: 0.9rem; font-style: italic; color: #555; white-space: nowrap; }
+.bm-cat-card:hover .bm-cat-card__cta { color: #1a1a1a; }
+
+.bm-cat-empty { text-align: center; color: #555; font-size: 1rem; }
+.bm-cat-back { margin-top: 2.5rem; text-align: center; }
+.bm-cat-back a { color: #1a1a1a; font-weight: 700; text-decoration: none; }
+
+@media (max-width: 640px) {
+  .bm-cat-links, .bm-cat-grid { grid-template-columns: 1fr; }
+  .bm-cat-link { flex-wrap: wrap; }
+  .bm-cat-link__arrow { margin-left: 0; padding-left: calc(42px + 0.85rem); flex-basis: 100%; }
+}

@@ -112,7 +112,7 @@
 
               <div class="left">
 
-                <?php $args = array('taxonomy' => 'typologie', 'hide_empty' => false, 'child_of' => $top_typologie->term_id, 'orderby' => 'term_id', 'order' => 'ASC', 'exclude' => array(13)); ?>
+                <?php $args = array('taxonomy' => 'typologie', 'hide_empty' => false, 'parent' => $top_typologie->term_id, 'orderby' => 'term_id', 'order' => 'ASC', 'exclude' => array(13)); ?>
                 <?php $sub_typologies = get_terms($args); ?>
                 <?php foreach ($sub_typologies as $sub_typologie) : ?>
 
@@ -176,42 +176,49 @@
               </div>
 
               <div class="right">
-                <?php $args = array('taxonomy' => 'typologie', 'hide_empty' => false, 'child_of' => $top_typologie->term_id, 'orderby' => 'term_id', 'order' => 'ASC', 'include' => array(13)); ?>
-                <?php $sub_typologies = get_terms($args); ?>
-                <?php foreach ($sub_typologies as $sub_typologie) : ?>
-                  <p class="text-font category jungle-green column">
-                    <span><?php echo $sub_typologie->name; ?></span>
+                <?php $hot_drinks_id = 13; ?>
+                <?php $right_typologies = array_merge(
+                  get_terms(array('taxonomy' => 'typologie', 'hide_empty' => false, 'include' => array($hot_drinks_id))),
+                  get_terms(array('taxonomy' => 'typologie', 'hide_empty' => false, 'parent' => $hot_drinks_id))
+                ); ?>
+                <?php foreach ($right_typologies as $right_typologie) : ?>
+                  <p class="text-font category <?php echo ($right_typologie->term_id === $hot_drinks_id ? 'jungle-green ' : ''); ?>column">
+                    <span><?php echo $right_typologie->name; ?></span>
+                    <?php $typologie_price = get_field('carte_typologie_price', $right_typologie->taxonomy . '_' . $right_typologie->term_id); ?>
+                    <?php if (!empty($typologie_price)) : ?>
+                      <span><?php echo $typologie_price; ?></span>
+                    <?php endif; ?>
                   </p>
-                <?php endforeach; ?>
-                <?php $post_args = array('post_type' => 'carte', 'posts_per_page' => '-1'); ?>
-                <?php $tax_query = array(); ?>
-                <?php $tax_query[] = array('taxonomy' => 'typologie', 'field' => 'term_id', 'terms' => array($sub_typologie->term_id), 'operator' => 'IN'); ?>
-                <?php $post_args['tax_query'] = $tax_query; ?>
-                <?php $carte_items = new WP_Query($post_args); ?>
-                <?php if ($carte_items->have_posts()) : ?>
-                  <?php while ($carte_items->have_posts()) : $carte_items->the_post(); ?>
-                    <?php $carte_post_id = get_the_ID(); ?>
-                    <p class="column ">
-                      <?php $legqend_drink = get_field('carte_infos_legend_drink', $carte_post_id);  ?>
-                      <?php $s_class = (!empty($legend_drink) ? 'class="' . $legend_drink . '"' : ''); ?>
-                      <span <?php echo $s_class; ?>><?php echo get_the_title(); ?></span>
-                      <?php $price1 = get_field('carte_infos_price_1', $carte_post_id); ?>
-                      <?php if (!empty($price1)) : ?>
-                        <span>
-                          <span><?php echo $price1; ?>
+                  <?php $post_args = array('post_type' => 'carte', 'posts_per_page' => '-1'); ?>
+                  <?php $tax_query = array(); ?>
+                  <?php $tax_query[] = array('taxonomy' => 'typologie', 'field' => 'term_id', 'terms' => array($right_typologie->term_id), 'operator' => 'IN', 'include_children' => false); ?>
+                  <?php $post_args['tax_query'] = $tax_query; ?>
+                  <?php $carte_items = new WP_Query($post_args); ?>
+                  <?php if ($carte_items->have_posts()) : ?>
+                    <?php while ($carte_items->have_posts()) : $carte_items->the_post(); ?>
+                      <?php $carte_post_id = get_the_ID(); ?>
+                      <p class="column ">
+                        <?php $legend_drink = get_field('carte_infos_legend_drink', $carte_post_id);  ?>
+                        <?php $s_class = (!empty($legend_drink) ? 'class="' . $legend_drink . '"' : ''); ?>
+                        <span <?php echo $s_class; ?>><?php echo get_the_title(); ?></span>
+                        <?php $price1 = get_field('carte_infos_price_1', $carte_post_id); ?>
+                        <?php if (!empty($price1)) : ?>
+                          <span>
+                            <span><?php echo $price1; ?>
+                            </span>
                           </span>
-                        </span>
-                      <?php endif; ?>
-                      <?php $description = get_field('carte_infos_description', $carte_post_id); ?>
-                      <?php if (!empty($description)) : ?>
-                        <span class="price-description">
-                          <?php echo strip_tags(apply_filters('the_content', $description), '<br><strong><a>'); ?>
-                        </span>
-                      <?php endif; ?>
-                    </p>
-                  <?php endwhile; ?>
-                  <?php wp_reset_postdata(); ?>
-                <?php endif; ?>
+                        <?php endif; ?>
+                        <?php $description = get_field('carte_infos_description', $carte_post_id); ?>
+                        <?php if (!empty($description)) : ?>
+                          <span class="price-description">
+                            <?php echo strip_tags(apply_filters('the_content', $description), '<br><strong><a>'); ?>
+                          </span>
+                        <?php endif; ?>
+                      </p>
+                    <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
+                  <?php endif; ?>
+                <?php endforeach; ?>
 
                 <!--
                   <br>

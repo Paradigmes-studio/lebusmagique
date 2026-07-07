@@ -74,6 +74,33 @@ function mkwvs_register_privatisation_statuses(): void
         'show_in_admin_status_list' => true,
         'label_count'               => _n_noop('Refusée <span class="count">(%s)</span>', 'Refusées <span class="count">(%s)</span>'),
     ]);
+
+    register_post_status('priv_confirmed', [
+        'label'                     => 'Validée par le client',
+        'public'                    => false,
+        'internal'                  => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop('Validée par le client <span class="count">(%s)</span>', 'Validées par le client <span class="count">(%s)</span>'),
+    ]);
+
+    register_post_status('priv_contact', [
+        'label'                     => 'À recontacter',
+        'public'                    => false,
+        'internal'                  => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop('À recontacter <span class="count">(%s)</span>', 'À recontacter <span class="count">(%s)</span>'),
+    ]);
+
+    register_post_status('priv_declined', [
+        'label'                     => 'Abandonnée',
+        'public'                    => false,
+        'internal'                  => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop('Abandonnée <span class="count">(%s)</span>', 'Abandonnées <span class="count">(%s)</span>'),
+    ]);
 }
 
 add_action('admin_footer-post.php', 'mkwvs_privatisation_status_dropdown');
@@ -88,9 +115,12 @@ function mkwvs_privatisation_status_dropdown(): void
     }
 
     $statuses = [
-        'priv_pending'  => 'En attente',
-        'priv_accepted' => 'Acceptée',
-        'priv_refused'  => 'Refusée',
+        'priv_pending'   => 'En attente',
+        'priv_accepted'  => 'Acceptée',
+        'priv_refused'   => 'Refusée',
+        'priv_confirmed' => 'Validée par le client',
+        'priv_contact'   => 'À recontacter',
+        'priv_declined'  => 'Abandonnée',
     ];
 
     echo '<script>
@@ -118,9 +148,12 @@ function mkwvs_privatisation_display_states(array $states, \WP_Post $post): arra
     }
 
     $custom_states = [
-        'priv_pending'  => 'En attente',
-        'priv_accepted' => 'Acceptée',
-        'priv_refused'  => 'Refusée',
+        'priv_pending'   => 'En attente',
+        'priv_accepted'  => 'Acceptée',
+        'priv_refused'   => 'Refusée',
+        'priv_confirmed' => 'Validée par le client',
+        'priv_contact'   => 'À recontacter',
+        'priv_declined'  => 'Abandonnée',
     ];
 
     if (isset($custom_states[$post->post_status])) {
@@ -164,8 +197,11 @@ function mkwvs_priv_render_action_metabox(\WP_Post $post): void
 {
     if ($post->post_status !== 'priv_pending') {
         $statuses = [
-            'priv_accepted' => 'Acceptée',
-            'priv_refused'  => 'Refusée',
+            'priv_accepted'  => 'Acceptée',
+            'priv_refused'   => 'Refusée',
+            'priv_confirmed' => 'Validée par le client',
+            'priv_contact'   => 'À recontacter',
+            'priv_declined'  => 'Abandonnée',
         ];
         echo '<p><strong>Statut :</strong> ' . ($statuses[$post->post_status] ?? $post->post_status) . '</p>';
         return;
@@ -280,7 +316,7 @@ function mkwvs_priv_admin_filter_statuses(\WP_Query $query): void
     }
 
     if (!$query->get('post_status')) {
-        $query->set('post_status', ['priv_pending', 'priv_accepted', 'priv_refused', 'trash']);
+        $query->set('post_status', ['priv_pending', 'priv_accepted', 'priv_refused', 'priv_confirmed', 'priv_contact', 'priv_declined', 'trash']);
     }
 }
 
@@ -1104,9 +1140,12 @@ function mkwvs_priv_admin_column_content(string $column, int $post_id): void
         case 'priv_status':
             $status = get_post_status($post_id);
             $labels = [
-                'priv_pending'  => '<span style="color:orange;">En attente</span>',
-                'priv_accepted' => '<span style="color:green;">Acceptée</span>',
-                'priv_refused'  => '<span style="color:red;">Refusée</span>',
+                'priv_pending'   => '<span style="color:orange;">En attente</span>',
+                'priv_accepted'  => '<span style="color:green;">Acceptée</span>',
+                'priv_refused'   => '<span style="color:red;">Refusée</span>',
+                'priv_confirmed' => '<span style="color:#2e7d32;font-weight:600;">Validée par le client</span>',
+                'priv_contact'   => '<span style="color:#2271b1;">À recontacter</span>',
+                'priv_declined'  => '<span style="color:#888;">Abandonnée</span>',
             ];
             echo $labels[$status] ?? $status;
             break;
