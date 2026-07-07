@@ -309,14 +309,6 @@ function mkwvs_scripts_styles(){
 
 }
 
-// Remove Vesion Number Form CSS & JS
-add_filter( 'style_loader_src', 'mkwvs_remove_cssjs_ver', 10, 2 );
-add_filter( 'script_loader_src', 'mkwvs_remove_cssjs_ver', 10, 2 );
-function mkwvs_remove_cssjs_ver( $src ) {
-    if( strpos( $src, '?ver=' ) ){ $src = remove_query_arg( 'ver', $src ); }
-    return $src;
-}
-
 // Custom Excerpt Length
 add_filter( 'excerpt_length', 'mkwvs_excerpt_length', 999 );
 function mkwvs_excerpt_length( $length ) {
