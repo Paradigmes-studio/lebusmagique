@@ -16,7 +16,7 @@ $mkwvs_prog_url = $mkwvs_prog ? trailingslashit(get_permalink($mkwvs_prog)) : ho
             <a class="bm-theme" href="<?php echo esc_url($mkwvs_prog_url . $cat['page'] . '/'); ?>">
                 <span class="bm-theme__circle">
                     <img class="bm-theme__frame" src="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/' . $cat['hublot'] . '-hublot.svg'); ?>" alt="" aria-hidden="true">
-                    <span class="bm-theme__icon"><?php echo $cat['icon']; ?></span>
+                    <img class="bm-theme__icon" src="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/' . $cat['icon']); ?>" alt="" aria-hidden="true">
                 </span>
                 <span class="bm-theme__label"><?php echo esc_html($cat['label']); ?></span>
             </a>
