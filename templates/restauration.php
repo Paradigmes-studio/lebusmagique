@@ -17,7 +17,7 @@
 
     <a href="#glou-glou" class="cta cta-glouglou ">aller au glouglou !</a>
 
-    <section class="carte">
+    <section id="carte" class="carte">
 
       <div class="accroche">
         Psst ! Pour les jeudis et vendredis midis, et pour les brunchs du dimanche : <a class="cta" style="margin-bottom: 50px;margin-top:45px" href="#" id="ureserve_booking">Réservez maintenant !</a>

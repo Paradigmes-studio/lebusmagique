@@ -31,7 +31,7 @@
             "label": "Détection automatique des zones",
             "name": "lsm_autodetect",
             "type": "true_false",
-            "instructions": "Cocher puis enregistrer la page : les zones cliquables sont recalculées automatiquement d'après les boutons blancs détectés dans l'image. Les liens déjà saisis sont conservés dans l'ordre, et les zones manuelles (icônes, flèches, avec gauche\/largeur spécifiques) placées en fin de liste sont conservées. La case se décoche toute seule après le calcul.",
+            "instructions": "Cocher puis enregistrer la page : les zones cliquables sont recalculées automatiquement d'après les boutons blancs détectés dans l'image. Les liens déjà saisis sont conservés dans l'ordre, et les zones manuelles (icônes, flèches, avec gauche/largeur spécifiques) placées en fin de liste sont conservées. La case se décoche toute seule après le calcul.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -210,7 +210,7 @@
                     "key": "field_lsm_zone_url",
                     "label": "Lien",
                     "name": "zone_url",
-                    "type": "url",
+                    "type": "text",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -219,8 +219,11 @@
                         "class": "",
                         "id": ""
                     },
+                    "placeholder": "https://... ou /page/",
                     "default_value": "",
-                    "placeholder": "https://"
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 },
                 {
                     "key": "field_lsm_zone_label",

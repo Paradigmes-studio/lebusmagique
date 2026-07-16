@@ -23,90 +23,117 @@ function mkwvs_lsm_detect_zones($path)
     $w = imagesx($img);
     $h = imagesy($img);
 
-    $bands      = array();
-    $band_start = null;
-    $band_left  = null;
-    $band_right = null;
+    $parent = array();
+    $find   = function ($a) use (&$parent) {
+        while ($parent[$a] !== $a) {
+            $parent[$a] = $parent[$parent[$a]];
+            $a          = $parent[$a];
+        }
+        return $a;
+    };
+
+    $runs_prev = array();
+    $boxes     = array();
+    $rid       = 0;
 
     for ($y = 0; $y < $h; $y++) {
-        $count     = 0;
-        $leftmost  = -1;
-        $rightmost = -1;
+        $runs = array();
+        $x    = 0;
 
-        for ($x = 0; $x < $w; $x++) {
+        while ($x < $w) {
             $rgb = imagecolorat($img, $x, $y);
-            $r   = ($rgb >> 16) & 0xFF;
-            $g   = ($rgb >> 8) & 0xFF;
-            $b   = $rgb & 0xFF;
-
-            if ($r >= 235 && $g >= 235 && $b >= 235) {
-                $count++;
-                if ($leftmost < 0) {
-                    $leftmost = $x;
-                }
-                $rightmost = $x;
-            }
-        }
-
-        $span = $rightmost - $leftmost;
-
-        $is_button = $count > 0
-            && $leftmost >= $w * 0.02
-            && $rightmost <= $w * 0.98
-            && $span >= $w * 0.4
-            && $count >= $span * 0.6;
-
-        if ($is_button) {
-            if (null === $band_start) {
-                $band_start = $y;
-                $band_left  = $leftmost;
-                $band_right = $rightmost;
+            if ((($rgb >> 16) & 0xFF) >= 235 && (($rgb >> 8) & 0xFF) >= 235 && ($rgb & 0xFF) >= 235) {
+                $x0 = $x;
+                do {
+                    $x++;
+                    if ($x >= $w) {
+                        break;
+                    }
+                    $rgb = imagecolorat($img, $x, $y);
+                } while ((($rgb >> 16) & 0xFF) >= 235 && (($rgb >> 8) & 0xFF) >= 235 && ($rgb & 0xFF) >= 235);
+                $parent[$rid] = $rid;
+                $runs[]       = array($x0, $x - 1, $rid);
+                $rid++;
             } else {
-                $band_left  = min($band_left, $leftmost);
-                $band_right = max($band_right, $rightmost);
+                $x++;
             }
-        } elseif (null !== $band_start) {
-            $bands[]    = array($band_start, $y, $band_left, $band_right);
-            $band_start = null;
         }
-    }
 
-    if (null !== $band_start) {
-        $bands[] = array($band_start, $h, $band_left, $band_right);
+        foreach ($runs as $run) {
+            foreach ($runs_prev as $prev) {
+                if ($run[0] <= $prev[1] && $prev[0] <= $run[1]) {
+                    $ra = $find($run[2]);
+                    $rb = $find($prev[2]);
+                    if ($ra !== $rb) {
+                        $parent[$rb] = $ra;
+                    }
+                }
+            }
+        }
+
+        foreach ($runs as $run) {
+            $boxes[$run[2]] = array($run[0], $y, $run[1], $y);
+        }
+
+        $runs_prev = $runs;
     }
 
     imagedestroy($img);
 
-    $min_height = max(6, $h * 0.005);
-    $zones      = array();
-    $lefts      = array();
-    $rights     = array();
-
-    foreach ($bands as $band) {
-        list($start, $end, $left, $right) = $band;
-        if (($end - $start) < $min_height) {
-            continue;
+    $merged = array();
+    foreach ($boxes as $id => $box) {
+        $root = $find($id);
+        if (!isset($merged[$root])) {
+            $merged[$root] = $box;
+        } else {
+            $merged[$root][0] = min($merged[$root][0], $box[0]);
+            $merged[$root][1] = min($merged[$root][1], $box[1]);
+            $merged[$root][2] = max($merged[$root][2], $box[2]);
+            $merged[$root][3] = max($merged[$root][3], $box[3]);
         }
-        $zones[]  = array(
-            'top'    => round($start / $h * 100, 2),
-            'height' => round(($end - $start) / $h * 100, 2),
-        );
-        $lefts[]  = $left;
-        $rights[] = $right;
     }
 
-    if (!$zones) {
+    $min_height = max(6, $h * 0.005);
+    $kept       = array();
+
+    foreach ($merged as $box) {
+        list($x0, $y0, $x1, $y1) = $box;
+        $bw = $x1 - $x0 + 1;
+        $bh = $y1 - $y0 + 1;
+        if ($bw < $w * 0.4 || $x0 < $w * 0.02 || $x1 > $w * 0.98) {
+            continue;
+        }
+        if ($bh < $min_height || $bh > $h * 0.15 || $bw / $bh < 3) {
+            continue;
+        }
+        $kept[] = $box;
+    }
+
+    if (!$kept) {
         return array();
     }
 
-    sort($lefts);
-    sort($rights);
-    $mid = (int) floor(count($zones) / 2);
+    usort($kept, function ($a, $b) {
+        return $a[1] - $b[1];
+    });
+
+    $zones = array();
+    $left  = $w;
+    $right = 0;
+
+    foreach ($kept as $box) {
+        $zones[] = array(
+            'top'    => round($box[1] / $h * 100, 2),
+            'height' => round(($box[3] - $box[1] + 1) / $h * 100, 2),
+        );
+        $left    = min($left, $box[0]);
+        $right   = max($right, $box[2]);
+    }
 
     return array(
         'zones' => $zones,
-        'left'  => round($lefts[$mid] / $w * 100, 2),
-        'width' => round(($rights[$mid] - $lefts[$mid]) / $w * 100, 2),
+        'left'  => round($left / $w * 100, 2),
+        'width' => round(($right - $left) / $w * 100, 2),
     );
 }
 
