@@ -62,12 +62,23 @@ $zone_width = is_numeric($zone_width) ? floatval($zone_width) : 78;
     <?php if ($image) : ?>
       <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt'] ?: get_the_title()); ?>">
       <?php foreach ($zones as $i => $zone) : ?>
-        <?php if (empty($zone['zone_url']) && !$debug) { continue; } ?>
+        <?php
+        if (empty($zone['zone_url']) && !$debug) {
+            continue;
+        }
+        $style = 'top: ' . floatval($zone['zone_top']) . '%; height: ' . floatval($zone['zone_height']) . '%;';
+        if (is_numeric($zone['zone_left'])) {
+            $style .= ' left: ' . floatval($zone['zone_left']) . '%;';
+        }
+        if (is_numeric($zone['zone_width'])) {
+            $style .= ' width: ' . floatval($zone['zone_width']) . '%;';
+        }
+        ?>
         <a
           class="lsm-zone"
           href="<?php echo esc_url($zone['zone_url']); ?>"
           <?php if (!empty($zone['zone_label'])) : ?>aria-label="<?php echo esc_attr($zone['zone_label']); ?>" title="<?php echo esc_attr($zone['zone_label']); ?>"<?php endif; ?>
-          style="top: <?php echo floatval($zone['zone_top']); ?>%; height: <?php echo floatval($zone['zone_height']); ?>%;"
+          style="<?php echo $style; ?>"
         ><?php echo $debug ? $i + 1 : ''; ?></a>
       <?php endforeach; ?>
     <?php endif; ?>

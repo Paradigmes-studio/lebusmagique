@@ -31,7 +31,7 @@
             "label": "Détection automatique des zones",
             "name": "lsm_autodetect",
             "type": "true_false",
-            "instructions": "Cocher puis enregistrer la page : les zones cliquables sont recalculées automatiquement d'après les boutons blancs détectés dans l'image. Les liens déjà saisis sont conservés dans l'ordre. La case se décoche toute seule après le calcul.",
+            "instructions": "Cocher puis enregistrer la page : les zones cliquables sont recalculées automatiquement d'après les boutons blancs détectés dans l'image. Les liens déjà saisis sont conservés dans l'ordre, et les zones manuelles (icônes, flèches, avec gauche\/largeur spécifiques) placées en fin de liste sont conservées. La case se décoche toute seule après le calcul.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -123,6 +123,48 @@
             "button_label": "Ajouter une zone",
             "sub_fields": [
                 {
+                    "key": "field_lsm_zone_override_left",
+                    "label": "Gauche (option)",
+                    "name": "zone_left",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "commun",
+                    "prepend": "",
+                    "append": "%",
+                    "min": 0,
+                    "max": 100,
+                    "step": "0.1"
+                },
+                {
+                    "key": "field_lsm_zone_override_width",
+                    "label": "Largeur (option)",
+                    "name": "zone_width",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "commune",
+                    "prepend": "",
+                    "append": "%",
+                    "min": 0,
+                    "max": 100,
+                    "step": "0.1"
+                },
+                {
                     "key": "field_lsm_zone_top",
                     "label": "Position verticale",
                     "name": "zone_top",
@@ -131,7 +173,7 @@
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "15",
+                        "width": "12",
                         "class": "",
                         "id": ""
                     },
@@ -152,7 +194,7 @@
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "15",
+                        "width": "12",
                         "class": "",
                         "id": ""
                     },
@@ -173,12 +215,12 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "40",
+                        "width": "28",
                         "class": "",
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "https:\/\/"
+                    "placeholder": "https://"
                 },
                 {
                     "key": "field_lsm_zone_label",
@@ -189,7 +231,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "30",
+                        "width": "28",
                         "class": "",
                         "id": ""
                     },
@@ -207,7 +249,7 @@
             {
                 "param": "page_template",
                 "operator": "==",
-                "value": "templates\/links-social-media.php"
+                "value": "templates/links-social-media.php"
             }
         ]
     ],

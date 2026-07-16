@@ -143,10 +143,26 @@ function mkwvs_lsm_maybe_autodetect_zones($post_id)
 
     foreach ($result['zones'] as $i => $zone) {
         $rows[] = array(
-            'field_lsm_zone_top'    => $zone['top'],
-            'field_lsm_zone_height' => $zone['height'],
-            'field_lsm_zone_url'    => isset($old[$i]['zone_url']) ? $old[$i]['zone_url'] : '',
-            'field_lsm_zone_label'  => isset($old[$i]['zone_label']) ? $old[$i]['zone_label'] : '',
+            'field_lsm_zone_top'           => $zone['top'],
+            'field_lsm_zone_height'        => $zone['height'],
+            'field_lsm_zone_url'           => isset($old[$i]['zone_url']) ? $old[$i]['zone_url'] : '',
+            'field_lsm_zone_label'         => isset($old[$i]['zone_label']) ? $old[$i]['zone_label'] : '',
+            'field_lsm_zone_override_left' => '',
+            'field_lsm_zone_override_width' => '',
+        );
+    }
+
+    for ($i = count($result['zones']); $i < count($old); $i++) {
+        if (!is_numeric($old[$i]['zone_left'])) {
+            continue;
+        }
+        $rows[] = array(
+            'field_lsm_zone_top'            => $old[$i]['zone_top'],
+            'field_lsm_zone_height'         => $old[$i]['zone_height'],
+            'field_lsm_zone_url'            => $old[$i]['zone_url'],
+            'field_lsm_zone_label'          => $old[$i]['zone_label'],
+            'field_lsm_zone_override_left'  => $old[$i]['zone_left'],
+            'field_lsm_zone_override_width' => $old[$i]['zone_width'],
         );
     }
 
