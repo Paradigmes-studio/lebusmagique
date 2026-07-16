@@ -62,6 +62,7 @@ $zone_width = is_numeric($zone_width) ? floatval($zone_width) : 78;
     <?php if ($image) : ?>
       <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt'] ?: get_the_title()); ?>">
       <?php foreach ($zones as $i => $zone) : ?>
+        <?php if (empty($zone['zone_url']) && !$debug) { continue; } ?>
         <a
           class="lsm-zone"
           href="<?php echo esc_url($zone['zone_url']); ?>"

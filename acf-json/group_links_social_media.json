@@ -27,6 +27,25 @@
             "mime_types": ""
         },
         {
+            "key": "field_lsm_autodetect",
+            "label": "Détection automatique des zones",
+            "name": "lsm_autodetect",
+            "type": "true_false",
+            "instructions": "Cocher puis enregistrer la page : les zones cliquables sont recalculées automatiquement d'après les boutons blancs détectés dans l'image. Les liens déjà saisis sont conservés dans l'ordre. La case se décoche toute seule après le calcul.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Recalculer les zones à partir de l'image",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non"
+        },
+        {
             "key": "field_lsm_bg_color",
             "label": "Couleur de fond",
             "name": "lsm_bg_color",
@@ -151,7 +170,7 @@
                     "name": "zone_url",
                     "type": "url",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "40",
