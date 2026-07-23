@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
  * - slug   : terme de la taxonomie facebook_category (classement back-office)
  * - page   : slug de la page enfant de /programmation/
  * - color  : couleur d'accent (anneau pastille + bandeau de la page catégorie)
- * - icon   : emoji affiché dans la pastille
+ * - icon   : fichier image (dans /images/) affiché dans la pastille
  * - intro  : chapô éditorial de la page catégorie
  * - links  : liens curatés vers les pages événements dédiées [label, url]
  */
@@ -25,7 +25,7 @@ function mkwvs_event_categories(): array
             'page'   => 'prog-conviviale',
             'color'  => '#ffd202',
             'hublot' => 'yellow',
-            'icon'   => '🎉',
+            'icon'   => 'hublot-icon-prog-conviviale.png',
             'intro' => "Blind test, karaoké, jeux de société, apéros, cafés des langues : les rendez-vous chaleureux pour se retrouver à bord et passer un bon moment ensemble.",
             'links' => [
                 ['Le blind test', '/evenements/blind-test-lille/', "Forme ton équipe et réserve vite ta table pour notre blind-test mensuel !"],
@@ -38,7 +38,7 @@ function mkwvs_event_categories(): array
             'page'   => 'bien-etre',
             'color'  => '#e6534e',
             'hublot' => 'red',
-            'icon'   => '🧘',
+            'icon'   => 'hublot-icon-bien-etre.png',
             'intro' => "Yoga, sophrologie, réflexologie, ateliers santé au naturel : des parenthèses douces pour prendre soin de soi au fil de l'eau.",
             'links' => [],
         ],
@@ -47,7 +47,7 @@ function mkwvs_event_categories(): array
             'page'   => 'engagee-inclusive',
             'color'  => '#9bb909',
             'hublot' => 'green',
-            'icon'   => '✊',
+            'icon'   => 'hublot-icon-engagee-inclusive.png',
             'intro' => "Drag shows, conférences gesticulées, cafés philo, projections, fresques : une programmation qui prend position et inclut toustes.",
             'links' => [
                 ['Les scènes ouvertes', '/evenements/scene-ouverte-lille/', "Un moment doux et sans pression pour se retrouver et vibrer ensemble."],
@@ -60,7 +60,7 @@ function mkwvs_event_categories(): array
             'page'   => 'culturels-festifs',
             'color'  => '#36a585',
             'hublot' => 'blue',
-            'icon'   => '🎭',
+            'icon'   => 'hublot-icon-culturels-festifs.png',
             'intro' => "Concerts, spectacles, impro, stand-up, soirées DJ : la culture vivante et la fête sur la péniche.",
             'links' => [],
         ],
@@ -69,7 +69,7 @@ function mkwvs_event_categories(): array
             'page'   => 'ateliers-artistiques',
             'color'  => '#ec6620',
             'hublot' => 'orange',
-            'icon'   => '🎨',
+            'icon'   => 'hublot-icon-ateliers-artistiques.png',
             'intro' => "Écriture, linogravure, punch needle, illustration, modelage : des ateliers pour créer de ses mains, animés par des intervenant·es locaux.",
             'links' => [
                 ['Tous les ateliers', '/evenements/ateliers-lille/', "Écriture, linogravure, modelage, encre de Chine : créez de vos mains !"],
@@ -80,7 +80,7 @@ function mkwvs_event_categories(): array
             'page'   => 'jams-scenes-ouvertes',
             'color'  => '#3f6fd1',
             'hublot' => 'navy',
-            'icon'   => '🎸',
+            'icon'   => 'hublot-icon-jams-scenes-ouvertes.png',
             'intro' => "Jam sessions, scènes ouvertes, ukulélé, poésie : le micro et la scène sont à vous, que vous montiez sur le pont ou veniez écouter.",
             'links' => [
                 ['La jam session', '/evenements/jam-session-lille/', "Venez jouer, chanter et bouger sur la scène ouverte !"],
