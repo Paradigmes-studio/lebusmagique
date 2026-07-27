@@ -307,6 +307,37 @@ function mkwvs_upcoming_events(array $opts = [], int $limit = 3): array
 }
 
 /**
+ * Timestamp de début d'un événement Facebook depuis ses meta de date locale.
+ * Le meta start_ts n'est pas fiable : selon l'install, il encode l'heure
+ * locale comme si elle était UTC (décalage de 2h constaté en prod).
+ */
+function mkwvs_event_start_timestamp(int $post_id): int
+{
+    $date     = get_post_meta($post_id, 'event_start_date', true);
+    $hour     = get_post_meta($post_id, 'event_start_hour', true);
+    $minute   = get_post_meta($post_id, 'event_start_minute', true);
+    $meridian = get_post_meta($post_id, 'event_start_meridian', true);
+
+    $tz = wp_timezone();
+
+    if ($date && $hour !== '') {
+        $str = sprintf('%s %d:%02d %s', $date, (int) $hour, (int) $minute, strtolower((string) $meridian));
+        $dt = DateTime::createFromFormat('Y-m-d g:i a', $str, $tz);
+        if ($dt instanceof DateTime) {
+            return $dt->getTimestamp();
+        }
+    }
+    if ($date) {
+        $dt = DateTime::createFromFormat('Y-m-d', $date, $tz);
+        if ($dt instanceof DateTime) {
+            return $dt->setTime(0, 0)->getTimestamp();
+        }
+    }
+
+    return 0;
+}
+
+/**
  * Libellé de date FR d'un événement Facebook à partir de ses meta.
  * Ex. "Jeudi 25 juin · 20h30".
  */
