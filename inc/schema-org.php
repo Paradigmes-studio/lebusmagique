@@ -135,18 +135,17 @@ function mkwvs_schema_event_occurrence(array $events): array
     if (empty($events) || !$events[0] instanceof WP_Post) {
         return [];
     }
-    $start_ts = (int) get_post_meta($events[0]->ID, 'start_ts', true);
+    $start_ts = mkwvs_event_start_timestamp($events[0]->ID);
+    if (!$start_ts) {
+        $start_ts = (int) get_post_meta($events[0]->ID, 'start_ts', true);
+    }
     if (!$start_ts) {
         return [];
-    }
-    $end_ts = (int) get_post_meta($events[0]->ID, 'end_ts', true);
-    if ($end_ts <= $start_ts) {
-        $end_ts = $start_ts + 3 * HOUR_IN_SECONDS;
     }
 
     return [
         'startDate' => wp_date('Y-m-d\TH:i:sP', $start_ts),
-        'endDate' => wp_date('Y-m-d\TH:i:sP', $end_ts),
+        'endDate' => wp_date('Y-m-d\TH:i:sP', $start_ts + 3 * HOUR_IN_SECONDS),
     ];
 }
 
