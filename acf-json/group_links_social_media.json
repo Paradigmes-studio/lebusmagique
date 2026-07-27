@@ -1,0 +1,268 @@
+{
+    "key": "group_links_social_media",
+    "title": "Links Social Media",
+    "fields": [
+        {
+            "key": "field_lsm_image",
+            "label": "Image",
+            "name": "lsm_image",
+            "type": "image",
+            "instructions": "Image affichée en pleine largeur (version mobile). Les zones cliquables sont positionnées par-dessus en % de sa hauteur.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_lsm_autodetect",
+            "label": "Détection automatique des zones",
+            "name": "lsm_autodetect",
+            "type": "true_false",
+            "instructions": "Cocher puis enregistrer la page : les zones cliquables sont recalculées automatiquement d'après les boutons blancs détectés dans l'image. Les liens déjà saisis sont conservés dans l'ordre, et les zones manuelles (icônes, flèches, avec gauche/largeur spécifiques) placées en fin de liste sont conservées. La case se décoche toute seule après le calcul.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Recalculer les zones à partir de l'image",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Oui",
+            "ui_off_text": "Non"
+        },
+        {
+            "key": "field_lsm_bg_color",
+            "label": "Couleur de fond",
+            "name": "lsm_bg_color",
+            "type": "color_picker",
+            "instructions": "Couleur affichée autour de l'image sur grand écran.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#ffd41f",
+            "enable_opacity": 0,
+            "return_format": "string"
+        },
+        {
+            "key": "field_lsm_zone_left",
+            "label": "Marge gauche des zones",
+            "name": "lsm_zone_left",
+            "type": "number",
+            "instructions": "Position horizontale commune à toutes les zones, en % de la largeur de l'image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 11,
+            "placeholder": "",
+            "prepend": "",
+            "append": "%",
+            "min": 0,
+            "max": 100,
+            "step": "0.1"
+        },
+        {
+            "key": "field_lsm_zone_width",
+            "label": "Largeur des zones",
+            "name": "lsm_zone_width",
+            "type": "number",
+            "instructions": "Largeur commune à toutes les zones, en % de la largeur de l'image.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 78,
+            "placeholder": "",
+            "prepend": "",
+            "append": "%",
+            "min": 0,
+            "max": 100,
+            "step": "0.1"
+        },
+        {
+            "key": "field_lsm_zones",
+            "label": "Zones cliquables",
+            "name": "lsm_zones",
+            "type": "repeater",
+            "instructions": "Une zone par bouton de l'image. Position et hauteur en % de la hauteur de l'image. Ajouter ?debug=1 à l'URL de la page pour visualiser les zones et ajuster les valeurs.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Ajouter une zone",
+            "sub_fields": [
+                {
+                    "key": "field_lsm_zone_override_left",
+                    "label": "Gauche (option)",
+                    "name": "zone_left",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "commun",
+                    "prepend": "",
+                    "append": "%",
+                    "min": 0,
+                    "max": 100,
+                    "step": "0.1"
+                },
+                {
+                    "key": "field_lsm_zone_override_width",
+                    "label": "Largeur (option)",
+                    "name": "zone_width",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "commune",
+                    "prepend": "",
+                    "append": "%",
+                    "min": 0,
+                    "max": 100,
+                    "step": "0.1"
+                },
+                {
+                    "key": "field_lsm_zone_top",
+                    "label": "Position verticale",
+                    "name": "zone_top",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "12",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "%",
+                    "min": 0,
+                    "max": 100,
+                    "step": "0.1"
+                },
+                {
+                    "key": "field_lsm_zone_height",
+                    "label": "Hauteur",
+                    "name": "zone_height",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "12",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 4,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "%",
+                    "min": 0,
+                    "max": 100,
+                    "step": "0.1"
+                },
+                {
+                    "key": "field_lsm_zone_url",
+                    "label": "Lien",
+                    "name": "zone_url",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "28",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "https://... ou /page/",
+                    "default_value": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_lsm_zone_label",
+                    "label": "Libellé",
+                    "name": "zone_label",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "28",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Ex : Soirée Libre - mercredi 05 août",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates/links-social-media.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Page hors template avec image et zones cliquables",
+    "modified": 1784160000
+}

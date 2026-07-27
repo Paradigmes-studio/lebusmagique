@@ -126,6 +126,31 @@ function mkwvs_schema_build_base(array $data, string|array $type = 'Organization
 }
 
 /**
+ * Dates concrètes (startDate/endDate ISO 8601) du prochain événement d'une liste
+ * de facebook_events à venir. Google exige startDate sur Event : sans occurrence
+ * datée, ne pas émettre de schema Event.
+ */
+function mkwvs_schema_event_occurrence(array $events): array
+{
+    if (empty($events) || !$events[0] instanceof WP_Post) {
+        return [];
+    }
+    $start_ts = (int) get_post_meta($events[0]->ID, 'start_ts', true);
+    if (!$start_ts) {
+        return [];
+    }
+    $end_ts = (int) get_post_meta($events[0]->ID, 'end_ts', true);
+    if ($end_ts <= $start_ts) {
+        $end_ts = $start_ts + 3 * HOUR_IN_SECONDS;
+    }
+
+    return [
+        'startDate' => wp_date('Y-m-d\TH:i:sP', $start_ts),
+        'endDate' => wp_date('Y-m-d\TH:i:sP', $end_ts),
+    ];
+}
+
+/**
  * Schema.org global : injecté dans <head> sur toutes les pages.
  * - Organization sur toutes les pages
  * - LocalBusiness + openingHours sur la home (signal fort d'entité locale)

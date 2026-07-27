@@ -31,45 +31,58 @@ $f = $mkwvs_formats[$mkwvs_slug] ?? null;
     $thumbnail_id = get_post_thumbnail_id();
     $event_image = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
 
-    $event_schema = array_filter([
-        '@context' => 'https://schema.org',
-        '@type' => 'Event',
-        'name' => $f['schema_name'],
-        'description' => $f['schema_desc'],
-        'url' => $page_url,
-        'image' => $event_image ?: null,
-        'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
-        'eventStatus' => 'https://schema.org/EventScheduled',
-        'eventSchedule' => [
-            '@type' => 'Schedule',
-            'repeatFrequency' => 'P1M',
-            'startTime' => $f['start'],
-            'scheduleTimezone' => 'Europe/Paris',
-        ],
-        'location' => [
-            '@type' => 'Place',
-            'name' => 'Le Bus Magique',
-            'address' => [
-                '@type' => 'PostalAddress',
-                'streetAddress' => 'Avenue Cuvier',
-                'addressLocality' => 'Lille',
-                'postalCode' => '59800',
-                'addressCountry' => 'FR',
-            ],
-        ],
-        'organizer' => [
-            '@type' => 'Organization',
-            'name' => 'Le Bus Magique',
-            'url' => home_url('/'),
-        ],
-        'offers' => [
-            '@type' => 'Offer',
-            'price' => '0',
-            'priceCurrency' => 'EUR',
-            'availability' => 'https://schema.org/InStock',
+    $mkwvs_next = mkwvs_upcoming_events(['keywords' => $f['keywords']], 3);
+    $event_dates = mkwvs_schema_event_occurrence($mkwvs_next);
+
+    $event_schema = null;
+    if (!empty($event_dates)) {
+        $event_schema = array_filter([
+            '@context' => 'https://schema.org',
+            '@type' => 'Event',
+            'name' => $f['schema_name'],
+            'description' => $f['schema_desc'],
             'url' => $page_url,
-        ],
-    ]);
+            'image' => $event_image ?: mkwvs_og_get_image_url(),
+            'startDate' => $event_dates['startDate'],
+            'endDate' => $event_dates['endDate'],
+            'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+            'eventStatus' => 'https://schema.org/EventScheduled',
+            'eventSchedule' => [
+                '@type' => 'Schedule',
+                'repeatFrequency' => 'P1M',
+                'startTime' => $f['start'],
+                'scheduleTimezone' => 'Europe/Paris',
+            ],
+            'location' => [
+                '@type' => 'Place',
+                'name' => 'Le Bus Magique',
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => 'Avenue Cuvier',
+                    'addressLocality' => 'Lille',
+                    'postalCode' => '59800',
+                    'addressCountry' => 'FR',
+                ],
+            ],
+            'organizer' => [
+                '@type' => 'Organization',
+                'name' => 'Le Bus Magique',
+                'url' => home_url('/'),
+            ],
+            'performer' => [
+                '@type' => 'PerformingGroup',
+                'name' => $f['performer'] ?? 'Le Bus Magique',
+            ],
+            'offers' => [
+                '@type' => 'Offer',
+                'price' => '0',
+                'priceCurrency' => 'EUR',
+                'availability' => 'https://schema.org/InStock',
+                'validFrom' => get_the_date('c'),
+                'url' => $page_url,
+            ],
+        ]);
+    }
 
     $faq_schema = [
         '@context' => 'https://schema.org',
@@ -83,7 +96,9 @@ $f = $mkwvs_formats[$mkwvs_slug] ?? null;
         }, $f['faq']),
     ];
     ?>
+    <?php if ($event_schema !== null) : ?>
     <script type="application/ld+json"><?php echo wp_json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
+    <?php endif; ?>
     <script type="application/ld+json"><?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
 
     <div class="bm-event">
@@ -140,7 +155,6 @@ $f = $mkwvs_formats[$mkwvs_slug] ?? null;
 
       <div class="bm-cta">
         <h2>Prochaines dates à Lille</h2>
-        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => $f['keywords']], 3); ?>
         <?php if ($mkwvs_next) : ?>
           <ul class="bm-next">
             <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>

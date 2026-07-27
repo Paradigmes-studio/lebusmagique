@@ -18,13 +18,18 @@
     $thumbnail_id = get_post_thumbnail_id();
     $event_image = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
 
+    $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['blind test', 'blind-test', 'blindtest']], 3);
+    $event_dates = mkwvs_schema_event_occurrence($mkwvs_next);
+
     $event_schema = [
         '@context' => 'https://schema.org',
         '@type' => 'Event',
         'name' => 'Blind test au Bus Magique à Lille',
         'description' => 'Blind test musical mensuel sur une péniche à Lille, animé par Tof. En équipage, à 19h30, entrée gratuite, réservation conseillée.',
         'url' => $page_url,
-        'image' => $event_image ?: null,
+        'image' => $event_image ?: mkwvs_og_get_image_url(),
+        'startDate' => $event_dates['startDate'] ?? null,
+        'endDate' => $event_dates['endDate'] ?? null,
         'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
         'eventStatus' => 'https://schema.org/EventScheduled',
         'eventSchedule' => [
@@ -50,15 +55,20 @@
             'name' => 'Le Bus Magique',
             'url' => home_url('/'),
         ],
+        'performer' => [
+            '@type' => 'PerformingGroup',
+            'name' => 'Le Bus Magique',
+        ],
         'offers' => [
             '@type' => 'Offer',
             'price' => '0',
             'priceCurrency' => 'EUR',
             'availability' => 'https://schema.org/InStock',
+            'validFrom' => get_the_date('c'),
             'url' => 'https://uniiti.com/shop/le-bus-magique',
         ],
     ];
-    $event_schema = array_filter($event_schema);
+    $event_schema = empty($event_dates) ? null : array_filter($event_schema);
 
     $faq_schema = [
         '@context' => 'https://schema.org',
@@ -107,7 +117,9 @@
         ],
     ];
     ?>
+    <?php if ($event_schema !== null) : ?>
     <script type="application/ld+json"><?php echo wp_json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
+    <?php endif; ?>
     <script type="application/ld+json"><?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
 
     <div class="bm-event">
@@ -191,7 +203,6 @@
       <!-- CTA -->
       <div class="bm-cta">
         <h2>Prochaines dates de blind test à Lille</h2>
-        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['blind test', 'blind-test', 'blindtest']], 3); ?>
         <?php if ($mkwvs_next) : ?>
           <ul class="bm-next">
             <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
