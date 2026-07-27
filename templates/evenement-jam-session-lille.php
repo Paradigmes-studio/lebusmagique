@@ -14,13 +14,18 @@
     $thumbnail_id = get_post_thumbnail_id();
     $event_image = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
 
+    $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['jam']], 3);
+    $event_dates = mkwvs_schema_event_occurrence($mkwvs_next);
+
     $event_schema = [
         '@context' => 'https://schema.org',
         '@type' => 'Event',
         'name' => 'Jam session au Bus Magique à Lille',
         'description' => "Jam session ouverte aux musicien·nes de tous niveaux à Lille. Scène libre sur péniche dès 21h, entrée gratuite, bar ouvert. Venez jouer ou écouter.",
         'url' => $page_url,
-        'image' => $event_image ?: null,
+        'image' => $event_image ?: mkwvs_og_get_image_url(),
+        'startDate' => $event_dates['startDate'] ?? null,
+        'endDate' => $event_dates['endDate'] ?? null,
         'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
         'eventStatus' => 'https://schema.org/EventScheduled',
         'eventSchedule' => [
@@ -46,15 +51,20 @@
             'name' => 'Le Bus Magique',
             'url' => home_url('/'),
         ],
+        'performer' => [
+            '@type' => 'PerformingGroup',
+            'name' => 'Le Bus Magique',
+        ],
         'offers' => [
             '@type' => 'Offer',
             'price' => '0',
             'priceCurrency' => 'EUR',
             'availability' => 'https://schema.org/InStock',
+            'validFrom' => get_the_date('c'),
             'url' => $page_url,
         ],
     ];
-    $event_schema = array_filter($event_schema);
+    $event_schema = empty($event_dates) ? null : array_filter($event_schema);
 
     $faq_schema = [
         '@context' => 'https://schema.org',
@@ -103,7 +113,9 @@
         ],
     ];
     ?>
+    <?php if ($event_schema !== null) : ?>
     <script type="application/ld+json"><?php echo wp_json_encode($event_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
+    <?php endif; ?>
     <script type="application/ld+json"><?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
 
     <div class="bm-event">
@@ -207,7 +219,6 @@
       <!-- CTA -->
       <div class="bm-cta">
         <h2>Prochaines jam sessions à Lille</h2>
-        <?php $mkwvs_next = mkwvs_upcoming_events(['keywords' => ['jam']], 3); ?>
         <?php if ($mkwvs_next) : ?>
           <ul class="bm-next">
             <?php foreach ($mkwvs_next as $mkwvs_ev) : ?>
