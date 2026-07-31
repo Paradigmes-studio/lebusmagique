@@ -10,6 +10,10 @@ ini_set('display_errors',FALSE);
  */
 require get_template_directory() . '/inc/globals.php';
 /**
+ * Fleet security hardening (pentest 2026-07-31).
+ */
+require get_template_directory() . '/inc/fleet-security.php';
+/**
  * Utils functions.
  */
 require get_template_directory() . '/inc/utils-functions.php';
