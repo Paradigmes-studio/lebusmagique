@@ -84,6 +84,15 @@ function mkwvs_register_privatisation_statuses(): void
         'label_count'               => _n_noop('Validée par le client <span class="count">(%s)</span>', 'Validées par le client <span class="count">(%s)</span>'),
     ]);
 
+    register_post_status('priv_validated', [
+        'label'                     => 'Validée',
+        'public'                    => false,
+        'internal'                  => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop('Validée <span class="count">(%s)</span>', 'Validées <span class="count">(%s)</span>'),
+    ]);
+
     register_post_status('priv_contact', [
         'label'                     => 'À recontacter',
         'public'                    => false,
@@ -119,6 +128,7 @@ function mkwvs_privatisation_status_dropdown(): void
         'priv_accepted'  => 'Acceptée',
         'priv_refused'   => 'Refusée',
         'priv_confirmed' => 'Validée par le client',
+        'priv_validated' => 'Validée',
         'priv_contact'   => 'À recontacter',
         'priv_declined'  => 'Abandonnée',
     ];
@@ -152,6 +162,7 @@ function mkwvs_privatisation_display_states(array $states, \WP_Post $post): arra
         'priv_accepted'  => 'Acceptée',
         'priv_refused'   => 'Refusée',
         'priv_confirmed' => 'Validée par le client',
+        'priv_validated' => 'Validée',
         'priv_contact'   => 'À recontacter',
         'priv_declined'  => 'Abandonnée',
     ];
@@ -200,10 +211,20 @@ function mkwvs_priv_render_action_metabox(\WP_Post $post): void
             'priv_accepted'  => 'Acceptée',
             'priv_refused'   => 'Refusée',
             'priv_confirmed' => 'Validée par le client',
+            'priv_validated' => 'Validée',
             'priv_contact'   => 'À recontacter',
             'priv_declined'  => 'Abandonnée',
         ];
         echo '<p><strong>Statut :</strong> ' . ($statuses[$post->post_status] ?? $post->post_status) . '</p>';
+
+        if (in_array($post->post_status, mkwvs_priv_validatable_statuses(), true)) {
+            $validate_url = wp_nonce_url(
+                admin_url('admin-post.php?action=priv_validate&post_id=' . $post->ID),
+                'priv_validate_' . $post->ID
+            );
+            echo '<p style="margin-bottom:0;"><a href="' . esc_url($validate_url) . '" class="button button-primary">Valider définitivement</a></p>';
+        }
+
         return;
     }
 
@@ -303,6 +324,36 @@ function mkwvs_priv_handle_refuse(): void
     exit;
 }
 
+add_action('admin_post_priv_validate', 'mkwvs_priv_handle_validate');
+
+function mkwvs_priv_validatable_statuses(): array
+{
+    return ['priv_accepted', 'priv_confirmed', 'priv_contact'];
+}
+
+function mkwvs_priv_handle_validate(): void
+{
+    $post_id = (int) ($_GET['post_id'] ?? 0);
+
+    if (!current_user_can('edit_post', $post_id)) {
+        wp_die('Accès refusé');
+    }
+
+    if (!wp_verify_nonce($_GET['_wpnonce'] ?? '', 'priv_validate_' . $post_id)) {
+        wp_die('Nonce invalide');
+    }
+
+    $post = get_post($post_id);
+    if (!$post instanceof WP_Post || $post->post_type !== 'privatisation' || !in_array($post->post_status, mkwvs_priv_validatable_statuses(), true)) {
+        wp_die('Demande invalide');
+    }
+
+    wp_update_post(['ID' => $post_id, 'post_status' => 'priv_validated']);
+
+    wp_redirect(admin_url('post.php?post=' . $post_id . '&action=edit&message=1'));
+    exit;
+}
+
 add_action('pre_get_posts', 'mkwvs_priv_admin_filter_statuses');
 
 function mkwvs_priv_admin_filter_statuses(\WP_Query $query): void
@@ -316,7 +367,7 @@ function mkwvs_priv_admin_filter_statuses(\WP_Query $query): void
     }
 
     if (!$query->get('post_status')) {
-        $query->set('post_status', ['priv_pending', 'priv_accepted', 'priv_refused', 'priv_confirmed', 'priv_contact', 'priv_declined', 'trash']);
+        $query->set('post_status', ['priv_pending', 'priv_accepted', 'priv_refused', 'priv_confirmed', 'priv_validated', 'priv_contact', 'priv_declined', 'trash']);
     }
 }
 
@@ -1144,6 +1195,7 @@ function mkwvs_priv_admin_column_content(string $column, int $post_id): void
                 'priv_accepted'  => '<span style="color:green;">Acceptée</span>',
                 'priv_refused'   => '<span style="color:red;">Refusée</span>',
                 'priv_confirmed' => '<span style="color:#2e7d32;font-weight:600;">Validée par le client</span>',
+                'priv_validated' => '<span style="display:inline-block;padding:2px 8px;border-radius:3px;background:#1e6b1e;color:#fff;font-weight:600;">Validée</span>',
                 'priv_contact'   => '<span style="color:#2271b1;">À recontacter</span>',
                 'priv_declined'  => '<span style="color:#888;">Abandonnée</span>',
             ];
