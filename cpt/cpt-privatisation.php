@@ -85,12 +85,12 @@ function mkwvs_register_privatisation_statuses(): void
     ]);
 
     register_post_status('priv_validated', [
-        'label'                     => '👍 Validée',
+        'label'                     => 'Validée',
         'public'                    => false,
         'internal'                  => true,
         'show_in_admin_all_list'    => true,
         'show_in_admin_status_list' => true,
-        'label_count'               => _n_noop('👍 Validée <span class="count">(%s)</span>', '👍 Validées <span class="count">(%s)</span>'),
+        'label_count'               => _n_noop('Validée <span class="count">(%s)</span>', 'Validées <span class="count">(%s)</span>'),
     ]);
 
     register_post_status('priv_contact', [
@@ -128,7 +128,7 @@ function mkwvs_privatisation_status_dropdown(): void
         'priv_accepted'  => 'Acceptée',
         'priv_refused'   => 'Refusée',
         'priv_confirmed' => 'Validée par le client',
-        'priv_validated' => '👍 Validée',
+        'priv_validated' => 'Validée',
         'priv_contact'   => 'À recontacter',
         'priv_declined'  => 'Abandonnée',
     ];
@@ -162,7 +162,7 @@ function mkwvs_privatisation_display_states(array $states, \WP_Post $post): arra
         'priv_accepted'  => 'Acceptée',
         'priv_refused'   => 'Refusée',
         'priv_confirmed' => 'Validée par le client',
-        'priv_validated' => '👍 Validée',
+        'priv_validated' => 'Validée',
         'priv_contact'   => 'À recontacter',
         'priv_declined'  => 'Abandonnée',
     ];
@@ -211,7 +211,7 @@ function mkwvs_priv_render_action_metabox(\WP_Post $post): void
             'priv_accepted'  => 'Acceptée',
             'priv_refused'   => 'Refusée',
             'priv_confirmed' => 'Validée par le client',
-            'priv_validated' => '👍 Validée',
+            'priv_validated' => 'Validée',
             'priv_contact'   => 'À recontacter',
             'priv_declined'  => 'Abandonnée',
         ];
@@ -222,7 +222,7 @@ function mkwvs_priv_render_action_metabox(\WP_Post $post): void
                 admin_url('admin-post.php?action=priv_validate&post_id=' . $post->ID),
                 'priv_validate_' . $post->ID
             );
-            echo '<p style="margin-bottom:0;"><a href="' . esc_url($validate_url) . '" class="button button-primary">👍 Valider définitivement</a></p>';
+            echo '<p style="margin-bottom:0;"><a href="' . esc_url($validate_url) . '" class="button button-primary">Valider définitivement</a></p>';
         }
 
         return;
@@ -1195,7 +1195,7 @@ function mkwvs_priv_admin_column_content(string $column, int $post_id): void
                 'priv_accepted'  => '<span style="color:green;">Acceptée</span>',
                 'priv_refused'   => '<span style="color:red;">Refusée</span>',
                 'priv_confirmed' => '<span style="color:#2e7d32;font-weight:600;">Validée par le client</span>',
-                'priv_validated' => '<span style="color:#1e6b1e;font-weight:700;">👍 Validée</span>',
+                'priv_validated' => '<span style="display:inline-block;padding:2px 8px;border-radius:3px;background:#1e6b1e;color:#fff;font-weight:600;">Validée</span>',
                 'priv_contact'   => '<span style="color:#2271b1;">À recontacter</span>',
                 'priv_declined'  => '<span style="color:#888;">Abandonnée</span>',
             ];
