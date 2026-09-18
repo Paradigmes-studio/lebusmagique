@@ -24,12 +24,17 @@
     return Math.round((toDate(to) - toDate(from)) / 86400000);
   }
 
+  function toKey(date) {
+    return date.getFullYear() + '-' +
+      String(date.getMonth() + 1).padStart(2, '0') + '-' +
+      String(date.getDate()).padStart(2, '0');
+  }
+
   function everyNightFree(from, to) {
     var cursor = toDate(from);
     var last = toDate(to);
     while (cursor < last) {
-      var key = cursor.toISOString().slice(0, 10);
-      if (!available[key]) {
+      if (!available[toKey(cursor)]) {
         return false;
       }
       cursor.setDate(cursor.getDate() + 1);
