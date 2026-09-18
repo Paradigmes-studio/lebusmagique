@@ -28,9 +28,11 @@ function mkwvs_migrate_peniche_page(): void
         return;
     }
 
+    $hero_id = mkwvs_peniche_photo_id('peniche-exterieur.jpg', "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille");
+
     $photos = [
-        'photo' => mkwvs_peniche_photo_id('peniche-exterieur.jpg', "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille"),
         'photo_timonerie' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
+        'photo_studio' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
     ];
 
     $page_id = wp_insert_post([
@@ -47,8 +49,8 @@ function mkwvs_migrate_peniche_page(): void
 
     update_post_meta($page_id, '_wp_page_template', MKWVS_PENICHE_PAGE_TEMPLATE);
 
-    if ($photos['photo']) {
-        set_post_thumbnail($page_id, $photos['photo']);
+    if ($hero_id) {
+        set_post_thumbnail($page_id, $hero_id);
     }
 
     $icon_id = mkwvs_peniche_hublot_icon_id();
@@ -137,7 +139,7 @@ function mkwvs_peniche_page_content(array $photos): string
       <p>De février 2019 à octobre 2020, des chantiers participatifs l'ont transformée en lieu de vie. C'est aujourd'hui la péniche associative de Lille, ouverte à toutes et à tous. <a href="/notre-histoire/">Lire l'histoire du bateau</a>.</p>
     </div>
     <figure class="peniche__split-media">
-      <img src="{{photo}}" alt="La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille" loading="lazy">
+      <img src="{{photo_timonerie}}" alt="Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal" loading="lazy">
     </figure>
   </div>
 
@@ -183,7 +185,7 @@ function mkwvs_peniche_page_content(array $photos): string
       <p><a href="/dormir-sur-une-peniche-a-lille/">Voir les disponibilités du gîte</a>.</p>
     </div>
     <figure class="peniche__split-media">
-      <img src="{{photo_timonerie}}" alt="Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal" loading="lazy">
+      <img src="{{photo_studio}}" alt="Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit" loading="lazy">
     </figure>
   </div>
 
