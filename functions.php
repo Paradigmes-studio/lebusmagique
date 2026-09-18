@@ -41,6 +41,7 @@ require get_template_directory() . '/inc/og-images.php';
 require get_template_directory() . '/inc/facebook-events-categories.php';
 require get_template_directory() . '/inc/facebook-events-archive.php';
 require get_template_directory() . '/inc/links-social-media-functions.php';
+require get_template_directory() . '/inc/analytics.php';
 
 // Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
 if (defined('WPMS_ON') && WPMS_ON) {
