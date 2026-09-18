@@ -241,6 +241,7 @@ function mkwvs_schema_inject_page_specific(): void
         $schema['isAccessibleForFree'] = false;
         $schema['publicAccess'] = true;
         $schema['touristType'] = ['Familles', 'Groupes', 'Visiteurs de Lille'];
+        $schema['hasMap'] = 'https://www.google.com/maps/search/?api=1&query=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille';
         if (!empty($hours)) {
             $schema['openingHoursSpecification'] = $hours;
         }

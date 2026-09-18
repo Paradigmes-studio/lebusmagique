@@ -31,13 +31,34 @@ function mkwvs_migrate_peniche_page(): void
     $hero_id = mkwvs_peniche_photo_id('peniche-exterieur.jpg', "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille");
 
     $photos = [
-        'photo_timonerie' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
-        'photo_studio' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
-        'img_resto' => mkwvs_peniche_theme_image_id('images/hp1-restauration.png', "Légumes de saison pour la cuisine du Bus Magique"),
-        'img_events' => mkwvs_peniche_theme_image_id('images/hp3-location.png', "Soirée à bord de la péniche, verres levés entre amis"),
-        'img_cowork' => mkwvs_peniche_theme_image_id('images/hp2-coworking.png', "Deux personnes qui travaillent à bord de la péniche"),
-        'img_privatisation' => mkwvs_peniche_theme_image_id('images/peniche-privatisation.jpg', "La péniche privatisée, tentes dressées sur le pont un jour d'événement"),
-        'img_map' => mkwvs_peniche_theme_image_id('images/hp-map@2x.jpg', "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille"),
+        'photo_timonerie' => [
+            'id' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
+            'alt' => "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal",
+        ],
+        'photo_studio' => [
+            'id' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
+            'alt' => "Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit",
+        ],
+        'img_resto' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-restauration.jpg', "Le bar et le restaurant de la péniche du Bus Magique à Lille"),
+            'alt' => "Le bar et le restaurant de la péniche du Bus Magique à Lille",
+        ],
+        'img_events' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-programmation.jpg', "Concerts et soirées à bord de la péniche à Lille"),
+            'alt' => "Concerts et soirées à bord de la péniche à Lille",
+        ],
+        'img_cowork' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-coworking.jpg', "Espace de coworking à bord de la péniche à Lille"),
+            'alt' => "Espace de coworking à bord de la péniche à Lille",
+        ],
+        'img_privatisation' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-privatisation.jpg', "Location de la péniche pour un événement privé à Lille"),
+            'alt' => "Location de la péniche pour un événement privé à Lille",
+        ],
+        'img_map' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-plan-acces.jpg', "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille"),
+            'alt' => "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille",
+        ],
     ];
 
     $page_id = wp_insert_post([
@@ -63,11 +84,11 @@ function mkwvs_migrate_peniche_page(): void
         update_field('page_head_hublot_icon', $icon_id, $page_id);
     }
 
-    update_post_meta($page_id, '_seopress_titles_title', 'Péniche à Lille : bar, restaurant et tiers-lieu | Le Bus Magique');
+    update_post_meta($page_id, '_seopress_titles_title', 'Péniche à Lille : bar, restaurant, concerts | Le Bus Magique');
     update_post_meta(
         $page_id,
         '_seopress_titles_desc',
-        "Le Bus Magique est une péniche amarrée à l'entrée de la Citadelle de Lille : bar, restauration, concerts, coworking et privatisation à bord d'un bateau de 1954."
+        "Bar, restaurant, concerts et coworking à bord d'une péniche de 1954 amarrée à l'entrée de la Citadelle de Lille. Accès, horaires et location."
     );
 
     flush_rewrite_rules(false);
@@ -191,7 +212,7 @@ function mkwvs_peniche_page_content(array $photos): string
 <!-- wp:html -->
 <div class="peniche">
 
-  <p class="peniche__chapo">Le Bus Magique est une péniche amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, le long de la Deûle. Un bateau de 1954 devenu un tiers-lieu associatif : on y déjeune, on y boit un verre, on y travaille, on y assiste à des concerts et à des ateliers, et on peut même y passer la nuit.</p>
+  <p class="peniche__chapo">Le Bus Magique est une péniche amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, le long de la Deûle. Un bateau de 1954 devenu un tiers-lieu associatif : un bar et un restaurant flottants, des concerts et des ateliers, un espace de coworking, et même une chambre pour passer la nuit à bord.</p>
 
   <div class="peniche__split">
     <div class="peniche__split-text">
@@ -200,7 +221,7 @@ function mkwvs_peniche_page_content(array $photos): string
       <p>De février 2019 à octobre 2020, des chantiers participatifs l'ont transformée en lieu de vie. C'est aujourd'hui la péniche associative de Lille, ouverte à toutes et à tous. <a href="/notre-histoire/" data-umami-event="peniche-activite" data-umami-event-cible="histoire">Lire l'histoire du bateau</a>.</p>
     </div>
     <figure class="peniche__split-media">
-      <img src="{{photo_timonerie}}" alt="Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal" loading="lazy">
+      {{photo_timonerie}}
     </figure>
   </div>
 
@@ -208,17 +229,17 @@ function mkwvs_peniche_page_content(array $photos): string
   <ul class="peniche__usages">
     <li class="peniche__usage">
       <a class="peniche__usage-media" href="/restauration/" data-umami-event="peniche-activite" data-umami-event-cible="restauration">
-        <img src="{{img_resto}}" alt="Légumes de saison pour la cuisine du Bus Magique" loading="lazy">
+        {{img_resto}}
       </a>
       <div class="peniche__usage-body">
         <strong>Manger et boire un verre</strong>
-        <p>Plats du jour les jeudi et vendredi midi, brunch le dimanche, bières locales et boissons chaudes. Cuisine maison, bio et de saison.</p>
+        <p>Le bar et le restaurant de la péniche servent des plats du jour les jeudi et vendredi midi, et un brunch le dimanche. Bières locales, vins et boissons chaudes, cuisine maison, bio et de saison.</p>
         <a class="cta cta--jungle-green" href="/restauration/" data-umami-event="peniche-activite" data-umami-event-cible="restauration">Voir la carte</a>
       </div>
     </li>
     <li class="peniche__usage">
       <a class="peniche__usage-media" href="/programmation/" data-umami-event="peniche-activite" data-umami-event-cible="programmation">
-        <img src="{{img_events}}" alt="Soirée à bord de la péniche, verres levés entre amis" loading="lazy">
+        {{img_events}}
       </a>
       <div class="peniche__usage-body">
         <strong>Sortir et assister aux événements</strong>
@@ -228,7 +249,7 @@ function mkwvs_peniche_page_content(array $photos): string
     </li>
     <li class="peniche__usage">
       <a class="peniche__usage-media" href="/coworking/" data-umami-event="peniche-activite" data-umami-event-cible="coworking">
-        <img src="{{img_cowork}}" alt="Deux personnes qui travaillent à bord de la péniche" loading="lazy">
+        {{img_cowork}}
       </a>
       <div class="peniche__usage-body">
         <strong>Travailler au bord de l'eau</strong>
@@ -238,11 +259,11 @@ function mkwvs_peniche_page_content(array $photos): string
     </li>
     <li class="peniche__usage">
       <a class="peniche__usage-media" href="/location/" data-umami-event="peniche-activite" data-umami-event-cible="location">
-        <img src="{{img_privatisation}}" alt="La péniche privatisée, tentes dressées sur le pont un jour d'événement" loading="lazy">
+        {{img_privatisation}}
       </a>
       <div class="peniche__usage-body">
         <strong>Privatiser le bateau</strong>
-        <p>Anniversaire, séminaire, soirée d'entreprise ou mariage : 60 personnes assises en salle, 100 en cocktail, plus une terrasse sur le pont.</p>
+        <p>Anniversaire, séminaire, soirée d'entreprise ou mariage : la location de la péniche accueille 60 personnes assises en salle, 100 en cocktail, plus une terrasse sur le pont.</p>
         <a class="cta cta--green" href="/location/" data-umami-event="peniche-activite" data-umami-event-cible="location">Demander un devis</a>
       </div>
     </li>
@@ -251,6 +272,7 @@ function mkwvs_peniche_page_content(array $photos): string
   <div class="peniche__access">
     <div class="peniche__access-text">
       <h2>Où est amarrée la péniche</h2>
+      <p>La péniche est amarrée au cœur de Lille, le long de la Deûle, juste à l'entrée de la Citadelle.</p>
       <ul>
         <li><strong>Adresse :</strong> péniche Le Bus Magique, avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle</li>
         <li><strong>Métro :</strong> station Rihour</li>
@@ -261,7 +283,7 @@ function mkwvs_peniche_page_content(array $photos): string
       <a class="cta cta--tomato" href="https://www.google.com/maps/dir/?api=1&destination=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille" target="_blank" rel="noopener" data-umami-event="peniche-itineraire">Calculer mon itinéraire</a>
     </div>
     <a class="peniche__access-map" href="https://www.google.com/maps/search/?api=1&query=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille" target="_blank" rel="noopener" data-umami-event="peniche-carte" aria-label="Ouvrir le plan d'accès dans Google Maps">
-      <img src="{{img_map}}" alt="Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille" loading="lazy">
+      {{img_map}}
     </a>
   </div>
 
@@ -272,7 +294,7 @@ function mkwvs_peniche_page_content(array $photos): string
       <p class="peniche__split-cta"><a class="cta cta--tomato" href="/dormir-sur-une-peniche-a-lille/" data-umami-event="hebergement-entree" data-umami-event-source="peniche">Voir les disponibilités</a></p>
     </div>
     <figure class="peniche__split-media">
-      <img src="{{photo_studio}}" alt="Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit" loading="lazy">
+      {{photo_studio}}
     </figure>
   </div>
 
@@ -310,9 +332,17 @@ function mkwvs_peniche_page_content(array $photos): string
 <!-- /wp:html -->
 HTML;
 
-    foreach ($photos as $key => $id) {
-        $url = $id ? wp_get_attachment_image_url($id, 'full') : '';
-        $content = str_replace('{{' . $key . '}}', (string) $url, $content);
+    foreach ($photos as $key => $photo) {
+        $tag = '';
+        if (!empty($photo['id'])) {
+            $tag = wp_get_attachment_image($photo['id'], 'large', false, [
+                'alt' => $photo['alt'],
+                'loading' => 'lazy',
+                'decoding' => 'async',
+                'class' => 'wp-image-' . (int) $photo['id'],
+            ]);
+        }
+        $content = str_replace('{{' . $key . '}}', $tag, $content);
     }
 
     return $content;
