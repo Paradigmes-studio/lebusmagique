@@ -63,6 +63,8 @@ function mkwvs_migrate_hebergement_page(): void
         "Louez le studio du Marinier sur une péniche amarrée à la Citadelle de Lille. Pour 2 à 3 personnes, terrasse et vue sur le canal. Disponibilités en ligne."
     );
 
+    flush_rewrite_rules(false);
+
     update_option('mkwvs_hebergement_page_migrated', 1);
 }
 
