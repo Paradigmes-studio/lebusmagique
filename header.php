@@ -77,7 +77,7 @@
 
         <footer class="footer-location">
           <h2 class="accroche has-text-align-center">Psst ! La péniche a aussi son gîte !</h2>
-          <a href="https://www.airbnb.com/h/lebusmagique" class="cta cta-footer cta-decoration" target="_blank">Je passe la nuit sur la péniche
+          <a href="https://www.airbnb.com/h/lebusmagique" class="cta cta-footer cta-decoration" target="_blank" data-umami-event="hebergement-airbnb" data-umami-event-source="menu">Je passe la nuit sur la péniche
           </a>
         </footer>
       </section>
