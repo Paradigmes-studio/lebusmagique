@@ -15,6 +15,69 @@
   var checkIn = null;
   var checkOut = null;
 
+  var months = Array.prototype.slice.call(root.querySelectorAll('.hebergement__month'));
+  var windowSize = parseInt(root.dataset.window, 10) || 2;
+  var offset = 0;
+  var nav = null;
+  var prevButton = null;
+  var nextButton = null;
+
+  function monthLabel(index) {
+    var title = months[index] && months[index].querySelector('h3');
+    return title ? title.textContent : '';
+  }
+
+  function showWindow() {
+    months.forEach(function (month, index) {
+      month.hidden = index < offset || index >= offset + windowSize;
+    });
+
+    if (!prevButton) {
+      return;
+    }
+
+    prevButton.disabled = offset === 0;
+    nextButton.disabled = offset + windowSize >= months.length;
+    prevButton.setAttribute('aria-label', 'Mois précédents');
+    nextButton.setAttribute('aria-label', 'Mois suivants');
+  }
+
+  function buildNav() {
+    if (months.length <= windowSize) {
+      return;
+    }
+
+    nav = document.createElement('div');
+    nav.className = 'hebergement__nav';
+
+    prevButton = document.createElement('button');
+    prevButton.type = 'button';
+    prevButton.className = 'hebergement__nav-button';
+    prevButton.innerHTML = '&larr;';
+
+    nextButton = document.createElement('button');
+    nextButton.type = 'button';
+    nextButton.className = 'hebergement__nav-button';
+    nextButton.innerHTML = '&rarr;';
+
+    prevButton.addEventListener('click', function () {
+      offset = Math.max(0, offset - 1);
+      showWindow();
+    });
+
+    nextButton.addEventListener('click', function () {
+      offset = Math.min(months.length - windowSize, offset + 1);
+      showWindow();
+    });
+
+    nav.appendChild(prevButton);
+    nav.appendChild(nextButton);
+    root.parentNode.insertBefore(nav, root);
+  }
+
+  buildNav();
+  showWindow();
+
   function toDate(value) {
     var parts = value.split('-');
     return new Date(+parts[0], +parts[1] - 1, +parts[2]);

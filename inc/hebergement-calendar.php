@@ -75,7 +75,7 @@ function mkwvs_hebergement_parse_ical(string $ics): array
     return array_keys($dates);
 }
 
-function mkwvs_hebergement_calendar(int $months = 2): string
+function mkwvs_hebergement_calendar(int $months = 12): string
 {
     global $a_months;
 
@@ -96,7 +96,7 @@ function mkwvs_hebergement_calendar(int $months = 2): string
         $days = (int) $first->format('t');
         $offset = ((int) $first->format('N')) - 1;
 
-        $out .= '<div class="hebergement__month">';
+        $out .= '<div class="hebergement__month" data-month-index="' . $i . '">';
         $out .= '<h3>' . esc_html($a_months[$first->format('m')] . ' ' . $first->format('Y')) . '</h3>';
         $out .= '<div class="hebergement__grid">';
 
@@ -156,6 +156,8 @@ function mkwvs_hebergement_calendar(int $months = 2): string
     return $out;
 }
 
-add_shortcode('hebergement_calendrier', static function (): string {
-    return mkwvs_hebergement_calendar();
+add_shortcode('hebergement_calendrier', static function ($atts): string {
+    $atts = shortcode_atts(['mois' => 12], (array) $atts);
+
+    return mkwvs_hebergement_calendar(max(1, (int) $atts['mois']));
 });

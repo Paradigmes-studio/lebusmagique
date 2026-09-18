@@ -223,3 +223,39 @@ button.hebergement__day.is-selected {
 }
 
 .hebergement__booking { text-align: center; margin-bottom: 28px; }
+
+/* Navigation entre les mois */
+
+.hebergement__month[hidden] { display: none; }
+
+.hebergement__nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.hebergement__nav-button {
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.hebergement__nav-button:hover:not(:disabled) { background: #ffd202; }
+
+.hebergement__nav-button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.hebergement__nav-button:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
