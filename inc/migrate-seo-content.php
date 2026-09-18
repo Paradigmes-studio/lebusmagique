@@ -16,7 +16,7 @@ add_action('init', 'mkwvs_migrate_seo_content', 20);
 
 function mkwvs_migrate_seo_content(): void
 {
-    if ((int) get_option('mkwvs_seo_content_migrated', 0) >= 1) {
+    if ((int) get_option('mkwvs_seo_content_migrated', 0) >= 2) {
         return;
     }
 
@@ -25,7 +25,7 @@ function mkwvs_migrate_seo_content(): void
     mkwvs_migrate_noindex_evenements();
     mkwvs_migrate_trash_default_post();
 
-    update_option('mkwvs_seo_content_migrated', 1);
+    update_option('mkwvs_seo_content_migrated', 2);
 }
 
 function mkwvs_seo_descriptions(): array
@@ -82,16 +82,16 @@ function mkwvs_migrate_dead_staging_link(): void
         return;
     }
 
-    $monter_a_bord = get_page_by_path('monter-a-bord');
-    if (!$monter_a_bord instanceof WP_Post) {
+    if (!get_page_by_path('monter-a-bord') instanceof WP_Post) {
         return;
     }
 
-    $content = str_replace(
-        'https://busmagique.makewaves.fr/monter-a-bord/',
-        (string) get_permalink($monter_a_bord),
-        $page->post_content
-    );
+    $host = (string) wp_parse_url(home_url(), PHP_URL_HOST);
+    if ($host === '') {
+        return;
+    }
+
+    $content = str_replace('busmagique.makewaves.fr', $host, $page->post_content);
 
     if ($content === $page->post_content) {
         return;
