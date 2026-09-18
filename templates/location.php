@@ -26,7 +26,7 @@
           <?php $name = get_sub_field('page_services_item_name'); ?>
           <?php $descriptif = get_sub_field('page_services_item_descriptif'); ?>
         <li class="items">
-          <span class="icon"><img src="<?php echo $icon['url']; ?>"></span>
+          <span class="icon"><img src="<?php echo $icon['url']; ?>" alt="" aria-hidden="true"></span>
           <h2><?php echo $name; ?></h2>
           <p><?php echo $descriptif; ?></p>
         </li>

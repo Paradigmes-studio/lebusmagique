@@ -31,6 +31,8 @@ $mkwvs_cat = mkwvs_event_category_by_page(get_post_field('post_name', get_querie
 
     <div class="bm-cat-body">
 
+      <h1 class="bm-cat-title"><?php echo esc_html($mkwvs_cat['h1'] ?? get_the_title()); ?></h1>
+
       <p class="bm-cat-intro"><?php echo esc_html($mkwvs_cat['intro']); ?></p>
 
       <?php if (!empty($mkwvs_cat['links'])) : ?>

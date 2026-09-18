@@ -61,13 +61,14 @@
           <div class="text-yellow-background top">
             <?php $icon_scroll= get_field('page_head_icon_scroll'); ?>
             <?php $accroche_scroll = get_field('page_head_accroche_scroll'); ?>
-            <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>">
+            <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>" alt="" aria-hidden="true">
             <p class="to_show"><?php echo $accroche_scroll; ?></p>
           </div>
 
         </div>
 
         <div class="text-yellow-background bottom">
+          <h1>Contacter Le Bus Magique</h1>
           <?php $subtitle= get_field('page_head_subtitle'); ?>
           <?php if (!empty($subtitle)) : ?>
             <h2><?php echo $subtitle; ?></h2>

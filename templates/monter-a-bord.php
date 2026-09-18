@@ -37,7 +37,7 @@
 			  <?php $price = get_sub_field('page_prestation_item_price'); ?>
 			  <section class="section-price <?php echo $color; ?>">
 				  <div class="font-icon <?php echo $color; ?>">
-					  <img src="<?php echo $icon['url']; ?>">
+					  <img src="<?php echo $icon['url']; ?>" alt="" aria-hidden="true">
 				  </div>
 				  <p class="text-font category <?php echo $color; ?>"><?php echo $toptitle; ?></p>
 				  <h2 class="activity"><?php echo $title; ?></h2>

@@ -36,7 +36,7 @@
             <!-- Template Carte Miam Miam -->
             <div class="carte--miam">
               <?php $icon_typologie = get_field('carte_typologie_icon', $top_typologie->taxonomy . '_' . $top_typologie->term_id); ?>
-              <img class="icon-miam" src="<?php echo $icon_typologie['url']; ?>">
+              <img class="icon-miam" src="<?php echo $icon_typologie['url']; ?>" alt="" aria-hidden="true">
               <h2><?php echo $top_typologie->name; ?></h2>
               <?php $subtitle = get_field('carte_typologie_subtitle', $top_typologie->taxonomy . '_' . $top_typologie->term_id); ?>
               <?php if (!empty($subtitle)) : ?>
@@ -57,7 +57,7 @@
 
               <p class="daily-ardoise"><a href="https://www.instagram.com/le_bus_magique_lille" target="_blank">
                   Retrouvez l’ardoise du jour sur Instagram !<br>
-                  <img class="link-social" src="<?php echo get_stylesheet_directory_uri() . '/images/instagram.svg'; ?>">
+                  <img class="link-social" src="<?php echo get_stylesheet_directory_uri() . '/images/instagram.svg'; ?>" alt="Instagram">
                 </a></p>
             </div>
           <?php endif; ?>
@@ -66,7 +66,7 @@
             <!-- Template Carte Burnch Brunch -->
             <div class="carte--brunch">
               <?php $icon_typologie = get_field('carte_typologie_icon', $top_typologie->taxonomy . '_' . $top_typologie->term_id); ?>
-              <img class="icon-brunch" src="<?php echo $icon_typologie['url']; ?>">
+              <img class="icon-brunch" src="<?php echo $icon_typologie['url']; ?>" alt="" aria-hidden="true">
               <h2><?php echo $top_typologie->name; ?></h2>
               <?php $subtitle = get_field('carte_typologie_subtitle', $top_typologie->taxonomy . '_' . $top_typologie->term_id); ?>
               <?php if (!empty($subtitle)) : ?>
@@ -96,7 +96,7 @@
           <div id="glou-glou"></div>
           <div class="carte--glou">
             <?php $icon_typologie = get_field('carte_typologie_icon', $top_typologie->taxonomy . '_' . $top_typologie->term_id); ?>
-            <img class="icon-glou" src="<?php echo $icon_typologie['url']; ?>">
+            <img class="icon-glou" src="<?php echo $icon_typologie['url']; ?>" alt="" aria-hidden="true">
             <h2><?php echo $top_typologie->name; ?></h2>
             <?php $subtitle = get_field('carte_typologie_subtitle', $top_typologie->taxonomy . '_' . $top_typologie->term_id); ?>
             <?php if (!empty($subtitle)) : ?>
@@ -231,35 +231,35 @@
                   <br>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>">Assam Indes (nature)</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>" alt="" aria-hidden="true">Assam Indes (nature)</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>">Earl grey</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>" alt="" aria-hidden="true">Earl grey</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>">Poire gourmande (amandes, fève tonka)</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>" alt="" aria-hidden="true">Poire gourmande (amandes, fève tonka)</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>">Nanjeor Tejn Corée (nature)</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>" alt="" aria-hidden="true">Nanjeor Tejn Corée (nature)</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>">T'eu verras chez bon (abricot, pêche, passion)</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>" alt="" aria-hidden="true">T'eu verras chez bon (abricot, pêche, passion)</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>">Détox des louloutes (thé vert, matcha, maté, gingembre, citron)</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>" alt="" aria-hidden="true">Détox des louloutes (thé vert, matcha, maté, gingembre, citron)</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/blue-icon-legende.svg'; ?>">Tri doska</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/blue-icon-legende.svg'; ?>" alt="" aria-hidden="true">Tri doska</span>
                   </p>
 
                   <p class="column">
-                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/blue-icon-legende.svg'; ?>">Elixir du Bos (pomme framboise, mûre verveine, passiflore)</span>
+                    <span><img class="icon-legende" src= "<?php echo get_stylesheet_directory_uri() . '/images/blue-icon-legende.svg'; ?>" alt="" aria-hidden="true">Elixir du Bos (pomme framboise, mûre verveine, passiflore)</span>
                   </p>
                   <br>-->
               </div>
@@ -269,30 +269,30 @@
             <div class="legende">
 
               <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/red-icon-legende.svg'; ?>">Vin rouge</span>
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/red-icon-legende.svg'; ?>" alt="" aria-hidden="true">Vin rouge</span>
               </p>
               <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/orange-icon-legende.svg'; ?>">Vin rosé</span>
-              </p>
-
-              <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/yellow-icon-legende.svg'; ?>">Vin blanc</span>
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/orange-icon-legende.svg'; ?>" alt="" aria-hidden="true">Vin rosé</span>
               </p>
 
               <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 154.svg'; ?>">Pétillant</span>
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/yellow-icon-legende.svg'; ?>" alt="" aria-hidden="true">Vin blanc</span>
               </p>
 
               <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>">Thé noir</span>
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 154.svg'; ?>" alt="" aria-hidden="true">Pétillant</span>
               </p>
 
               <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>">Thé vert</span>
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/black-icon-legende.svg'; ?>" alt="" aria-hidden="true">Thé noir</span>
               </p>
 
               <p class="column">
-                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/blue-icon-legende.svg'; ?>">Infusion</span>
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/green-icon-legende.svg'; ?>" alt="" aria-hidden="true">Thé vert</span>
+              </p>
+
+              <p class="column">
+                <span><img class="icon-legende" src="<?php echo get_stylesheet_directory_uri() . '/images/blue-icon-legende.svg'; ?>" alt="" aria-hidden="true">Infusion</span>
               </p>
             </div>
 
