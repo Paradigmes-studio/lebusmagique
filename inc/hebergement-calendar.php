@@ -10,6 +10,15 @@ const MKWVS_HEBERGEMENT_ICAL_OPTION = 'mkwvs_hebergement_ical_url';
 const MKWVS_HEBERGEMENT_ICAL_TTL = 3 * HOUR_IN_SECONDS;
 const MKWVS_HEBERGEMENT_LISTING_URL = 'https://www.airbnb.fr/rooms/1049733716164120046';
 
+const MKWVS_HEBERGEMENT_PAGE_SLUG = 'dormir-sur-une-peniche-a-lille';
+
+function mkwvs_hebergement_page_url(): string
+{
+    $page = get_page_by_path(MKWVS_HEBERGEMENT_PAGE_SLUG);
+
+    return $page instanceof WP_Post ? (string) get_permalink($page) : MKWVS_HEBERGEMENT_LISTING_URL;
+}
+
 function mkwvs_hebergement_ical_url(): string
 {
     $url = defined('MKWVS_HEBERGEMENT_ICAL')

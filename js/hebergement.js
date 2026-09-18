@@ -58,6 +58,12 @@
     return true;
   }
 
+  function track(event, data) {
+    if (window.umami && typeof window.umami.track === 'function') {
+      window.umami.track(event, data);
+    }
+  }
+
   function label(value) {
     return toDate(value).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
   }
@@ -198,13 +204,18 @@
     var date = day.dataset.date;
 
     if (!checkIn || checkOut || date <= checkIn) {
+      var first = !checkIn;
       checkIn = date;
       checkOut = null;
       render();
+      if (first) {
+        track('hebergement-arrivee', { date: date });
+      }
       return;
     }
 
     if (!everyNightFree(checkIn, date)) {
+      track('hebergement-indisponible', { arrivee: checkIn, depart: date });
       checkIn = date;
       checkOut = null;
       render();
@@ -215,6 +226,11 @@
 
     checkOut = date;
     render();
+    track('hebergement-dates', {
+      arrivee: checkIn,
+      depart: checkOut,
+      nuits: nightsBetween(checkIn, checkOut)
+    });
   });
 
   sync();
