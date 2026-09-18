@@ -105,7 +105,7 @@ footer{
   }
   @media #{$tab} {
     ul {
-      max-width: 500px;
+      max-width: min(760px, 92%);
       padding-bottom: 8px;
       li {
         font-size: 12px;
