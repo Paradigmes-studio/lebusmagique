@@ -11,7 +11,11 @@ const MKWVS_HEBERGEMENT_ICAL_TTL = 3 * HOUR_IN_SECONDS;
 
 function mkwvs_hebergement_ical_url(): string
 {
-    return (string) apply_filters('mkwvs_hebergement_ical_url', get_option(MKWVS_HEBERGEMENT_ICAL_OPTION, ''));
+    $url = defined('MKWVS_HEBERGEMENT_ICAL')
+        ? (string) MKWVS_HEBERGEMENT_ICAL
+        : (string) get_option(MKWVS_HEBERGEMENT_ICAL_OPTION, '');
+
+    return (string) apply_filters('mkwvs_hebergement_ical_url', $url);
 }
 
 function mkwvs_hebergement_busy_dates(): array
