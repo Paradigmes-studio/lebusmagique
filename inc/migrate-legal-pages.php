@@ -17,7 +17,7 @@ add_action('init', 'mkwvs_migrate_legal_pages');
 
 function mkwvs_migrate_legal_pages(): void
 {
-    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 1) {
+    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 2) {
         return;
     }
 
@@ -34,7 +34,7 @@ function mkwvs_migrate_legal_pages(): void
     ) && $ok;
 
     if ($ok) {
-        update_option('mkwvs_legal_pages_migrated', 1);
+        update_option('mkwvs_legal_pages_migrated', 2);
     }
 }
 
@@ -57,7 +57,7 @@ function mkwvs_migrate_fill_legal_page(string $slug, string $title, string $cont
 
     update_post_meta($page->ID, '_wp_page_template', MKWVS_LEGAL_PAGE_TEMPLATE);
 
-    if (trim(strip_tags($page->post_content)) !== '') {
+    if (trim(strip_tags($page->post_content)) !== '' && !mkwvs_legal_page_is_outdated($page->post_content)) {
         return true;
     }
 
@@ -68,6 +68,17 @@ function mkwvs_migrate_fill_legal_page(string $slug, string $title, string $cont
     ], true);
 
     return !is_wp_error($updated);
+}
+
+function mkwvs_legal_page_is_outdated(string $content): bool
+{
+    foreach (['À COMPLÉTER', '59000 Lille', 'Matomo'] as $marker) {
+        if (str_contains($content, $marker)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function mkwvs_legal_page_content_mentions(): string
@@ -88,7 +99,7 @@ function mkwvs_legal_page_content_mentions(): string
 <!-- wp:list {"className":"legal-identity"} -->
 <ul class="wp-block-list legal-identity">
 <!-- wp:list-item -->
-<li>Siège social : péniche Le Bus Magique, avenue Cuvier, 59000 Lille</li>
+<li>Siège social : péniche Le Bus Magique, avenue Cuvier, 59800 Lille</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
 <li>Numéro RNA : W595031094</li>
@@ -98,6 +109,9 @@ function mkwvs_legal_page_content_mentions(): string
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
 <li>SIRET du siège : 840 181 259 00036</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Numéro de TVA intracommunautaire : FR 50 840181259</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
 <li>Code APE : 56.10A (restauration traditionnelle)</li>
@@ -116,7 +130,7 @@ function mkwvs_legal_page_content_mentions(): string
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><strong>À COMPLÉTER :</strong> nom et prénom de la présidente ou du président de l'association, en sa qualité de représentant légal et de directeur de la publication.</p>
+<p>La directrice de la publication est Lucie Bailleul, présidente de l'association Le Bus Magique et représentante légale de celle-ci.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -197,7 +211,7 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Le responsable du traitement est l'association Le Bus Magique, association loi 1901, dont le siège est situé péniche Le Bus Magique, avenue Cuvier, 59000 Lille. Pour toute question relative à vos données : lebusmagique.lille@gmail.com. Les coordonnées complètes figurent dans nos <a href="/mentions-legales/">mentions légales</a>.</p>
+<p>Le responsable du traitement est l'association Le Bus Magique, association loi 1901, dont le siège est situé péniche Le Bus Magique, avenue Cuvier, 59800 Lille. Pour toute question relative à vos données : lebusmagique.lille@gmail.com. Les coordonnées complètes figurent dans nos <a href="/mentions-legales/">mentions légales</a>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -291,7 +305,7 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Nous mesurons la fréquentation du site avec Matomo, installé sur le serveur qui héberge le site. Les statistiques produites restent chez nous et ne sont transmises à aucune régie publicitaire. Elles nous servent uniquement à comprendre quelles pages sont consultées afin d'améliorer le site.</p>
+<p>Nous mesurons la fréquentation du site avec Umami, une solution de mesure d'audience sans cookie et sans traceur publicitaire, hébergée par le prestataire technique du site. Les statistiques produites ne sont transmises à aucune régie publicitaire et nous servent uniquement à comprendre quelles pages sont consultées afin d'améliorer le site.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
