@@ -1,90 +1,39 @@
 (function () {
-  var root = document.querySelector('.hebergement__calendar');
-  var summary = document.querySelector('.hebergement__summary');
-  var booking = document.querySelector('.hebergement__booking');
-  if (!root || !summary || !booking) {
-    return;
-  }
-
-  var days = Array.prototype.slice.call(root.querySelectorAll('button[data-date]'));
-  var available = {};
-  days.forEach(function (day) {
-    available[day.dataset.date] = true;
-  });
-
+  var CALENDAR = '.hebergement__calendar';
   var checkIn = null;
   var checkOut = null;
-
-  var months = Array.prototype.slice.call(root.querySelectorAll('.hebergement__month'));
-  var windowSize = parseInt(root.dataset.window, 10) || 2;
   var offset = 0;
-  var nav = null;
-  var prevButton = null;
-  var nextButton = null;
 
-  function monthLabel(index) {
-    var title = months[index] && months[index].querySelector('h3');
-    return title ? title.textContent : '';
+  function calendar() {
+    return document.querySelector(CALENDAR);
   }
 
-  function showWindow() {
-    months.forEach(function (month, index) {
-      month.hidden = index < offset || index >= offset + windowSize;
-    });
-
-    if (!prevButton) {
-      return;
-    }
-
-    prevButton.disabled = offset === 0;
-    nextButton.disabled = offset + windowSize >= months.length;
-    prevButton.setAttribute('aria-label', 'Mois précédents');
-    nextButton.setAttribute('aria-label', 'Mois suivants');
+  function summary() {
+    return document.querySelector('.hebergement__summary');
   }
 
-  function buildNav() {
-    if (months.length <= windowSize) {
-      return;
-    }
-
-    nav = document.createElement('div');
-    nav.className = 'hebergement__nav';
-
-    prevButton = document.createElement('button');
-    prevButton.type = 'button';
-    prevButton.className = 'hebergement__nav-button';
-    prevButton.innerHTML = '&larr;';
-
-    nextButton = document.createElement('button');
-    nextButton.type = 'button';
-    nextButton.className = 'hebergement__nav-button';
-    nextButton.innerHTML = '&rarr;';
-
-    prevButton.addEventListener('click', function () {
-      offset = Math.max(0, offset - 1);
-      showWindow();
-    });
-
-    nextButton.addEventListener('click', function () {
-      offset = Math.min(months.length - windowSize, offset + 1);
-      showWindow();
-    });
-
-    nav.appendChild(prevButton);
-    nav.appendChild(nextButton);
-    root.parentNode.insertBefore(nav, root);
+  function booking() {
+    return document.querySelector('.hebergement__booking');
   }
 
-  buildNav();
-  showWindow();
+  function months() {
+    var root = calendar();
+    return root ? Array.prototype.slice.call(root.querySelectorAll('.hebergement__month')) : [];
+  }
+
+  function windowSize() {
+    var root = calendar();
+    return (root && parseInt(root.dataset.window, 10)) || 2;
+  }
+
+  function isAvailable(date) {
+    var root = calendar();
+    return !!(root && root.querySelector('button[data-date="' + date + '"]'));
+  }
 
   function toDate(value) {
     var parts = value.split('-');
     return new Date(+parts[0], +parts[1] - 1, +parts[2]);
-  }
-
-  function nightsBetween(from, to) {
-    return Math.round((toDate(to) - toDate(from)) / 86400000);
   }
 
   function toKey(date) {
@@ -93,11 +42,15 @@
       String(date.getDate()).padStart(2, '0');
   }
 
+  function nightsBetween(from, to) {
+    return Math.round((toDate(to) - toDate(from)) / 86400000);
+  }
+
   function everyNightFree(from, to) {
     var cursor = toDate(from);
     var last = toDate(to);
     while (cursor < last) {
-      if (!available[toKey(cursor)]) {
+      if (!isAvailable(toKey(cursor))) {
         return false;
       }
       cursor.setDate(cursor.getDate() + 1);
@@ -109,40 +62,83 @@
     return toDate(value).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
   }
 
+  function ensureNav() {
+    var root = calendar();
+    if (!root || months().length <= windowSize()) {
+      return;
+    }
+
+    var nav = document.querySelector('.hebergement__nav');
+    if (nav && nav.parentNode === root.parentNode) {
+      return;
+    }
+
+    nav = document.createElement('div');
+    nav.className = 'hebergement__nav';
+    nav.innerHTML =
+      '<button type="button" class="hebergement__nav-button" data-step="-1" aria-label="Mois précédents">&larr;</button>' +
+      '<button type="button" class="hebergement__nav-button" data-step="1" aria-label="Mois suivants">&rarr;</button>';
+    root.parentNode.insertBefore(nav, root);
+  }
+
+  function showWindow() {
+    var all = months();
+    var size = windowSize();
+    var max = Math.max(0, all.length - size);
+    offset = Math.min(Math.max(0, offset), max);
+
+    all.forEach(function (month, index) {
+      month.hidden = index < offset || index >= offset + size;
+    });
+
+    var buttons = document.querySelectorAll('.hebergement__nav-button');
+    if (buttons.length === 2) {
+      buttons[0].disabled = offset === 0;
+      buttons[1].disabled = offset >= max;
+    }
+  }
+
   function paint() {
-    days.forEach(function (day) {
+    var root = calendar();
+    if (!root) {
+      return;
+    }
+
+    Array.prototype.forEach.call(root.querySelectorAll('button[data-date]'), function (day) {
       var date = day.dataset.date;
-      var inRange = checkIn && checkOut && date > checkIn && date < checkOut;
       day.classList.toggle('is-selected', date === checkIn || date === checkOut);
-      day.classList.toggle('is-in-range', !!inRange);
+      day.classList.toggle('is-in-range', !!(checkIn && checkOut && date > checkIn && date < checkOut));
     });
   }
 
   function render() {
     paint();
 
+    var text = summary();
+    var slot = booking();
+    if (!text || !slot) {
+      return;
+    }
+
     if (!checkIn) {
-      summary.textContent = summary.dataset.empty;
-      booking.innerHTML = '';
+      text.textContent = text.dataset.empty;
+      slot.innerHTML = '';
       return;
     }
 
     if (!checkOut) {
-      summary.textContent = 'Arrivée le ' + label(checkIn) + '. Choisissez votre date de départ.';
-      booking.innerHTML = '';
+      text.textContent = 'Arrivée le ' + label(checkIn) + '. Choisissez votre date de départ.';
+      slot.innerHTML = '';
       return;
     }
 
     var nights = nightsBetween(checkIn, checkOut);
-    summary.textContent = 'Du ' + label(checkIn) + ' au ' + label(checkOut) +
-      ', ' + nights + (nights > 1 ? ' nuits.' : ' nuit.');
-
-    var url = booking.dataset.listing +
-      '?check_in=' + checkIn + '&check_out=' + checkOut + '&adults=2';
+    text.textContent = 'Du ' + label(checkIn) + ' au ' + label(checkOut) + ', ' +
+      nights + (nights > 1 ? ' nuits.' : ' nuit.');
 
     var link = document.createElement('a');
     link.className = 'cta cta-decoration';
-    link.href = url;
+    link.href = slot.dataset.listing + '?check_in=' + checkIn + '&check_out=' + checkOut + '&adults=2';
     link.target = '_blank';
     link.rel = 'noopener';
     link.textContent = 'Réserver ces dates';
@@ -150,12 +146,28 @@
     link.setAttribute('data-umami-event-source', 'calendrier');
     link.setAttribute('data-umami-event-nights', String(nights));
 
-    booking.innerHTML = '';
-    booking.appendChild(link);
+    slot.innerHTML = '';
+    slot.appendChild(link);
   }
 
-  root.addEventListener('click', function (event) {
-    var day = event.target.closest('button[data-date]');
+  function sync() {
+    if (!calendar()) {
+      return;
+    }
+    ensureNav();
+    showWindow();
+    paint();
+  }
+
+  document.addEventListener('click', function (event) {
+    var step = event.target.closest('.hebergement__nav-button');
+    if (step) {
+      offset += parseInt(step.dataset.step, 10);
+      showWindow();
+      return;
+    }
+
+    var day = event.target.closest(CALENDAR + ' button[data-date]');
     if (!day) {
       return;
     }
@@ -170,7 +182,7 @@
     }
 
     if (!everyNightFree(checkIn, date)) {
-      summary.textContent = 'Ce séjour croise des nuits déjà réservées. Choisissez une autre date de départ.';
+      summary().textContent = 'Ce séjour croise des nuits déjà réservées. Choisissez une autre date de départ.';
       checkOut = null;
       paint();
       return;
@@ -179,4 +191,7 @@
     checkOut = date;
     render();
   });
+
+  sync();
+  new MutationObserver(sync).observe(document.body, { childList: true, subtree: true });
 })();
