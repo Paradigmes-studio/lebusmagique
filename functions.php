@@ -35,6 +35,8 @@ require get_template_directory() . '/inc/brevo-smtp.php';
 require get_template_directory() . '/inc/brevo-newsletter.php';
 require get_template_directory() . '/inc/event-categories.php';
 require get_template_directory() . '/inc/migrate-event-pages.php';
+require get_template_directory() . '/inc/legal-pages.php';
+require get_template_directory() . '/inc/migrate-legal-pages.php';
 require get_template_directory() . '/inc/facebook-events-redirect.php';
 require get_template_directory() . '/inc/facebook-events-single.php';
 require get_template_directory() . '/inc/schema-org.php';
