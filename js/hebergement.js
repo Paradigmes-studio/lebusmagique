@@ -73,11 +73,16 @@
       return;
     }
 
+    var chevron = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="3" ' +
+      'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
     nav = document.createElement('div');
     nav.className = 'hebergement__nav';
     nav.innerHTML =
-      '<button type="button" class="hebergement__nav-button" data-step="-1" aria-label="Mois précédents">&larr;</button>' +
-      '<button type="button" class="hebergement__nav-button" data-step="1" aria-label="Mois suivants">&rarr;</button>';
+      '<button type="button" class="hebergement__nav-button" data-step="-1" aria-label="Mois précédents">' + chevron + '</button>' +
+      '<p class="hebergement__period" aria-live="polite"></p>' +
+      '<button type="button" class="hebergement__nav-button hebergement__nav-button--next" data-step="1" aria-label="Mois suivants">' + chevron + '</button>';
     root.parentNode.insertBefore(nav, root);
   }
 
@@ -95,6 +100,20 @@
     if (buttons.length === 2) {
       buttons[0].disabled = offset === 0;
       buttons[1].disabled = offset >= max;
+    }
+
+    var period = document.querySelector('.hebergement__period');
+    if (period) {
+      var shown = all.slice(offset, offset + size).map(function (month) {
+        var title = month.querySelector('.hebergement__month-title');
+        return title ? title.textContent : '';
+      });
+      var text = shown.length > 1
+        ? shown[0].replace(/\s\d{4}$/, '') + ' – ' + shown[shown.length - 1]
+        : shown[0] || '';
+      if (period.textContent !== text) {
+        period.textContent = text;
+      }
     }
   }
 
@@ -195,5 +214,11 @@
   });
 
   sync();
-  new MutationObserver(sync).observe(document.body, { childList: true, subtree: true });
+
+  var observer = new MutationObserver(function () {
+    observer.disconnect();
+    sync();
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
