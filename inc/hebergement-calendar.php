@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
 
 const MKWVS_HEBERGEMENT_ICAL_OPTION = 'mkwvs_hebergement_ical_url';
 const MKWVS_HEBERGEMENT_ICAL_TTL = 3 * HOUR_IN_SECONDS;
+const MKWVS_HEBERGEMENT_LISTING_URL = 'https://www.airbnb.fr/rooms/1049733716164120046';
 
 function mkwvs_hebergement_ical_url(): string
 {
@@ -118,11 +119,24 @@ function mkwvs_hebergement_calendar(int $months = 2): string
                 $label = 'Occupé';
             }
 
+            $readable = $d . ' ' . mb_strtolower($a_months[$date->format('m')]) . ' ' . $date->format('Y');
+
+            if ($date < $today || isset($busy[$key])) {
+                $out .= sprintf(
+                    '<span class="%s"><abbr title="%s : %s">%d</abbr></span>',
+                    esc_attr($class),
+                    esc_attr($readable),
+                    esc_attr($label),
+                    $d
+                );
+                continue;
+            }
+
             $out .= sprintf(
-                '<span class="%s"><abbr title="%s : %s">%d</abbr></span>',
+                '<button type="button" class="%s" data-date="%s" aria-label="%s, libre">%d</button>',
                 esc_attr($class),
-                esc_attr($d . ' ' . mb_strtolower($a_months[$date->format('m')]) . ' ' . $date->format('Y')),
-                esc_attr($label),
+                esc_attr($key),
+                esc_attr($readable),
                 $d
             );
         }
@@ -131,10 +145,13 @@ function mkwvs_hebergement_calendar(int $months = 2): string
     }
 
     $out .= '</div>';
+    $out .= '<p class="hebergement__summary" data-empty="Choisissez vos dates d\'arrivée et de départ.">'
+        . 'Choisissez vos dates d\'arrivée et de départ.</p>';
     $out .= '<p class="hebergement__legend">';
     $out .= '<span class="hebergement__key hebergement__key--free"></span> Libre';
     $out .= '<span class="hebergement__key hebergement__key--busy"></span> Déjà réservé';
     $out .= '</p>';
+    $out .= '<div class="hebergement__booking" data-listing="' . esc_attr(MKWVS_HEBERGEMENT_LISTING_URL) . '"></div>';
 
     return $out;
 }

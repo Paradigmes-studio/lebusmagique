@@ -322,6 +322,7 @@ function mkwvs_scripts_styles(){
     if (is_page_template('templates/hebergement.php')) {
         wp_register_style('hebergement-style', get_template_directory_uri() . '/css/hebergement.css', ['styles'], filemtime(get_template_directory() . '/css/hebergement.css'), 'all');
         wp_enqueue_style('hebergement-style');
+        wp_enqueue_script('hebergement-script', get_template_directory_uri() . '/js/hebergement.js', [], filemtime(get_template_directory() . '/js/hebergement.js'), true);
     }
 
 }

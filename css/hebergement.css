@@ -191,3 +191,35 @@
 
 .hebergement__key--free { background: #f8f4e8; border: 1px solid rgba(0, 0, 0, 0.2); }
 .hebergement__key--busy { background: #e6534e; margin-left: 14px; }
+
+/* Sélection des dates */
+
+button.hebergement__day {
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+button.hebergement__day:hover { background: #ffd202; }
+
+button.hebergement__day:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+button.hebergement__day.is-in-range { background: #ffe98a; }
+
+button.hebergement__day.is-selected {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+.hebergement__summary {
+  text-align: center;
+  font-size: 15px;
+  margin: 0 0 12px;
+  min-height: 22px;
+}
+
+.hebergement__booking { text-align: center; margin-bottom: 28px; }
