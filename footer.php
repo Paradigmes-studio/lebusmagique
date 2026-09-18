@@ -123,8 +123,12 @@
 
 <div class="footer__misc">
   <ul>
-    <li><a href="<?php echo get_permalink(get_page_by_path('mentions-legales')) ?>">Mentions légales</a></li>
-    <li><a href="<?php echo get_permalink(get_page_by_path('confidentialité')) ?>">Confidentialité</a></li>
+<?php foreach ([['mentions-legales', 'Mentions légales'], ['confidentialite', 'Confidentialité']] as [$legal_slug, $legal_label]) : ?>
+  <?php $legal_page = get_page_by_path($legal_slug); ?>
+  <?php if ($legal_page instanceof WP_Post) : ?>
+    <li><a href="<?php echo esc_url(get_permalink($legal_page)); ?>"><?php echo $legal_label; ?></a></li>
+  <?php endif; ?>
+<?php endforeach; ?>
     <li>Site par <a href="https://atelier-jugeote.com/" target="_blank">Atelier Jugeote</a> &times; <a href="https://makewaves.fr/">Makewaves</a></li>
   </ul>
 </div>
