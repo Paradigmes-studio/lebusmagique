@@ -234,7 +234,7 @@ function mkwvs_schema_inject_page_specific(): void
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse privée', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Lave-linge', 'value' => true],
         ];
-    } elseif ($template === MKWVS_PENICHE_PAGE_TEMPLATE) {
+    } elseif ($template === 'templates/peniche-lille.php') {
         $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'TouristAttraction']);
         $schema['description'] = "Péniche associative amarrée à l'entrée de la Citadelle de Lille : bar, restauration, programmation culturelle, coworking, privatisation et gîte à bord d'un bateau de 1954.";
         $schema['priceRange'] = '€€';
@@ -255,7 +255,7 @@ function mkwvs_schema_inject_page_specific(): void
         }
     }
 
-    if ($template === MKWVS_PENICHE_PAGE_TEMPLATE) {
+    if ($template === 'templates/peniche-lille.php') {
         $faq = [
             '@context' => 'https://schema.org',
             '@type' => 'FAQPage',

@@ -323,7 +323,7 @@ function mkwvs_scripts_styles(){
     }
 
     // CSS de la page péniche
-    if (is_page_template(MKWVS_PENICHE_PAGE_TEMPLATE)) {
+    if (is_page_template('templates/peniche-lille.php')) {
         wp_register_style('peniche-style', get_template_directory_uri() . '/css/peniche.css', ['styles'], filemtime(get_template_directory() . '/css/peniche.css'), 'all');
         wp_enqueue_style('peniche-style');
     }
