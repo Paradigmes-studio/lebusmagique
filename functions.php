@@ -317,6 +317,12 @@ function mkwvs_scripts_styles(){
         wp_enqueue_style('prog-categories-style');
     }
 
+    // CSS de la page hébergement
+    if (is_page_template('templates/hebergement.php')) {
+        wp_register_style('hebergement-style', get_template_directory_uri() . '/css/hebergement.css', ['styles'], filemtime(get_template_directory() . '/css/hebergement.css'), 'all');
+        wp_enqueue_style('hebergement-style');
+    }
+
 }
 
 // Custom Excerpt Length
