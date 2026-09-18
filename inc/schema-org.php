@@ -226,6 +226,8 @@ function mkwvs_schema_inject_page_specific(): void
         $schema = mkwvs_schema_build_base($data, 'LodgingBusiness');
         $schema['description'] = "Studio insolite à louer à la nuit sur une péniche à Lille, aux portes de la Citadelle, pour deux à trois personnes.";
         $schema['numberOfRooms'] = 1;
+        $schema['petsAllowed'] = false;
+        $schema['maximumAttendeeCapacity'] = 3;
         $schema['amenityFeature'] = [
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Wifi', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Kitchenette', 'value' => true],
@@ -240,6 +242,51 @@ function mkwvs_schema_inject_page_specific(): void
         if (!empty($hours)) {
             $schema['openingHoursSpecification'] = $hours;
         }
+    }
+
+    if ($template === 'templates/hebergement.php') {
+        $faq = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type' => 'Question',
+                    'name' => "Combien de personnes peut accueillir le studio de la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Le studio accueille deux à trois personnes. Il dispose de deux lits et d'une salle de bain privative.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Où est amarrée la péniche à Lille ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "La péniche est amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, à une vingtaine de minutes à pied du Vieux-Lille.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Le logement est-il indépendant du bar et du restaurant ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. Le studio occupe le logement du Marinier, à l'avant du bateau, avec son entrée et sa terrasse privée.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Comment réserver une nuit sur la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Les disponibilités sont affichées sur cette page et la réservation se fait en ligne sur notre annonce.",
+                    ],
+                ],
+            ],
+        ];
+
+        echo "\n" . '<script type="application/ld+json">'
+            . wp_json_encode($faq, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            . '</script>' . "\n";
     }
 
     if ($schema !== null) {

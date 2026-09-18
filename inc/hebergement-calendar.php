@@ -97,7 +97,8 @@ function mkwvs_hebergement_calendar(int $months = 12): string
         $offset = ((int) $first->format('N')) - 1;
 
         $out .= '<div class="hebergement__month" data-month-index="' . $i . '">';
-        $out .= '<h3>' . esc_html($a_months[$first->format('m')] . ' ' . $first->format('Y')) . '</h3>';
+        $out .= '<p class="hebergement__month-title">'
+            . esc_html($a_months[$first->format('m')] . ' ' . $first->format('Y')) . '</p>';
         $out .= '<div class="hebergement__grid">';
 
         foreach ($labels as $label) {
