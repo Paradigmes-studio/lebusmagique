@@ -222,6 +222,14 @@ function mkwvs_schema_inject_page_specific(): void
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Accès gratuit', 'value' => true],
         ];
+    } elseif ($template === 'templates/location.php') {
+        $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'EventVenue']);
+        $schema['description'] = "Privatisation d'une péniche à Lille pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage, à l'entrée de la Citadelle.";
+        $schema['maximumAttendeeCapacity'] = 100;
+        $schema['priceRange'] = '€€';
+        if (!empty($hours)) {
+            $schema['openingHoursSpecification'] = $hours;
+        }
     }
 
     if ($schema !== null) {
