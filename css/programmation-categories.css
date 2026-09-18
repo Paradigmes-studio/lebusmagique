@@ -76,6 +76,11 @@
 }
 @media (min-width: 1280px) { .bm-cat-hero { padding-top: 11rem; } }
 
+/* la pastille porte le H1 : on annule la seule marge heritee du reset */
+h1.bm-cat-hero__pill {
+  margin: 0;
+}
+
 .bm-cat-hero__pill {
   display: inline-block;
   background: #fff;
