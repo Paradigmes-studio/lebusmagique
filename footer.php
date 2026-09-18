@@ -124,7 +124,10 @@
 <div class="footer__misc">
   <ul>
     <li><a href="<?php echo get_permalink(get_page_by_path('mentions-legales')) ?>">Mentions légales</a></li>
-    <li><a href="<?php echo get_permalink(get_page_by_path('confidentialité')) ?>">Confidentialité</a></li>
+    <?php $mkwvs_privacy = get_page_by_path('confidentialite') ?: get_page_by_path('politique-de-confidentialite'); ?>
+    <?php if ($mkwvs_privacy instanceof WP_Post) : ?>
+      <li><a href="<?php echo esc_url(get_permalink($mkwvs_privacy)); ?>">Confidentialité</a></li>
+    <?php endif; ?>
     <li>Site par <a href="https://manon-verbeke.com/" target="_blank">Manon Verbeke</a> &times; <a href="https://makewaves.fr/" target="_blank">Makewaves</a> &times; <a href="https://symfolidity.com/" target="_blank">Symfolidity</a></li>
   </ul>
 </div>
