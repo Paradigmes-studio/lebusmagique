@@ -222,6 +222,16 @@ function mkwvs_schema_inject_page_specific(): void
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Accès gratuit', 'value' => true],
         ];
+    } elseif ($template === 'templates/hebergement.php') {
+        $schema = mkwvs_schema_build_base($data, 'LodgingBusiness');
+        $schema['description'] = "Studio insolite à louer à la nuit sur une péniche à Lille, aux portes de la Citadelle, pour deux à trois personnes.";
+        $schema['numberOfRooms'] = 1;
+        $schema['amenityFeature'] = [
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Wifi', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Kitchenette', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse privée', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Lave-linge', 'value' => true],
+        ];
     } elseif ($template === 'templates/location.php') {
         $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'EventVenue']);
         $schema['description'] = "Privatisation d'une péniche à Lille pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage, à l'entrée de la Citadelle.";
