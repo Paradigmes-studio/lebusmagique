@@ -53,6 +53,9 @@
 
 .peniche__split-text p { margin: 0 0 16px; line-height: 1.6; }
 
+.peniche__split-cta { margin: 24px 0 0; }
+.peniche__split-cta .cta { display: inline-flex; margin: 0; }
+
 .peniche__split-media { margin: 0; }
 
 .peniche__split-media img {
@@ -71,23 +74,58 @@
   margin: 0 0 72px;
   padding: 0;
   display: grid;
-  gap: 20px;
+  gap: 24px;
 }
 
 @media screen and (min-width: 700px) {
-  .peniche__usages { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .peniche__usages { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
 
-.peniche__usages li {
+.peniche__usage {
   background: #f8f4e8;
   border: 2px solid #000;
   border-radius: 6px;
-  padding: 20px 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.peniche__usages strong { display: block; font-size: 17px; margin-bottom: 6px; }
-.peniche__usages p { font-size: 15px; line-height: 1.5; margin: 0 0 12px; }
-.peniche__usages a { font-weight: 700; }
+.peniche__usage-media {
+  display: block;
+  background: #fff;
+  border-bottom: 2px solid #000;
+}
+
+.peniche__usage-media img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+/* La photo de privatisation n'est pas détourée : elle remplit le cadre. */
+.peniche__usage:last-child .peniche__usage-media img { object-fit: cover; }
+
+.peniche__usage-media:hover img,
+.peniche__usage-media:focus-visible img { transform: scale(1.04); }
+
+.peniche__usage-body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.peniche__usage-body strong { display: block; font-size: 19px; margin-bottom: 10px; }
+.peniche__usage-body p { font-size: 15px; line-height: 1.55; margin: 0 0 20px; }
+
+.peniche__usage-body .cta,
+.peniche__access-text .cta {
+  display: inline-flex;
+  align-self: flex-start;
+  margin: auto 0 0;
+}
 
 .peniche__access {
   background: #f8f4e8;
@@ -95,11 +133,44 @@
   border-radius: 6px;
   padding: 28px 26px;
   margin-bottom: 72px;
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+  .peniche__access { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 
 .peniche__access h2 { font-size: 26px; line-height: 1.2; margin: 0 0 16px; }
-.peniche__access ul { margin: 0; padding-left: 20px; }
+.peniche__access ul { margin: 0 0 24px; padding-left: 20px; }
 .peniche__access li { line-height: 1.6; margin-bottom: 8px; }
+
+.peniche__access-map {
+  display: block;
+  border: 2px solid #000;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.peniche__access-map img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.peniche__access-map:hover img,
+.peniche__access-map:focus-visible img { transform: scale(1.04); }
+
+@media (prefers-reduced-motion: reduce) {
+  .peniche__usage-media img,
+  .peniche__access-map img { transition: none; }
+  .peniche__usage-media:hover img,
+  .peniche__access-map:hover img { transform: none; }
+}
 
 .peniche__assoc {
   background: #f8f4e8;

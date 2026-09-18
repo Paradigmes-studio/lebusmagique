@@ -33,6 +33,11 @@ function mkwvs_migrate_peniche_page(): void
     $photos = [
         'photo_timonerie' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
         'photo_studio' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
+        'img_resto' => mkwvs_peniche_theme_image_id('images/hp1-restauration.png', "Légumes de saison pour la cuisine du Bus Magique"),
+        'img_events' => mkwvs_peniche_theme_image_id('images/hp3-location.png', "Soirée à bord de la péniche, verres levés entre amis"),
+        'img_cowork' => mkwvs_peniche_theme_image_id('images/hp2-coworking.png', "Deux personnes qui travaillent à bord de la péniche"),
+        'img_privatisation' => mkwvs_peniche_theme_image_id('images/peniche-privatisation.jpg', "La péniche privatisée, tentes dressées sur le pont un jour d'événement"),
+        'img_map' => mkwvs_peniche_theme_image_id('images/hp-map@2x.jpg', "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille"),
     ];
 
     $page_id = wp_insert_post([
@@ -103,6 +108,62 @@ function mkwvs_peniche_photo_id(string $file, string $alt): int
 }
 
 /**
+ * Importe une image livrée avec le thème, ou renvoie celle déjà importée.
+ */
+function mkwvs_peniche_theme_image_id(string $relative, string $alt): int
+{
+    $file = sanitize_file_name(basename($relative));
+
+    $existing = get_posts([
+        'post_type' => 'attachment',
+        'post_status' => 'inherit',
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+        'meta_key' => '_mkwvs_peniche_image',
+        'meta_value' => $file,
+    ]);
+
+    if (!empty($existing)) {
+        return (int) $existing[0];
+    }
+
+    $source = get_template_directory() . '/' . ltrim($relative, '/');
+    if (!file_exists($source)) {
+        return 0;
+    }
+
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    require_once ABSPATH . 'wp-admin/includes/media.php';
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+
+    $upload = wp_upload_bits($file, null, (string) file_get_contents($source));
+    if (!empty($upload['error'])) {
+        return 0;
+    }
+
+    $type = wp_check_filetype($upload['file']);
+
+    $attachment_id = wp_insert_attachment([
+        'post_mime_type' => $type['type'] ?: 'image/jpeg',
+        'post_title' => sanitize_file_name(pathinfo($file, PATHINFO_FILENAME)),
+        'post_status' => 'inherit',
+    ], $upload['file']);
+
+    if (is_wp_error($attachment_id) || !$attachment_id) {
+        return 0;
+    }
+
+    wp_update_attachment_metadata(
+        $attachment_id,
+        wp_generate_attachment_metadata($attachment_id, $upload['file'])
+    );
+    update_post_meta($attachment_id, '_wp_attachment_image_alt', $alt);
+    update_post_meta($attachment_id, '_mkwvs_peniche_image', $file);
+
+    return (int) $attachment_id;
+}
+
+/**
  * Hublot générique du thème, à défaut de quoi page-head.php pose son icône de repli.
  */
 function mkwvs_peniche_hublot_icon_id(): int
@@ -136,7 +197,7 @@ function mkwvs_peniche_page_content(array $photos): string
     <div class="peniche__split-text">
       <h2>Une péniche citerne de 1954</h2>
       <p>Le bateau s'appelait l'Île. C'est une péniche citerne construite en 1954, une vieille dame que l'association a choisie en février 2019, après avoir obtenu l'été précédent l'autorisation de stationner devant le Champ de Mars.</p>
-      <p>De février 2019 à octobre 2020, des chantiers participatifs l'ont transformée en lieu de vie. C'est aujourd'hui la péniche associative de Lille, ouverte à toutes et à tous. <a href="/notre-histoire/">Lire l'histoire du bateau</a>.</p>
+      <p>De février 2019 à octobre 2020, des chantiers participatifs l'ont transformée en lieu de vie. C'est aujourd'hui la péniche associative de Lille, ouverte à toutes et à tous. <a href="/notre-histoire/" data-umami-event="peniche-activite" data-umami-event-cible="histoire">Lire l'histoire du bateau</a>.</p>
     </div>
     <figure class="peniche__split-media">
       <img src="{{photo_timonerie}}" alt="Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal" loading="lazy">
@@ -145,44 +206,70 @@ function mkwvs_peniche_page_content(array $photos): string
 
   <h2 class="peniche__title">Ce que l'on fait à bord</h2>
   <ul class="peniche__usages">
-    <li>
-      <strong>Manger et boire un verre</strong>
-      <p>Plats du jour les jeudi et vendredi midi, brunch le dimanche, bières locales et boissons chaudes. Cuisine maison, bio et de saison.</p>
-      <a href="/restauration/">Voir la carte de la péniche</a>
+    <li class="peniche__usage">
+      <a class="peniche__usage-media" href="/restauration/" data-umami-event="peniche-activite" data-umami-event-cible="restauration">
+        <img src="{{img_resto}}" alt="Légumes de saison pour la cuisine du Bus Magique" loading="lazy">
+      </a>
+      <div class="peniche__usage-body">
+        <strong>Manger et boire un verre</strong>
+        <p>Plats du jour les jeudi et vendredi midi, brunch le dimanche, bières locales et boissons chaudes. Cuisine maison, bio et de saison.</p>
+        <a class="cta cta--jungle-green" href="/restauration/" data-umami-event="peniche-activite" data-umami-event-cible="restauration">Voir la carte</a>
+      </div>
     </li>
-    <li>
-      <strong>Sortir et assister aux événements</strong>
-      <p>Concerts, scènes ouvertes, jam sessions, blind tests, drag bingo, café philo, café des langues et ateliers créatifs.</p>
-      <a href="/programmation/">Voir la programmation</a>
+    <li class="peniche__usage">
+      <a class="peniche__usage-media" href="/programmation/" data-umami-event="peniche-activite" data-umami-event-cible="programmation">
+        <img src="{{img_events}}" alt="Soirée à bord de la péniche, verres levés entre amis" loading="lazy">
+      </a>
+      <div class="peniche__usage-body">
+        <strong>Sortir et assister aux événements</strong>
+        <p>Concerts, scènes ouvertes, jam sessions, blind tests, drag bingo, café philo, café des langues et ateliers créatifs.</p>
+        <a class="cta cta--red" href="/programmation/" data-umami-event="peniche-activite" data-umami-event-cible="programmation">Voir la programmation</a>
+      </div>
     </li>
-    <li>
-      <strong>Travailler au bord de l'eau</strong>
-      <p>Espace de coworking ouvert les jeudi et vendredi, de 9h à 12h et de 14h à 17h. Wifi haut débit, réseau Ethernet, café et pâtisseries.</p>
-      <a href="/coworking/">Découvrir le coworking</a>
+    <li class="peniche__usage">
+      <a class="peniche__usage-media" href="/coworking/" data-umami-event="peniche-activite" data-umami-event-cible="coworking">
+        <img src="{{img_cowork}}" alt="Deux personnes qui travaillent à bord de la péniche" loading="lazy">
+      </a>
+      <div class="peniche__usage-body">
+        <strong>Travailler au bord de l'eau</strong>
+        <p>Espace de coworking ouvert les jeudi et vendredi, de 9h à 12h et de 14h à 17h. Wifi haut débit, réseau Ethernet, café et pâtisseries.</p>
+        <a class="cta cta--yellow" href="/coworking/" data-umami-event="peniche-activite" data-umami-event-cible="coworking">Découvrir le coworking</a>
+      </div>
     </li>
-    <li>
-      <strong>Privatiser le bateau</strong>
-      <p>Anniversaire, séminaire, soirée d'entreprise ou mariage : 60 personnes assises en salle, 100 en cocktail, plus une terrasse sur le pont.</p>
-      <a href="/location/">Privatiser la péniche</a>
+    <li class="peniche__usage">
+      <a class="peniche__usage-media" href="/location/" data-umami-event="peniche-activite" data-umami-event-cible="location">
+        <img src="{{img_privatisation}}" alt="La péniche privatisée, tentes dressées sur le pont un jour d'événement" loading="lazy">
+      </a>
+      <div class="peniche__usage-body">
+        <strong>Privatiser le bateau</strong>
+        <p>Anniversaire, séminaire, soirée d'entreprise ou mariage : 60 personnes assises en salle, 100 en cocktail, plus une terrasse sur le pont.</p>
+        <a class="cta cta--green" href="/location/" data-umami-event="peniche-activite" data-umami-event-cible="location">Demander un devis</a>
+      </div>
     </li>
   </ul>
 
   <div class="peniche__access">
-    <h2>Où est amarrée la péniche</h2>
-    <ul>
-      <li><strong>Adresse :</strong> péniche Le Bus Magique, avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle</li>
-      <li><strong>Métro :</strong> station Rihour</li>
-      <li><strong>Bus :</strong> arrêt Champ de Mars</li>
-      <li><strong>V'Lille :</strong> station à moins de 5 minutes à pied</li>
-      <li><strong>Voiture :</strong> parking gratuit du Champ de Mars</li>
-    </ul>
+    <div class="peniche__access-text">
+      <h2>Où est amarrée la péniche</h2>
+      <ul>
+        <li><strong>Adresse :</strong> péniche Le Bus Magique, avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle</li>
+        <li><strong>Métro :</strong> station Rihour</li>
+        <li><strong>Bus :</strong> arrêt Champ de Mars</li>
+        <li><strong>V'Lille :</strong> station à moins de 5 minutes à pied</li>
+        <li><strong>Voiture :</strong> parking gratuit du Champ de Mars</li>
+      </ul>
+      <a class="cta cta--tomato" href="https://www.google.com/maps/dir/?api=1&destination=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille" target="_blank" rel="noopener" data-umami-event="peniche-itineraire">Calculer mon itinéraire</a>
+    </div>
+    <a class="peniche__access-map" href="https://www.google.com/maps/search/?api=1&query=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille" target="_blank" rel="noopener" data-umami-event="peniche-carte" aria-label="Ouvrir le plan d'accès dans Google Maps">
+      <img src="{{img_map}}" alt="Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille" loading="lazy">
+    </a>
   </div>
 
   <div class="peniche__split">
     <div class="peniche__split-text">
       <h2>Dormir sur la péniche</h2>
       <p>À l'avant du bateau, le logement du Marinier se loue à la nuit pour deux à trois personnes, avec sa terrasse privée sur le pont et sa vue sur le canal. C'est un hébergement indépendant du bar et du restaurant.</p>
-      <p><a href="/dormir-sur-une-peniche-a-lille/">Voir les disponibilités du gîte</a>.</p>
+      <p class="peniche__split-cta"><a class="cta cta--tomato" href="/dormir-sur-une-peniche-a-lille/" data-umami-event="hebergement-entree" data-umami-event-source="peniche">Voir les disponibilités</a></p>
     </div>
     <figure class="peniche__split-media">
       <img src="{{photo_studio}}" alt="Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit" loading="lazy">
@@ -192,7 +279,7 @@ function mkwvs_peniche_page_content(array $photos): string
   <div class="peniche__assoc">
     <h2>Une péniche portée par une association</h2>
     <p>Le Bus Magique est une association loi 1901 née au printemps 2018. Le lieu vit grâce à ses bénévoles et à ses adhérents, autour de quelques valeurs simples : le bien-être, le lien social, le respect de l'environnement et le soutien à l'économie locale.</p>
-    <p><a href="/monter-a-bord/">Adhérer et monter à bord</a></p>
+    <p><a class="cta cta--red" href="/monter-a-bord/" data-umami-event="peniche-activite" data-umami-event-cible="adhesion">Adhérer et monter à bord</a></p>
   </div>
 
   <h2 class="peniche__title">Questions fréquentes</h2>
