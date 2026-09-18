@@ -22,7 +22,7 @@
           <?php $icon = get_sub_field('page_services_item_icon'); ?>
           <?php $name = get_sub_field('page_services_item_name'); ?>
           <?php $descriptif = get_sub_field('page_services_item_descriptif'); ?>
-          <li class="items"><img class="icon" src="<?php echo $icon['url']; ?>">
+          <li class="items"><img class="icon" src="<?php echo $icon['url']; ?>" alt="" aria-hidden="true">
             <h2><?php echo $name; ?></h2>
             <p><?php echo $descriptif; ?></p>
           </li>
@@ -46,7 +46,7 @@
             <?php $price = get_sub_field('page_prestation_item_price'); ?>
             <section class="section-price <?php echo $color; ?>">
               <div class="font-icon <?php echo $color; ?>">
-                <img src="<?php echo $icon['url']; ?>">
+                <img src="<?php echo $icon['url']; ?>" alt="" aria-hidden="true">
               </div>
               <p class="text-font category <?php echo $color; ?>"><?php echo $toptitle; ?></p>
               <h2 class="activity"><?php echo $title; ?></h2>

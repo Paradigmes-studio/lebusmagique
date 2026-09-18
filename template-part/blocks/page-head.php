@@ -7,7 +7,17 @@
       <?php $image = get_sub_field('page_head_gallery_item_image'); ?>
       <?php $image_count++; ?>
       <?php $description = get_sub_field('page_head_gallery_item_descriptif'); ?>
-      <img class="swiper-slide" src="<?php echo $image['url']; ?>" alt="<?php echo $description; ?>">
+      <?php
+        $slide_attr = ['class' => 'swiper-slide', 'sizes' => '100vw'];
+        if (!empty($description)) {
+            $slide_attr['alt'] = $description;
+        }
+        if ($image_count === 1) {
+            $slide_attr['loading']       = 'eager';
+            $slide_attr['fetchpriority'] = 'high';
+        }
+        mkwvs_the_image($image, 'full', $slide_attr, (string) get_the_title());
+      ?>
     <?php endwhile; ?>
   <?php else: ?>
     <?php $thumb_id = get_post_thumbnail_id(get_the_ID()); ?>
@@ -25,7 +35,7 @@
 <div class="hublot<?php if($image_count > 1) echo " has-slider"; ?>">
   <?php $color_hublot = get_field('page_head_hublot_color'); ?>
   <?php if (empty($color_hublot)) $color_hublot = 'red'; ?>
-  <img src="<?php echo get_stylesheet_directory_uri() .'/images/'.$color_hublot.'-hublot.svg'; ?>">
+  <img src="<?php echo get_stylesheet_directory_uri() .'/images/'.$color_hublot.'-hublot.svg'; ?>" alt="" aria-hidden="true">
   <?php $icon_hublot = get_field('page_head_hublot_icon'); ?>
   <?php
     if (is_array($icon_hublot) && !empty($icon_hublot['url'])) {
@@ -36,7 +46,7 @@
         $icon_hublot_url = $upload_dir['baseurl'].'/2021/05/hublot-icon-programmation.svg';
     }
   ?>
-  <h1 class="big-title"><img class="icon" src="<?php echo esc_url($icon_hublot_url); ?>"><?php echo get_the_title(); ?></h1>
+  <h1 class="big-title"><img class="icon" src="<?php echo esc_url($icon_hublot_url); ?>" alt="" aria-hidden="true"><?php echo get_the_title(); ?></h1>
   <?php if($image_count > 1): ?>
   <div class="o-slider__navigation">
     <button class="o-slider__prev"><?php locate_template( 'images/fleche.svg', true, false ); ?></button>
@@ -49,7 +59,7 @@
   <?php $icon_scroll= get_field('page_head_icon_scroll'); ?>
   <?php if (empty($icon_scroll)) $icon_scroll['url'] = $upload_dir['baseurl'].'/2021/05/ancre.svg'; ?>
   <?php $accroche_scroll = get_field('page_head_accroche_scroll'); ?>
-  <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>">
+  <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>" alt="" aria-hidden="true">
   <p class="to_show"><?php echo $accroche_scroll; ?></p>
 </div>
 </div>

@@ -29,7 +29,7 @@
     <body <?php body_class(); ?>>
 
     <header>
-      <a href="<?php echo get_home_url('/'); ?>"><img class="icon-bus" src="<?php echo get_stylesheet_directory_uri() . '/images/icon-bus.svg'; ?>"></a>
+      <a href="<?php echo get_home_url('/'); ?>"><img class="icon-bus" src="<?php echo get_stylesheet_directory_uri() . '/images/icon-bus.svg'; ?>" alt="Le Bus Magique, retour à l'accueil"></a>
       <button id="menu-toggle" class="version standard"><svg xmlns="http://www.w3.org/2000/svg" id="svg4503" version="1.1" viewBox="0 0 19.128 15.61" height="15.61" width="19.128">
           <defs id="defs4507" />
           <g id="g4501">
@@ -70,7 +70,7 @@
               <?php $social_network_name = get_sub_field('item_social_network_name', 'option'); ?>
               <?php $social_network_icon = get_sub_field('item_social_network_icon', 'option'); ?>
               <?php $social_network_url  = get_sub_field('item_social_network_url', 'option'); ?>
-              <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social" src="<?php echo $social_network_icon['url']; ?>" ></a>
+              <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social" src="<?php echo $social_network_icon['url']; ?>" alt="<?php echo esc_attr($social_network_name); ?>"></a>
             <?php endwhile; ?>
           <?php endif; ?>
         </div>

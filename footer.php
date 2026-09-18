@@ -3,7 +3,7 @@
 <footer class="footer-adhesion">
   <h2 class="accroche">Envie de monter à bord ?</h2>
   <a href="<?php echo get_permalink(get_page_by_path('monter-a-bord')) ?>" class="cta cta-footer cta-decoration">J'adhère !
-    <img class="cta-responsive-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 396.svg'; ?>">
+    <img class="cta-responsive-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 396.svg'; ?>" alt="" aria-hidden="true">
   </a>
   <!-- <img class="cta-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/footer-cta-decoration.png'; ?>"> -->
 
@@ -15,7 +15,7 @@
 </footer>
 
 <footer class="footer-network-news">
-  <img class="footer-logo" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 77.svg'; ?>">
+  <img class="footer-logo" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 77.svg'; ?>" alt="Le Bus Magique">
 
   <div class="rubric menu">
 
@@ -63,7 +63,7 @@
           <?php $social_network_name = get_sub_field('item_social_network_name', 'option'); ?>
           <?php $social_network_icon = get_sub_field('item_social_network_icon', 'option'); ?>
           <?php $social_network_url  = get_sub_field('item_social_network_url', 'option'); ?>
-          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social-responsive border-white-responsive" src="<?php echo $social_network_icon['url']; ?>"></a>
+          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social-responsive border-white-responsive" src="<?php echo $social_network_icon['url']; ?>" alt="<?php echo esc_attr($social_network_name); ?>"></a>
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
@@ -112,7 +112,7 @@
           <?php $social_network_name = get_sub_field('item_social_network_name', 'option'); ?>
           <?php $social_network_icon = get_sub_field('item_social_network_icon', 'option'); ?>
           <?php $social_network_url  = get_sub_field('item_social_network_url', 'option'); ?>
-          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social border-white" src="<?php echo $social_network_icon['url']; ?>"></a>
+          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social border-white" src="<?php echo $social_network_icon['url']; ?>" alt="<?php echo esc_attr($social_network_name); ?>"></a>
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
