@@ -18,11 +18,11 @@ function mkwvs_hebergement_ical_url(): string
     return (string) apply_filters('mkwvs_hebergement_ical_url', $url);
 }
 
-function mkwvs_hebergement_busy_dates(): array
+function mkwvs_hebergement_busy_dates(): ?array
 {
     $url = mkwvs_hebergement_ical_url();
     if ($url === '') {
-        return [];
+        return null;
     }
 
     $cache_key = 'mkwvs_hebergement_busy_' . md5($url);
@@ -33,7 +33,11 @@ function mkwvs_hebergement_busy_dates(): array
 
     $response = wp_remote_get($url, ['timeout' => 8]);
     if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-        return [];
+        return null;
+    }
+
+    if (!str_contains(wp_remote_retrieve_body($response), 'BEGIN:VCALENDAR')) {
+        return null;
     }
 
     $dates = mkwvs_hebergement_parse_ical(wp_remote_retrieve_body($response));
@@ -74,7 +78,12 @@ function mkwvs_hebergement_calendar(int $months = 2): string
 {
     global $a_months;
 
-    $busy = array_flip(mkwvs_hebergement_busy_dates());
+    $dates = mkwvs_hebergement_busy_dates();
+    if ($dates === null) {
+        return '';
+    }
+
+    $busy = array_flip($dates);
     $today = new DateTimeImmutable('today');
     $month = $today->modify('first day of this month');
     $labels = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
