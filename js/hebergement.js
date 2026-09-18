@@ -139,15 +139,19 @@
       return;
     }
 
+    if (!slot.dataset.fallback) {
+      slot.dataset.fallback = slot.innerHTML;
+    }
+
     if (!checkIn) {
       text.textContent = text.dataset.empty;
-      slot.innerHTML = '';
+      slot.innerHTML = slot.dataset.fallback;
       return;
     }
 
     if (!checkOut) {
       text.textContent = 'Arrivée le ' + label(checkIn) + '. Choisissez votre date de départ.';
-      slot.innerHTML = '';
+      slot.innerHTML = slot.dataset.fallback;
       return;
     }
 

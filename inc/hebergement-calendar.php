@@ -152,7 +152,11 @@ function mkwvs_hebergement_calendar(int $months = 12): string
     $out .= '<span class="hebergement__key hebergement__key--free"></span> Libre';
     $out .= '<span class="hebergement__key hebergement__key--busy"></span> Déjà réservé';
     $out .= '</p>';
-    $out .= '<div class="hebergement__booking" data-listing="' . esc_attr(MKWVS_HEBERGEMENT_LISTING_URL) . '"></div>';
+    $out .= '<div class="hebergement__booking" data-listing="' . esc_attr(MKWVS_HEBERGEMENT_LISTING_URL) . '">'
+        . '<a class="cta cta-decoration" href="' . esc_url(MKWVS_HEBERGEMENT_LISTING_URL) . '"'
+        . ' target="_blank" rel="noopener"'
+        . ' data-umami-event="hebergement-airbnb" data-umami-event-source="page-hebergement">'
+        . 'Voir les disponibilités et réserver</a></div>';
 
     return $out;
 }

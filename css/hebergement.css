@@ -291,15 +291,23 @@ button.hebergement__day.is-selected {
 .hebergement__faq {
   max-width: 760px;
   margin: 0 auto 48px;
+  background: #f8f4e8;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 8px 24px;
+}
+
+.hebergement__note {
+  text-align: center;
+  font-size: 15px;
+  margin: 0 0 40px;
 }
 
 .hebergement__faq details {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.hebergement__faq details:first-of-type {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
-}
+.hebergement__faq details:last-of-type { border-bottom: 0; }
 
 .hebergement__faq summary {
   display: flex;
