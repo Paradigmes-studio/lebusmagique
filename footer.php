@@ -125,7 +125,7 @@
   <ul>
     <li><a href="<?php echo get_permalink(get_page_by_path('mentions-legales')) ?>">Mentions légales</a></li>
     <li><a href="<?php echo get_permalink(get_page_by_path('confidentialité')) ?>">Confidentialité</a></li>
-    <li>Site par <a href="https://manon-verbeke.com/" target="_blank">Manon Verbeke</a> &times; <a href="https://makewaves.fr/">Makewaves</a> &times; <a href="https://symfolidity.com/" target="_blank">Symfolidity</a></li>
+    <li>Site par <a href="https://manon-verbeke.com/" target="_blank">Manon Verbeke</a> &times; <a href="https://makewaves.fr/" target="_blank">Makewaves</a> &times; <a href="https://symfolidity.com/" target="_blank">Symfolidity</a></li>
   </ul>
 </div>
 
