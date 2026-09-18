@@ -8,11 +8,13 @@
   <!-- <img class="cta-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/footer-cta-decoration.png'; ?>"> -->
 
 </footer>
+<?php if (!is_page_template('templates/hebergement.php')) : ?>
 <footer class="footer-location">
   <h2 class="accroche has-text-align-center">Psst ! La péniche a aussi son gîte !</h2>
   <a href="<?php echo esc_url(mkwvs_hebergement_page_url()); ?>" class="cta cta-footer cta-decoration" data-umami-event="hebergement-entree" data-umami-event-source="footer">Je passe la nuit sur la péniche
   </a>
 </footer>
+<?php endif; ?>
 
 <footer class="footer-network-news">
   <img class="footer-logo" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 77.svg'; ?>" alt="Le Bus Magique">
