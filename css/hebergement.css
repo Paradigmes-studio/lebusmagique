@@ -116,3 +116,78 @@
 .hebergement__cta { text-align: center; }
 
 .hebergement__cta-note { font-size: 15px; margin: 0 0 20px; }
+
+/* Calendrier de disponibilités */
+
+.hebergement__calendar {
+  display: grid;
+  gap: 32px;
+  margin: 0 auto 16px;
+  max-width: 720px;
+}
+
+@media screen and (min-width: 700px) {
+  .hebergement__calendar { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+.hebergement__month h3 {
+  font-size: 18px;
+  text-align: center;
+  margin: 0 0 14px;
+}
+
+.hebergement__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.hebergement__dow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+  padding-bottom: 6px;
+  opacity: 0.6;
+}
+
+.hebergement__day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 4px;
+  background: #f8f4e8;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.hebergement__day abbr { text-decoration: none; border: 0; }
+.hebergement__day.is-empty { background: none; border: 0; }
+.hebergement__day.is-past { opacity: 0.35; }
+
+.hebergement__day.is-busy {
+  background: #e6534e;
+  border-color: #e6534e;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+.hebergement__legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  margin: 0 0 28px;
+}
+
+.hebergement__key {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.hebergement__key--free { background: #f8f4e8; border: 1px solid rgba(0, 0, 0, 0.2); }
+.hebergement__key--busy { background: #e6534e; margin-left: 14px; }

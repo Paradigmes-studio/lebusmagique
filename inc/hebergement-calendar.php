@@ -1,0 +1,131 @@
+<?php
+
+declare(strict_types=1);
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+const MKWVS_HEBERGEMENT_ICAL_OPTION = 'mkwvs_hebergement_ical_url';
+const MKWVS_HEBERGEMENT_ICAL_TTL = 3 * HOUR_IN_SECONDS;
+
+function mkwvs_hebergement_ical_url(): string
+{
+    return (string) apply_filters('mkwvs_hebergement_ical_url', get_option(MKWVS_HEBERGEMENT_ICAL_OPTION, ''));
+}
+
+function mkwvs_hebergement_busy_dates(): array
+{
+    $url = mkwvs_hebergement_ical_url();
+    if ($url === '') {
+        return [];
+    }
+
+    $cache_key = 'mkwvs_hebergement_busy_' . md5($url);
+    $cached = get_transient($cache_key);
+    if (is_array($cached)) {
+        return $cached;
+    }
+
+    $response = wp_remote_get($url, ['timeout' => 8]);
+    if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+        return [];
+    }
+
+    $dates = mkwvs_hebergement_parse_ical(wp_remote_retrieve_body($response));
+    set_transient($cache_key, $dates, MKWVS_HEBERGEMENT_ICAL_TTL);
+
+    return $dates;
+}
+
+function mkwvs_hebergement_parse_ical(string $ics): array
+{
+    $dates = [];
+    preg_match_all('/BEGIN:VEVENT(.*?)END:VEVENT/s', $ics, $events);
+
+    foreach ($events[1] as $event) {
+        if (!preg_match('/DTSTART[^:]*:(\d{8})/', $event, $start)) {
+            continue;
+        }
+        if (!preg_match('/DTEND[^:]*:(\d{8})/', $event, $end)) {
+            continue;
+        }
+
+        $cursor = DateTimeImmutable::createFromFormat('Ymd', $start[1]);
+        $stop = DateTimeImmutable::createFromFormat('Ymd', $end[1]);
+        if (!$cursor instanceof DateTimeImmutable || !$stop instanceof DateTimeImmutable) {
+            continue;
+        }
+
+        while ($cursor < $stop) {
+            $dates[$cursor->format('Y-m-d')] = true;
+            $cursor = $cursor->modify('+1 day');
+        }
+    }
+
+    return array_keys($dates);
+}
+
+function mkwvs_hebergement_calendar(int $months = 2): string
+{
+    global $a_months;
+
+    $busy = array_flip(mkwvs_hebergement_busy_dates());
+    $today = new DateTimeImmutable('today');
+    $month = $today->modify('first day of this month');
+    $labels = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+
+    $out = '<div class="hebergement__calendar">';
+
+    for ($i = 0; $i < $months; $i++) {
+        $first = $month->modify("+$i month");
+        $days = (int) $first->format('t');
+        $offset = ((int) $first->format('N')) - 1;
+
+        $out .= '<div class="hebergement__month">';
+        $out .= '<h3>' . esc_html($a_months[$first->format('m')] . ' ' . $first->format('Y')) . '</h3>';
+        $out .= '<div class="hebergement__grid">';
+
+        foreach ($labels as $label) {
+            $out .= '<span class="hebergement__dow">' . esc_html($label) . '</span>';
+        }
+        $out .= str_repeat('<span class="hebergement__day is-empty"></span>', $offset);
+
+        for ($d = 1; $d <= $days; $d++) {
+            $date = $first->setDate((int) $first->format('Y'), (int) $first->format('m'), $d);
+            $key = $date->format('Y-m-d');
+
+            $class = 'hebergement__day';
+            $label = 'Libre';
+            if ($date < $today) {
+                $class .= ' is-past';
+                $label = 'Passé';
+            } elseif (isset($busy[$key])) {
+                $class .= ' is-busy';
+                $label = 'Occupé';
+            }
+
+            $out .= sprintf(
+                '<span class="%s"><abbr title="%s : %s">%d</abbr></span>',
+                esc_attr($class),
+                esc_attr($d . ' ' . mb_strtolower($a_months[$date->format('m')]) . ' ' . $date->format('Y')),
+                esc_attr($label),
+                $d
+            );
+        }
+
+        $out .= '</div></div>';
+    }
+
+    $out .= '</div>';
+    $out .= '<p class="hebergement__legend">';
+    $out .= '<span class="hebergement__key hebergement__key--free"></span> Libre';
+    $out .= '<span class="hebergement__key hebergement__key--busy"></span> Déjà réservé';
+    $out .= '</p>';
+
+    return $out;
+}
+
+add_shortcode('hebergement_calendrier', static function (): string {
+    return mkwvs_hebergement_calendar();
+});

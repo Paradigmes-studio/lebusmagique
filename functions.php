@@ -43,6 +43,7 @@ require get_template_directory() . '/inc/facebook-events-categories.php';
 require get_template_directory() . '/inc/facebook-events-archive.php';
 require get_template_directory() . '/inc/links-social-media-functions.php';
 require get_template_directory() . '/inc/analytics.php';
+require get_template_directory() . '/inc/hebergement-calendar.php';
 require get_template_directory() . '/inc/seo-fixes.php';
 require get_template_directory() . '/inc/migrate-seo-content.php';
 
