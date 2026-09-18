@@ -35,7 +35,7 @@
     <h2>Contactez-nous</h2>
     <?php $contact_email = get_field('option_contact_email', 'option'); ?>
     <?php if($contact_email != ""): ?>
-    <p><a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a></p>
+    <p><a href="mailto:<?php echo antispambot($contact_email, 1); ?>"><?php echo antispambot($contact_email); ?></a></p>
     <?php endif; ?>
     <?php if (have_rows('option_contact_list', 'option')) : ?>
       <?php while (have_rows('option_contact_list', 'option')) : the_row(); ?>

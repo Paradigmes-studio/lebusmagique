@@ -12,29 +12,30 @@ if (!defined('ABSPATH')) {
  */
 
 const MKWVS_LEGAL_PAGE_TEMPLATE = 'templates/page-legale.php';
+const MKWVS_LEGAL_EMAIL = 'lebusmagique.lille@gmail.com';
 
 add_action('init', 'mkwvs_migrate_legal_pages');
 
 function mkwvs_migrate_legal_pages(): void
 {
-    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 2) {
+    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 3) {
         return;
     }
 
     $ok = mkwvs_migrate_fill_legal_page(
         'mentions-legales',
         'Mentions légales',
-        mkwvs_legal_page_content_mentions()
+        mkwvs_legal_protect_email(mkwvs_legal_page_content_mentions())
     );
 
     $ok = mkwvs_migrate_fill_legal_page(
         'confidentialite',
         'Politique de confidentialité',
-        mkwvs_legal_page_content_confidentialite()
+        mkwvs_legal_protect_email(mkwvs_legal_page_content_confidentialite())
     ) && $ok;
 
     if ($ok) {
-        update_option('mkwvs_legal_pages_migrated', 2);
+        update_option('mkwvs_legal_pages_migrated', 3);
     }
 }
 
@@ -70,9 +71,22 @@ function mkwvs_migrate_fill_legal_page(string $slug, string $title, string $cont
     return !is_wp_error($updated);
 }
 
+/**
+ * Encode l'adresse en entités HTML : elle reste cliquable et lisible, mais n'est
+ * plus servie en clair aux moissonneurs d'adresses.
+ */
+function mkwvs_legal_protect_email(string $content): string
+{
+    if (!function_exists('antispambot')) {
+        return $content;
+    }
+
+    return str_replace(MKWVS_LEGAL_EMAIL, antispambot(MKWVS_LEGAL_EMAIL), $content);
+}
+
 function mkwvs_legal_page_is_outdated(string $content): bool
 {
-    foreach (['À COMPLÉTER', '59000 Lille', 'Matomo'] as $marker) {
+    foreach (['À COMPLÉTER', '59000 Lille', 'Matomo', MKWVS_LEGAL_EMAIL] as $marker) {
         if (str_contains($content, $marker)) {
             return true;
         }

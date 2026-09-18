@@ -116,9 +116,6 @@ function mkwvs_schema_build_base(array $data, string|array $type = 'Organization
     if ($data['phone']) {
         $schema['telephone'] = $data['phone'];
     }
-    if ($data['email']) {
-        $schema['email'] = $data['email'];
-    }
     if (!empty($data['socials'])) {
         $schema['sameAs'] = $data['socials'];
     }

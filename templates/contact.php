@@ -19,7 +19,7 @@
           <div class="o-contact__mail">
             <?php $contact_email = get_field('option_contact_email', 'option'); ?>
             <?php if($contact_email != ""): ?>
-            <p><a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a></p>
+            <p><a href="mailto:<?php echo antispambot($contact_email, 1); ?>"><?php echo antispambot($contact_email); ?></a></p>
             <?php endif; ?>
           </div>
 
