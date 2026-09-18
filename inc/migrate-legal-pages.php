@@ -18,7 +18,7 @@ add_action('init', 'mkwvs_migrate_legal_pages');
 
 function mkwvs_migrate_legal_pages(): void
 {
-    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 3) {
+    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 4) {
         return;
     }
 
@@ -35,7 +35,7 @@ function mkwvs_migrate_legal_pages(): void
     ) && $ok;
 
     if ($ok) {
-        update_option('mkwvs_legal_pages_migrated', 3);
+        update_option('mkwvs_legal_pages_migrated', 4);
     }
 }
 
@@ -86,7 +86,7 @@ function mkwvs_legal_protect_email(string $content): string
 
 function mkwvs_legal_page_is_outdated(string $content): bool
 {
-    foreach (['À COMPLÉTER', '59000 Lille', 'Matomo', MKWVS_LEGAL_EMAIL] as $marker) {
+    foreach (['À COMPLÉTER', '59000 Lille', 'Umami', MKWVS_LEGAL_EMAIL] as $marker) {
         if (str_contains($content, $marker)) {
             return true;
         }
@@ -319,7 +319,7 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Nous mesurons la fréquentation du site avec Umami, une solution de mesure d'audience sans cookie et sans traceur publicitaire, hébergée par le prestataire technique du site. Les statistiques produites ne sont transmises à aucune régie publicitaire et nous servent uniquement à comprendre quelles pages sont consultées afin d'améliorer le site.</p>
+<p>Nous mesurons la fréquentation du site avec Matomo, installé sur le serveur qui héberge le site. Les statistiques produites restent chez nous et ne sont transmises à aucune régie publicitaire. Elles nous servent uniquement à comprendre quelles pages sont consultées afin d'améliorer le site.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->

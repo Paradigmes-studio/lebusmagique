@@ -16,7 +16,6 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
         
-        <script type="text/javascript" src="https://booking.ureserve.co/shop/external-booking/js/le-bus-magique.js" crossorigin="anonymous"></script>
         <?php wp_head(); ?>
 
         <!--[if lt IE 9]>

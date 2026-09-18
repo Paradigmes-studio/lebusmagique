@@ -20,7 +20,7 @@
     <section id="carte" class="carte">
 
       <div class="accroche">
-        Psst ! Pour les jeudis et vendredis midis, et pour les brunchs du dimanche : <a class="cta" style="margin-bottom: 50px;margin-top:45px" href="#" id="ureserve_booking">Réservez maintenant !</a>
+        Psst ! Pour les jeudis et vendredis midis, et pour les brunchs du dimanche : <a class="cta" style="margin-bottom: 50px;margin-top:45px" href="https://uniiti.com/shop/le-bus-magique" target="_blank" rel="noopener" data-umami-event="reservation-resto" data-umami-event-source="restauration">Réservez maintenant !</a>
         <p class="form-title">S'il n'y a plus de place en ligne, appelez-nous pendant nos horaires d'ouverture ou envoyez-nous un p'tit mail ;)
         </p>
 
