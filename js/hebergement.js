@@ -182,9 +182,11 @@
     }
 
     if (!everyNightFree(checkIn, date)) {
-      summary().textContent = 'Ce séjour croise des nuits déjà réservées. Choisissez une autre date de départ.';
+      checkIn = date;
       checkOut = null;
-      paint();
+      render();
+      summary().textContent = 'Ce séjour croisait des nuits réservées. Nouvelle arrivée le ' +
+        label(date) + '. Choisissez votre date de départ.';
       return;
     }
 
