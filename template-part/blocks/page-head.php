@@ -21,11 +21,14 @@
     <?php endwhile; ?>
   <?php else: ?>
     <?php $thumb_id = get_post_thumbnail_id(get_the_ID()); ?>
-    <?php $post_thumbnail = wp_get_attachment_image_src($thumb_id, 'header-thumb'); ?>
-    <?php if (false !== $post_thumbnail) : ?>
-        <?php $thumb_alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true); ?>
-        <?php if (empty($thumb_alt)) $thumb_alt = get_the_title(); ?>
-        <img src="<?php echo $post_thumbnail[0] ?>" alt="<?php echo esc_attr($thumb_alt); ?>"/>
+    <?php if ($thumb_id) : ?>
+        <?php
+          mkwvs_the_image($thumb_id, 'full', [
+              'sizes'         => '100vw',
+              'loading'       => 'eager',
+              'fetchpriority' => 'high',
+          ], (string) get_the_title());
+        ?>
     <?php endif; ?>
   <?php endif; ?>
 
