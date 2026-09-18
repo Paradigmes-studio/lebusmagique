@@ -14,7 +14,7 @@ services:
         define('WPMS_SMTP_HOST', 'mailpit');
         define('WPMS_SMTP_PORT', 1025);
         define('WP_HTTP_BLOCK_EXTERNAL', true);
-        define('WP_ACCESSIBLE_HOSTS', 'db,mailpit');
+        define('WP_ACCESSIBLE_HOSTS', 'db,mailpit,www.airbnb.fr');
         define('AUTOMATIC_UPDATER_DISABLED', true);
         define('WP_AUTO_UPDATE_CORE', false);
     volumes:
