@@ -19,3 +19,6 @@ le-bus-magique-*.json
 /optimisations-seo-*.md
 /optimisations-seo-*.pdf
 /seo-briefs/
+
+# Notes de travail internes (comptes rendus, brouillons client)
+.claude-work/

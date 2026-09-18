@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Hébergement
+ * Template Name: Péniche Lille
  */
 ?>
 <?php get_header(); ?>
@@ -23,7 +23,5 @@
 
   <?php endwhile; ?>
 <?php endif; ?>
-
-<?php include(locate_template('template-part/blocks/peniche-link.php')); ?>
 
 <?php get_footer();

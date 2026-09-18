@@ -234,6 +234,17 @@ function mkwvs_schema_inject_page_specific(): void
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse privée', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Lave-linge', 'value' => true],
         ];
+    } elseif ($template === MKWVS_PENICHE_PAGE_TEMPLATE) {
+        $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'TouristAttraction']);
+        $schema['description'] = "Péniche associative amarrée à l'entrée de la Citadelle de Lille : bar, restauration, programmation culturelle, coworking, privatisation et gîte à bord d'un bateau de 1954.";
+        $schema['priceRange'] = '€€';
+        $schema['isAccessibleForFree'] = false;
+        $schema['publicAccess'] = true;
+        $schema['touristType'] = ['Familles', 'Groupes', 'Visiteurs de Lille'];
+        $schema['hasMap'] = 'https://www.google.com/maps/search/?api=1&query=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille';
+        if (!empty($hours)) {
+            $schema['openingHoursSpecification'] = $hours;
+        }
     } elseif ($template === 'templates/location.php') {
         $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'EventVenue']);
         $schema['description'] = "Privatisation d'une péniche à Lille pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage, à l'entrée de la Citadelle.";
@@ -242,6 +253,59 @@ function mkwvs_schema_inject_page_specific(): void
         if (!empty($hours)) {
             $schema['openingHoursSpecification'] = $hours;
         }
+    }
+
+    if ($template === MKWVS_PENICHE_PAGE_TEMPLATE) {
+        $faq = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type' => 'Question',
+                    'name' => "Où se trouve la péniche Le Bus Magique à Lille ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "La péniche est amarrée avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. On y accède par le métro Rihour ou l'arrêt de bus Champ de Mars, et le parking du Champ de Mars est gratuit.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Peut-on manger et boire un verre sur la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. La péniche sert des plats du jour les jeudi et vendredi midi et un brunch le dimanche, avec une cuisine maison, bio et de saison. Le bar propose des bières locales, des vins et des boissons chaudes.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Faut-il adhérer à l'association pour monter à bord ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. Le Bus Magique est une association, l'adhésion est donc nécessaire. Son montant est libre et elle se prend directement à bord auprès d'un bénévole ou d'un serveur.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Peut-on privatiser la péniche pour un événement ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui, pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage. La salle accueille 60 personnes assises et 100 en cocktail, la terrasse 40 assises et 60 en cocktail.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Peut-on dormir sur la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. Le logement du Marinier, à l'avant du bateau, se loue à la nuit pour deux à trois personnes, avec sa terrasse privée et sa salle de bain.",
+                    ],
+                ],
+            ],
+        ];
+
+        echo "\n" . '<script type="application/ld+json">'
+            . wp_json_encode($faq, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            . '</script>' . "\n";
     }
 
     if ($template === 'templates/hebergement.php') {

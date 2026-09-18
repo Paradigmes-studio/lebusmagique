@@ -82,4 +82,6 @@
 <?php endif; ?>
 
 
+<?php include(locate_template('template-part/blocks/peniche-link.php')); ?>
+
 <?php get_footer();

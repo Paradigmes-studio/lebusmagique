@@ -47,6 +47,7 @@ require get_template_directory() . '/inc/links-social-media-functions.php';
 require get_template_directory() . '/inc/analytics.php';
 require get_template_directory() . '/inc/hebergement-calendar.php';
 require get_template_directory() . '/inc/migrate-hebergement-page.php';
+require get_template_directory() . '/inc/migrate-peniche-page.php';
 require get_template_directory() . '/inc/seo-fixes.php';
 require get_template_directory() . '/inc/migrate-seo-content.php';
 
@@ -319,6 +320,12 @@ function mkwvs_scripts_styles(){
     if (array_filter($cat_templates, 'is_page_template')) {
         wp_register_style('prog-categories-style', get_template_directory_uri() . '/css/programmation-categories.css', ['styles'], filemtime(get_template_directory() . '/css/programmation-categories.css'), 'all');
         wp_enqueue_style('prog-categories-style');
+    }
+
+    // CSS de la page péniche
+    if (is_page_template(MKWVS_PENICHE_PAGE_TEMPLATE)) {
+        wp_register_style('peniche-style', get_template_directory_uri() . '/css/peniche.css', ['styles'], filemtime(get_template_directory() . '/css/peniche.css'), 'all');
+        wp_enqueue_style('peniche-style');
     }
 
     // CSS de la page hébergement
