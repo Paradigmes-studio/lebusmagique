@@ -11,6 +11,8 @@ if (!defined('ABSPATH')) {
  * si elles sont vides ou absentes (la CI ne déploie que le code, pas le contenu).
  */
 
+const MKWVS_LEGAL_PAGE_TEMPLATE = 'templates/page-legale.php';
+
 add_action('init', 'mkwvs_migrate_legal_pages');
 
 function mkwvs_migrate_legal_pages(): void
@@ -42,15 +44,18 @@ function mkwvs_migrate_fill_legal_page(string $slug, string $title, string $cont
 
     if (!$page instanceof WP_Post) {
         $id = wp_insert_post([
-            'post_type'    => 'page',
-            'post_status'  => 'publish',
-            'post_title'   => $title,
-            'post_name'    => $slug,
-            'post_content' => $content,
+            'post_type'     => 'page',
+            'post_status'   => 'publish',
+            'post_title'    => $title,
+            'post_name'     => $slug,
+            'post_content'  => $content,
+            'page_template' => MKWVS_LEGAL_PAGE_TEMPLATE,
         ], true);
 
         return !is_wp_error($id) && (int) $id > 0;
     }
+
+    update_post_meta($page->ID, '_wp_page_template', MKWVS_LEGAL_PAGE_TEMPLATE);
 
     if (trim(strip_tags($page->post_content)) !== '') {
         return true;
@@ -80,15 +85,29 @@ function mkwvs_legal_page_content_mentions(): string
 <p>Le site lebusmagiquelille.fr est édité par Le Bus Magique, association déclarée régie par la loi du 1er juillet 1901.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul>
+<!-- wp:list {"className":"legal-identity"} -->
+<ul class="wp-block-list legal-identity">
+<!-- wp:list-item -->
 <li>Siège social : péniche Le Bus Magique, avenue Cuvier, 59000 Lille</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Numéro RNA : W595031094</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>SIREN : 840 181 259</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>SIRET du siège : 840 181 259 00036</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Code APE : 56.10A (restauration traditionnelle)</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Téléphone : 03 74 09 78 81</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Adresse e-mail : lebusmagique.lille@gmail.com</li>
+<!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
 
@@ -226,11 +245,19 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
-<ul>
+<ul class="wp-block-list">
+<!-- wp:list-item -->
 <li>OVH, pour l'hébergement du site et des données qu'il contient</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Brevo, pour l'envoi des e-mails de la newsletter et des e-mails de suivi de vos demandes</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>uReserve, pour la gestion des réservations en ligne</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>HelloAsso, pour la gestion des adhésions et des dons</li>
+<!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
 
@@ -243,11 +270,19 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:heading -->
 
 <!-- wp:list -->
-<ul>
+<ul class="wp-block-list">
+<!-- wp:list-item -->
 <li>Demandes envoyées via le formulaire de contact : 3 ans à compter de notre dernier échange</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Inscription à la newsletter : jusqu'à votre désinscription</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Demandes de privatisation : 3 ans à compter du dernier échange, et jusqu'à 10 ans pour les pièces comptables associées à un événement réalisé, conformément à nos obligations légales</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
 <li>Statistiques de fréquentation du site : 13 mois</li>
+<!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
 
