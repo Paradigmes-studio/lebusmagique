@@ -18,28 +18,47 @@ add_action('init', 'mkwvs_migrate_peniche_page');
 
 function mkwvs_migrate_peniche_page(): void
 {
-    if ((int) get_option('mkwvs_peniche_page_migrated', 0) >= 2) {
+    if ((int) get_option('mkwvs_peniche_page_migrated', 0) >= 3) {
         return;
     }
 
     $page = get_page_by_path(MKWVS_PENICHE_PAGE_SLUG);
 
     if ($page instanceof WP_Post) {
-        if (mkwvs_peniche_page_is_outdated($page->post_content)) {
-            wp_update_post([
-                'ID' => $page->ID,
-                'post_content' => mkwvs_peniche_page_content(mkwvs_peniche_photos()),
-            ]);
+        if (!mkwvs_peniche_page_is_outdated($page->post_content)) {
+            update_option('mkwvs_peniche_page_migrated', 3);
+
+            return;
         }
 
-        update_option('mkwvs_peniche_page_migrated', 2);
+        $hero_id = mkwvs_peniche_hero_id();
+        $photos = mkwvs_peniche_photos();
+
+        // Un import d'image peut échouer (requête interrompue, écriture refusée) :
+        // mieux vaut retenter au prochain chargement que figer une page sans visuel.
+        if (!$hero_id || !$photos) {
+            return;
+        }
+
+        wp_update_post([
+            'ID' => $page->ID,
+            'post_content' => mkwvs_peniche_page_content($photos),
+        ]);
+
+        set_post_thumbnail($page->ID, $hero_id);
+
+        update_option('mkwvs_peniche_page_migrated', 3);
 
         return;
     }
 
-    $hero_id = mkwvs_peniche_photo_id('peniche-exterieur.jpg', "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille");
+    $hero_id = mkwvs_peniche_hero_id();
 
     $photos = mkwvs_peniche_photos();
+
+    if (!$hero_id || !$photos) {
+        return;
+    }
 
     $page_id = wp_insert_post([
         'post_type' => 'page',
@@ -55,9 +74,7 @@ function mkwvs_migrate_peniche_page(): void
 
     update_post_meta($page_id, '_wp_page_template', MKWVS_PENICHE_PAGE_TEMPLATE);
 
-    if ($hero_id) {
-        set_post_thumbnail($page_id, $hero_id);
-    }
+    set_post_thumbnail($page_id, $hero_id);
 
     $icon_id = mkwvs_peniche_hublot_icon_id();
     if ($icon_id && function_exists('update_field')) {
@@ -73,12 +90,17 @@ function mkwvs_migrate_peniche_page(): void
 
     flush_rewrite_rules(false);
 
-    update_option('mkwvs_peniche_page_migrated', 2);
+    update_option('mkwvs_peniche_page_migrated', 3);
 }
 
 function mkwvs_peniche_page_is_outdated(string $content): bool
 {
-    foreach (['une chambre pour passer la nuit à bord', "à l'avant du bateau", 'Rihour'] as $marker) {
+    // Une page servie sans aucune image vient d'un import qui a échoué.
+    if (!str_contains($content, '<img')) {
+        return true;
+    }
+
+    foreach (['une chambre pour passer la nuit à bord', "à l'avant du bateau", 'Rihour', 'studio.jpg'] as $marker) {
         if (str_contains($content, $marker)) {
             return true;
         }
@@ -87,9 +109,17 @@ function mkwvs_peniche_page_is_outdated(string $content): bool
     return false;
 }
 
+function mkwvs_peniche_hero_id(): int
+{
+    return mkwvs_peniche_photo_id(
+        'peniche-exterieur.jpg',
+        "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille"
+    );
+}
+
 function mkwvs_peniche_photos(): array
 {
-    return [
+    $photos = [
         'photo_timonerie' => [
             'id' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
             'alt' => "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal",
@@ -119,6 +149,14 @@ function mkwvs_peniche_photos(): array
             'alt' => "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille",
         ],
     ];
+
+    foreach ($photos as $photo) {
+        if (!$photo['id']) {
+            return [];
+        }
+    }
+
+    return $photos;
 }
 
 function mkwvs_peniche_page_url(): string
