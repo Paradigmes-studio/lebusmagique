@@ -18,7 +18,7 @@ add_action('init', 'mkwvs_migrate_legal_pages');
 
 function mkwvs_migrate_legal_pages(): void
 {
-    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 4) {
+    if ((int) get_option('mkwvs_legal_pages_migrated', 0) >= 5) {
         return;
     }
 
@@ -35,7 +35,7 @@ function mkwvs_migrate_legal_pages(): void
     ) && $ok;
 
     if ($ok) {
-        update_option('mkwvs_legal_pages_migrated', 4);
+        update_option('mkwvs_legal_pages_migrated', 5);
     }
 }
 
@@ -86,7 +86,7 @@ function mkwvs_legal_protect_email(string $content): string
 
 function mkwvs_legal_page_is_outdated(string $content): bool
 {
-    foreach (['À COMPLÉTER', '59000 Lille', 'Umami', MKWVS_LEGAL_EMAIL] as $marker) {
+    foreach (['À COMPLÉTER', '59000 Lille', 'Umami', 'uReserve', 'prestataires de réservation', MKWVS_LEGAL_EMAIL] as $marker) {
         if (str_contains($content, $marker)) {
             return true;
         }
@@ -180,7 +180,7 @@ function mkwvs_legal_page_content_mentions(): string
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Le site peut proposer des liens vers des sites tiers, notamment ceux de nos partenaires et de nos prestataires de réservation, d'adhésion et de don. L'association n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou à l'usage qui pourrait en être fait.</p>
+<p>Le site peut proposer des liens vers des sites tiers, notamment ceux de nos partenaires, de notre prestataire de réservation et de notre prestataire de don. L'association n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou à l'usage qui pourrait en être fait.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -261,7 +261,11 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Les réservations en ligne sont opérées par uReserve, les adhésions et les dons par HelloAsso. Les données que vous saisissez dans ces outils sont collectées directement par ces prestataires, selon leurs propres politiques de confidentialité. Nous en recevons ce qui nous est nécessaire pour assurer votre accueil et le suivi de votre adhésion ou de votre don.</p>
+<p>Les réservations en ligne sont opérées par Uniiti et les dons par HelloAsso. Les données que vous saisissez dans ces outils sont collectées directement par ces prestataires, selon leurs propres politiques de confidentialité. Nous en recevons ce qui nous est nécessaire pour assurer votre accueil et le suivi de votre don.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Les adhésions, en revanche, ne passent par aucun prestataire extérieur : le formulaire d'adhésion est hébergé sur notre propre site et les données que vous y saisissez sont traitées directement par l'association.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -281,13 +285,17 @@ function mkwvs_legal_page_content_confidentialite(): string
 <li>Brevo, pour l'envoi des e-mails de la newsletter et des e-mails de suivi de vos demandes</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li>uReserve, pour la gestion des réservations en ligne</li>
+<li>Uniiti, pour la gestion des réservations en ligne</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li>HelloAsso, pour la gestion des adhésions et des dons</li>
+<li>HelloAsso, pour la gestion des dons</li>
 <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Les adhésions sont gérées avec notre propre outil, hébergé avec le reste du site : aucun prestataire tiers n'y a accès.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p>Nos prestataires d'hébergement et d'envoi d'e-mails sont établis dans l'Union européenne. Vos données ne sont ni vendues, ni louées, ni cédées à des tiers à des fins commerciales.</p>
@@ -331,7 +339,7 @@ function mkwvs_legal_page_content_confidentialite(): string
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Certaines pages intègrent des contenus et des services fournis par des tiers : le module de réservation uReserve, le module d'adhésion et de don HelloAsso, ainsi que des vidéos hébergées sur des plateformes externes. Lorsque ces contenus se chargent, le prestataire concerné reçoit votre adresse IP et peut déposer ses propres cookies, régis par sa politique de confidentialité. Vous pouvez à tout moment configurer votre navigateur pour refuser ou supprimer les cookies.</p>
+<p>Certaines pages intègrent des contenus et des services fournis par des tiers : le module de réservation Uniiti, le module de don HelloAsso, ainsi que des vidéos hébergées sur des plateformes externes. Lorsque ces contenus se chargent, le prestataire concerné reçoit votre adresse IP et peut déposer ses propres cookies, régis par sa politique de confidentialité. Le formulaire d'adhésion, lui, est hébergé sur notre propre site et ne fait appel à aucun service tiers. Vous pouvez à tout moment configurer votre navigateur pour refuser ou supprimer les cookies.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
