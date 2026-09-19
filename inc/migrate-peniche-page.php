@@ -18,48 +18,28 @@ add_action('init', 'mkwvs_migrate_peniche_page');
 
 function mkwvs_migrate_peniche_page(): void
 {
-    if ((int) get_option('mkwvs_peniche_page_migrated', 0) >= 1) {
+    if ((int) get_option('mkwvs_peniche_page_migrated', 0) >= 2) {
         return;
     }
 
-    if (get_page_by_path(MKWVS_PENICHE_PAGE_SLUG) instanceof WP_Post) {
-        update_option('mkwvs_peniche_page_migrated', 1);
+    $page = get_page_by_path(MKWVS_PENICHE_PAGE_SLUG);
+
+    if ($page instanceof WP_Post) {
+        if (mkwvs_peniche_page_is_outdated($page->post_content)) {
+            wp_update_post([
+                'ID' => $page->ID,
+                'post_content' => mkwvs_peniche_page_content(mkwvs_peniche_photos()),
+            ]);
+        }
+
+        update_option('mkwvs_peniche_page_migrated', 2);
 
         return;
     }
 
     $hero_id = mkwvs_peniche_photo_id('peniche-exterieur.jpg', "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille");
 
-    $photos = [
-        'photo_timonerie' => [
-            'id' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
-            'alt' => "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal",
-        ],
-        'photo_studio' => [
-            'id' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
-            'alt' => "Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit",
-        ],
-        'img_resto' => [
-            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-restauration.jpg', "Le bar et le restaurant de la péniche du Bus Magique à Lille"),
-            'alt' => "Le bar et le restaurant de la péniche du Bus Magique à Lille",
-        ],
-        'img_events' => [
-            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-programmation.jpg', "Concerts et soirées à bord de la péniche à Lille"),
-            'alt' => "Concerts et soirées à bord de la péniche à Lille",
-        ],
-        'img_cowork' => [
-            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-coworking.jpg', "Espace de coworking à bord de la péniche à Lille"),
-            'alt' => "Espace de coworking à bord de la péniche à Lille",
-        ],
-        'img_privatisation' => [
-            'id' => mkwvs_peniche_theme_image_id('images/peniche-privatisation.jpg', "Location de la péniche pour un événement privé à Lille"),
-            'alt' => "Location de la péniche pour un événement privé à Lille",
-        ],
-        'img_map' => [
-            'id' => mkwvs_peniche_theme_image_id('images/peniche-plan-acces.jpg', "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille"),
-            'alt' => "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille",
-        ],
-    ];
+    $photos = mkwvs_peniche_photos();
 
     $page_id = wp_insert_post([
         'post_type' => 'page',
@@ -93,7 +73,46 @@ function mkwvs_migrate_peniche_page(): void
 
     flush_rewrite_rules(false);
 
-    update_option('mkwvs_peniche_page_migrated', 1);
+    update_option('mkwvs_peniche_page_migrated', 2);
+}
+
+function mkwvs_peniche_page_is_outdated(string $content): bool
+{
+    return str_contains($content, 'une chambre pour passer la nuit à bord');
+}
+
+function mkwvs_peniche_photos(): array
+{
+    return [
+        'photo_timonerie' => [
+            'id' => mkwvs_peniche_photo_id('timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"),
+            'alt' => "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal",
+        ],
+        'photo_studio' => [
+            'id' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
+            'alt' => "Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit",
+        ],
+        'img_resto' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-restauration.jpg', "Le bar et le restaurant de la péniche du Bus Magique à Lille"),
+            'alt' => "Le bar et le restaurant de la péniche du Bus Magique à Lille",
+        ],
+        'img_events' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-programmation.jpg', "Concerts et soirées à bord de la péniche à Lille"),
+            'alt' => "Concerts et soirées à bord de la péniche à Lille",
+        ],
+        'img_cowork' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-coworking.jpg', "Espace de coworking à bord de la péniche à Lille"),
+            'alt' => "Espace de coworking à bord de la péniche à Lille",
+        ],
+        'img_privatisation' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-privatisation.jpg', "Location de la péniche pour un événement privé à Lille"),
+            'alt' => "Location de la péniche pour un événement privé à Lille",
+        ],
+        'img_map' => [
+            'id' => mkwvs_peniche_theme_image_id('images/peniche-plan-acces.jpg', "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille"),
+            'alt' => "Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille",
+        ],
+    ];
 }
 
 function mkwvs_peniche_page_url(): string
@@ -212,7 +231,7 @@ function mkwvs_peniche_page_content(array $photos): string
 <!-- wp:html -->
 <div class="peniche">
 
-  <p class="peniche__chapo">Le Bus Magique est une péniche amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, le long de la Deûle. Un bateau de 1954 devenu un tiers-lieu associatif : un bar et un restaurant flottants, des concerts et des ateliers, un espace de coworking, et même une chambre pour passer la nuit à bord.</p>
+  <p class="peniche__chapo">Le Bus Magique est une péniche amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, le long de la Deûle. Un bateau de 1954 devenu un tiers-lieu associatif : un bar et un restaurant flottants, des concerts et des ateliers, un espace de coworking, et même <strong>un studio pour passer un séjour insolite à bord&nbsp;!</strong></p>
 
   <div class="peniche__split">
     <div class="peniche__split-text">
@@ -222,6 +241,17 @@ function mkwvs_peniche_page_content(array $photos): string
     </div>
     <figure class="peniche__split-media">
       {{photo_timonerie}}
+    </figure>
+  </div>
+
+  <div class="peniche__split">
+    <div class="peniche__split-text">
+      <h2>Dormir sur la péniche</h2>
+      <p>À l'avant du bateau, le logement du Marinier se loue à la nuit pour deux à trois personnes, avec sa terrasse privée sur le pont et sa vue sur le canal. C'est un hébergement indépendant du bar et du restaurant.</p>
+      <p class="peniche__split-cta"><a class="cta cta--tomato" href="/dormir-sur-une-peniche-a-lille/" data-umami-event="hebergement-entree" data-umami-event-source="peniche">Voir les disponibilités</a></p>
+    </div>
+    <figure class="peniche__split-media">
+      {{photo_studio}}
     </figure>
   </div>
 
@@ -285,17 +315,6 @@ function mkwvs_peniche_page_content(array $photos): string
     <a class="peniche__access-map" href="https://www.google.com/maps/search/?api=1&query=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille" target="_blank" rel="noopener" data-umami-event="peniche-carte" aria-label="Ouvrir le plan d'accès dans Google Maps">
       {{img_map}}
     </a>
-  </div>
-
-  <div class="peniche__split">
-    <div class="peniche__split-text">
-      <h2>Dormir sur la péniche</h2>
-      <p>À l'avant du bateau, le logement du Marinier se loue à la nuit pour deux à trois personnes, avec sa terrasse privée sur le pont et sa vue sur le canal. C'est un hébergement indépendant du bar et du restaurant.</p>
-      <p class="peniche__split-cta"><a class="cta cta--tomato" href="/dormir-sur-une-peniche-a-lille/" data-umami-event="hebergement-entree" data-umami-event-source="peniche">Voir les disponibilités</a></p>
-    </div>
-    <figure class="peniche__split-media">
-      {{photo_studio}}
-    </figure>
   </div>
 
   <div class="peniche__assoc">
