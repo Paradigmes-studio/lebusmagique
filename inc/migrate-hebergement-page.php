@@ -20,8 +20,6 @@ const MKWVS_HEBERGEMENT_PHOTOS = [
     'chambre' => ['espace-nuit.jpg', "Lit double de l'espace nuit, sous le hublot du studio"],
     'studio' => ['studio-vue-ensemble.jpg', "Vue d'ensemble du studio : kitchenette, coin bar et espace nuit"],
     'bain' => ['salle-de-bain.jpg', "Salle de bain privative du studio, avec sa douche et son lavabo"],
-    'escalier' => ['coin-nuit-escalier.jpg', "Coin nuit du studio et l'escalier qui descend depuis la timonerie"],
-    'canal' => ['terrasse-canal.jpg', "La terrasse du studio sur le pont, avec vue sur le canal"],
 ];
 
 function mkwvs_migrate_hebergement_page(): void
@@ -188,8 +186,6 @@ function mkwvs_hebergement_page_content(array $photos): string
     <figure><img src="{{chambre}}" alt="Lit double de l'espace nuit, sous le hublot du studio" loading="lazy"></figure>
     <figure><img src="{{studio}}" alt="Vue d'ensemble du studio : kitchenette, coin bar et espace nuit" loading="lazy"></figure>
     <figure><img src="{{bain}}" alt="Salle de bain privative du studio, avec sa douche et son lavabo" loading="lazy"></figure>
-    <figure><img src="{{escalier}}" alt="Coin nuit du studio et l'escalier qui descend depuis la timonerie" loading="lazy"></figure>
-    <figure><img src="{{canal}}" alt="La terrasse du studio sur le pont, avec vue sur le canal" loading="lazy"></figure>
   </div>
 
   <div class="hebergement__assoc">
