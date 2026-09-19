@@ -229,7 +229,8 @@ function mkwvs_schema_inject_page_specific(): void
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Wifi', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Kitchenette', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse privée', 'value' => true],
-            ['@type' => 'LocationFeatureSpecification', 'name' => 'Lave-linge', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Lave-vaisselle', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Climatisation', 'value' => true],
         ];
     } elseif ($template === 'templates/peniche-lille.php') {
         $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'TouristAttraction']);
@@ -323,7 +324,7 @@ function mkwvs_schema_inject_page_specific(): void
                     'name' => "Où est amarrée la péniche à Lille ?",
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => "La péniche est amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, à une vingtaine de minutes à pied du Vieux-Lille.",
+                        'text' => "La péniche est amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, à une dizaine de minutes à pied du Vieux-Lille.",
                     ],
                 ],
                 [

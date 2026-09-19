@@ -157,7 +157,7 @@ function mkwvs_hebergement_page_content(array $photos): string
 <!-- wp:html -->
 <div class="hebergement">
 
-  <p class="hebergement__chapo">Le Bus Magique loue le studio du Marinier, à l'arrière de la péniche, amarrée aux portes de la Citadelle de Lille. Un hébergement insolite à Lille, sur l'eau, à vingt minutes à pied du Vieux-Lille.</p>
+  <p class="hebergement__chapo">Le Bus Magique loue le studio du Marinier, à l'arrière de la péniche, amarrée aux portes de la Citadelle de Lille. Un hébergement insolite à Lille, sur l'eau, à dix minutes à pied du Vieux-Lille.</p>
 
   <div class="hebergement__split">
     <div class="hebergement__split-text">
@@ -175,7 +175,7 @@ function mkwvs_hebergement_page_content(array $photos): string
     <li><strong>2 à 3 personnes</strong><span>2 lits et une salle de bain privative</span></li>
     <li><strong>Kitchenette équipée</strong><span>Coin salon, réfrigérateur, plaques et micro-ondes</span></li>
     <li><strong>Terrasse sur le pont</strong><span>Face aux remparts de la Citadelle, vue sur la Deûle</span></li>
-    <li><strong>Tout confort</strong><span>Wifi, chauffage, télévision, lave-linge</span></li>
+    <li><strong>Tout confort</strong><span>Wifi, chauffage, climatisation et lave-vaisselle</span></li>
   </ul>
 
   <div class="hebergement__gallery">
@@ -186,7 +186,7 @@ function mkwvs_hebergement_page_content(array $photos): string
 
   <div class="hebergement__assoc">
     <h2>Dormir ici, c'est soutenir l'association</h2>
-    <p>Le Bus Magique est une association loi 1901. Louer le studio finance le tiers-lieu : la <a href="/programmation/">programmation</a>, les ateliers, le café des langues et tout ce qui se passe à bord. Vous dormez dans un logement atypique et vous faites vivre le projet en même temps.</p>
+    <p>Le Bus Magique est une association loi 1901. Louer le studio finance le tiers-lieu : la <a href="/programmation/">programmation</a> autour des valeurs d'écologie, de bien-être, de lien social et de culture locale&nbsp;! Vous dormez dans un logement atypique et vous faites vivre le projet en même temps.</p>
 <!-- /wp:html -->
 <!-- wp:html -->
   <p>Pour un groupe plus nombreux, la péniche se <a href="/location/">privatise également</a>, en journée comme en soirée.</p>
@@ -205,7 +205,7 @@ function mkwvs_hebergement_page_content(array $photos): string
     </details>
     <details>
       <summary>Où est amarrée la péniche à Lille ?</summary>
-      <p>La péniche est amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, à une vingtaine de minutes à pied du Vieux-Lille.</p>
+      <p>La péniche est amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, à une dizaine de minutes à pied du Vieux-Lille.</p>
     </details>
     <details>
       <summary>Le logement est-il indépendant du bar et du restaurant ?</summary>
