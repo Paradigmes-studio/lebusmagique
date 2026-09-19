@@ -76,6 +76,11 @@
 }
 @media (min-width: 1280px) { .bm-cat-hero { padding-top: 11rem; } }
 
+/* la pastille porte le H1 : on annule la seule marge heritee du reset */
+h1.bm-cat-hero__pill {
+  margin: 0;
+}
+
 .bm-cat-hero__pill {
   display: inline-block;
   background: #fff;
@@ -101,6 +106,25 @@
 }
 
 .bm-cat-body { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 0; }
+.bm-cat-title {
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  color: #1a1a1a;
+  margin: 0 auto 1.5rem;
+  max-width: 20ch;
+  position: relative;
+}
+.bm-cat-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  background: var(--bm-cat-color);
+  margin: 0.75rem auto 0;
+}
+
 .bm-cat-intro { font-size: 1.05rem; line-height: 1.75; color: #2a2a2a; max-width: 720px; margin: 0 auto 2rem; text-align: center; }
 .bm-cat-subtitle { font-size: 1.2rem; font-weight: 800; margin: 2rem 0 1.25rem; }
 

@@ -20,7 +20,7 @@
           <?php $icon = get_sub_field('page_services_item_icon'); ?>
           <?php $name = get_sub_field('page_services_item_name'); ?>
           <?php $descriptif = get_sub_field('page_services_item_descriptif'); ?>
-          <li class="items"><img class="icon" src="<?php echo $icon['url']; ?>"><h2><?php echo $name; ?></h2><p><?php echo $descriptif; ?></p></li>
+          <li class="items"><img class="icon" src="<?php echo $icon['url']; ?>" alt="" aria-hidden="true"><h2><?php echo $name; ?></h2><p><?php echo $descriptif; ?></p></li>
         <?php endwhile; ?>
       </ul>
     <?php endif; ?>
@@ -57,7 +57,7 @@
               <p class="o-projects__item-contact">
                 <?php if($image_profil != '') { ?>
                 <span class="o-projects__item-profile">
-                    <img src="<?php echo $image_profil['url']; ?>" alt="<?php echo $title; ?>">
+                    <?php mkwvs_the_image($image_profil, 'medium', ['sizes' => '120px'], (string) $title); ?>
                 </span>
               <?php } ?>
                 <span class="o-projects__item-contact-text">
@@ -69,7 +69,7 @@
 
             <div class="o-projects__item-content">
               <div class="o-projects__item-image">
-                <img src="<?php echo $image['url']; ?>" alt="<?php echo $title; ?>">
+                <?php mkwvs_the_image($image, 'large', ['sizes' => '(max-width: 900px) 100vw, 600px'], (string) $title); ?>
               </div>
               <!-- <span class="spacer"></span> -->
             </div>
@@ -101,7 +101,7 @@
         <?php $function = get_sub_field('page_trombi_item_function'); ?>
         <?php $image = get_sub_field('page_trombi_item_image'); ?>
 
-        <img src="<?php echo $image['url']; ?>" alt="<?php echo $name; ?>" />
+        <?php mkwvs_the_image($image, 'medium_large', ['sizes' => '(max-width: 600px) 45vw, 300px'], (string) $name); ?>
         <p><?php echo $name; ?></p>
         <p><?php echo $function; ?></p>
       <?php endwhile; ?>

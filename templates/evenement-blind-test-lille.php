@@ -111,7 +111,7 @@
                 'name' => "Où se trouve la péniche Le Bus Magique ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "Le Bus Magique est amarré avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. Accès par l'arrêt de bus Champ de Mars ou le métro Rihour.",
+                    'text' => "Le Bus Magique est amarré avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. Accès par l'arrêt de bus Champ de Mars ou le métro République Beaux-Arts.",
                 ],
             ],
         ],
@@ -150,7 +150,7 @@
           <div class="bm-info"><span class="bm-info__label">Quand :</span><span class="bm-info__val">Une fois par mois, consultez la <a href="/programmation/">programmation</a> pour la prochaine date</span></div>
           <div class="bm-info"><span class="bm-info__label">Heure :</span><span class="bm-info__val">19h30</span></div>
           <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
-          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro République Beaux-Arts</span></div>
           <div class="bm-info"><span class="bm-info__label">Tarif :</span><span class="bm-info__val">Entrée gratuite, adhésion à prix libre à partir de 1&nbsp;€ (réglée au bar)</span></div>
           <div class="bm-info"><span class="bm-info__label">Réservation :</span><span class="bm-info__val">Recommandée : <a href="https://uniiti.com/shop/le-bus-magique" target="_blank" rel="noopener">réservez votre table ici</a></span></div>
         </article>
@@ -196,7 +196,7 @@
 
         <details class="bm-faq__item">
           <summary>Où se trouve la péniche Le Bus Magique ?</summary>
-          <div class="bm-faq__answer">On est amarrés <strong>avenue Cuvier, 59800 Lille</strong>, à l'entrée de la Citadelle, le long de la Deûle. Accès par l'arrêt de bus Champ de Mars ou le métro Rihour. Repérez la péniche, les lumières et les rires, vous ne pouvez pas nous rater !</div>
+          <div class="bm-faq__answer">On est amarrés <strong>avenue Cuvier, 59800 Lille</strong>, à l'entrée de la Citadelle, le long de la Deûle. Accès par l'arrêt de bus Champ de Mars ou le métro République Beaux-Arts. Repérez la péniche, les lumières et les rires, vous ne pouvez pas nous rater !</div>
         </details>
       </div>
 

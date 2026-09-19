@@ -3,19 +3,21 @@
 <footer class="footer-adhesion">
   <h2 class="accroche">Envie de monter à bord ?</h2>
   <a href="<?php echo get_permalink(get_page_by_path('monter-a-bord')) ?>" class="cta cta-footer cta-decoration">J'adhère !
-    <img class="cta-responsive-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 396.svg'; ?>">
+    <img class="cta-responsive-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 396.svg'; ?>" alt="" aria-hidden="true">
   </a>
   <!-- <img class="cta-decoration" src="<?php echo get_stylesheet_directory_uri() . '/images/footer-cta-decoration.png'; ?>"> -->
 
 </footer>
+<?php if (!is_page_template('templates/hebergement.php')) : ?>
 <footer class="footer-location">
   <h2 class="accroche has-text-align-center">Psst ! La péniche a aussi son gîte !</h2>
-  <a href="https://www.airbnb.com/h/lebusmagique" class="cta cta-footer cta-decoration" target="_blank">Je passe la nuit sur la péniche
+  <a href="<?php echo esc_url(mkwvs_hebergement_page_url()); ?>" class="cta cta-footer cta-decoration" data-umami-event="hebergement-entree" data-umami-event-source="footer">Je passe la nuit sur la péniche
   </a>
 </footer>
+<?php endif; ?>
 
 <footer class="footer-network-news">
-  <img class="footer-logo" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 77.svg'; ?>">
+  <img class="footer-logo" src="<?php echo get_stylesheet_directory_uri() . '/images/Groupe 77.svg'; ?>" alt="Le Bus Magique">
 
   <div class="rubric menu">
 
@@ -33,7 +35,7 @@
     <h2>Contactez-nous</h2>
     <?php $contact_email = get_field('option_contact_email', 'option'); ?>
     <?php if($contact_email != ""): ?>
-    <p><a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a></p>
+    <p><a href="mailto:<?php echo antispambot($contact_email, 1); ?>"><?php echo antispambot($contact_email); ?></a></p>
     <?php endif; ?>
     <?php if (have_rows('option_contact_list', 'option')) : ?>
       <?php while (have_rows('option_contact_list', 'option')) : the_row(); ?>
@@ -63,7 +65,7 @@
           <?php $social_network_name = get_sub_field('item_social_network_name', 'option'); ?>
           <?php $social_network_icon = get_sub_field('item_social_network_icon', 'option'); ?>
           <?php $social_network_url  = get_sub_field('item_social_network_url', 'option'); ?>
-          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social-responsive border-white-responsive" src="<?php echo $social_network_icon['url']; ?>"></a>
+          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social-responsive border-white-responsive" src="<?php echo $social_network_icon['url']; ?>" alt="<?php echo esc_attr($social_network_name); ?>"></a>
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
@@ -112,7 +114,7 @@
           <?php $social_network_name = get_sub_field('item_social_network_name', 'option'); ?>
           <?php $social_network_icon = get_sub_field('item_social_network_icon', 'option'); ?>
           <?php $social_network_url  = get_sub_field('item_social_network_url', 'option'); ?>
-          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social border-white" src="<?php echo $social_network_icon['url']; ?>"></a>
+          <a href="<?php echo $social_network_url; ?>" target="_blank"><img class="link-social border-white" src="<?php echo $social_network_icon['url']; ?>" alt="<?php echo esc_attr($social_network_name); ?>"></a>
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
@@ -123,9 +125,13 @@
 
 <div class="footer__misc">
   <ul>
-    <li><a href="<?php echo get_permalink(get_page_by_path('mentions-legales')) ?>">Mentions légales</a></li>
-    <li><a href="<?php echo get_permalink(get_page_by_path('confidentialité')) ?>">Confidentialité</a></li>
-    <li>Site par <a href="https://atelier-jugeote.com/" target="_blank">Atelier Jugeote</a> &times; <a href="https://makewaves.fr/">Makewaves</a></li>
+<?php foreach ([['mentions-legales', 'Mentions légales'], ['confidentialite', 'Confidentialité']] as [$legal_slug, $legal_label]) : ?>
+  <?php $legal_page = get_page_by_path($legal_slug); ?>
+  <?php if ($legal_page instanceof WP_Post) : ?>
+    <li><a href="<?php echo esc_url(get_permalink($legal_page)); ?>"><?php echo $legal_label; ?></a></li>
+  <?php endif; ?>
+<?php endforeach; ?>
+    <li>Site par <a href="https://manon-verbeke.com/" target="_blank">Manon Verbeke</a> &times; <a href="https://makewaves.fr/" target="_blank">Makewaves</a> &times; <a href="https://symfolidity.com/" target="_blank">Symfolidity</a></li>
   </ul>
 </div>
 

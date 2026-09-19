@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) {
  * Utilisée par le bloc pastilles (programmation) et le template de page catégorie.
  *
  * - slug   : terme de la taxonomie facebook_category (classement back-office)
+ * - h1     : titre principal (H1) de la page catégorie
  * - page   : slug de la page enfant de /programmation/
  * - color  : couleur d'accent (anneau pastille + bandeau de la page catégorie)
  * - icon   : fichier image (dans /images/) affiché dans la pastille
@@ -22,6 +23,7 @@ function mkwvs_event_categories(): array
     return [
         'prog-conviviale' => [
             'label' => "Prog' conviviale",
+            'h1'    => "Nos soirées conviviales à Lille",
             'page'   => 'prog-conviviale',
             'color'  => '#ffd202',
             'hublot' => 'yellow',
@@ -35,6 +37,7 @@ function mkwvs_event_categories(): array
         ],
         'bien-etre' => [
             'label' => 'Bien-être',
+            'h1'    => "Nos rendez-vous bien-être à Lille",
             'page'   => 'bien-etre',
             'color'  => '#e6534e',
             'hublot' => 'red',
@@ -44,6 +47,7 @@ function mkwvs_event_categories(): array
         ],
         'prog-engagee-inclusive' => [
             'label' => 'Engagée & inclusive',
+            'h1'    => "Notre programmation engagée et inclusive à Lille",
             'page'   => 'engagee-inclusive',
             'color'  => '#9bb909',
             'hublot' => 'green',
@@ -57,6 +61,7 @@ function mkwvs_event_categories(): array
         ],
         'culturels-festifs' => [
             'label' => 'Culturels & festifs',
+            'h1'    => "Concerts, spectacles et soirées festives à Lille",
             'page'   => 'culturels-festifs',
             'color'  => '#36a585',
             'hublot' => 'blue',
@@ -66,6 +71,7 @@ function mkwvs_event_categories(): array
         ],
         'ateliers-artistiques' => [
             'label' => 'Ateliers artistiques',
+            'h1'    => "Ateliers créatifs et artistiques à Lille",
             'page'   => 'ateliers-artistiques',
             'color'  => '#ec6620',
             'hublot' => 'orange',
@@ -77,6 +83,7 @@ function mkwvs_event_categories(): array
         ],
         'jams-scenes-ouvertes' => [
             'label' => 'Jams & scènes ouvertes',
+            'h1'    => "Jams et scènes ouvertes à Lille",
             'page'   => 'jams-scenes-ouvertes',
             'color'  => '#3f6fd1',
             'hublot' => 'navy',

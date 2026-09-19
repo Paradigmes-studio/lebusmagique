@@ -116,9 +116,6 @@ function mkwvs_schema_build_base(array $data, string|array $type = 'Organization
     if ($data['phone']) {
         $schema['telephone'] = $data['phone'];
     }
-    if ($data['email']) {
-        $schema['email'] = $data['email'];
-    }
     if (!empty($data['socials'])) {
         $schema['sameAs'] = $data['socials'];
     }
@@ -222,6 +219,136 @@ function mkwvs_schema_inject_page_specific(): void
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse', 'value' => true],
             ['@type' => 'LocationFeatureSpecification', 'name' => 'Accès gratuit', 'value' => true],
         ];
+    } elseif ($template === 'templates/hebergement.php') {
+        $schema = mkwvs_schema_build_base($data, 'LodgingBusiness');
+        $schema['description'] = "Studio insolite à louer à la nuit sur une péniche à Lille, aux portes de la Citadelle, pour deux à trois personnes.";
+        $schema['numberOfRooms'] = 1;
+        $schema['petsAllowed'] = false;
+        $schema['maximumAttendeeCapacity'] = 3;
+        $schema['amenityFeature'] = [
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Wifi', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Kitchenette', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Terrasse privée', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Lave-vaisselle', 'value' => true],
+            ['@type' => 'LocationFeatureSpecification', 'name' => 'Climatisation', 'value' => true],
+        ];
+    } elseif ($template === 'templates/peniche-lille.php') {
+        $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'TouristAttraction']);
+        $schema['description'] = "Péniche associative amarrée à l'entrée de la Citadelle de Lille : bar, restauration, programmation culturelle, coworking, privatisation et gîte à bord d'un bateau de 1954.";
+        $schema['priceRange'] = '€€';
+        $schema['isAccessibleForFree'] = false;
+        $schema['publicAccess'] = true;
+        $schema['touristType'] = ['Familles', 'Groupes', 'Visiteurs de Lille'];
+        $schema['hasMap'] = 'https://www.google.com/maps/search/?api=1&query=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille';
+        if (!empty($hours)) {
+            $schema['openingHoursSpecification'] = $hours;
+        }
+    } elseif ($template === 'templates/location.php') {
+        $schema = mkwvs_schema_build_base($data, ['LocalBusiness', 'EventVenue']);
+        $schema['description'] = "Privatisation d'une péniche à Lille pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage, à l'entrée de la Citadelle.";
+        $schema['maximumAttendeeCapacity'] = 100;
+        $schema['priceRange'] = '€€';
+        if (!empty($hours)) {
+            $schema['openingHoursSpecification'] = $hours;
+        }
+    }
+
+    if ($template === 'templates/peniche-lille.php') {
+        $faq = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type' => 'Question',
+                    'name' => "Où se trouve la péniche Le Bus Magique à Lille ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "La péniche est amarrée avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. On y accède par le métro République Beaux-Arts ou l'arrêt de bus Champ de Mars, et le parking du Champ de Mars se trouve juste à côté.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Peut-on manger et boire un verre sur la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. La péniche sert des plats du jour les jeudi et vendredi midi et un brunch le dimanche, avec une cuisine maison, bio et de saison. Le bar propose des bières locales, des vins et des boissons chaudes, à toute heure du jeudi au dimanche (et même le mercredi à la belle saison) !",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Faut-il adhérer à l'association pour monter à bord ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. Le Bus Magique est une association, l'adhésion est donc nécessaire. Son montant est libre et elle se prend directement à bord auprès d'un bénévole ou d'un serveur.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Peut-on privatiser la péniche pour un événement ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui, pour des événements privés comme un anniversaire, un séminaire, une soirée d'entreprise ou un mariage. La salle accueille 60 personnes assises et 100 en cocktail, la terrasse 40 assises et 60 en cocktail. Les disponibilités se consultent directement sur notre page de privatisation.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Peut-on dormir sur la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. Le logement du Marinier, à l'arrière du bateau, se loue à la nuit pour deux à trois personnes, avec sa terrasse privée et sa salle de bain.",
+                    ],
+                ],
+            ],
+        ];
+
+        echo "\n" . '<script type="application/ld+json">'
+            . wp_json_encode($faq, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            . '</script>' . "\n";
+    }
+
+    if ($template === 'templates/hebergement.php') {
+        $faq = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => [
+                [
+                    '@type' => 'Question',
+                    'name' => "Combien de personnes peut accueillir le studio de la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Le studio accueille deux à trois personnes. Il dispose de deux lits et d'une salle de bain privative.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Où est amarrée la péniche à Lille ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "La péniche est amarrée avenue Cuvier, à l'entrée de la Citadelle de Lille, à une dizaine de minutes à pied du Vieux-Lille.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Le logement est-il indépendant du bar et du restaurant ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Oui. Le studio occupe le logement du Marinier, à l'arrière du bateau, avec son entrée et sa terrasse privée.",
+                    ],
+                ],
+                [
+                    '@type' => 'Question',
+                    'name' => "Comment réserver une nuit sur la péniche ?",
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => "Les disponibilités sont affichées sur cette page et la réservation se fait en ligne sur notre annonce.",
+                    ],
+                ],
+            ],
+        ];
+
+        echo "\n" . '<script type="application/ld+json">'
+            . wp_json_encode($faq, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            . '</script>' . "\n";
     }
 
     if ($schema !== null) {

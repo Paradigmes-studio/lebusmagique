@@ -19,7 +19,7 @@
           <div class="o-contact__mail">
             <?php $contact_email = get_field('option_contact_email', 'option'); ?>
             <?php if($contact_email != ""): ?>
-            <p><a href="mailto:<?php echo $contact_email; ?>"><?php echo $contact_email; ?></a></p>
+            <p><a href="mailto:<?php echo antispambot($contact_email, 1); ?>"><?php echo antispambot($contact_email); ?></a></p>
             <?php endif; ?>
           </div>
 
@@ -61,13 +61,14 @@
           <div class="text-yellow-background top">
             <?php $icon_scroll= get_field('page_head_icon_scroll'); ?>
             <?php $accroche_scroll = get_field('page_head_accroche_scroll'); ?>
-            <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>">
+            <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>" alt="" aria-hidden="true">
             <p class="to_show"><?php echo $accroche_scroll; ?></p>
           </div>
 
         </div>
 
         <div class="text-yellow-background bottom">
+          <h1>Contacter Le Bus Magique</h1>
           <?php $subtitle= get_field('page_head_subtitle'); ?>
           <?php if (!empty($subtitle)) : ?>
             <h2><?php echo $subtitle; ?></h2>

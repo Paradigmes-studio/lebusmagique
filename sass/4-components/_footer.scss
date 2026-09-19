@@ -80,10 +80,10 @@ footer{
     padding-left: 0;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     li {
-      margin: 5px 10px 5px;
+      margin: 5px 12px 5px;
       font-size: 11px;
       letter-spacing: 0.11px;
     }
@@ -105,7 +105,7 @@ footer{
   }
   @media #{$tab} {
     ul {
-      max-width: 500px;
+      max-width: min(760px, 92%);
       padding-bottom: 8px;
       li {
         font-size: 12px;

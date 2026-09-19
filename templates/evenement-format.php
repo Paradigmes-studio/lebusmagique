@@ -124,7 +124,7 @@ $f = $mkwvs_formats[$mkwvs_slug] ?? null;
             <div class="bm-info"><span class="bm-info__label"><?php echo esc_html($row[0]); ?> :</span><span class="bm-info__val"><?php echo wp_kses_post($row[1]); ?></span></div>
             <?php if ($i === 1) : ?>
               <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
-              <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+              <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro République Beaux-Arts</span></div>
             <?php endif; ?>
           <?php endforeach; ?>
         </article>

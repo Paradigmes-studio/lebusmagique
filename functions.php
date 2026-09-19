@@ -17,6 +17,7 @@ require get_template_directory() . '/inc/fleet-security.php';
  * Utils functions.
  */
 require get_template_directory() . '/inc/utils-functions.php';
+require get_template_directory() . '/inc/image-functions.php';
 /**
  * ACF Block Functions.
  */
@@ -34,6 +35,8 @@ require get_template_directory() . '/inc/brevo-smtp.php';
 require get_template_directory() . '/inc/brevo-newsletter.php';
 require get_template_directory() . '/inc/event-categories.php';
 require get_template_directory() . '/inc/migrate-event-pages.php';
+require get_template_directory() . '/inc/legal-pages.php';
+require get_template_directory() . '/inc/migrate-legal-pages.php';
 require get_template_directory() . '/inc/facebook-events-redirect.php';
 require get_template_directory() . '/inc/facebook-events-single.php';
 require get_template_directory() . '/inc/schema-org.php';
@@ -41,6 +44,12 @@ require get_template_directory() . '/inc/og-images.php';
 require get_template_directory() . '/inc/facebook-events-categories.php';
 require get_template_directory() . '/inc/facebook-events-archive.php';
 require get_template_directory() . '/inc/links-social-media-functions.php';
+require get_template_directory() . '/inc/analytics.php';
+require get_template_directory() . '/inc/hebergement-calendar.php';
+require get_template_directory() . '/inc/migrate-hebergement-page.php';
+require get_template_directory() . '/inc/migrate-peniche-page.php';
+require get_template_directory() . '/inc/seo-fixes.php';
+require get_template_directory() . '/inc/migrate-seo-content.php';
 
 // Local dev: route emails to Mailpit (configured via WPMS_* env vars in docker-compose.yml)
 if (defined('WPMS_ON') && WPMS_ON) {
@@ -311,6 +320,19 @@ function mkwvs_scripts_styles(){
     if (array_filter($cat_templates, 'is_page_template')) {
         wp_register_style('prog-categories-style', get_template_directory_uri() . '/css/programmation-categories.css', ['styles'], filemtime(get_template_directory() . '/css/programmation-categories.css'), 'all');
         wp_enqueue_style('prog-categories-style');
+    }
+
+    // CSS de la page péniche
+    if (is_page_template('templates/peniche-lille.php')) {
+        wp_register_style('peniche-style', get_template_directory_uri() . '/css/peniche.css', ['styles'], filemtime(get_template_directory() . '/css/peniche.css'), 'all');
+        wp_enqueue_style('peniche-style');
+    }
+
+    // CSS de la page hébergement
+    if (is_page_template('templates/hebergement.php')) {
+        wp_register_style('hebergement-style', get_template_directory_uri() . '/css/hebergement.css', ['styles'], filemtime(get_template_directory() . '/css/hebergement.css'), 'all');
+        wp_enqueue_style('hebergement-style');
+        wp_enqueue_script('hebergement-script', get_template_directory_uri() . '/js/hebergement.js', [], filemtime(get_template_directory() . '/js/hebergement.js'), true);
     }
 
 }

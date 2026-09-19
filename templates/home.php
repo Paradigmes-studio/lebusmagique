@@ -34,8 +34,17 @@
                                 <?php $image = get_sub_field('page_head_gallery_item_image'); ?>
                                 <?php $image_count++; ?>
                                 <?php $description = get_sub_field('page_head_gallery_item_descriptif'); ?>
-                                <img class="swiper-slide" src="<?php echo $image['url']; ?>"
-                                     alt="<?php echo $description; ?>">
+                                <?php
+                                $slide_attr = ['class' => 'swiper-slide', 'sizes' => '100vw'];
+                                if (!empty($description)) {
+                                    $slide_attr['alt'] = $description;
+                                }
+                                if ($image_count === 1) {
+                                    $slide_attr['loading']       = 'eager';
+                                    $slide_attr['fetchpriority'] = 'high';
+                                }
+                                mkwvs_the_image($image, 'full', $slide_attr, 'La péniche Le Bus Magique à Lille');
+                                ?>
                             <?php endwhile; ?>
 
                         </div>
@@ -46,9 +55,9 @@
 
                 <div class="hublot<?php if ($image_count > 1) echo " has-slider"; ?>">
                     <?php $color_hublot = get_field('page_head_hublot_color'); ?>
-                    <img src="<?php echo get_stylesheet_directory_uri() . '/images/' . $color_hublot . '-hublot.svg'; ?>">
+                    <img src="<?php echo get_stylesheet_directory_uri() . '/images/' . $color_hublot . '-hublot.svg'; ?>" alt="" aria-hidden="true">
                     <?php $icon_hublot = get_field('page_head_hublot_icon'); ?>
-                    <h1 class="big-title"><img class="icon" src="<?php echo $icon_hublot['url']; ?>">Bienvenu·e·s<br> à
+                    <h1 class="big-title"><img class="icon" src="<?php echo $icon_hublot['url']; ?>" alt="" aria-hidden="true">Bienvenu·e·s<br> à
                         bord du <br>bus magique !</h1>
                     <?php if ($image_count > 1): ?>
                         <div class="o-slider__navigation">
@@ -61,7 +70,7 @@
                 <div class="text-yellow-background top">
                     <?php $icon_scroll = get_field('page_head_icon_scroll'); ?>
                     <?php $accroche_scroll = get_field('page_head_accroche_scroll'); ?>
-                    <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>">
+                    <img class="icon-top-landing" src="<?php echo $icon_scroll['url']; ?>" alt="" aria-hidden="true">
                     <p class="to_show"><?php echo $accroche_scroll; ?></p>
                 </div>
             </div>
@@ -83,8 +92,11 @@
             <?php
             $image = get_field('programmation_du_mois', $hp->ID);
             if (isset($image) && is_array($image)) : ?>
-                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"
-                     class="zoomable" onclick="this.classList.toggle('zoomed')">
+                <?php mkwvs_the_image($image, 'full', [
+                    'class'   => 'zoomable',
+                    'sizes'   => '(max-width: 900px) 100vw, 900px',
+                    'onclick' => "this.classList.toggle('zoomed')",
+                ], 'Programmation du mois du Bus Magique'); ?>
             <?php elseif (have_rows('page_home_programmation_list')) : ?>
                 <div class="events">
                     <?php echo do_shortcode('[facebook_events col="2" posts_per_page="4"]'); ?>
@@ -115,7 +127,7 @@
             <?php $link = get_field('page_home_encart_1_link', $hp->ID); ?>
             <div class="bloc-media-text">
                 <div class="bloc-media-text__media">
-                    <img src="<?php echo $image['url'] ?>" alt="">
+                    <?php mkwvs_the_image($image, 'large', ['sizes' => '(max-width: 900px) 100vw, 600px'], (string) $titre); ?>
                 </div>
                 <div class="bloc-media-text__content">
                     <h3><?php echo $titre; ?></h3>
@@ -132,7 +144,7 @@
             <?php $link = get_field('page_home_encart_2_link', $hp->ID); ?>
             <div class="bloc-media-text bloc-media-text--right">
                 <div class="bloc-media-text__media">
-                    <img src="<?php echo $image['url'] ?>" alt="">
+                    <?php mkwvs_the_image($image, 'large', ['sizes' => '(max-width: 900px) 100vw, 600px'], (string) $titre); ?>
                 </div>
                 <div class="bloc-media-text__content">
                     <h3><?php echo $titre; ?></h3>
@@ -148,7 +160,7 @@
             <?php $link = get_field('page_home_encart_3_link', $hp->ID); ?>
             <div class="bloc-media-text">
                 <div class="bloc-media-text__media">
-                    <img src="<?php echo $image['url'] ?>" alt="">
+                    <?php mkwvs_the_image($image, 'large', ['sizes' => '(max-width: 900px) 100vw, 600px'], (string) $titre); ?>
                 </div>
                 <div class="bloc-media-text__content">
                     <h3><?php echo $titre; ?></h3>
@@ -158,11 +170,13 @@
             </div>
 
             <div class="bloc-fullwidth">
-                <img src="<?php echo get_stylesheet_directory_uri() . '/images/hp-map@2x.jpg'; ?>" alt="">
+                <img src="<?php echo get_stylesheet_directory_uri() . '/images/hp-map@2x.jpg'; ?>" alt="Plan d'accès à la péniche Le Bus Magique, avenue Cuvier à Lille" loading="lazy" decoding="async">
             </div>
 
         </section>
     <?php endwhile; ?>
 <?php endif; ?>
+
+<?php include(locate_template('template-part/blocks/peniche-link.php')); ?>
 
 <?php get_footer();

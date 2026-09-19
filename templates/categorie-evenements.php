@@ -26,7 +26,7 @@ $mkwvs_cat = mkwvs_event_category_by_page(get_post_field('post_name', get_querie
 
     <!-- BANDEAU -->
     <div class="bm-cat-hero">
-      <span class="bm-cat-hero__pill"><?php echo esc_html('Notre prog\' ' . preg_replace('/^prog\'?\s+/i', '', $mkwvs_cat['label'])); ?></span>
+      <h1 class="bm-cat-hero__pill"><?php echo esc_html($mkwvs_cat['h1'] ?? get_the_title()); ?></h1>
     </div>
 
     <div class="bm-cat-body">

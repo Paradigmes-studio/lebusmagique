@@ -136,7 +136,7 @@
           <div class="bm-info"><span class="bm-info__label">Fréquence :</span><span class="bm-info__val">Plusieurs ateliers par mois (voir la <a href="/programmation/">programmation</a>)</span></div>
           <div class="bm-info"><span class="bm-info__label">Durée :</span><span class="bm-info__val">1h30 à 3h selon l'atelier</span></div>
           <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
-          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro République Beaux-Arts</span></div>
           <div class="bm-info"><span class="bm-info__label">Places :</span><span class="bm-info__val">Limitées (8 à 15 personnes)</span></div>
           <div class="bm-info"><span class="bm-info__label">Tarif :</span><span class="bm-info__val">10 à 35 € selon l'atelier et le matériel, certains à prix libre</span></div>
           <div class="bm-info"><span class="bm-info__label">Inscription :</span><span class="bm-info__val">Via la fiche événement ou par <a href="/contact/">mail</a></span></div>

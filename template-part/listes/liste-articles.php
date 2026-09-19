@@ -1,7 +1,7 @@
 <?php
 $sub_category = null;
 $categories = get_the_terms(get_the_ID(), 'category');
-if (sizeof($categories) > 0 ){
+if (is_array($categories)){
     foreach($categories as $category){
         if ($category->parent === 2){
             $sub_category = $category;
