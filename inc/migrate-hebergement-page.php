@@ -14,11 +14,14 @@ if (!defined('ABSPATH')) {
 add_action('init', 'mkwvs_migrate_hebergement_page');
 
 const MKWVS_HEBERGEMENT_PHOTOS = [
-    'exterieur' => ['peniche-exterieur.jpg', "La péniche du Bus Magique amarrée sur la Deûle, au pied des remparts de la Citadelle de Lille"],
-    'timonerie' => ['timonerie.jpg', "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal"],
-    'terrasse' => ['terrasse.jpg', "Terrasse sur le pont de la péniche, face aux remparts de la Citadelle"],
-    'chambre' => ['chambre.jpg', "Lit préparé avec draps blancs et serviettes, sous le hublot du studio"],
-    'studio' => ['studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"],
+    'exterieur' => ['peniche-berge.jpg', "La péniche du Bus Magique vue depuis la berge de la Deûle, sous les arbres"],
+    'timonerie' => ['timonerie-barre.jpg', "Timonerie de la péniche avec sa barre à roue d'origine"],
+    'terrasse' => ['terrasse-pont.jpg', "Terrasse privée sur le pont de la péniche, sa table et ses chaises face au parc"],
+    'chambre' => ['espace-nuit.jpg', "Lit double de l'espace nuit, sous le hublot du studio"],
+    'studio' => ['studio-vue-ensemble.jpg', "Vue d'ensemble du studio : kitchenette, coin bar et espace nuit"],
+    'bain' => ['salle-de-bain.jpg', "Salle de bain privative du studio, avec sa douche et son lavabo"],
+    'escalier' => ['coin-nuit-escalier.jpg', "Coin nuit du studio et l'escalier qui descend depuis la timonerie"],
+    'canal' => ['terrasse-canal.jpg', "La terrasse du studio sur le pont, avec vue sur le canal"],
 ];
 
 function mkwvs_migrate_hebergement_page(): void
@@ -41,6 +44,8 @@ function mkwvs_migrate_hebergement_page(): void
                 'ID' => $existing->ID,
                 'post_content' => mkwvs_hebergement_page_content($photos),
             ]);
+
+            set_post_thumbnail($existing->ID, $photos['exterieur']);
         }
 
         update_option('mkwvs_hebergement_page_migrated', 2);
@@ -166,7 +171,7 @@ function mkwvs_hebergement_page_content(array $photos): string
       <p>C'est une adresse pour une nuit insolite à Lille, une escapade à deux ou un week-end dans le Nord, dans un logement insolite que personne d'autre ne propose : une vraie péniche, avec sa timonerie et sa barre à roue d'origine.</p>
     </div>
     <figure class="hebergement__split-media">
-      <img src="{{timonerie}}" alt="Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal" loading="lazy">
+      <img src="{{timonerie}}" alt="Timonerie de la péniche avec sa barre à roue d'origine" loading="lazy">
     </figure>
   </div>
 
@@ -179,9 +184,12 @@ function mkwvs_hebergement_page_content(array $photos): string
   </ul>
 
   <div class="hebergement__gallery">
-    <figure><img src="{{terrasse}}" alt="Terrasse sur le pont de la péniche, face aux remparts de la Citadelle" loading="lazy"></figure>
-    <figure><img src="{{chambre}}" alt="Lit préparé avec draps blancs et serviettes, sous le hublot du studio" loading="lazy"></figure>
-    <figure><img src="{{studio}}" alt="Vue d'ensemble du studio : bar, kitchenette et espace nuit" loading="lazy"></figure>
+    <figure><img src="{{terrasse}}" alt="Terrasse privée sur le pont de la péniche, sa table et ses chaises face au parc" loading="lazy"></figure>
+    <figure><img src="{{chambre}}" alt="Lit double de l'espace nuit, sous le hublot du studio" loading="lazy"></figure>
+    <figure><img src="{{studio}}" alt="Vue d'ensemble du studio : kitchenette, coin bar et espace nuit" loading="lazy"></figure>
+    <figure><img src="{{bain}}" alt="Salle de bain privative du studio, avec sa douche et son lavabo" loading="lazy"></figure>
+    <figure><img src="{{escalier}}" alt="Coin nuit du studio et l'escalier qui descend depuis la timonerie" loading="lazy"></figure>
+    <figure><img src="{{canal}}" alt="La terrasse du studio sur le pont, avec vue sur le canal" loading="lazy"></figure>
   </div>
 
   <div class="hebergement__assoc">

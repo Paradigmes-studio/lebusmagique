@@ -95,8 +95,8 @@ function mkwvs_peniche_photos(): array
             'alt' => "Timonerie de la péniche avec sa barre à roue d'origine et sa vue sur le canal",
         ],
         'photo_studio' => [
-            'id' => mkwvs_peniche_photo_id('studio.jpg', "Vue d'ensemble du studio : bar, kitchenette et espace nuit"),
-            'alt' => "Vue d'ensemble du studio du Marinier : bar, kitchenette et espace nuit",
+            'id' => mkwvs_peniche_photo_id('studio-vue-ensemble.jpg', "Vue d'ensemble du studio : kitchenette, coin bar et espace nuit"),
+            'alt' => "Vue d'ensemble du studio du Marinier : kitchenette, coin bar et espace nuit",
         ],
         'img_resto' => [
             'id' => mkwvs_peniche_theme_image_id('images/peniche-activite-restauration.jpg', "Le bar et le restaurant de la péniche du Bus Magique à Lille"),

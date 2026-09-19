@@ -101,7 +101,8 @@
   .hebergement__gallery { grid-template-columns: repeat(3, 1fr); }
 }
 
-.hebergement__gallery figure { margin: 0; aspect-ratio: 3 / 4; }
+/* Les photos du studio sont toutes en paysage : un cadre portrait les amputait. */
+.hebergement__gallery figure { margin: 0; aspect-ratio: 4 / 3; }
 
 .hebergement__assoc {
   background: #f8f4e8;
