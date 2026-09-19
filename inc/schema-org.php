@@ -262,7 +262,7 @@ function mkwvs_schema_inject_page_specific(): void
                     'name' => "Où se trouve la péniche Le Bus Magique à Lille ?",
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => "La péniche est amarrée avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. On y accède par le métro Rihour ou l'arrêt de bus Champ de Mars, et le parking du Champ de Mars est gratuit.",
+                        'text' => "La péniche est amarrée avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. On y accède par le métro République Beaux-Arts ou l'arrêt de bus Champ de Mars, et le parking du Champ de Mars se trouve juste à côté.",
                     ],
                 ],
                 [
@@ -270,7 +270,7 @@ function mkwvs_schema_inject_page_specific(): void
                     'name' => "Peut-on manger et boire un verre sur la péniche ?",
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => "Oui. La péniche sert des plats du jour les jeudi et vendredi midi et un brunch le dimanche, avec une cuisine maison, bio et de saison. Le bar propose des bières locales, des vins et des boissons chaudes.",
+                        'text' => "Oui. La péniche sert des plats du jour les jeudi et vendredi midi et un brunch le dimanche, avec une cuisine maison, bio et de saison. Le bar propose des bières locales, des vins et des boissons chaudes, à toute heure du jeudi au dimanche (et même le mercredi à la belle saison) !",
                     ],
                 ],
                 [
@@ -286,7 +286,7 @@ function mkwvs_schema_inject_page_specific(): void
                     'name' => "Peut-on privatiser la péniche pour un événement ?",
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => "Oui, pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage. La salle accueille 60 personnes assises et 100 en cocktail, la terrasse 40 assises et 60 en cocktail.",
+                        'text' => "Oui, pour des événements privés comme un anniversaire, un séminaire, une soirée d'entreprise ou un mariage. La salle accueille 60 personnes assises et 100 en cocktail, la terrasse 40 assises et 60 en cocktail. Les disponibilités se consultent directement sur notre page de privatisation.",
                     ],
                 ],
                 [
@@ -294,7 +294,7 @@ function mkwvs_schema_inject_page_specific(): void
                     'name' => "Peut-on dormir sur la péniche ?",
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => "Oui. Le logement du Marinier, à l'avant du bateau, se loue à la nuit pour deux à trois personnes, avec sa terrasse privée et sa salle de bain.",
+                        'text' => "Oui. Le logement du Marinier, à l'arrière du bateau, se loue à la nuit pour deux à trois personnes, avec sa terrasse privée et sa salle de bain.",
                     ],
                 ],
             ],
@@ -331,7 +331,7 @@ function mkwvs_schema_inject_page_specific(): void
                     'name' => "Le logement est-il indépendant du bar et du restaurant ?",
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => "Oui. Le studio occupe le logement du Marinier, à l'avant du bateau, avec son entrée et sa terrasse privée.",
+                        'text' => "Oui. Le studio occupe le logement du Marinier, à l'arrière du bateau, avec son entrée et sa terrasse privée.",
                     ],
                 ],
                 [

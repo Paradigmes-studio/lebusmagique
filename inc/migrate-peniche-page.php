@@ -78,7 +78,13 @@ function mkwvs_migrate_peniche_page(): void
 
 function mkwvs_peniche_page_is_outdated(string $content): bool
 {
-    return str_contains($content, 'une chambre pour passer la nuit à bord');
+    foreach (['une chambre pour passer la nuit à bord', "à l'avant du bateau", 'Rihour'] as $marker) {
+        if (str_contains($content, $marker)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function mkwvs_peniche_photos(): array
@@ -247,7 +253,7 @@ function mkwvs_peniche_page_content(array $photos): string
   <div class="peniche__split">
     <div class="peniche__split-text">
       <h2>Dormir sur la péniche</h2>
-      <p>À l'avant du bateau, le logement du Marinier se loue à la nuit pour deux à trois personnes, avec sa terrasse privée sur le pont et sa vue sur le canal. C'est un hébergement indépendant du bar et du restaurant.</p>
+      <p>À l'arrière du bateau, le logement du Marinier se loue à la nuit pour deux à trois personnes, avec sa terrasse privée sur le pont et sa vue sur le canal. C'est un hébergement indépendant du bar et du restaurant.</p>
       <p class="peniche__split-cta"><a class="cta cta--tomato" href="/dormir-sur-une-peniche-a-lille/" data-umami-event="hebergement-entree" data-umami-event-source="peniche">Voir les disponibilités</a></p>
     </div>
     <figure class="peniche__split-media">
@@ -305,10 +311,10 @@ function mkwvs_peniche_page_content(array $photos): string
       <p>La péniche est amarrée au cœur de Lille, le long de la Deûle, juste à l'entrée de la Citadelle.</p>
       <ul>
         <li><strong>Adresse :</strong> péniche Le Bus Magique, avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle</li>
-        <li><strong>Métro :</strong> station Rihour</li>
+        <li><strong>Métro :</strong> station République Beaux-Arts</li>
         <li><strong>Bus :</strong> arrêt Champ de Mars</li>
         <li><strong>V'Lille :</strong> station à moins de 5 minutes à pied</li>
-        <li><strong>Voiture :</strong> parking gratuit du Champ de Mars</li>
+        <li><strong>Voiture :</strong> parking du Champ de Mars, juste à côté de la péniche</li>
       </ul>
       <a class="cta cta--tomato" href="https://www.google.com/maps/dir/?api=1&destination=Le+Bus+Magique%2C+avenue+Cuvier%2C+59800+Lille" target="_blank" rel="noopener" data-umami-event="peniche-itineraire">Calculer mon itinéraire</a>
     </div>
@@ -327,11 +333,11 @@ function mkwvs_peniche_page_content(array $photos): string
   <div class="peniche__faq">
     <details open>
       <summary>Où se trouve la péniche Le Bus Magique à Lille ?</summary>
-      <p>La péniche est amarrée avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. On y accède par le métro Rihour ou l'arrêt de bus Champ de Mars, et le parking du Champ de Mars est gratuit.</p>
+      <p>La péniche est amarrée avenue Cuvier, 59800 Lille, à l'entrée de la Citadelle, le long de la Deûle. On y accède par le métro République Beaux-Arts ou l'arrêt de bus Champ de Mars, et le parking du Champ de Mars se trouve juste à côté.</p>
     </details>
     <details>
       <summary>Peut-on manger et boire un verre sur la péniche ?</summary>
-      <p>Oui. La péniche sert des plats du jour les jeudi et vendredi midi et un brunch le dimanche, avec une cuisine maison, bio et de saison. Le bar propose des bières locales, des vins et des boissons chaudes.</p>
+      <p>Oui. La péniche sert des plats du jour les jeudi et vendredi midi et un brunch le dimanche, avec une cuisine maison, bio et de saison. Le bar propose des bières locales, des vins et des boissons chaudes, à toute heure du jeudi au dimanche (et même le mercredi à la belle saison)&nbsp;!</p>
     </details>
     <details>
       <summary>Faut-il adhérer à l'association pour monter à bord ?</summary>
@@ -339,11 +345,11 @@ function mkwvs_peniche_page_content(array $photos): string
     </details>
     <details>
       <summary>Peut-on privatiser la péniche pour un événement ?</summary>
-      <p>Oui, pour un anniversaire, un séminaire, une soirée d'entreprise ou un mariage. La salle accueille 60 personnes assises et 100 en cocktail, la terrasse 40 assises et 60 en cocktail. Les créneaux vont du lundi au mercredi en journée et en soirée, les dimanches à partir de 20h et les samedis de 9h à 16h.</p>
+      <p>Oui, pour des événements privés comme un anniversaire, un séminaire, une soirée d'entreprise ou un mariage. La salle accueille 60 personnes assises et 100 en cocktail, la terrasse 40 assises et 60 en cocktail. Les disponibilités se consultent directement sur <a href="/location/" data-umami-event="peniche-activite" data-umami-event-cible="location">notre page de privatisation</a>.</p>
     </details>
     <details>
       <summary>Peut-on dormir sur la péniche ?</summary>
-      <p>Oui. Le logement du Marinier, à l'avant du bateau, se loue à la nuit pour deux à trois personnes, avec sa terrasse privée et sa salle de bain.</p>
+      <p>Oui. Le logement du Marinier, à l'arrière du bateau, se loue à la nuit pour deux à trois personnes, avec sa terrasse privée et sa salle de bain.</p>
     </details>
   </div>
 

@@ -159,7 +159,7 @@
           <div class="bm-info"><span class="bm-info__label">Quand :</span><span class="bm-info__val">Une fois par mois, consultez la <a href="/programmation/">programmation</a> pour la prochaine date</span></div>
           <div class="bm-info"><span class="bm-info__label">Heure :</span><span class="bm-info__val">Dès 21h</span></div>
           <div class="bm-info"><span class="bm-info__label">Où :</span><span class="bm-info__val">Péniche Le Bus Magique, avenue Cuvier, 59800 Lille</span></div>
-          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro Rihour</span></div>
+          <div class="bm-info"><span class="bm-info__label">Accès :</span><span class="bm-info__val">À deux pas de la Citadelle : arrêt de bus Champ de Mars ou métro République Beaux-Arts</span></div>
           <div class="bm-info"><span class="bm-info__label">Tarif :</span><span class="bm-info__val">Événement gratuit, adhésion à prix libre à partir de 1&nbsp;€ (réglée au bar)</span></div>
           <div class="bm-info"><span class="bm-info__label">Réservation :</span><span class="bm-info__val">Pas nécessaire : débarquez directement à bord !</span></div>
         </article>

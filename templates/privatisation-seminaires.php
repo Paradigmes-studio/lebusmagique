@@ -95,7 +95,7 @@
                 'name' => "Comment accéder à la péniche pour un séminaire ?",
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => "La péniche est amarrée à l'Esplanade, avenue Cuvier à Lille (59800). Accès : arrêt de bus Champ de Mars ou métro Rihour, parking Esplanade à proximité.",
+                    'text' => "La péniche est amarrée à l'Esplanade, avenue Cuvier à Lille (59800). Accès : arrêt de bus Champ de Mars ou métro République Beaux-Arts, parking Esplanade à proximité.",
                 ],
             ],
         ],
@@ -183,7 +183,7 @@
 
         <details class="event-faq-item">
           <summary><h3>Comment accéder à la péniche pour un séminaire ?</h3></summary>
-          <p>La péniche est amarrée à l'Esplanade, avenue Cuvier à Lille (59800). Arrêt de bus Champ de Mars ou métro Rihour, parking Esplanade à proximité. Pratique pour les équipes venant en train.</p>
+          <p>La péniche est amarrée à l'Esplanade, avenue Cuvier à Lille (59800). Arrêt de bus Champ de Mars ou métro République Beaux-Arts, parking Esplanade à proximité. Pratique pour les équipes venant en train.</p>
         </details>
       </div>
 

@@ -23,23 +23,35 @@ const MKWVS_HEBERGEMENT_PHOTOS = [
 
 function mkwvs_migrate_hebergement_page(): void
 {
-    if ((int) get_option('mkwvs_hebergement_page_migrated', 0) >= 1) {
+    if ((int) get_option('mkwvs_hebergement_page_migrated', 0) >= 2) {
         return;
     }
 
-    if (get_page_by_path(MKWVS_HEBERGEMENT_PAGE_SLUG) instanceof WP_Post) {
-        update_option('mkwvs_hebergement_page_migrated', 1);
+    $existing = get_page_by_path(MKWVS_HEBERGEMENT_PAGE_SLUG);
 
-        return;
-    }
+    if ($existing instanceof WP_Post) {
+        if (mkwvs_hebergement_page_is_outdated($existing->post_content)) {
+            $photos = mkwvs_hebergement_photos();
 
-    $photos = [];
-    foreach (MKWVS_HEBERGEMENT_PHOTOS as $key => [$file, $alt]) {
-        $id = mkwvs_hebergement_import_photo($file, $alt);
-        if (!$id) {
-            return;
+            if (!$photos) {
+                return;
+            }
+
+            wp_update_post([
+                'ID' => $existing->ID,
+                'post_content' => mkwvs_hebergement_page_content($photos),
+            ]);
         }
-        $photos[$key] = $id;
+
+        update_option('mkwvs_hebergement_page_migrated', 2);
+
+        return;
+    }
+
+    $photos = mkwvs_hebergement_photos();
+
+    if (!$photos) {
+        return;
     }
 
     $page_id = wp_insert_post([
@@ -65,7 +77,29 @@ function mkwvs_migrate_hebergement_page(): void
 
     flush_rewrite_rules(false);
 
-    update_option('mkwvs_hebergement_page_migrated', 1);
+    update_option('mkwvs_hebergement_page_migrated', 2);
+}
+
+function mkwvs_hebergement_page_is_outdated(string $content): bool
+{
+    return str_contains($content, "à l'avant");
+}
+
+function mkwvs_hebergement_photos(): array
+{
+    $photos = [];
+
+    foreach (MKWVS_HEBERGEMENT_PHOTOS as $key => [$file, $alt]) {
+        $id = mkwvs_hebergement_import_photo($file, $alt);
+
+        if (!$id) {
+            return [];
+        }
+
+        $photos[$key] = $id;
+    }
+
+    return $photos;
 }
 
 function mkwvs_hebergement_import_photo(string $file, string $alt): int
@@ -123,7 +157,7 @@ function mkwvs_hebergement_page_content(array $photos): string
 <!-- wp:html -->
 <div class="hebergement">
 
-  <p class="hebergement__chapo">Le Bus Magique loue le studio du Marinier, à l'avant de la péniche, amarrée aux portes de la Citadelle de Lille. Un hébergement insolite à Lille, sur l'eau, à vingt minutes à pied du Vieux-Lille.</p>
+  <p class="hebergement__chapo">Le Bus Magique loue le studio du Marinier, à l'arrière de la péniche, amarrée aux portes de la Citadelle de Lille. Un hébergement insolite à Lille, sur l'eau, à vingt minutes à pied du Vieux-Lille.</p>
 
   <div class="hebergement__split">
     <div class="hebergement__split-text">
@@ -175,7 +209,7 @@ function mkwvs_hebergement_page_content(array $photos): string
     </details>
     <details>
       <summary>Le logement est-il indépendant du bar et du restaurant ?</summary>
-      <p>Oui. Le studio occupe le logement du Marinier, à l'avant du bateau, avec son entrée et sa terrasse privée.</p>
+      <p>Oui. Le studio occupe le logement du Marinier, à l'arrière du bateau, avec son entrée et sa terrasse privée.</p>
     </details>
     <details>
       <summary>Comment réserver une nuit sur la péniche ?</summary>
