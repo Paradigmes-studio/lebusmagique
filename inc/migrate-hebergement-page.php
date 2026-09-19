@@ -85,6 +85,11 @@ function mkwvs_migrate_hebergement_page(): void
 
 function mkwvs_hebergement_page_is_outdated(string $content): bool
 {
+    // Une page servie sans aucune image vient d'un import qui a échoué.
+    if (!str_contains($content, '<img')) {
+        return true;
+    }
+
     foreach (["à l'avant", 'péniche, amarrée aux portes'] as $marker) {
         if (str_contains($content, $marker)) {
             return true;
