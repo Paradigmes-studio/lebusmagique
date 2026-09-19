@@ -24,7 +24,7 @@ const MKWVS_HEBERGEMENT_PHOTOS = [
 
 function mkwvs_migrate_hebergement_page(): void
 {
-    if ((int) get_option('mkwvs_hebergement_page_migrated', 0) >= 2) {
+    if ((int) get_option('mkwvs_hebergement_page_migrated', 0) >= 3) {
         return;
     }
 
@@ -46,7 +46,7 @@ function mkwvs_migrate_hebergement_page(): void
             set_post_thumbnail($existing->ID, $photos['exterieur']);
         }
 
-        update_option('mkwvs_hebergement_page_migrated', 2);
+        update_option('mkwvs_hebergement_page_migrated', 3);
 
         return;
     }
@@ -80,12 +80,18 @@ function mkwvs_migrate_hebergement_page(): void
 
     flush_rewrite_rules(false);
 
-    update_option('mkwvs_hebergement_page_migrated', 2);
+    update_option('mkwvs_hebergement_page_migrated', 3);
 }
 
 function mkwvs_hebergement_page_is_outdated(string $content): bool
 {
-    return str_contains($content, "à l'avant");
+    foreach (["à l'avant", 'péniche, amarrée aux portes'] as $marker) {
+        if (str_contains($content, $marker)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function mkwvs_hebergement_photos(): array
@@ -160,7 +166,7 @@ function mkwvs_hebergement_page_content(array $photos): string
 <!-- wp:html -->
 <div class="hebergement">
 
-  <p class="hebergement__chapo">Le Bus Magique loue le studio du Marinier, à l'arrière de la péniche, amarrée aux portes de la Citadelle de Lille. Un hébergement insolite à Lille, sur l'eau, à dix minutes à pied du Vieux-Lille.</p>
+  <p class="hebergement__chapo">Le Bus Magique loue le studio du Marinier, à l'arrière de la péniche amarrée aux portes de la Citadelle de Lille. Un hébergement insolite à Lille, sur l'eau, à dix minutes à pied du Vieux-Lille.</p>
 
   <div class="hebergement__split">
     <div class="hebergement__split-text">
