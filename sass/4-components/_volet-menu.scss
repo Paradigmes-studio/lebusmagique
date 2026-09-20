@@ -137,7 +137,7 @@
     // border: 2px solid red;
     height: 100%;
     max-width: 95%;
-    max-width: $container-medium-width;
+    max-width: calc(100% - 50px);
     z-index: 10;
     flex-direction: row;
     background: transparent;
@@ -187,7 +187,7 @@
             margin-left: auto;
             margin-right: 4px;
             ~ li {
-              margin-right: 14px;
+              margin-right: 8px;
             }
           }
         }
@@ -222,14 +222,14 @@
     &__titles, & a {
       display: inline-block;
       font-size: 25px;
-      font-size: 19px;
+      font-size: 16px;
     }
     li {
-      margin-right: 26px;
+      margin-right: 14px;
     }
     h2, &__navigation a {
       margin-right: 44px;
-      margin-right: 19px;
+      margin-right: 12px;
     }
     &__navigation {
       ul.menu > li > a {
@@ -258,10 +258,9 @@
 
   @media #{$extend} {
     max-width: 95%;
-    max-width: $container-medium-width;
 
     &__titles, & a {
-      font-size: 20px;
+      font-size: 17px;
     }
 
     h2, &__navigation a {
@@ -281,7 +280,7 @@
 
 
   @media screen and (min-width: $container-max-width-big - 40px) {
-    max-width: $container-max-width;
+    max-width: 95%;
 
     h2, &__navigation a {
       margin-right: 19px;
@@ -289,8 +288,7 @@
   }
 
   @media #{$extend2} {
-    max-width: 85%;
-    max-width: $container-max-width-big;
+    max-width: min(95%, 1900px);
 
     .menu-navigation-container > ul {
       width: 100%;
