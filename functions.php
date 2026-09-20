@@ -47,6 +47,7 @@ require get_template_directory() . '/inc/links-social-media-functions.php';
 require get_template_directory() . '/inc/analytics.php';
 require get_template_directory() . '/inc/hebergement-calendar.php';
 require get_template_directory() . '/inc/migrate-hebergement-page.php';
+require get_template_directory() . '/inc/migrate-menu-hebergement.php';
 require get_template_directory() . '/inc/migrate-peniche-page.php';
 require get_template_directory() . '/inc/seo-fixes.php';
 require get_template_directory() . '/inc/migrate-seo-content.php';
